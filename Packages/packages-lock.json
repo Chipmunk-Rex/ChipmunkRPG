@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.devlab.chipmunklibrary": {
+      "version": "https://github.com/Chipmunk-Rex/Chipmunk-Library.git?path=/ChipmunkLibrary",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6c09aa626c0a3d1e62b1f1cb4598b864301b3927"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.1",
       "depth": 1,
