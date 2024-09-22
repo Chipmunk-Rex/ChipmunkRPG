@@ -7,6 +7,7 @@ public abstract class BT_Node : ScriptableObject
 {
     public BT_EnumNodeState state = BT_EnumNodeState.Running;
     private bool isStarted = false;
+    internal string guid;
 
     public BT_EnumNodeState UpdateNode()
     {
