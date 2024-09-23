@@ -1,11 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public abstract class BT_DecoratorNode : BT_Node
+public class BT_RootNode : BT_Node
 {
-    [HideInInspector] public BT_Node childNode;
+    private BT_Node childNode;
+    public override void OnNodeStart()
+    {
+        childNode.OnNodeStart();
+    }
+
+    public override void OnNodeStop()
+    {
+        childNode.OnNodeStop();
+    }
+
+    protected override BT_EnumNodeState OnNodeUpdate()
+    {
+        return childNode.UpdateNode();
+    }
     public override void AddChild(BT_Node child)
     {
         childNode = child;
@@ -14,6 +27,7 @@ public abstract class BT_DecoratorNode : BT_Node
     {
         childNode = null;
     }
+
     public override List<BT_Node> GetChild()
     {
         if (childNode == null)
@@ -24,9 +38,8 @@ public abstract class BT_DecoratorNode : BT_Node
     }
     public override BT_Node Clone()
     {
-        BT_DecoratorNode node = Instantiate(this);
+        BT_RootNode node = Instantiate(this);
         node.childNode = childNode.Clone();
         return node;
     }
 }
-

@@ -5,14 +5,13 @@ using UnityEngine;
 public class BT_BehaviourTreeExecutor : MonoBehaviour
 {
     [SerializeField] private BT_BehaviourTree behaviourTree;
+    private BT_BehaviourTree behaviourTreeClone;
     private void Start()
     {
-        behaviourTree = ScriptableObject.CreateInstance<BT_BehaviourTree>();
-
-        // BT_Node node = ScriptableObject.CreateInstance<
+        behaviourTreeClone = behaviourTree.Clone();
     }
     private void Update()
     {
-
+        behaviourTreeClone.UpdateTree();
     }
 }
