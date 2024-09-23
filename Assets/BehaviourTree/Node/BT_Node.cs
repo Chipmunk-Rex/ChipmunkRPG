@@ -8,7 +8,7 @@ public abstract class BT_Node : ScriptableObject
     [HideInInspector] public BT_EnumNodeState state = BT_EnumNodeState.Running;
     [HideInInspector] private bool isStarted = false;
     [HideInInspector] public string guid;
-    public Vector2 position;
+    [HideInInspector] public Vector2 position;
     public BT_EnumNodeState UpdateNode()
     {
         if (!isStarted)

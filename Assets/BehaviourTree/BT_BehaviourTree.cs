@@ -42,10 +42,8 @@ public class BT_BehaviourTree : ScriptableObject
     }
     public void AddChildNode(BT_Node parent, BT_Node child)
     {
-        Undo.RecordObject(this, "BehaviourTree Add Child Node");
         Undo.RecordObject(parent, "BehaviourTree Add Child Node");
         parent.AddChild(child);
-        EditorUtility.SetDirty(this);
         EditorUtility.SetDirty(parent);
     }
     public void RemoveChildNode(BT_Node parent, BT_Node child)

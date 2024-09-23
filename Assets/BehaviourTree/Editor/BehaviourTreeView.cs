@@ -30,7 +30,7 @@ public class BehaviourTreeView : GraphView
 
     private void OnUndoRedo()
     {
-        Debug.Log("UndoRedo");
+        Debug.Log($"UndoRedo {tree != null}");
         AssetDatabase.SaveAssets();
         PopulateView(tree);
     }
@@ -38,6 +38,11 @@ public class BehaviourTreeView : GraphView
     public void PopulateView(BT_BehaviourTree tree)
     {
         this.tree = tree;
+        PopulateView();
+    }
+    public void PopulateView()
+    {
+        Debug.Log((tree != null) + " 밍");
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
