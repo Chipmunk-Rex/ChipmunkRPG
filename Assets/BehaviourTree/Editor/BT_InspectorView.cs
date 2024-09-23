@@ -9,12 +9,13 @@ public class BT_InspectorView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<BT_InspectorView, VisualElement.UxmlTraits> { }
     Editor editor;
+    BT_InspectorViewHeader inspectorViewHeader;
     public BT_InspectorView()
     {
-
+        inspectorViewHeader = this.Q<BT_InspectorViewHeader>();
     }
 
-    internal void UpdateSelection(BT_NodeView nodeView)
+    public void UpdateSelection(BT_NodeView nodeView)
     {
         Clear();
 

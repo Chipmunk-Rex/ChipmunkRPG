@@ -7,7 +7,11 @@ using UnityEngine.UIElements;
 public class BehaviourTreeEditor : EditorWindow
 {
     BehaviourTreeView treeView;
+    BT_TabedView tabView;
+    BT_SplitView splitView;
     BT_InspectorView inspectorView;
+    BT_InspectorViewHeader inspectorViewHeader;
+    public static Vector2 mousePosition;
     [MenuItem("Window/BehaviourTree")]
     public static void OpenWindow()
     {
@@ -37,18 +41,37 @@ public class BehaviourTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviourTreeView>();
         treeView.onNodeSeleted += OnNodeSeletionChange;
+
         inspectorView = root.Q<BT_InspectorView>();
+
+        inspectorViewHeader = root.Q<BT_InspectorViewHeader>();
+        inspectorViewHeader?.Initialize();
+
+        splitView = root.Q<BT_SplitView>();
+
+
+        // tabView = root.Q<BT_TabView>();
+        // BT_TabButton tabButton = new BT_TabButton();
+        // tabButton.Add(treeView);
+        // tabView.AddTab(tabButton, true);
+
 
         OnSelectionChange();
     }
-
+    private void OnGUI()
+    {
+        mousePosition = treeView.contentViewContainer.WorldToLocal(Event.current.mousePosition);
+    }
     private void OnNodeSeletionChange(BT_NodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);
+        inspectorViewHeader.UpdateSelection(nodeView);
     }
 
     private void OnSelectionChange()
     {
+        inspectorViewHeader?.Initialize();
+
         BT_BehaviourTree tree = Selection.activeObject as BT_BehaviourTree;
         if (tree != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
         {

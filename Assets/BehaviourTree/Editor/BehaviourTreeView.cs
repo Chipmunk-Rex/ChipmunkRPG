@@ -32,7 +32,6 @@ public class BehaviourTreeView : GraphView
     {
         Debug.Log("UndoRedo");
         AssetDatabase.SaveAssets();
-        EditorUtility.SetDirty(tree);
         PopulateView(tree);
     }
 
@@ -138,15 +137,22 @@ public class BehaviourTreeView : GraphView
             {
                 string baseName = BT_NodeView.NodeNameCreator(type.BaseType.Name);
                 string name = BT_NodeView.NodeNameCreator(type.Name);
-                evt.menu.AppendAction($"{baseName}/{name}", (a) => { CreateNode(type); });
+
+                Vector2 mousePos = BehaviourTreeEditor.mousePosition;
+                evt.menu.AppendAction($"{baseName}/{name}", (a) => { CreateNode(type, mousePos); });
             }
         }
         base.BuildContextualMenu(evt);
     }
 
-    private void CreateNode(Type type)
+    private void CreateNode(Type type, Vector2 mousePos)
     {
         BT_Node node = tree.CreateNode(type);
+        Debug.Log(Event.current == null);
+        node.position = mousePos;
+
+        Debug.Log(node.position + " " + mousePos);
+        // AssetDatabase.SaveAssets();
         CreateNodeView(node);
     }
 }

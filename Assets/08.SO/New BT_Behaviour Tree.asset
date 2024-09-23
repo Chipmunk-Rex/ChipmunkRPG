@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8925476989820899652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96cb920f0b051f945b476b7cb470e7dc, type: 3}
-  m_Name: BT_RootNode
-  m_EditorClassIdentifier: 
-  state: 0
-  guid: bc908e173116eb44da78ec5ec834e287
-  position: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8ab536c9f89e640b32420533d5bbce, type: 3}
   m_Name: New BT_Behaviour Tree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -8925476989820899652}
+  rootNode: {fileID: 0}
   treeState: 0
-  nodes:
-  - {fileID: -8925476989820899652}
+  nodes: []

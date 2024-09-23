@@ -6,6 +6,9 @@ GridBackground {
 }
 
 #panelTitle {
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(37, 37, 37);
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
 }
- 

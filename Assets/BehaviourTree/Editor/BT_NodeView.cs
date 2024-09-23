@@ -46,7 +46,11 @@ public class BT_NodeView : Node
         if (input != null)
         {
             input.portName = "";
-            input.style.flexDirection = FlexDirection.Column;
+
+            Label portLbl = input.ElementAt(1) as Label;
+            portLbl.style.marginLeft = 0;
+            portLbl.style.marginRight = 0;
+
             inputContainer.Add(input);
         }
     }
@@ -68,7 +72,11 @@ public class BT_NodeView : Node
         if (output != null)
         {
             output.portName = "";
-            output.style.flexDirection = FlexDirection.ColumnReverse;
+
+            Label portLbl = output.ElementAt(1) as Label;
+            portLbl.style.marginLeft = 0;
+            portLbl.style.marginRight = 0;
+
             outputContainer.Add(output);
         }
     }
@@ -78,6 +86,7 @@ public class BT_NodeView : Node
     {
         base.OnSelected();
         onNodeSeleted?.Invoke(this);
+        this.Q("selection-border").AddToClassList("onSelected");
     }
     public override void SetPosition(Rect newPos)
     {
