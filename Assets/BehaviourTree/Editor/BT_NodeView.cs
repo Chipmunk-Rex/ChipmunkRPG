@@ -21,6 +21,7 @@ public class BT_NodeView : Node
 
         CreateNodeInputPorts();
         CreateNodeOutputPorts();
+        AddToClassList("BT_NodeView");
     }
     public BT_Node node;
     public Port input;
@@ -81,6 +82,27 @@ public class BT_NodeView : Node
         }
     }
 
+    public void UpdateNodeView()
+    {
+        RemoveFromClassList("running");
+        RemoveFromClassList("success");
+        RemoveFromClassList("failure");
+
+        if (Application.isPlaying)
+            switch (node.state)
+            {
+                case BT_EnumNodeState.Running:
+                    if (node.isStarted)
+                        AddToClassList("running");
+                    break;
+                case BT_EnumNodeState.Success:
+                    AddToClassList("success");
+                    break;
+                case BT_EnumNodeState.Failure:
+                    AddToClassList("failure");
+                    break;
+            }
+    }
 
     public override void OnSelected()
     {

@@ -166,4 +166,11 @@ public class BehaviourTreeView : GraphView
         // EditorUtility.SetDirty(tree);
         CreateNodeView(node);
     }
+    public void UpdateTreeView()
+    {
+        nodes.ForEach(node =>
+        {
+            (node as BT_NodeView).UpdateNodeView();
+        });
+    }
 }

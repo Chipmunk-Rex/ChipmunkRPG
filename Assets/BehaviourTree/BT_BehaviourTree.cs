@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -26,7 +27,12 @@ public class BT_BehaviourTree : ScriptableObject
         Undo.RegisterCompleteObjectUndo(this, "BehaviourTreeaa Create Node");
         nodes.Add(node);
 
-        AssetDatabase.AddObjectToAsset(node, this);
+        if (!Application.isPlaying)
+        {
+            AssetDatabase.AddObjectToAsset(node, this);
+
+        }
+
         // Undo.RegisterCreatedObjectUndo(node, "BehaviourTree Create Node");
         AssetDatabase.SaveAssets();
         return node;
@@ -55,15 +61,24 @@ public class BT_BehaviourTree : ScriptableObject
     {
         return parentNode.GetChild();
     }
+    public void TraveNode(BT_Node node, Action<BT_Node> onVisit)
+    {
+        if (node != null)
+        {
+            onVisit.Invoke(node);
+            List<BT_Node> children = node.GetChild();
+            children.ForEach((childNode) => TraveNode(childNode, onVisit));
+        }
+    }
     public BT_BehaviourTree Clone()
     {
         BT_BehaviourTree tree = Instantiate(this);
         tree.rootNode = rootNode.Clone() as BT_RootNode;
         tree.nodes = new List<BT_Node>();
-        foreach (var node in nodes)
+        TraveNode(tree.rootNode, (node) =>
         {
-            tree.nodes.Add(node.Clone());
-        }
+            tree.nodes.Add(node);
+        });
         return tree;
     }
 }

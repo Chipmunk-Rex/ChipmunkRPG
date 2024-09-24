@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BT_RepeatNode
   m_EditorClassIdentifier: 
   state: 0
+  isStarted: 0
   guid: b4a73e35f1a51dc46be71c1f993d396b
-  position: {x: 0, y: 0}
-  childNode: {fileID: 0}
+  position: {x: 84, y: 40}
+  childNode: {fileID: 4464649200825204023}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,8 +48,9 @@ MonoBehaviour:
   m_Name: BT_DebugNode
   m_EditorClassIdentifier: 
   state: 0
+  isStarted: 0
   guid: 74349f6bdff1e0a47bfcc8ab869f7c6e
-  position: {x: 162, y: 258}
+  position: {x: -99.25726, y: 208.52982}
   message: 
 --- !u!114 &7586767354626489270
 MonoBehaviour:
@@ -63,5 +65,6 @@ MonoBehaviour:
   m_Name: BT_RootNode
   m_EditorClassIdentifier: 
   state: 0
+  isStarted: 0
   guid: f7116caf225d81c4e86eea6b688ef49b
   position: {x: 0, y: 0}

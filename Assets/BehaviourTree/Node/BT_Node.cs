@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class BT_Node : ScriptableObject
 {
     [HideInInspector] public BT_EnumNodeState state = BT_EnumNodeState.Running;
-    [HideInInspector] private bool isStarted = false;
+    [HideInInspector] public bool isStarted = false;
     [HideInInspector] public string guid;
     [HideInInspector] public Vector2 position;
     public BT_EnumNodeState UpdateNode()

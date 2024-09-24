@@ -58,6 +58,28 @@ public class BehaviourTreeEditor : EditorWindow
 
         OnSelectionChange();
     }
+    private void OnEnable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+    }
+    private void OnDisable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+    }
+
+    private void OnPlayModeStateChanged(PlayModeStateChange change)
+    {
+        switch (change)
+        {
+            case PlayModeStateChange.EnteredEditMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.EnteredPlayMode:
+                OnSelectionChange();
+                break;
+        }
+    }
     private void OnNodeSeletionChange(BT_NodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);
@@ -69,9 +91,28 @@ public class BehaviourTreeEditor : EditorWindow
         inspectorViewHeader?.Initialize();
 
         BT_BehaviourTree tree = Selection.activeObject as BT_BehaviourTree;
+        if (tree == null)
+        {
+            GameObject selectedGameObject = Selection.activeGameObject;
+            if (selectedGameObject != null)
+                if (selectedGameObject.TryGetComponent<BT_BehaviourTreeExecutor>(out BT_BehaviourTreeExecutor executor))
+                {
+                    tree = executor.behaviourTreeClone;
+                }
+        }
+        if (Application.isPlaying)
+        {
+            if (tree != null)
+                treeView.PopulateView(tree);
+        }
+        else
         if (tree != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
         {
             treeView.PopulateView(tree);
         }
+    }
+    private void OnInspectorUpdate()
+    {
+        treeView?.UpdateTreeView();
     }
 }
