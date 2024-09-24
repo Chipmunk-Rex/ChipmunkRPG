@@ -4,7 +4,8 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(BaseStats))]
-public class Entity : MonoBehaviour
+[RequireComponent(typeof(Health))]
+public abstract class Entity : MonoBehaviour
 {
     
 }

@@ -23,12 +23,11 @@ public class BT_BehaviourTree : ScriptableObject
         node.name = type.Name;
         node.guid = GUID.Generate().ToString();
 
-        Undo.RecordObject(this, "BehaviourTree Create Node");
+        Undo.RegisterCompleteObjectUndo(this, "BehaviourTreeaa Create Node");
         nodes.Add(node);
-        EditorUtility.SetDirty(this);
 
         AssetDatabase.AddObjectToAsset(node, this);
-        Undo.RegisterCreatedObjectUndo(node, "BehaviourTree Create Node");
+        // Undo.RegisterCreatedObjectUndo(node, "BehaviourTree Create Node");
         AssetDatabase.SaveAssets();
         return node;
     }
@@ -36,8 +35,8 @@ public class BT_BehaviourTree : ScriptableObject
     {
         Undo.RecordObject(this, "BehaviourTree Delete Node");
         nodes.Remove(node);
-        // AssetDatabase.RemoveObjectFromAsset(node);
         Undo.DestroyObjectImmediate(node);
+        // AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }
     public void AddChildNode(BT_Node parent, BT_Node child)

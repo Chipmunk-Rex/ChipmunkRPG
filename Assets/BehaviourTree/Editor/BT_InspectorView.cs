@@ -20,6 +20,11 @@ public class BT_InspectorView : VisualElement
         Clear();
 
         UnityEngine.Object.DestroyImmediate(editor);
+
+        if (nodeView == null || nodeView.node == null)
+        {
+            return;
+        }
         editor = Editor.CreateEditor(nodeView.node);
         IMGUIContainer container = new IMGUIContainer(() =>
         {

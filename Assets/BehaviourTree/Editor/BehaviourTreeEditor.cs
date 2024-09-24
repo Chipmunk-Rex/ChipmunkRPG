@@ -58,10 +58,6 @@ public class BehaviourTreeEditor : EditorWindow
 
         OnSelectionChange();
     }
-    private void OnGUI()
-    {
-        mousePosition = treeView.contentViewContainer.WorldToLocal(Event.current.mousePosition);
-    }
     private void OnNodeSeletionChange(BT_NodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);

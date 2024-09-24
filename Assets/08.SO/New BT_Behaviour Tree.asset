@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5557881256314186427
+--- !u!114 &-2634991540064462262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,24 +13,9 @@ MonoBehaviour:
   m_Name: BT_RepeatNode
   m_EditorClassIdentifier: 
   state: 0
-  guid: b7d0847c66cbf9c419d55a4dcc9e090d
-  position: {x: 213, y: 120}
-  childNode: {fileID: 2593625018426549483}
---- !u!114 &-792088098515067419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96cb920f0b051f945b476b7cb470e7dc, type: 3}
-  m_Name: BT_RootNode
-  m_EditorClassIdentifier: 
-  state: 0
-  guid: 0e39c01f360762248a22cd68f3c95583
-  position: {x: 221, y: -17.320007}
+  guid: b4a73e35f1a51dc46be71c1f993d396b
+  position: {x: 0, y: 0}
+  childNode: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,13 +28,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8ab536c9f89e640b32420533d5bbce, type: 3}
   m_Name: New BT_Behaviour Tree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -792088098515067419}
+  rootNode: {fileID: 7586767354626489270}
   treeState: 0
   nodes:
-  - {fileID: -792088098515067419}
-  - {fileID: -5557881256314186427}
-  - {fileID: 2593625018426549483}
---- !u!114 &2593625018426549483
+  - {fileID: 7586767354626489270}
+  - {fileID: 4464649200825204023}
+  - {fileID: -2634991540064462262}
+--- !u!114 &4464649200825204023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,6 +47,21 @@ MonoBehaviour:
   m_Name: BT_DebugNode
   m_EditorClassIdentifier: 
   state: 0
-  guid: 2efd73dac32ec4449a2a679ec1604185
-  position: {x: 177.5, y: 244}
-  message: ald
+  guid: 74349f6bdff1e0a47bfcc8ab869f7c6e
+  position: {x: 162, y: 258}
+  message: 
+--- !u!114 &7586767354626489270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cb920f0b051f945b476b7cb470e7dc, type: 3}
+  m_Name: BT_RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  guid: f7116caf225d81c4e86eea6b688ef49b
+  position: {x: 0, y: 0}

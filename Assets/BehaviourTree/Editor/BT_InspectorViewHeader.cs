@@ -10,7 +10,7 @@ public class BT_InspectorViewHeader : VisualElement
     BT_NodeView selectedNodeView;
     public BT_InspectorViewHeader()
     {
-        this.visible = false;
+        this.style.display = DisplayStyle.None;
     }
     public Label titleLbl = null;
     public void Initialize()
@@ -18,19 +18,18 @@ public class BT_InspectorViewHeader : VisualElement
         if (titleLbl == null)
             titleLbl = this.Q<Label>();
         if (selectedNodeView == null)
-            this.visible = false;
+            this.style.display = DisplayStyle.None;
     }
-    
+
     public void UpdateSelection(BT_NodeView nodeView)
     {
         selectedNodeView = nodeView;
         if (nodeView == null)
         {
-            this.visible = false;
+            this.style.display = DisplayStyle.None;
             return;
         }
-
-        this.visible = true;
+        this.style.display = DisplayStyle.Flex;
         if (titleLbl == null)
             titleLbl = this.Q<Label>();
         titleLbl.text = BT_NodeView.NodeNameCreator(nodeView.node.GetType().ToString());
