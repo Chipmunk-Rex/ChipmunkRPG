@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/ItemEditor/Editor/ItemEditorWindow.uss?fileID=7433441132597879392&amp;guid=8240ed1c37c298c4fb87065ad94271f1&amp;type=3#ItemEditorWindow" />
+    <ItemSplitView>
+        <ui:VisualElement name="Left" style="min-width: 20%;">
+            <ItemInspectorView />
+        </ui:VisualElement>
+        <ui:VisualElement name="Right" style="flex-grow: 0; min-width: 70%;">
+            <ItemSplitView>
+                <ui:VisualElement name="Left" style="min-width: 50%;">
+                    <ItemEditorView>
+                        <ui:ScrollView />
+                    </ItemEditorView>
+                </ui:VisualElement>
+                <ui:VisualElement name="Right" style="min-width: 200px; flex-grow: 0;">
+                    <ItemResourceView />
+                </ui:VisualElement>
+            </ItemSplitView>
+        </ui:VisualElement>
+    </ItemSplitView>
+</ui:UXML>

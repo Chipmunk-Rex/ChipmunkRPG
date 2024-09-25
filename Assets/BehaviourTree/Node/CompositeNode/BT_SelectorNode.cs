@@ -21,10 +21,8 @@ public class BT_SelectorNode : BT_CompositeNode
         {
             case BT_EnumNodeState.Running:
                 return BT_EnumNodeState.Running;
-                break;
             case BT_EnumNodeState.Success:
                 return BT_EnumNodeState.Success;
-                break;
             case BT_EnumNodeState.Failure:
                 current++;
                 break;
