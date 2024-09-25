@@ -122,6 +122,18 @@ public class BehaviourTreeView : GraphView
             });
         }
 
+        if (graphViewChange.movedElements != null)
+        {
+            graphViewChange.movedElements.ForEach(element =>
+            {
+                BT_NodeView nodeView = element as BT_NodeView;
+                if (nodeView != null)
+                {
+                    nodeView.SortChildren();
+                }
+            });
+        }
+
         return graphViewChange;
     }
 

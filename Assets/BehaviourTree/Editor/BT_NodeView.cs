@@ -117,4 +117,17 @@ public class BT_NodeView : Node
         node.position = newPos.min;
         EditorUtility.SetDirty(node);
     }
+    public void SortChildren()
+    {
+        BT_CompositeNode compositeNode = node as BT_CompositeNode;
+        if (compositeNode != null)
+        {
+            compositeNode.GetChild().Sort(SortByHorizontalPos);
+        }
+    }
+
+    private int SortByHorizontalPos(BT_Node x, BT_Node y)
+    {
+        return x.position.x < y.position.x ? -1 : 1;
+    }
 }

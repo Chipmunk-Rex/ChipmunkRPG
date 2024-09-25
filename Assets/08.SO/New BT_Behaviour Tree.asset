@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: b4a73e35f1a51dc46be71c1f993d396b
-  position: {x: 84, y: 40}
+  position: {x: 8, y: 69}
   childNode: {fileID: 4464649200825204023}
 --- !u!114 &11400000
 MonoBehaviour:
