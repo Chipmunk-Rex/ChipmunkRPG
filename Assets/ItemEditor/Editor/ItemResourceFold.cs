@@ -1,22 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
+using System;
+using UnityEditor;
 
-public class ItemResourceFold : Foldout
+public class ItemResourceFold : VisualElement
 {
-    public new class UxmlFactory : UxmlFactory<ItemResourceFold, Foldout.UxmlTraits> { }
+    Type type;
+    public VisualElement foldout { get; private set; }
+    public Action<Type> onClick;
     public ItemResourceFold()
     {
-        VisualElement visualElement = new();
-        visualElement.AddToClassList("ResourceAdd");
-        this.Add(visualElement);
+        this.style.flexDirection = FlexDirection.Row;
     }
-    public void Initialize(List<VisualElement> visualElements)
+    public void Initialize(Type type)
     {
-        visualElements.ForEach(element =>
-        {
-            this.Add(element);
-        });
+        this.type = type;
+        bool isRoot = TypeCache.GetTypesDerivedFrom(type).Count == 0;
+
+        foldout = new Foldout();
+        this.Add(foldout);
+        if (foldout is Foldout)
+            (foldout as Foldout).text = type.ToString();
+        if (type.IsAbstract)
+            return;
+        Button addButton = new();
+        addButton.AddToClassList("ResourceAdd");
+
+        addButton.RegisterCallback<ClickEvent>(evt => OnClick());
+        this.Add(addButton);
     }
+    private void OnClick()
+    {
+        onClick?.Invoke(type);
+    }
+
 }

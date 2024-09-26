@@ -10,12 +10,19 @@ public class ItemEditorWindow : EditorWindow
     ItemInspectorView itemInspectorView;
     ItemEditorView itemEditorView;
     ItemResourceView itemResourceView;
+    Button reloadBtn;
 
     [MenuItem("Window/ItemWindow")]
     public static void OnOpenWindow()
     {
         ItemEditorWindow window = GetWindow<ItemEditorWindow>();
         window.titleContent = new GUIContent("ItemEditor");
+
+    }
+
+    private void OnUndoRedo()
+    {
+        OnReload();
     }
 
     public void CreateGUI()
@@ -28,16 +35,37 @@ public class ItemEditorWindow : EditorWindow
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/ItemEditor/Editor/ItemEditorWindow.uss");
         rootEle.styleSheets.Add(styleSheet);
 
+
         itemSplitView = rootEle.Q<ItemSplitView>();
 
         itemInspectorView = QuearyOrAction<ItemInspectorView>(itemSplitView, () => new ItemInspectorView());
         itemResourceView = QuearyOrAction<ItemResourceView>(itemSplitView, () => new ItemResourceView());
         itemEditorView = QuearyOrAction<ItemEditorView>(itemSplitView, () => new ItemEditorView());
-        
-        // rootEle.Add(itemInspectorView);
 
+        itemResourceView.onCreateItem += OnSelectItem;
+        itemResourceView.onCreateItem += itemEditorView.ReFreshViewAndSelect;
         itemEditorView.Initialize();
+        itemEditorView.onSelectItem += OnSelectItem;
+
+
+        reloadBtn = rootEle.Q<Button>("ReloadBtn");
+        reloadBtn.RegisterCallback<ClickEvent>(OnReload);
+
+        Undo.undoRedoPerformed += OnUndoRedo;
+    }
+
+    private void OnReload(ClickEvent evt)
+    {
+        OnReload();
+    }
+    private void OnReload()
+    {
         itemEditorView.ReFreshView();
+        itemResourceView.ReloadView();
+    }
+    public void OnSelectItem(BaseItemSO baseItemSO)
+    {
+        itemInspectorView.UpdateInspactor(baseItemSO);
     }
     public static T QuearyOrAction<T>(VisualElement root, Func<T> action) where T : VisualElement
     {

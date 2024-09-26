@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580d0dbdc63522b46a637c191fbbbf93, type: 3}
-  m_Name: New Item SO
+  m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
+  m_Name: FoodSO
   m_EditorClassIdentifier: 
-  itemName: Item
-  itemSprite: {fileID: 0}
-  enumItemRarity: 0
+  itemName: wadwawdaadw
+  itemSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  maxStackCount: 64
+  enumItemRarity: 3
