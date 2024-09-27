@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BT_BehaviourTreeExecutor : MonoBehaviour
 {
+    [HideInInspector] public BT_BehaviourTree behaviourTreeClone { get; private set; }
     [SerializeField] private BT_BehaviourTree behaviourTree;
-    private BT_BehaviourTree behaviourTreeClone;
     private void Start()
     {
         behaviourTreeClone = behaviourTree.Clone();

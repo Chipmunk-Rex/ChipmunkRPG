@@ -1,0 +1,66 @@
+Button {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+#Header {
+    padding-top: 2px;
+    padding-right: 7px;
+    padding-bottom: 2px;
+    padding-left: 7px;
+}
+
+#ReloadBtn :hover {
+    rotate: 360deg;
+    background-color: rgb(65, 255, 0);
+}
+
+#ReloadBtn {
+    background-image: url("project://database/Assets/ItemEditor/Editor/Resource/ReloadIcon.png?fileID=2800000&guid=03d9c0c996c1e5c49af5123701110c25&type=3#ReloadIcon");
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.ResourceAdd {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-image: url("project://database/Assets/ItemEditor/Editor/Resource/PlugIcon.png?fileID=2800000&guid=b8870664f5d8e6a4f9b99dce5ddbf9f7&type=3#PlugIcon");
+    -unity-background-image-tint-color: rgba(58, 202, 67, 0.59);
+    cursor: url("project://database/Assets/ItemEditor/Editor/Resource/HandCorsor.png?fileID=2800000&guid=1705784ebdb124443b441d60224068d2&type=3#HandCorsor") 250 0;
+    margin-top: 2px;
+    margin-left: -60px;
+
+    right: 0;
+}
+
+.ResourceAdd :hover {
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+    cursor: url("project://database/Assets/ItemEditor/Editor/Resource/HandCorsor.png?fileID=2800000&guid=1705784ebdb124443b441d60224068d2&type=3#HandCorsor");
+}
+
+.ResourceView {
+    width: 100%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.ResourceViewParent {
+    width: 100%;
+}

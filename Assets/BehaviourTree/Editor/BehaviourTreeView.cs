@@ -11,7 +11,7 @@ using System.Linq;
 public class BehaviourTreeView : GraphView
 {
     public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
-    BT_BehaviourTree tree;
+    private BT_BehaviourTree tree;
     public Action<BT_NodeView> onNodeSeleted;
     public BehaviourTreeView()
     {
@@ -25,20 +25,23 @@ public class BehaviourTreeView : GraphView
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviourTree/Editor/BehaviourTreeEditor.uss");
         styleSheets.Add(styleSheet);
 
-        Undo.undoRedoPerformed += OnUndoRedo;
+        // Undo.undoRedoPerformed -= OnUndoRedo();
     }
-
     private void OnUndoRedo()
     {
-        Debug.Log("UndoRedo");
+        Debug.Log((tree != null) + " UndoRedo");
+        PopulateView();
         AssetDatabase.SaveAssets();
-        EditorUtility.SetDirty(tree);
-        PopulateView(tree);
     }
 
     public void PopulateView(BT_BehaviourTree tree)
     {
         this.tree = tree;
+        Undo.undoRedoPerformed += OnUndoRedo;
+        PopulateView();
+    }
+    public void PopulateView()
+    {
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
@@ -51,7 +54,11 @@ public class BehaviourTreeView : GraphView
             EditorUtility.SetDirty(tree);
             AssetDatabase.SaveAssets();
         }
-        this.tree.nodes.ForEach(n => { Debug.Log(n == null); CreateNodeView(n); });
+        this.tree.nodes.ForEach(n =>
+        {
+            // Debug.Log(n == null);
+            CreateNodeView(n);
+        });
 
         this.tree.nodes.ForEach(parentNode =>
         {
@@ -115,13 +122,28 @@ public class BehaviourTreeView : GraphView
             });
         }
 
+        if (graphViewChange.movedElements != null)
+        {
+            graphViewChange.movedElements.ForEach(element =>
+            {
+                BT_NodeView nodeView = element as BT_NodeView;
+                if (nodeView != null)
+                {
+                    nodeView.SortChildren();
+                }
+            });
+        }
+
         return graphViewChange;
     }
 
     private void CreateNodeView(BT_Node n)
     {
         if (n == null)
+        {
+            // AssetDatabase.AddObjectToAsset(n, tree);
             Debug.LogWarning("큰일이야");
+        }
         BT_NodeView nodeView = new BT_NodeView(n);
         nodeView.onNodeSeleted += onNodeSeleted;
         AddElement(nodeView);
@@ -138,15 +160,29 @@ public class BehaviourTreeView : GraphView
             {
                 string baseName = BT_NodeView.NodeNameCreator(type.BaseType.Name);
                 string name = BT_NodeView.NodeNameCreator(type.Name);
-                evt.menu.AppendAction($"{baseName}/{name}", (a) => { CreateNode(type); });
+
+                Vector2 mousePos = contentViewContainer.WorldToLocal(Event.current.mousePosition);
+                evt.menu.AppendAction($"{baseName}/{name}", (a) => { CreateNode(type, mousePos); });
             }
         }
         base.BuildContextualMenu(evt);
     }
 
-    private void CreateNode(Type type)
+    private void CreateNode(Type type, Vector2 mousePos)
     {
         BT_Node node = tree.CreateNode(type);
+        Debug.Log(Event.current == null);
+        node.position = mousePos;
+
+        Debug.Log(node.position + " " + mousePos);
+        // EditorUtility.SetDirty(tree);
         CreateNodeView(node);
+    }
+    public void UpdateTreeView()
+    {
+        nodes.ForEach(node =>
+        {
+            (node as BT_NodeView).UpdateNodeView();
+        });
     }
 }

@@ -4,12 +4,11 @@ using UnityEngine;
 
 using UnityEngine.UIElements;
 using UnityEditor;
-public class BT_TabView : TabbedView
+public class BT_TabedView : TabbedView
 {
-
-    public new class UxmlFactory : UxmlFactory<BT_InspectorView, VisualElement.UxmlTraits> { }
-    public BT_TabView()
+    public new class UxmlFactory : UxmlFactory<BT_TabedView> { }
+    public BT_TabedView()
     {
-
+        
     }
 }

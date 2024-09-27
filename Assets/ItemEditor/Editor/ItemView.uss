@@ -1,0 +1,41 @@
+.Selected {
+    border-left-color: rgb(0, 208, 255);
+    border-right-color: rgb(0, 208, 255);
+    border-top-color: rgb(0, 208, 255);
+    border-bottom-color: rgb(0, 208, 255);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ItemSprite {
+}
+
+.Common > #ItemDataContainer > #ItemRarity {
+    color: rgb(0, 255, 36);
+}
+
+.Rare > #ItemDataContainer > #ItemRarity {
+    color: rgb(0, 153, 255);
+}
+
+.Unique > #ItemDataContainer > #ItemRarity {
+    color: rgb(255, 0, 204);
+}
+
+.Legend > #ItemDataContainer > #ItemRarity {
+    color: rgb(255, 210, 0);
+}
+
+.Selected > #DeleteButton {
+    display: flex;
+}
+
+#DeleteButton {
+    display: none;
+    background-image: url("project://database/Assets/ItemEditor/Editor/Resource/TrashIcon.png?fileID=2800000&guid=243ab658ac9e2d9429c5926dc81afcb1&type=3#TrashIcon");
+    background-color: rgba(248, 78, 78, 0.59);
+}

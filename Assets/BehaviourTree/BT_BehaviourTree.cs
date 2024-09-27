@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -23,12 +24,16 @@ public class BT_BehaviourTree : ScriptableObject
         node.name = type.Name;
         node.guid = GUID.Generate().ToString();
 
-        Undo.RecordObject(this, "BehaviourTree Create Node");
+        Undo.RegisterCompleteObjectUndo(this, "BehaviourTreeaa Create Node");
         nodes.Add(node);
-        EditorUtility.SetDirty(this);
 
-        AssetDatabase.AddObjectToAsset(node, this);
-        Undo.RegisterCreatedObjectUndo(node, "BehaviourTree Create Node");
+        if (!Application.isPlaying)
+        {
+            AssetDatabase.AddObjectToAsset(node, this);
+
+        }
+
+        // Undo.RegisterCreatedObjectUndo(node, "BehaviourTree Create Node");
         AssetDatabase.SaveAssets();
         return node;
     }
@@ -36,16 +41,14 @@ public class BT_BehaviourTree : ScriptableObject
     {
         Undo.RecordObject(this, "BehaviourTree Delete Node");
         nodes.Remove(node);
-        // AssetDatabase.RemoveObjectFromAsset(node);
         Undo.DestroyObjectImmediate(node);
+        // AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }
     public void AddChildNode(BT_Node parent, BT_Node child)
     {
-        Undo.RecordObject(this, "BehaviourTree Add Child Node");
         Undo.RecordObject(parent, "BehaviourTree Add Child Node");
         parent.AddChild(child);
-        EditorUtility.SetDirty(this);
         EditorUtility.SetDirty(parent);
     }
     public void RemoveChildNode(BT_Node parent, BT_Node child)
@@ -58,15 +61,24 @@ public class BT_BehaviourTree : ScriptableObject
     {
         return parentNode.GetChild();
     }
+    public void TraveNode(BT_Node node, Action<BT_Node> onVisit)
+    {
+        if (node != null)
+        {
+            onVisit.Invoke(node);
+            List<BT_Node> children = node.GetChild();
+            children.ForEach((childNode) => TraveNode(childNode, onVisit));
+        }
+    }
     public BT_BehaviourTree Clone()
     {
         BT_BehaviourTree tree = Instantiate(this);
         tree.rootNode = rootNode.Clone() as BT_RootNode;
         tree.nodes = new List<BT_Node>();
-        foreach (var node in nodes)
+        TraveNode(tree.rootNode, (node) =>
         {
-            tree.nodes.Add(node.Clone());
-        }
+            tree.nodes.Add(node);
+        });
         return tree;
     }
 }

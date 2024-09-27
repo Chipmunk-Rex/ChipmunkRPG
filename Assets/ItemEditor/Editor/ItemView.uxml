@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/ItemEditor/Editor/ItemView.uss?fileID=7433441132597879392&amp;guid=1923f70e3629e3d44bce85710d6bbf14&amp;type=3#ItemView" />
+    <ui:VisualElement name="ItemView" style="background-color: rgb(32, 32, 32); width: 100%; height: 50px; align-self: center; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; flex-direction: row; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px;">
+        <ui:VisualElement name="ItemSprite" style="width: 40px; height: 40px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; background-image: url(&quot;project://database/Assets/BehaviourTree/Editor/Resource/node.png?fileID=2800000&amp;guid=a7aa3eee6280990468fbb0022c0949e6&amp;type=3#node&quot;);" />
+        <ui:IMGUIContainer name="ItemDataContainer" style="justify-content: center;">
+            <ui:Label tabindex="-1" text="ItemName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" style="-unity-font-style: bold; font-size: 16px;" />
+            <ui:Label tabindex="-1" text="Rarity" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemRarity" />
+        </ui:IMGUIContainer>
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DeleteButton" style="align-self: center; width: 20px; height: 20px; margin-left: auto; margin-right: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>

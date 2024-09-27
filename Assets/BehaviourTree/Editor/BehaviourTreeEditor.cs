@@ -7,7 +7,11 @@ using UnityEngine.UIElements;
 public class BehaviourTreeEditor : EditorWindow
 {
     BehaviourTreeView treeView;
+    BT_TabedView tabView;
+    BT_SplitView splitView;
     BT_InspectorView inspectorView;
+    BT_InspectorViewHeader inspectorViewHeader;
+    public static Vector2 mousePosition;
     [MenuItem("Window/BehaviourTree")]
     public static void OpenWindow()
     {
@@ -37,22 +41,78 @@ public class BehaviourTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviourTreeView>();
         treeView.onNodeSeleted += OnNodeSeletionChange;
+
         inspectorView = root.Q<BT_InspectorView>();
+
+        inspectorViewHeader = root.Q<BT_InspectorViewHeader>();
+        inspectorViewHeader?.Initialize();
+
+        splitView = root.Q<BT_SplitView>();
+
+
+        // tabView = root.Q<BT_TabView>();
+        // BT_TabButton tabButton = new BT_TabButton();
+        // tabButton.Add(treeView);
+        // tabView.AddTab(tabButton, true);
+
 
         OnSelectionChange();
     }
+    private void OnEnable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+    }
+    private void OnDisable()
+    {
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+    }
 
+    private void OnPlayModeStateChanged(PlayModeStateChange change)
+    {
+        switch (change)
+        {
+            case PlayModeStateChange.EnteredEditMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.EnteredPlayMode:
+                OnSelectionChange();
+                break;
+        }
+    }
     private void OnNodeSeletionChange(BT_NodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);
+        inspectorViewHeader.UpdateSelection(nodeView);
     }
 
     private void OnSelectionChange()
     {
+        inspectorViewHeader?.Initialize();
+
         BT_BehaviourTree tree = Selection.activeObject as BT_BehaviourTree;
+        if (tree == null)
+        {
+            GameObject selectedGameObject = Selection.activeGameObject;
+            if (selectedGameObject != null)
+                if (selectedGameObject.TryGetComponent<BT_BehaviourTreeExecutor>(out BT_BehaviourTreeExecutor executor))
+                {
+                    tree = executor.behaviourTreeClone;
+                }
+        }
+        if (Application.isPlaying)
+        {
+            if (tree != null)
+                treeView.PopulateView(tree);
+        }
+        else
         if (tree != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
         {
             treeView.PopulateView(tree);
         }
+    }
+    private void OnInspectorUpdate()
+    {
+        treeView?.UpdateTreeView();
     }
 }

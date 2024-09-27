@@ -21,6 +21,7 @@ public class BT_NodeView : Node
 
         CreateNodeInputPorts();
         CreateNodeOutputPorts();
+        AddToClassList("BT_NodeView");
     }
     public BT_Node node;
     public Port input;
@@ -46,7 +47,11 @@ public class BT_NodeView : Node
         if (input != null)
         {
             input.portName = "";
-            input.style.flexDirection = FlexDirection.Column;
+
+            Label portLbl = input.ElementAt(1) as Label;
+            portLbl.style.marginLeft = 0;
+            portLbl.style.marginRight = 0;
+
             inputContainer.Add(input);
         }
     }
@@ -68,16 +73,42 @@ public class BT_NodeView : Node
         if (output != null)
         {
             output.portName = "";
-            output.style.flexDirection = FlexDirection.ColumnReverse;
+
+            Label portLbl = output.ElementAt(1) as Label;
+            portLbl.style.marginLeft = 0;
+            portLbl.style.marginRight = 0;
+
             outputContainer.Add(output);
         }
     }
 
+    public void UpdateNodeView()
+    {
+        RemoveFromClassList("running");
+        RemoveFromClassList("success");
+        RemoveFromClassList("failure");
+
+        if (Application.isPlaying)
+            switch (node.state)
+            {
+                case BT_EnumNodeState.Running:
+                    if (node.isStarted)
+                        AddToClassList("running");
+                    break;
+                case BT_EnumNodeState.Success:
+                    AddToClassList("success");
+                    break;
+                case BT_EnumNodeState.Failure:
+                    AddToClassList("failure");
+                    break;
+            }
+    }
 
     public override void OnSelected()
     {
         base.OnSelected();
         onNodeSeleted?.Invoke(this);
+        this.Q("selection-border").AddToClassList("onSelected");
     }
     public override void SetPosition(Rect newPos)
     {
@@ -85,5 +116,18 @@ public class BT_NodeView : Node
         Undo.RecordObject(node, "BT_NodeView SetPosition");
         node.position = newPos.min;
         EditorUtility.SetDirty(node);
+    }
+    public void SortChildren()
+    {
+        BT_CompositeNode compositeNode = node as BT_CompositeNode;
+        if (compositeNode != null)
+        {
+            compositeNode.GetChild().Sort(SortByHorizontalPos);
+        }
+    }
+
+    private int SortByHorizontalPos(BT_Node x, BT_Node y)
+    {
+        return x.position.x < y.position.x ? -1 : 1;
     }
 }
