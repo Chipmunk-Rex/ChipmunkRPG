@@ -9,6 +9,7 @@ public class BuildingTileViewContainer : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<BuildingTileViewContainer, VisualElement.UxmlTraits> { }
     public Action<Vector2Int> onClickTile;
+    public BuildingTileView buildingTileView;
     public void LoadView(BuildingSO buildingSO)
     {
         this.Clear();
@@ -48,19 +49,18 @@ public class BuildingTileViewContainer : VisualElement
 
     private void SetTileViewSprite(TileBase tileBase, BuildingTileView tileView)
     {
-        Type type = tileBase.GetType();
         Sprite sprite = null;
-        if (type == typeof(Tile))
+        if (tileBase is Tile)
         {
             sprite = (tileBase as Tile).sprite;
         }
         else
-        if (type == typeof(RuleTile))
+        if (tileBase is RuleTile)
         {
             sprite = (tileBase as RuleTile).m_DefaultSprite;
         }
         else
-        if (type == typeof(AnimatedTile))
+        if (tileBase is AnimatedTile)
         {
             AnimatedTile animatedTile = (tileBase as AnimatedTile);
             if (animatedTile.m_AnimatedSprites.Length != 0)
@@ -77,8 +77,14 @@ public class BuildingTileViewContainer : VisualElement
         }
     }
 
-    private void OnTileViewClick(Vector2Int @int)
+    private void OnTileViewClick(BuildingTileView view)
     {
-        onClickTile?.Invoke(@int);
+        string className = "OnSelect";
+
+        if (buildingTileView != null)
+            buildingTileView.RemoveFromClassList(className);
+        buildingTileView = view;
+        view.AddToClassList(className);
+        onClickTile?.Invoke(view.pos);
     }
 }

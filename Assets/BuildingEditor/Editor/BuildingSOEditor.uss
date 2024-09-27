@@ -2,10 +2,10 @@
     background-color: rgb(0, 0, 0);
     width: 30px;
     height: 30px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
 }
 
 BuildingTileViewContainer {
@@ -88,6 +88,14 @@ BuildingTileViewContainer {
 }
 
 .OnSelect {
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 .PlaceTile {
