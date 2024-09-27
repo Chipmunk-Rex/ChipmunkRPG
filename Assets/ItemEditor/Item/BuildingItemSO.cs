@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mingmingSO : WeaponSO
+public class BuildingItemSO : InteractableItemSO
 {
-    public int sky;
+    public BuildingSO buildingSO;
 }

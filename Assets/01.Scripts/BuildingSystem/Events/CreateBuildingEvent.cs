@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class CreateBuildingEvent : BaseEvent
+public class CreateBuildingEvent : BuildingEvent
 {
-    public BaseBuilding building;
     private Dictionary<Vector2Int, BaseBuilding> buildingDatas;
     public Vector2Int pos;
     public override EnumEventResult ExcuteEvent()
@@ -20,15 +19,14 @@ public class CreateBuildingEvent : BaseEvent
             TileBase tile = keyValue.Value;
 
             buildingDatas[tilePos] = building;
-            BuildingManager.Instance.tilemap.SetTile((Vector3Int) tilePos, tile);
+            BuildingManager.Instance.tilemap.SetTile((Vector3Int)tilePos, tile);
         }
 
         building.pos = pos;
         return EnumEventResult.Successed;
     }
-    public CreateBuildingEvent(Dictionary<Vector2Int, BaseBuilding> buildingDatas, BaseBuilding building, Vector2Int pos)
+    public CreateBuildingEvent(BaseBuilding building, Dictionary<Vector2Int, BaseBuilding> buildingDatas, Vector2Int pos) : base(building)
     {
-        this.building = building;
         this.buildingDatas = buildingDatas;
         this.pos = pos;
     }

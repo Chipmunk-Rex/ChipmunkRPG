@@ -23,7 +23,7 @@ public class BuildingManager : BaseBuildingManager<BaseBuilding, BuildingManager
 
     public override void CreateBuilding(Vector2Int pos, BaseBuilding building)
     {
-        CreateBuildingEvent @event = new CreateBuildingEvent(buildingDatas, building, pos);
+        CreateBuildingEvent @event = new CreateBuildingEvent(building, buildingDatas, pos);
 
         eventContainer.Execute(EnumBuildingEvent.CreateBuilding, @event);
     }
@@ -49,7 +49,12 @@ public class BuildingManager : BaseBuildingManager<BaseBuilding, BuildingManager
 
     public override void RemoveBuilding(Vector2Int pos)
     {
+
         BaseBuilding building = GetBuilding(pos);
+
+        RemoveBuildingEvent @event = new RemoveBuildingEvent(building, buildingDatas, pos);
+
+        eventContainer.Execute(EnumBuildingEvent.CreateBuilding, @event);
         List<Vector2Int> buildingPosList = GetBuildingPosList(building);
 
         // 추가 구현 필요
