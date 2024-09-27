@@ -60,7 +60,6 @@ public class ItemEditorView : VisualElement
 
     private void OnDelete(ItemView view)
     {
-        Debug.Log("ming");
         Undo.DestroyObjectImmediate(view.itemSO);
 
         listView.Remove(view);

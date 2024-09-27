@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,11 +10,12 @@ public class ItemInspectorView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<ItemInspectorView, VisualElement.UxmlTraits> { }
     Editor editor;
+    public Action onDataChange;
     public void UpdateInspactor(BaseItemSO baseItemSO)
     {
         Debug.Log("Update");
         this.Clear();
-        Object.DestroyImmediate(editor);
+        UnityEngine.Object.DestroyImmediate(editor);
 
         if (baseItemSO == null) return;
 
@@ -23,9 +25,7 @@ public class ItemInspectorView : VisualElement
             if (editor.target != null)
                 editor.OnInspectorGUI();
         });
-
-        
-        container.TrackSerializedObjectValue()
+        BindingExtensions.TrackSerializedObjectValue(container, editor.serializedObject, serialzedObject => onDataChange?.Invoke());
         Add(container);
     }
 }

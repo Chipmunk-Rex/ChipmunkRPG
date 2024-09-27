@@ -10,7 +10,7 @@ public class ItemEditorWindow : EditorWindow
     ItemInspectorView itemInspectorView;
     ItemEditorView itemEditorView;
     ItemResourceView itemResourceView;
-    Button reloadBtn;
+    VisualElement reloadBtn;
 
     [MenuItem("Window/ItemWindow")]
     public static void OnOpenWindow()
@@ -46,16 +46,24 @@ public class ItemEditorWindow : EditorWindow
         itemResourceView.onCreateItem += itemEditorView.ReFreshViewAndSelect;
         itemEditorView.Initialize();
         itemEditorView.onSelectItem += OnSelectItem;
+        itemInspectorView.onDataChange += OnDataChange;
 
 
-        reloadBtn = rootEle.Q<Button>("ReloadBtn");
+
+        reloadBtn = rootEle.Q("ReloadBtn");
         reloadBtn.RegisterCallback<ClickEvent>(OnReload);
 
         Undo.undoRedoPerformed += OnUndoRedo;
     }
 
+    private void OnDataChange()
+    {
+        itemEditorView.ReFreshView();
+    }
+
     private void OnReload(ClickEvent evt)
     {
+        Debug.Log("mingming이 왔어요~!");
         OnReload();
     }
     private void OnReload()

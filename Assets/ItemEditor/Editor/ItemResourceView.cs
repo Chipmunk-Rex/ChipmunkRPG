@@ -41,10 +41,9 @@ public class ItemResourceView : VisualElement
                 Debug.Log("같네?");
                 continue;
             }
-            Debug.Log(cachedType.BaseType.ToString() + " ㅡㅑ" + cachedType.ToString());
             if (itemResourceFoldDic.ContainsKey(cachedType.BaseType))
             {
-                itemResourceFoldDic[cachedType.BaseType].foldout.Add(itemResourceFoldDic[cachedType]);
+                itemResourceFoldDic[cachedType.BaseType].element.Add(itemResourceFoldDic[cachedType]);
             }
             else
             {

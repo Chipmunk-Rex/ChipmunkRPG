@@ -15,8 +15,24 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: b4a73e35f1a51dc46be71c1f993d396b
-  position: {x: 8, y: 69}
+  position: {x: -123, y: 75.11995}
   childNode: {fileID: 4464649200825204023}
+--- !u!114 &-346900769530886628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85720107c3fb1b41bf8443b9b332998, type: 3}
+  m_Name: BT_SelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: e2f3975c7e2d6a246bba2b4213150d45
+  position: {x: 133, y: 142}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,4 +83,4 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: f7116caf225d81c4e86eea6b688ef49b
-  position: {x: 0, y: 0}
+  position: {x: 6, y: -21.720001}

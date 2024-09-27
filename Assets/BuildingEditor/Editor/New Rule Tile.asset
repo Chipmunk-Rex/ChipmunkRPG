@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
-  m_Name: FoodSO 3
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: New Rule Tile
   m_EditorClassIdentifier: 
-  itemName: item
-  itemSprite: {fileID: 0}
-  maxStackCount: 64
-  enumItemRarity: 0
-  interactDuration: 0.5
-  interactCool: 3
-  hunger: 1
+  m_DefaultSprite: {fileID: 21300000, guid: 243ab658ac9e2d9429c5926dc81afcb1, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules: []
