@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class BaseEvent
 {
-    public Action onBeforeExcute;
     public Action<EnumEventResult> onAfterExcute;
     public abstract EnumEventResult ExcuteEvent();
 }

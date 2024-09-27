@@ -12,10 +12,13 @@ public class BuildingManager : BaseBuildingManager<BaseBuilding, BuildingManager
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
             Vector2Int tilePos = worldPos + localPos;
-            if (GetBuilding(tilePos) == null)
+            if (GetBuilding(tilePos) != null)
+            {
+                Debug.Log("실행");
                 return false;
+            }
         }
-        return false;
+        return true;
     }
 
     public override void CreateBuilding(Vector2Int pos, BaseBuilding building)
