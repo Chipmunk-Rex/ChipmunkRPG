@@ -22,7 +22,7 @@ public class ItemEditorView : VisualElement
         listView = this.Q<ScrollView>();
         ReFreshView();
     }
-    public void ReFreshViewAndSelect(BaseItemSO itemSO)
+    public void ReFreshView(BaseItemSO itemSO)
     {
         ReFreshData();
 
@@ -32,30 +32,21 @@ public class ItemEditorView : VisualElement
         {
             ItemView itemView = new ItemView();
             itemView.Initialize(item);
-            itemView.onDeleteButtonClick += OnDelete;
             itemView.onClick += OnSelect;
+            itemView.onDeleteButtonClick += OnDelete;
             listView.Add(itemView);
 
-            if (item == itemSO)
+            if (itemSO != null && item == itemSO)
+            {
                 OnSelect(itemView);
+            }
         });
     }
 
 
     public void ReFreshView()
     {
-        ReFreshData();
-
-        listView.Clear();
-
-        itemSOList.ForEach(item =>
-        {
-            ItemView itemView = new ItemView();
-            itemView.Initialize(item);
-            itemView.onClick += OnSelect;
-            itemView.onDeleteButtonClick += OnDelete;
-            listView.Add(itemView);
-        });
+        ReFreshView(null);
     }
 
     private void OnDelete(ItemView view)
@@ -70,6 +61,8 @@ public class ItemEditorView : VisualElement
             selectedItemView.RemoveClass("Selected");
 
         onSelectItem?.Invoke(itemView.itemSO);
+
+        Selection.activeObject = itemView.itemSO;
 
         selectedItemView = itemView;
         itemView.AddClass("Selected");

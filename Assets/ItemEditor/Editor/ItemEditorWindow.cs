@@ -43,7 +43,7 @@ public class ItemEditorWindow : EditorWindow
         itemEditorView = QuearyOrAction<ItemEditorView>(itemSplitView, () => new ItemEditorView());
 
         itemResourceView.onCreateItem += OnSelectItem;
-        itemResourceView.onCreateItem += itemEditorView.ReFreshViewAndSelect;
+        itemResourceView.onCreateItem += itemEditorView.ReFreshView;
         itemEditorView.Initialize();
         itemEditorView.onSelectItem += OnSelectItem;
         itemInspectorView.onDataChange += OnDataChange;
