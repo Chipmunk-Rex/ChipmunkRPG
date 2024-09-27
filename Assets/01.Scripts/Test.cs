@@ -5,21 +5,17 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    EventMediatorContainerType eventContainer = new();
+    [SerializeField] BuildingSO so;
     private void Awake()
     {
-        eventContainer.Subscribe<CreateBuildingEvent>(CreateBuildingHandler);
+        BuildingManager.Instance.CreateBuilding(Vector2Int.zero, new BaseBuilding(so));
+        BuildingManager.Instance.eventContainer.Subscribe(EnumBuildingEvent.CreateBuilding, CreateBuildingHandler);
     }
 
     private void CreateBuildingHandler(BaseEvent @event)
     {
         CreateBuildingEvent createBuildingEvent = @event as CreateBuildingEvent;
 
-        // createBuildingEvent.debugString = "밍밍";
-    }
-
-    private void Start()
-    {
-        eventContainer.Invoke<CreateBuildingEvent>(new CreateBuildingEvent());
+        Debug.Log("밍밍");
     }
 }

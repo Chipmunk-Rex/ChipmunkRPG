@@ -68,7 +68,6 @@ public class BuildingTileViewContainer : VisualElement
         }
         if (sprite != null)
         {
-            Debug.Log("spriet" + sprite != null);
             var img = tileView.style.backgroundImage;
             Background background = img.value;
             background.sprite = sprite;

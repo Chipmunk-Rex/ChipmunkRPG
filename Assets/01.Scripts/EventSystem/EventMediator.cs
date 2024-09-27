@@ -7,12 +7,11 @@ public class EventMediator<TEvent> : BaseEventMediator<TEvent> where TEvent : Ba
 {
     public Action<TEvent> eventAction;
 
-    public override void Invoke(TEvent @event)
+    public override void Execute(TEvent @event)
     {
         eventAction?.Invoke(@event);
         @event.onBeforeExcute?.Invoke();
-        @event.ExcuteEvent();
-        @event.onAfterExcute?.Invoke();
+        @event.onAfterExcute?.Invoke(@event.ExcuteEvent());
     }
 
     public override void Subscribe(Action<TEvent> handler)

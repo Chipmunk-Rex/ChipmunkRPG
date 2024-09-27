@@ -83,7 +83,13 @@ public class BuildingSOEditor : Editor
 
     private void OnTileFieldValueChanged(ChangeEvent<UnityEngine.Object> evt)
     {
-        buildingSO.tileDatas[selectedTilepos] = evt.newValue as TileBase;
+        TileBase tile = evt.newValue as TileBase;
+        
+        if (tile == null)
+            buildingSO.tileDatas.Remove(selectedTilepos);
+        else
+            buildingSO.tileDatas[selectedTilepos] = tile;
+
         OnSelectTileView(selectedTilepos);
     }
 
