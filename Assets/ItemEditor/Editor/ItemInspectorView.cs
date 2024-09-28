@@ -15,7 +15,6 @@ namespace Chipmunk.Library.ItemEditor
         public Action onDataChange;
         public void UpdateInspactor(BaseItemSO baseItemSO)
         {
-            Debug.Log("Update");
             this.Clear();
             UnityEngine.Object.DestroyImmediate(editor);
 

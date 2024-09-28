@@ -52,7 +52,6 @@ namespace Chipmunk.Library.ItemEditor
 
         private void OnDeleteClick()
         {
-            Debug.Log("click");
             onDeleteButtonClick.Invoke(this);
         }
 

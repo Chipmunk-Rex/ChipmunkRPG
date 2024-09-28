@@ -66,7 +66,11 @@ namespace Chipmunk.Library.PoolEditor
 
             poolCreateView.onCreateBtnClick += CreatePool;
             poolResourceListView.LoadView(GetPoolAllResources());
-            poolResourceListView.onClickView += AddPoolableToPool;
+            poolResourceListView.onClickViewBtn += AddPoolableToPool;
+            poolResourceListView.onClickView += pref =>
+            {
+                Selection.activeObject = pref.ObjectPref;
+            };
 
             reloadResourceBtn.RegisterCallback<ClickEvent>(evt =>
             {

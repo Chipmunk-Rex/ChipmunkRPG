@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: 
   poolName: test
-  list:
-  - {fileID: 0}
+  list: []

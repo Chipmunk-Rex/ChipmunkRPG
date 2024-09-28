@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class PoolResourceListView : ScrollView
 {
     public new class UxmlFactory : UxmlFactory<PoolResourceListView, ScrollView.UxmlTraits> { }
+    public Action<IPoolAble> onClickViewBtn;
     public Action<IPoolAble> onClickView;
     public void LoadView(List<IPoolAble> poolAbles)
     {
@@ -15,6 +16,7 @@ public class PoolResourceListView : ScrollView
         {
             PoolResourceView poolResourceView = new PoolResourceView();
             poolResourceView.LoadView(poolAble);
+            poolResourceView.onClickBtn += OnClickViewBtn;
             poolResourceView.onClick += OnClickView;
             this.Add(poolResourceView);
         });
@@ -23,5 +25,10 @@ public class PoolResourceListView : ScrollView
     private void OnClickView(IPoolAble poolAble)
     {
         onClickView?.Invoke(poolAble);
+    }
+
+    private void OnClickViewBtn(IPoolAble poolAble)
+    {
+        onClickViewBtn?.Invoke(poolAble);
     }
 }

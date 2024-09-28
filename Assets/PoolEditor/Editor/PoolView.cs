@@ -14,7 +14,7 @@ namespace Chipmunk.Library.PoolEditor
         public Action<PoolItemSO> onClickItem;
         public Action<PoolView> onClick;
         public Action<PoolView> onClickDelBtn;
-        public Action<PoolItemSO , PoolSO> onClickItemDel;
+        public Action<PoolItemSO, PoolSO> onClickItemDel;
         public void LoadView(PoolSO poolSO)
         {
             this.poolSO = poolSO;
@@ -38,6 +38,9 @@ namespace Chipmunk.Library.PoolEditor
 
             foreach (PoolItemSO poolItemSO in poolSO.list)
             {
+                if (poolItemSO == null)
+                    continue;
+                    
                 PoolItemView poolItemView = new PoolItemView();
                 poolItemView.LoadView(poolItemSO);
                 poolItemView.onClick += OnClickItem;

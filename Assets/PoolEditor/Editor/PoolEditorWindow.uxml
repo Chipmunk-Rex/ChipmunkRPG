@@ -6,7 +6,7 @@
             <Chipmunk.Library.PoolEditor.PoolInspectorView />
         </ui:VisualElement>
         <ui:VisualElement name="Right" style="flex-grow: 1;">
-            <Chipmunk.Library.PoolEditor.PoolSplitView name="PoolSplitView" fixed-pane-initial-dimension="350">
+            <Chipmunk.Library.PoolEditor.PoolSplitView fixed-pane-initial-dimension="300">
                 <ui:VisualElement name="Left" style="flex-grow: 1; min-width: 35%;">
                     <ui:Label tabindex="-1" text="PoolView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
                     <Chipmunk.Library.PoolEditor.PoolCreateView />
