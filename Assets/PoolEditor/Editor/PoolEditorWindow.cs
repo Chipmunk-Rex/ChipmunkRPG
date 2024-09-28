@@ -18,7 +18,7 @@ namespace Chipmunk.Library.PoolEditor
         Button reloadResourceBtn;
         PoolResourceListView poolResourceListView;
 
-        PoolSO selectPoolSO;
+        PoolView selectPoolView;
 
         [MenuItem("Chipmunk/PoolEditor")]
         public static void OpenWindow()
@@ -53,6 +53,7 @@ namespace Chipmunk.Library.PoolEditor
             poolListView.LoadView(GetPoolSOList());
             poolListView.onDelete += RemovePool;
             poolListView.onSelect += SelectPool;
+            poolListView.onClickItem += item => { inspectorView.Draw(item); };
 
             poolCreateView.onCreateBtnClick += CreatePool;
             poolResourceListView.LoadView(GetPoolAllResources());
@@ -68,23 +69,33 @@ namespace Chipmunk.Library.PoolEditor
 
         private void AddPoolableToPool(IPoolAble able)
         {
-            if (selectPoolSO == null) return;
+            if (selectPoolView.poolSO == null) return;
+            foreach (PoolItemSO poolItem in selectPoolView.poolSO.list)
+            {
+                if (poolItem.prefab == able.ObjectPref)
+                    return;
+            }
 
             PoolItemSO poolItemSO = ScriptableObject.CreateInstance<PoolItemSO>();
-            poolItemSO.prefab = able;
-            poolItemSO.name = able.PoolName;
+            poolItemSO.prefab = able.ObjectPref;
+            poolItemSO.poolName = able.PoolName;
+            poolItemSO.name = "PoolItem";
 
-            AssetDatabase.AddObjectToAsset(poolItemSO, selectPoolSO);
+            AssetDatabase.AddObjectToAsset(poolItemSO, selectPoolView.poolSO);
             AssetDatabase.SaveAssets();
 
-            selectPoolSO.list.Add(poolItemSO);
+            selectPoolView.poolSO.list.Add(poolItemSO);
         }
         #region poolRegion
         private void SelectPool(PoolView view)
         {
-            this.selectPoolSO = view.poolSO;
-            inspectorView.Draw<PoolSO>(selectPoolSO);
-            Selection.activeObject = selectPoolSO;
+            if (selectPoolView != null)
+                selectPoolView.RemoveFromClassList("OnSelected");
+            this.selectPoolView = view;
+            selectPoolView.AddToClassList("OnSelected");
+
+            inspectorView.Draw<PoolSO>(selectPoolView.poolSO);
+            Selection.activeObject = selectPoolView.poolSO;
         }
 
         private void CreatePool(string name)

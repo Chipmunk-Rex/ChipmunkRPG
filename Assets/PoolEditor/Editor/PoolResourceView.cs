@@ -16,6 +16,7 @@ public class PoolResourceView : VisualElement
 
         Button addResourceBtn = new Button();
         addResourceBtn.RegisterCallback<ClickEvent>(OnClick);
+        addResourceBtn.text = "Add";
         this.Add(addResourceBtn);
     }
 

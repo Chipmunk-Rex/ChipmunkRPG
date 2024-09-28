@@ -49,7 +49,6 @@ PoolCreateView > TextField {
 }
 
 PoolCreateView > Button {
-    width: 20px;
     height: 20px;
     margin-right: 6px;
 }
@@ -58,18 +57,17 @@ PoolListView {
 }
 
 PoolView {
-    flex-direction: row;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: rgba(32, 32, 32, 0.78);
+    background-color: rgba(40, 40, 40, 0.78);
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
-    height: 50px;
     justify-content: space-between;
+    min-height: 50px;
 }
 
 PoolView:hover {
@@ -83,7 +81,13 @@ PoolView:hover {
     border-bottom-color: rgba(212, 136, 83, 0.78);
 }
 
-PoolView > Label {
+#PoolDataContainer {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+PoolView > #PoolDataContainer > Label {
     -unity-text-align: middle-left;
     font-size: 24px;
     -unity-font-style: bold;
@@ -92,19 +96,63 @@ PoolView > Label {
     margin-left: 5px;
 }
 
-PoolView > Button {
+PoolView > #PoolDataContainer > Button {
     width: 25px;
     height: 25px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
     display: none;
-    align-self: center;
+    align-self: flex-end;
     background-color: rgb(204, 45, 45);
 }
 
-PoolView:hover > Button {
+PoolView:hover > #PoolDataContainer > Button {
+    display: flex;
+}
+
+PoolView > Foldout {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+PoolItemView {
+    width: 100%;
+    height: 25px;
+    background-color: rgb(48, 48, 48);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+PoolItemView:hover {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(212, 136, 83);
+    border-right-color: rgb(212, 136, 83);
+    border-top-color: rgb(212, 136, 83);
+    border-bottom-color: rgb(212, 136, 83);
+}
+
+PoolItemView > Button {
+    display: none;
+    height: 15px;
+    align-self: center;
+}
+
+PoolItemView:hover > Button {
     display: flex;
 }
 
@@ -121,7 +169,7 @@ PoolResourceListView {
 }
 
 PoolResourceView {
-    background-color: rgb(37, 37, 37);
+    background-color: rgb(40, 40, 40);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -132,6 +180,21 @@ PoolResourceView {
     padding-left: 5px;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
+
+PoolResourceView:hover {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(212, 136, 83, 0.78);
+    border-right-color: rgba(212, 136, 83, 0.78);
+    border-top-color: rgba(212, 136, 83, 0.78);
+    border-bottom-color: rgba(212, 136, 83, 0.78);
 }
 
 PoolResourceView > Label {
@@ -140,6 +203,5 @@ PoolResourceView > Label {
 }
 
 PoolResourceView > Button {
-    width: 20px;
     height: 20px;
 }

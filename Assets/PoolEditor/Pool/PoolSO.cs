@@ -7,7 +7,7 @@ public class PoolSO : ScriptableObject
 {
     public string poolName;
     [HideInInspector] private string beforeName = null;
-    [HideInInspector] public List<PoolItemSO> list = new();
+     public List<PoolItemSO> list = new();
 
 #if UNITY_EDITOR
     private void OnValidate()

@@ -11,6 +11,7 @@ namespace Chipmunk.Library.PoolEditor
         public new class UxmlFactory : UxmlFactory<PoolView, VisualElement.UxmlTraits> { }
         public PoolSO poolSO { get; private set; }
         Label poolNameLbl;
+        public Action<PoolItemSO> onClickItem;
         public Action<PoolView> onClick;
         public Action<PoolView> onClickDelBtn;
         public void LoadView(PoolSO poolSO)
@@ -18,13 +19,34 @@ namespace Chipmunk.Library.PoolEditor
             this.poolSO = poolSO;
             this.RegisterCallback<ClickEvent>(OnClick);
 
+            VisualElement poolDataContainer = new VisualElement();
+            poolDataContainer.name = "PoolDataContainer";
+            this.Add(poolDataContainer);
+
             poolNameLbl = new Label();
             poolNameLbl.text = poolSO.name;
-            this.Add(poolNameLbl);
+            poolDataContainer.Add(poolNameLbl);
 
             Button delBtn = new Button();
             delBtn.RegisterCallback<ClickEvent>(OnDelBtnClick);
-            this.Add(delBtn);
+            poolDataContainer.Add(delBtn);
+
+            Foldout foldout = new Foldout();
+            foldout.text = "PoolItems";
+            this.Add(foldout);
+
+            foreach (PoolItemSO poolItemSO in poolSO.list)
+            {
+                PoolItemView poolItemView = new PoolItemView();
+                poolItemView.LoadView(poolItemSO);
+                poolItemView.onClick += OnClickItem;
+                foldout.Add(poolItemView);
+            }
+        }
+
+        private void OnClickItem(PoolItemSO poolItemSO)
+        {
+            onClickItem?.Invoke(poolItemSO);
         }
 
         private void OnClick(ClickEvent evt)

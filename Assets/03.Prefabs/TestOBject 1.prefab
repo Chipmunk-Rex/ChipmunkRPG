@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1627936404149861976}
   - component: {fileID: 357194422474052528}
   m_Layer: 0
-  m_Name: TestOBject
+  m_Name: TestOBject 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8eff69fbf255cc4880b50e7b359a1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: imtestPref
+  poolName: imtestPref3

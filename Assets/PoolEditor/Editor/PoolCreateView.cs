@@ -22,10 +22,12 @@ namespace Chipmunk.Library.PoolEditor
 
             textField = new TextField();
             textField.AddToClassList("PoolCreateField");
+            textField.value = "PoolName";
             this.Add(textField);
 
             Button createBtn = new Button();
             createBtn.RegisterCallback<ClickEvent>(OnButtonClick);
+            createBtn.text = "Create";
             createBtn.AddToClassList("PoolCreateBtn");
             this.Add(createBtn);
         }

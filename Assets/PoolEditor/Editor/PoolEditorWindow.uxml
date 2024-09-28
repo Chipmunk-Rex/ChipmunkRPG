@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/PoolEditor/Editor/PoolEditorWindow.uss?fileID=7433441132597879392&amp;guid=3b5c665326d95b44fbc4158a16f7609e&amp;type=3#PoolEditorWindow" />
-    <Chipmunk.Library.PoolEditor.PoolSplitView fixed-pane-initial-dimension="200">
+    <Chipmunk.Library.PoolEditor.PoolSplitView fixed-pane-initial-dimension="250">
         <ui:VisualElement name="Left" style="flex-grow: 1; min-width: 200px;">
             <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
             <Chipmunk.Library.PoolEditor.PoolInspectorView />
@@ -16,7 +16,7 @@
                     <ui:Label tabindex="-1" text="Resource" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
                     <ui:VisualElement name="Search" style="flex-direction: row; justify-content: space-between; background-color: rgb(60, 60, 60); border-bottom-width: 1px; border-left-color: rgb(36, 36, 36); border-right-color: rgb(36, 36, 36); border-top-color: rgb(36, 36, 36); border-bottom-color: rgb(36, 36, 36); padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px;">
                         <uie:ObjectField label="Folder" type="UnityEditor.DefaultAsset, UnityEditor.CoreModule" name="FolderField" style="height: 20px;" />
-                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ReloadResourceBtn" style="width: 20px; height: 20px;" />
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ReloadResourceBtn" text="Locate" style="height: 20px;" />
                     </ui:VisualElement>
                     <PoolResourceListView />
                 </ui:VisualElement>

@@ -12,6 +12,7 @@ namespace Chipmunk.Library.PoolEditor
         public PoolView selectedView;
         public event Action<PoolView> onSelect;
         public event Action<PoolSO> onDelete;
+        public event Action<PoolItemSO> onClickItem;
         public void LoadView(List<PoolSO> poolSOs)
         {
             this.Clear();
@@ -27,7 +28,13 @@ namespace Chipmunk.Library.PoolEditor
             poolView.LoadView(poolSO);
             poolView.onClick += OnClickView;
             poolView.onClickDelBtn += OnClickDel;
+            poolView.onClickItem +=OnClickItem;
             return poolView;
+        }
+
+        private void OnClickItem(PoolItemSO poolItemSO)
+        {
+            onClickItem?.Invoke(poolItemSO);
         }
 
         private void OnClickDel(PoolView view)
@@ -38,7 +45,6 @@ namespace Chipmunk.Library.PoolEditor
 
         private void OnClickView(PoolView view)
         {
-            view.AddToClassList("OnSelected");
             onSelect?.Invoke(view);
         }
     }
