@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Chipmunk.Library.PoolEditor;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,11 @@ namespace Chipmunk.Library.PoolEditor
         PoolInspectorView inspectorView;
         PoolListView poolListView;
         PoolCreateView poolCreateView;
+        ObjectField objectField;
+        Button reloadResourceBtn;
+        PoolResourceListView poolResourceListView;
+
+        PoolSO selectPoolSO;
 
         [MenuItem("Chipmunk/PoolEditor")]
         public static void OpenWindow()
@@ -37,6 +43,9 @@ namespace Chipmunk.Library.PoolEditor
             inspectorView = root.Q<PoolInspectorView>();
             poolListView = root.Q<PoolListView>();
             poolCreateView = root.Q<PoolCreateView>();
+            poolResourceListView = root.Q<PoolResourceListView>();
+            objectField = root.Q<ObjectField>("FolderField");
+            reloadResourceBtn = root.Q<Button>("ReloadResourceBtn");
         }
 
         private void Initialize()
@@ -46,14 +55,36 @@ namespace Chipmunk.Library.PoolEditor
             poolListView.onSelect += SelectPool;
 
             poolCreateView.onCreateBtnClick += CreatePool;
+            poolResourceListView.LoadView(GetPoolAllResources());
+            poolResourceListView.onClickView += AddPoolableToPool;
+
+            reloadResourceBtn.RegisterCallback<ClickEvent>(evt =>
+            {
+                poolResourceListView.LoadView(GetPoolResources(objectField.value as DefaultAsset));
+            });
 
             inspectorView.onDataChange += () => poolListView.LoadView(GetPoolSOList());
         }
 
+        private void AddPoolableToPool(IPoolAble able)
+        {
+            if (selectPoolSO == null) return;
+
+            PoolItemSO poolItemSO = ScriptableObject.CreateInstance<PoolItemSO>();
+            poolItemSO.prefab = able;
+            poolItemSO.name = able.PoolName;
+
+            AssetDatabase.AddObjectToAsset(poolItemSO, selectPoolSO);
+            AssetDatabase.SaveAssets();
+
+            selectPoolSO.list.Add(poolItemSO);
+        }
+        #region poolRegion
         private void SelectPool(PoolView view)
         {
-            inspectorView.Draw<PoolSO>(view.poolSO);
-            Selection.activeObject = view.poolSO;
+            this.selectPoolSO = view.poolSO;
+            inspectorView.Draw<PoolSO>(selectPoolSO);
+            Selection.activeObject = selectPoolSO;
         }
 
         private void CreatePool(string name)
@@ -107,9 +138,58 @@ namespace Chipmunk.Library.PoolEditor
                 PoolSO poolSO = AssetDatabase.LoadAssetAtPath<PoolSO>(path);
                 poolSOList.Add(poolSO);
             });
-            Debug.Log(poolSOList.Count);
 
             return poolSOList;
         }
+        #endregion
+        #region poolResourRegion
+        private List<IPoolAble> GetPoolResources(DefaultAsset defaultAsset)
+        {
+            if (defaultAsset == null)
+                return GetPoolAllResources();
+
+            List<IPoolAble> poolAbles = new();
+            string path = AssetDatabase.GetAssetPath(defaultAsset);
+
+            AssetDatabase.FindAssets("", new[] { path }).ToList().ForEach(guid =>
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+
+                GameObject gameObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if (gameObject != null)
+                {
+                    IPoolAble poolAble = gameObject.GetComponent<IPoolAble>();
+
+                    if (poolAble != null)
+                        poolAbles.Add(poolAble);
+                }
+            });
+
+            return poolAbles;
+        }
+        private List<IPoolAble> GetPoolAllResources()
+        {
+            List<IPoolAble> poolAbleList = new();
+
+            string filter = "t:Prefab";
+            string[] guids = AssetDatabase.FindAssets(filter);
+
+            foreach (string guid in guids)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+
+                if (prefab != null)
+                {
+                    if (prefab.TryGetComponent<IPoolAble>(out IPoolAble poolAble))
+                    {
+                        poolAbleList.Add(poolAble);
+                    }
+                }
+            }
+
+            return poolAbleList;
+        }
+        #endregion
     }
 }

@@ -72,6 +72,17 @@ PoolView {
     justify-content: space-between;
 }
 
+PoolView:hover {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(212, 136, 83, 0.78);
+    border-right-color: rgba(212, 136, 83, 0.78);
+    border-top-color: rgba(212, 136, 83, 0.78);
+    border-bottom-color: rgba(212, 136, 83, 0.78);
+}
+
 PoolView > Label {
     -unity-text-align: middle-left;
     font-size: 24px;
@@ -95,4 +106,40 @@ PoolView > Button {
 
 PoolView:hover > Button {
     display: flex;
+}
+
+#Search > ObjectField > Label {
+    min-width: 40px;
+    overflow: visible;
+}
+
+PoolResourceListView {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+PoolResourceView {
+    background-color: rgb(37, 37, 37);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+PoolResourceView > Label {
+    -unity-text-align: middle-left;
+    font-size: 16px;
+}
+
+PoolResourceView > Button {
+    width: 20px;
+    height: 20px;
 }
