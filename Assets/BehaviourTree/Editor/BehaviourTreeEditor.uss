@@ -16,3 +16,7 @@ GridBackground {
 BehaviourTreeView {
     flex-grow: 1;
 }
+
+BT_InspectorViewHeader {
+    flex-direction: row;
+}

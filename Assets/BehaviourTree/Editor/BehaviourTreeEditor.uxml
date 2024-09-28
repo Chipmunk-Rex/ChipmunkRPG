@@ -6,7 +6,7 @@
     <Chipmunk.Library.BehaviourTreeEditor.BT_SplitView fixed-pane-initial-dimension="250">
         <ui:VisualElement name="left-panel" style="flex-grow: 1; max-width: 50%; min-width: 250px;">
             <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="panelTitle" />
-            <Chipmunk.Library.BehaviourTreeEditor.BT_InspectorViewHeader>
+            <Chipmunk.Library.BehaviourTreeEditor.BT_InspectorViewHeader name="BT_InspectorViewHeader">
                 <ui:VisualElement style="width: 30px; height: 30px; background-image: url(&quot;project://database/Assets/BehaviourTree/Editor/Resource/node.png?fileID=2800000&amp;guid=a7aa3eee6280990468fbb0022c0949e6&amp;type=3#node&quot;); visibility: visible;" />
                 <ui:Label tabindex="-1" text="Node Name" parse-escape-sequences="true" display-tooltip-when-elided="true" style="visibility: visible; -unity-text-align: middle-left; -unity-font-style: bold; font-size: 16px; flex-grow: 1; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 10px;" />
             </Chipmunk.Library.BehaviourTreeEditor.BT_InspectorViewHeader>
