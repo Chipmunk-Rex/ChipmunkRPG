@@ -1,9 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/PoolEditor/Editor/PoolEditorWindow.uss?fileID=7433441132597879392&amp;guid=3b5c665326d95b44fbc4158a16f7609e&amp;type=3#PoolEditorWindow" />
-    <Chipmunk.Library.PoolEditor.PoolSplitView>
-        <ui:VisualElement name="Left" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
+    <Chipmunk.Library.PoolEditor.PoolSplitView fixed-pane-initial-dimension="200">
+        <ui:VisualElement name="Left" style="flex-grow: 1; min-width: 200px;">
+            <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
+            <Chipmunk.Library.PoolEditor.PoolInspectorView />
         </ui:VisualElement>
-        <ui:VisualElement name="Right" style="flex-grow: 1;" />
+        <ui:VisualElement name="Right" style="flex-grow: 1;">
+            <Chipmunk.Library.PoolEditor.PoolSplitView name="PoolSplitView" fixed-pane-initial-dimension="400">
+                <ui:VisualElement name="Left" style="flex-grow: 1; min-width: 40%;">
+                    <ui:Label tabindex="-1" text="PoolView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
+                    <Chipmunk.Library.PoolEditor.PoolCreateView />
+                    <Chipmunk.Library.PoolEditor.PoolListView />
+                </ui:VisualElement>
+                <ui:VisualElement name="Right" style="min-width: 240px;">
+                    <ui:Label tabindex="-1" text="Resource" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
+                </ui:VisualElement>
+            </Chipmunk.Library.PoolEditor.PoolSplitView>
+        </ui:VisualElement>
     </Chipmunk.Library.PoolEditor.PoolSplitView>
 </ui:UXML>
