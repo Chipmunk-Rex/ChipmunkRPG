@@ -12,7 +12,7 @@ public class BehaviourTreeEditor : EditorWindow
     BT_InspectorView inspectorView;
     BT_InspectorViewHeader inspectorViewHeader;
     public static Vector2 mousePosition;
-    [MenuItem("Window/BehaviourTree")]
+    [MenuItem("Chipmunk/BehaviourTree")]
     public static void OpenWindow()
     {
         BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();

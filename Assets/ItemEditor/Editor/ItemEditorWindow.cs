@@ -12,7 +12,7 @@ public class ItemEditorWindow : EditorWindow
     ItemResourceView itemResourceView;
     VisualElement reloadBtn;
 
-    [MenuItem("Window/ItemWindow")]
+    [MenuItem("Chipmunk/ItemWindow")]
     public static void OnOpenWindow()
     {
         ItemEditorWindow window = GetWindow<ItemEditorWindow>();
