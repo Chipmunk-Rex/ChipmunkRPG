@@ -78,10 +78,19 @@ namespace Chipmunk.Library.BuildingEditor
         {
             buildingInspectorView.DrawInspector(buildingSO);
             buildingInspectorView.onTrackValue += OnBuildingInspectorValueChange;
+
+            selectTileInspectorView.onTrackValue += OnTileInspectorValueChange;
+
             buildingTileViewContainer.LoadView(buildingSO);
             buildingTileViewContainer.onClickTile += OnSelectTileView;
+
             tileField.RegisterValueChangedCallback(OnTileFieldValueChanged);
             tileField.style.visibility = Visibility.Hidden;
+        }
+
+        private void OnTileInspectorValueChange(SerializedObject @object)
+        {
+            buildingTileViewContainer.LoadView(buildingSO);
         }
 
         private void OnTileFieldValueChanged(ChangeEvent<UnityEngine.Object> evt)
