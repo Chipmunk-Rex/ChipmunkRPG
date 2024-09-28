@@ -6,13 +6,13 @@
     <Chipmunk.Library.ItemEditor.ItemSplitView fixed-pane-initial-dimension="200">
         <ui:VisualElement name="Left" style="min-width: 20%; width: 0;">
             <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" style="background-color: rgb(37, 37, 37);" />
-            <Chipmunk.Library.ItemEditor.ItemInspectorView />
+            <Chipmunk.Library.ItemEditor.ItemInspectorView name="ItemInspectorView" />
         </ui:VisualElement>
         <ui:VisualElement name="Right" style="flex-grow: 0; min-width: 70%;">
             <Chipmunk.Library.ItemEditor.ItemSplitView fixed-pane-initial-dimension="250">
                 <ui:VisualElement name="Left" style="min-width: 50%;">
                     <ui:Label tabindex="-1" text="ItemView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" style="background-color: rgb(37, 37, 37);" />
-                    <Chipmunk.Library.ItemEditor.ItemEditorView>
+                    <Chipmunk.Library.ItemEditor.ItemEditorView name="ItemEditorView">
                         <ui:ScrollView style="min-height: 300px;" />
                     </Chipmunk.Library.ItemEditor.ItemEditorView>
                 </ui:VisualElement>

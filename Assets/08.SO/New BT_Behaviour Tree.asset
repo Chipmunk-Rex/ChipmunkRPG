@@ -66,7 +66,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 74349f6bdff1e0a47bfcc8ab869f7c6e
-  position: {x: -99.25726, y: 208.52982}
+  position: {x: 43.5, y: 211}
   message: 
 --- !u!114 &7586767354626489270
 MonoBehaviour:

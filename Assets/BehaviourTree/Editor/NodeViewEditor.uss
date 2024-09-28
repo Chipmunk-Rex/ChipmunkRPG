@@ -17,10 +17,10 @@
 #selection-border {
     transition-duration: 100ms;
     position: absolute;
-    left: 1;
-    top: 1;
-    right: 1;
-    bottom: 1;
+    left: -2px;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -51,15 +51,14 @@
 }
 
 .onSelected {
-    border-left-color: rgba(212, 136, 83, 0);
-    border-right-color: rgba(212, 136, 83, 0);
-    border-top-color: rgba(212, 136, 83, 0);
-    border-bottom-color: rgba(212, 136, 83, 0);
-    transition-duration: 250ms;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
+    border-left-color: rgba(212, 136, 83, 0.78);
+    border-right-color: rgba(212, 136, 83, 0.78);
+    border-top-color: rgba(212, 136, 83, 0.78);
+    border-bottom-color: rgba(212, 136, 83, 0.78);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 .running {
