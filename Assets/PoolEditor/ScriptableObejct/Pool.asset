@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Pool
   m_EditorClassIdentifier: 
   poolName: Pool
-  list:
-  - {fileID: 878186649541447834}
---- !u!114 &878186649541447834
+  list: []
+--- !u!114 &525172418839900376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,6 +26,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9927de01cd6db2f41bd3a03281ce4b2e, type: 3}
   m_Name: PoolItem
   m_EditorClassIdentifier: 
-  poolName: imtestw
-  prefab: {fileID: 6238485361404293675, guid: 2122e9c82d1342344a986e9e18ee135e, type: 3}
-  count: 3
+  poolName: imtestPref3
+  prefab: {fileID: 6238485361404293675, guid: 906a19e7d5dd05f44bf6606fe5d5b5f1, type: 3}
+  count: 0

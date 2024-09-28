@@ -8,6 +8,7 @@ public class PoolItemView : VisualElement
 {
     PoolItemSO poolItemSO;
     public Action<PoolItemSO> onClick;
+    public Action<PoolItemSO> onClickDel;
     public PoolItemView()
     {
         this.RegisterCallback<ClickEvent>(OnClick);
@@ -36,5 +37,6 @@ public class PoolItemView : VisualElement
 
     private void OnClickDelBtn(ClickEvent evt)
     {
+        onClickDel?.Invoke(poolItemSO);
     }
 }
