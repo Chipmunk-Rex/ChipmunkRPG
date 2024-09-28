@@ -7,6 +7,6 @@ namespace Chipmunk.Library.PoolEditor
 {
     public class PoolSplitView : TwoPaneSplitView
     {
-        public new class UxmlFactory : UxmlFactory<PoolSplitView, TwoPaneSplitView.UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<PoolSplitView, TwoPaneSplitView.UxmlTraits> { };
     }
 }

@@ -1,16 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/BuildingEditor/Editor/BuildingSOEditor.uss?fileID=7433441132597879392&amp;guid=0d23d127a373ab14ea9999ba1093f993&amp;type=3#BuildingSOEditor" />
-    <InspectorView name="BuildingInspector" />
+    <Chipmunk.Library.BuildingEditor.InspectorView name="BuildingInspector" />
     <ui:Label tabindex="-1" text="Tiles" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Split" style="background-color: rgb(37, 37, 37); color: rgb(255, 255, 255);" />
     <ui:VisualElement name="BuildingTileView" style="flex-direction: row; width: initial; justify-content: center; align-self: center; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
         <ui:VisualElement name="LeftButton" class="Button HorizontalButton AddButton" />
         <ui:VisualElement name="RightButton" class="Button HorizontalButton AddButton" />
         <ui:VisualElement name="TopButton" class="Button VerticalButton AddButton" />
         <ui:VisualElement name="BottomButton" class="Button VerticalButton AddButton" />
-        <BuildingTileViewContainer />
+        <Chipmunk.Library.BuildingEditor.BuildingTileViewContainer />
     </ui:VisualElement>
     <ui:IMGUIContainer>
         <uie:ObjectField label="Tile" type="UnityEngine.Tilemaps.TileBase, UnityEngine.TilemapModule" name="TileField" />
     </ui:IMGUIContainer>
-    <InspectorView name="TileInspector" />
+    <Chipmunk.Library.BuildingEditor.InspectorView name="TileInspector" />
 </ui:UXML>

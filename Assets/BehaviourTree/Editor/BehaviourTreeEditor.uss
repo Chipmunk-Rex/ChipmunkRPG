@@ -12,3 +12,7 @@ GridBackground {
     padding-bottom: 3px;
     padding-left: 3px;
 }
+
+BehaviourTreeView {
+    flex-grow: 1;
+}
