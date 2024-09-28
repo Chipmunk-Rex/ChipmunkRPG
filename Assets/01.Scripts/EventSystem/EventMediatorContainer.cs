@@ -6,8 +6,6 @@ using UnityEngine;
 public class EventMediatorContainer<TBaseKey>
 {
     protected Dictionary<TBaseKey, EventMediator<BaseEvent>> eventMediators = new();
-
-    // public abstract void Subscribe<TKey>(Action<BaseEvent> handler) where TKey : TBaseKey;
     public virtual void Subscribe<TKey>(TKey key, Action<BaseEvent> handler) where TKey : TBaseKey
     {
         if (!eventMediators.ContainsKey(key))
@@ -15,7 +13,6 @@ public class EventMediatorContainer<TBaseKey>
 
         eventMediators[key].Subscribe(handler);
     }
-    // public abstract void UnSubscribe<TKey>(Action<BaseEvent> handler) where TKey : TBaseKey;
     public virtual void UnSubscribe<TKey>(TKey key, Action<BaseEvent> handler) where TKey : TBaseKey
     {
         if (!eventMediators.ContainsKey(key))
