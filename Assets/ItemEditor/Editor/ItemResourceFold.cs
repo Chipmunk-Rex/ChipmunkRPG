@@ -5,62 +5,65 @@ using System.Collections;
 using System;
 using UnityEditor;
 
-public class ItemResourceFold : VisualElement
+namespace Chipmunk.Library.ItemEditor
 {
-    Type type;
-    public VisualElement element { get; private set; }
-    public Action<Type> onClick;
-    public ItemResourceFold()
+    public class ItemResourceFold : VisualElement
     {
-        this.style.flexDirection = FlexDirection.Row;
-        this.AddToClassList("ResourceViewParent");
-    }
-    public void Initialize(Type type)
-    {
-        this.type = type;
-
-
-
-
-        CreateElement();
-        CreateButton();
-    }
-
-    private void CreateElement()
-    {
-        bool isRoot = TypeCache.GetTypesDerivedFrom(type).Count == 0;
-
-        if (isRoot)
+        Type type;
+        public VisualElement element { get; private set; }
+        public Action<Type> onClick;
+        public ItemResourceFold()
         {
-            Label label = new Label();
-            label.text = $"     {type.ToString()}";
-            // label.style.paddingLeft = 18;
-            element = label;
+            this.style.flexDirection = FlexDirection.Row;
+            this.AddToClassList("ResourceViewParent");
         }
-        else
+        public void Initialize(Type type)
         {
-            Foldout foldout = new Foldout();
-            foldout.text = $"{type.ToString()}";
-            element = foldout;
+            this.type = type;
+
+
+
+
+            CreateElement();
+            CreateButton();
         }
-        element.AddToClassList("ResourceView");
-        this.Add(element);
+
+        private void CreateElement()
+        {
+            bool isRoot = TypeCache.GetTypesDerivedFrom(type).Count == 0;
+
+            if (isRoot)
+            {
+                Label label = new Label();
+                label.text = $"     {type.ToString()}";
+                // label.style.paddingLeft = 18;
+                element = label;
+            }
+            else
+            {
+                Foldout foldout = new Foldout();
+                foldout.text = $"{type.ToString()}";
+                element = foldout;
+            }
+            element.AddToClassList("ResourceView");
+            this.Add(element);
+        }
+
+        public void CreateButton()
+        {
+            if (type.IsAbstract)
+                return;
+
+            Button addButton = new();
+            addButton.AddToClassList("ResourceAdd");
+
+            addButton.RegisterCallback<ClickEvent>(evt => OnClick());
+            this.Add(addButton);
+        }
+        private void OnClick()
+        {
+            onClick?.Invoke(type);
+        }
+
     }
-
-    public void CreateButton()
-    {
-        if (type.IsAbstract)
-            return;
-
-        Button addButton = new();
-        addButton.AddToClassList("ResourceAdd");
-
-        addButton.RegisterCallback<ClickEvent>(evt => OnClick());
-        this.Add(addButton);
-    }
-    private void OnClick()
-    {
-        onClick?.Invoke(type);
-    }
-
 }

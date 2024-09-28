@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BT_SplitView : TwoPaneSplitView
+namespace Chipmunk.Library.BehaviourTreeEditor
 {
-    public new class UxmlFactory : UxmlFactory<BT_SplitView, TwoPaneSplitView.UxmlTraits> { }
-    public BT_SplitView() : base()
+    public class BT_SplitView : TwoPaneSplitView
     {
-        this.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-    }
+        public new class UxmlFactory : UxmlFactory<BT_SplitView, TwoPaneSplitView.UxmlTraits> { }
+        public BT_SplitView() : base()
+        {
+            this.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        }
 
-    private void OnGeometryChanged(GeometryChangedEvent evt)
-    {
-        if (fixedPane != null)
-            fixedPaneInitialDimension = fixedPane.style.minWidth.value.value;
-    }
+        private void OnGeometryChanged(GeometryChangedEvent evt)
+        {
+            if (fixedPane != null)
+                fixedPaneInitialDimension = fixedPane.style.minWidth.value.value;
+        }
 
-    public BT_InspectorView inspectorView;
+        public BT_InspectorView inspectorView;
+    }
 }
