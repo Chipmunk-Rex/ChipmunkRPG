@@ -18,7 +18,6 @@ namespace Chipmunk.Library.PoolEditor
 
         private void CreatePool()
         {
-            Debug.Log("mig");
             if (poolList == null) return;
 
             foreach (PoolItemSO poolItemSO in poolList.itemList)

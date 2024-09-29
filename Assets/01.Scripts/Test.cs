@@ -25,12 +25,9 @@ public class Test : MonoBehaviour
     {
         @event.onAfterExcute += OnAfterExecute;
         CreateBuildingEvent createBuildingEvent = @event as CreateBuildingEvent;
-
-        Debug.Log("밍밍");
     }
 
     private void OnAfterExecute(EnumEventResult result)
     {
-        Debug.Log(result);
     }
 }
