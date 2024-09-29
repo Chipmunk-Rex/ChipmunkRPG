@@ -36,7 +36,7 @@ namespace Chipmunk.Library.PoolEditor
             foldout.text = "PoolItems";
             this.Add(foldout);
 
-            foreach (PoolItemSO poolItemSO in poolSO.list)
+            foreach (PoolItemSO poolItemSO in poolSO.itemList)
             {
                 if (poolItemSO == null)
                     continue;

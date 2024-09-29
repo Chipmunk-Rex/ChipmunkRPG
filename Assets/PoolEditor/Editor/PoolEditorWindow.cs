@@ -60,7 +60,7 @@ namespace Chipmunk.Library.PoolEditor
             };
             poolListView.onClickItemDel += (item, poolSO) =>
             {
-                poolSO.list.Remove(item);
+                poolSO.itemList.Remove(item);
 
                 AssetDatabase.RemoveObjectFromAsset(item);
                 AssetDatabase.SaveAssets();
@@ -87,7 +87,7 @@ namespace Chipmunk.Library.PoolEditor
         private void AddPoolableToPool(IPoolAble able)
         {
             if (selectPoolView.poolSO == null) return;
-            foreach (PoolItemSO poolItem in selectPoolView.poolSO.list)
+            foreach (PoolItemSO poolItem in selectPoolView.poolSO.itemList)
             {
                 if (poolItem.prefab == able.ObjectPref)
                     return;
@@ -101,7 +101,7 @@ namespace Chipmunk.Library.PoolEditor
             AssetDatabase.AddObjectToAsset(poolItemSO, selectPoolView.poolSO);
             AssetDatabase.SaveAssets();
 
-            selectPoolView.poolSO.list.Add(poolItemSO);
+            selectPoolView.poolSO.itemList.Add(poolItemSO);
             EditorUtility.SetDirty(selectPoolView.poolSO);
         }
         #region poolRegion

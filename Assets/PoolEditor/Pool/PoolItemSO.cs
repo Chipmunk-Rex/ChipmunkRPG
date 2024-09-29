@@ -8,6 +8,7 @@ namespace Chipmunk.Library.PoolEditor
     {
         public string poolName;
         public GameObject prefab;
+        public IPoolAble poolItem { get; private set; }
         public int count;
         private void OnValidate()
         {
@@ -23,6 +24,7 @@ namespace Chipmunk.Library.PoolEditor
                 else
                 {
                     poolName = item.PoolName;
+                    poolItem = item;
                 }
             }
 
