@@ -9,7 +9,7 @@ namespace Chipmunk.Library.PoolEditor
     {
         public string poolName;
         [HideInInspector] private string beforeName = null;
-        [HideInInspector] public List<PoolItemSO> list = new();
+        [HideInInspector] public List<PoolItemSO> itemList = new();
 
 #if UNITY_EDITOR
         private void OnValidate()

@@ -26,8 +26,14 @@ namespace Chipmunk.Library.PoolEditor
                 if (editor.target != null)
                     editor.OnInspectorGUI();
             });
-            BindingExtensions.TrackSerializedObjectValue(container, editor.serializedObject, serialzedObject => onDataChange?.Invoke());
+            BindingExtensions.TrackSerializedObjectValue(container, editor.serializedObject, TrackValue);
             Add(container);
+        }
+
+        private void TrackValue(SerializedObject @object)
+        {
+            EditorUtility.SetDirty(@object.targetObject);
+            onDataChange?.Invoke();
         }
     }
 }

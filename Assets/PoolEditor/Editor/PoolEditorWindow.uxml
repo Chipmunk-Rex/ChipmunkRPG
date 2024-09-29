@@ -5,14 +5,14 @@
             <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
             <Chipmunk.Library.PoolEditor.PoolInspectorView />
         </ui:VisualElement>
-        <ui:VisualElement name="Right" style="flex-grow: 1;">
+        <ui:VisualElement name="Right" style="flex-grow: 1; min-width: 50%;">
             <Chipmunk.Library.PoolEditor.PoolSplitView fixed-pane-initial-dimension="300">
-                <ui:VisualElement name="Left" style="flex-grow: 1; min-width: 35%;">
+                <ui:VisualElement name="Left" style="min-width: 35%;">
                     <ui:Label tabindex="-1" text="PoolView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
                     <Chipmunk.Library.PoolEditor.PoolCreateView />
                     <Chipmunk.Library.PoolEditor.PoolListView />
                 </ui:VisualElement>
-                <ui:VisualElement name="Right" style="min-width: 300px;">
+                <ui:VisualElement name="Right" style="min-width: 250px;">
                     <ui:Label tabindex="-1" text="Resource" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header" />
                     <ui:VisualElement name="Search" style="flex-direction: row; justify-content: space-between; background-color: rgb(60, 60, 60); border-bottom-width: 1px; border-left-color: rgb(36, 36, 36); border-right-color: rgb(36, 36, 36); border-top-color: rgb(36, 36, 36); border-bottom-color: rgb(36, 36, 36); padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px;">
                         <uie:ObjectField label="Folder" type="UnityEditor.DefaultAsset, UnityEditor.CoreModule" name="FolderField" style="height: 20px;" />
