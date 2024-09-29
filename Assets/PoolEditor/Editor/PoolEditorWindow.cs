@@ -53,7 +53,11 @@ namespace Chipmunk.Library.PoolEditor
             poolListView.LoadView(GetPoolSOList());
             poolListView.onDelete += RemovePool;
             poolListView.onSelect += SelectPool;
-            poolListView.onClickItem += item => { inspectorView.Draw(item); };
+            poolListView.onClickItem += item =>
+            {
+                inspectorView.Draw(item);
+                Selection.activeObject = item;
+            };
             poolListView.onClickItemDel += (item, poolSO) =>
             {
                 poolSO.list.Remove(item);
@@ -98,6 +102,7 @@ namespace Chipmunk.Library.PoolEditor
             AssetDatabase.SaveAssets();
 
             selectPoolView.poolSO.list.Add(poolItemSO);
+            EditorUtility.SetDirty(selectPoolView.poolSO);
         }
         #region poolRegion
         private void SelectPool(PoolView view)

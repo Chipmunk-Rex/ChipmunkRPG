@@ -1,20 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 964d27c033b09b0419fd17e0135b1f07, type: 3}
-  m_Name: Pool
-  m_EditorClassIdentifier: 
-  poolName: Pool
-  list: []
---- !u!114 &8559342459648256944
+--- !u!114 &-5259068498818611610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,4 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: imtestPref3
   prefab: {fileID: 6238485361404293675, guid: 906a19e7d5dd05f44bf6606fe5d5b5f1, type: 3}
+  count: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964d27c033b09b0419fd17e0135b1f07, type: 3}
+  m_Name: pool
+  m_EditorClassIdentifier: 
+  poolName: pool
+  list:
+  - {fileID: -5259068498818611610}
+  - {fileID: 355082978846110617}
+--- !u!114 &355082978846110617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9927de01cd6db2f41bd3a03281ce4b2e, type: 3}
+  m_Name: PoolItem
+  m_EditorClassIdentifier: 
+  poolName: imtestPref
+  prefab: {fileID: 6238485361404293675, guid: 2122e9c82d1342344a986e9e18ee135e, type: 3}
   count: 0
