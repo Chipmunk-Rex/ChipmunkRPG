@@ -10,7 +10,8 @@ public class EventMediator<TEvent> : BaseEventMediator<TEvent> where TEvent : Ba
     public override void Execute(TEvent @event)
     {
         eventAction?.Invoke(@event);
-        @event.onAfterExcute?.Invoke(@event.ExcuteEvent());
+        EnumEventResult result = @event.ExcuteEvent();
+        @event.onAfterExcute?.Invoke(result);
     }
 
     public override void Subscribe(Action<TEvent> handler)
