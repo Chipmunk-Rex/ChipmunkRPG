@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolAble : MonoBehaviour, IPoolAble
+namespace Chipmunk.Library.PoolEditor
 {
-    public string poolName;
-    public string PoolName => poolName;
-
-    public GameObject ObjectPref => gameObject;
-
-    public void ResetItem()
+    public class PoolAble : MonoBehaviour, IPoolAble
     {
+        public string poolName;
+        public string PoolName => poolName;
+
+        public GameObject ObjectPref => gameObject;
+
+        public void ResetItem()
+        {
+        }
     }
 }

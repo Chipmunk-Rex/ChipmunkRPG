@@ -18,7 +18,7 @@
                         <uie:ObjectField label="Folder" type="UnityEditor.DefaultAsset, UnityEditor.CoreModule" name="FolderField" style="height: 20px;" />
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ReloadResourceBtn" text="Locate" style="height: 20px;" />
                     </ui:VisualElement>
-                    <PoolResourceListView />
+                    <Chipmunk.Library.PoolEditor.PoolResourceListView />
                 </ui:VisualElement>
             </Chipmunk.Library.PoolEditor.PoolSplitView>
         </ui:VisualElement>

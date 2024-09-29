@@ -4,31 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PoolResourceListView : ScrollView
+namespace Chipmunk.Library.PoolEditor
 {
-    public new class UxmlFactory : UxmlFactory<PoolResourceListView, ScrollView.UxmlTraits> { }
-    public Action<IPoolAble> onClickViewBtn;
-    public Action<IPoolAble> onClickView;
-    public void LoadView(List<IPoolAble> poolAbles)
+    public class PoolResourceListView : ScrollView
     {
-        this.Clear();
-        poolAbles.ForEach(poolAble =>
+        public new class UxmlFactory : UxmlFactory<PoolResourceListView, ScrollView.UxmlTraits> { }
+        public Action<IPoolAble> onClickViewBtn;
+        public Action<IPoolAble> onClickView;
+        public void LoadView(List<IPoolAble> poolAbles)
         {
-            PoolResourceView poolResourceView = new PoolResourceView();
-            poolResourceView.LoadView(poolAble);
-            poolResourceView.onClickBtn += OnClickViewBtn;
-            poolResourceView.onClick += OnClickView;
-            this.Add(poolResourceView);
-        });
-    }
+            this.Clear();
+            poolAbles.ForEach(poolAble =>
+            {
+                PoolResourceView poolResourceView = new PoolResourceView();
+                poolResourceView.LoadView(poolAble);
+                poolResourceView.onClickBtn += OnClickViewBtn;
+                poolResourceView.onClick += OnClickView;
+                this.Add(poolResourceView);
+            });
+        }
 
-    private void OnClickView(IPoolAble poolAble)
-    {
-        onClickView?.Invoke(poolAble);
-    }
+        private void OnClickView(IPoolAble poolAble)
+        {
+            onClickView?.Invoke(poolAble);
+        }
 
-    private void OnClickViewBtn(IPoolAble poolAble)
-    {
-        onClickViewBtn?.Invoke(poolAble);
+        private void OnClickViewBtn(IPoolAble poolAble)
+        {
+            onClickViewBtn?.Invoke(poolAble);
+        }
     }
 }

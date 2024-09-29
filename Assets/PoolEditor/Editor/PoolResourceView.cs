@@ -4,38 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PoolResourceView : VisualElement
+namespace Chipmunk.Library.PoolEditor
 {
-    IPoolAble poolAble;
-    Label poolAbleNameLbl;
-    public Action<IPoolAble> onClickBtn;
-    public Action<IPoolAble> onClick;
-    public PoolResourceView()
+    public class PoolResourceView : VisualElement
     {
-        poolAbleNameLbl = new Label();
-        this.Add(poolAbleNameLbl);
-        this.RegisterCallback<ClickEvent>(OnClick);
+        IPoolAble poolAble;
+        Label poolAbleNameLbl;
+        public Action<IPoolAble> onClickBtn;
+        public Action<IPoolAble> onClick;
+        public PoolResourceView()
+        {
+            poolAbleNameLbl = new Label();
+            this.Add(poolAbleNameLbl);
+            this.RegisterCallback<ClickEvent>(OnClick);
 
-        Button addResourceBtn = new Button();
-        addResourceBtn.RegisterCallback<ClickEvent>(OnClickBtn);
-        addResourceBtn.text = "Add";
-        this.Add(addResourceBtn);
-    }
+            Button addResourceBtn = new Button();
+            addResourceBtn.RegisterCallback<ClickEvent>(OnClickBtn);
+            addResourceBtn.text = "Add";
+            this.Add(addResourceBtn);
+        }
 
-    private void OnClick(ClickEvent evt)
-    {
-        onClick?.Invoke(poolAble);
-    }
+        private void OnClick(ClickEvent evt)
+        {
+            onClick?.Invoke(poolAble);
+        }
 
-    private void OnClickBtn(ClickEvent evt)
-    {
-        onClickBtn?.Invoke(poolAble);
-        evt.StopPropagation();
-    }
+        private void OnClickBtn(ClickEvent evt)
+        {
+            onClickBtn?.Invoke(poolAble);
+            evt.StopPropagation();
+        }
 
-    public void LoadView(IPoolAble poolAble)
-    {
-        this.poolAble = poolAble;
-        poolAbleNameLbl.text = poolAble.PoolName;
+        public void LoadView(IPoolAble poolAble)
+        {
+            this.poolAble = poolAble;
+            poolAbleNameLbl.text = poolAble.PoolName;
+        }
     }
 }
