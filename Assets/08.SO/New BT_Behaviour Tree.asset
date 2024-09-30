@@ -67,7 +67,7 @@ MonoBehaviour:
   isStarted: 0
   guid: 74349f6bdff1e0a47bfcc8ab869f7c6e
   position: {x: 43.5, y: 211}
-  message: 
+  message: "\uB514\uBC84\uADF8"
 --- !u!114 &7586767354626489270
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapManager : MonoSingleton<MapManager>
 {
     Dictionary<Vector2Int, Chunk> chunkDatas = new();
     [SerializeField] Vector2Int chunkSize = new Vector2Int(5, 5);
     [SerializeField] int renderSize = 10;
+    [SerializeField] int biomSize = 3;
+    [SerializeField] int seed = int.MaxValue;
+    VoronoiNoise voronoiNoise;
     protected override void Awake()
     {
         base.Awake();
         this.transform.position = Vector2.zero;
+
+        voronoiNoise = new VoronoiNoise(biomSize, seed);
         GenerateChunkMap();
     }
+    private void Update()
+    {
+
+    }
+    #region Map
+    public void GenerateMap()
+    {
+
+    }
+    #endregion
+
+    #region Chunk
     public void GenerateChunkMap()
     {
         Vector2 camPos = Camera.main.transform.position;
@@ -31,7 +49,8 @@ public class MapManager : MonoSingleton<MapManager>
                 if (chunkDatas.ContainsKey(position))
                     if (chunkDatas[position] != null)
                         continue;
-                Vector2Int chunkPos = new Vector2Int((x / chunkSize.x) * chunkSize.x, (y / chunkSize.y) * chunkSize.y);
+                // Vector2Int chunkPos = new Vector2Int((x / chunkSize.x) * chunkSize.x, (y / chunkSize.y) * chunkSize.y);
+                Vector2Int chunkPos = new Vector2Int(x, y);
                 if (!chunkDatas.ContainsKey(chunkPos) || chunkDatas[chunkPos] == null)
                 {
                     chunkDatas[chunkPos] = MakeChunk(chunkPos);
@@ -46,8 +65,15 @@ public class MapManager : MonoSingleton<MapManager>
         gameObject.name = $"Chunk {chunkPos.x}, {chunkPos.y}";
 
         Chunk chunk = gameObject.AddComponent<Chunk>();
-        chunk.Initialize(chunkPos, chunkSize);
+        chunk.Initialize(chunkPos, chunkSize, voronoiNoise);
 
         return chunk;
+    }
+    #endregion
+    [SerializeField] List<TileBase> tiles;
+    public TileBase GetTile(int value)
+    {
+        int tileValue = value / (int.MaxValue / tiles.Count);
+        return tiles[tileValue];
     }
 }

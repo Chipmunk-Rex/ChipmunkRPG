@@ -9,6 +9,10 @@ public class Test : MonoBehaviour
     [SerializeField] BuildingSO so;
     private void Start()
     {
+        UnityEngine.Random.InitState(-1);
+        Debug.Log(UnityEngine.Random.Range(0, int.MaxValue));
+        UnityEngine.Random.InitState(-1);
+        Debug.Log(UnityEngine.Random.Range(0, int.MaxValue));
         // GameObject gameObject = PoolManager.Instance.Pop("ww");
         // PoolManager.Instance.Pop("ww");
         // gameObject.name = "ming";
@@ -25,9 +29,11 @@ public class Test : MonoBehaviour
     {
         @event.onAfterExcute += OnAfterExecute;
         CreateBuildingEvent createBuildingEvent = @event as CreateBuildingEvent;
+        Debug.Log("건설 시도");
     }
 
     private void OnAfterExecute(EnumEventResult result)
     {
+        Debug.Log("건설 시도");
     }
 }
