@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoSingleton<MapManager>
 {
-    Dictionary<Vector2Int, Chunk> chunkDatas = new();
+    [SerializeField] SerializableDictionary<Vector2Int, Chunk> chunkDatas = new();
     [SerializeField] Vector2Int chunkSize = new Vector2Int(5, 5);
     [SerializeField] int renderSize = 10;
     [SerializeField] int biomSize = 3;
@@ -13,7 +13,7 @@ public class MapManager : MonoSingleton<MapManager>
     [SerializeField] int seed = int.MaxValue;
     VoronoiNoise voronoiNoise;
     PerlinNoise perlinNoise;
-    
+
     [SerializeField] MapDataSO mapData;
     protected override void Awake()
     {
@@ -27,7 +27,13 @@ public class MapManager : MonoSingleton<MapManager>
     }
     private void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2Int mousePos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Debug.Log(mousePos);
+            Ground ground = chunkDatas[mousePos].GetGround(mousePos);
+            Debug.Log(ground.groundType.ToString());
+        }
     }
     #region Map
     public void GenerateMap()
@@ -51,15 +57,15 @@ public class MapManager : MonoSingleton<MapManager>
         {
             for (int y = minPos.y; y < maxPos.y; y++)
             {
-                Vector2Int position = new Vector2Int(x, y);
-                if (chunkDatas.ContainsKey(position))
-                    if (chunkDatas[position] != null)
-                        continue;
-                // Vector2Int chunkPos = new Vector2Int((x / chunkSize.x) * chunkSize.x, (y / chunkSize.y) * chunkSize.y);
                 Vector2Int chunkPos = new Vector2Int(x, y);
-                if (!chunkDatas.ContainsKey(chunkPos) || chunkDatas[chunkPos] == null)
+                Vector2Int worldPos = new Vector2Int(x, y) * new Vector2Int(chunkSize.x, chunkSize.y);
+                if (chunkDatas.ContainsKey(worldPos))
+                    if (chunkDatas[worldPos] != null)
+                        continue;
+
+                if (!chunkDatas.ContainsKey(worldPos) || chunkDatas[worldPos] == null)
                 {
-                    chunkDatas[chunkPos] = MakeChunk(chunkPos);
+                    chunkDatas[worldPos] = MakeChunk(chunkPos);
                 }
             }
         }
@@ -73,13 +79,16 @@ public class MapManager : MonoSingleton<MapManager>
         Chunk chunk = gameObject.AddComponent<Chunk>();
         chunk.Initialize(chunkPos, chunkSize, voronoiNoise, perlinNoise, mapData);
 
+        Vector2Int worldPos = chunkPos * new Vector2Int(chunkSize.x, chunkSize.y);
+        for (int x = 0; x < chunkSize.x; x++)
+            for (int y = 0; y < chunkSize.y; y++)
+            {
+                Vector2Int worldGroundPos = worldPos + new Vector2Int(x, y);
+                chunkDatas[worldGroundPos] = chunk;
+            }
+
+
         return chunk;
     }
     #endregion
-    [SerializeField] List<TileBase> tiles;
-    public TileBase GetTile(int value)
-    {
-        int tileValue = value / (int.MaxValue / tiles.Count);
-        return tiles[tileValue];
-    }
 }

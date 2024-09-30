@@ -23,7 +23,7 @@ public class Test : MonoBehaviour
     {
         yield return null;
         BuildingManager.Instance.eventContainer.Subscribe(EnumBuildingEvent.CreateBuilding, CreateBuildingHandler);
-        BuildingManager.Instance.CreateBuilding(Vector2Int.RoundToInt(transform.position), new BaseBuilding(so));
+        BuildingManager.Instance.ConstructBuilding(Vector2Int.RoundToInt(transform.position), new BaseBuilding(so));
     }
     private void CreateBuildingHandler(BaseEvent @event)
     {

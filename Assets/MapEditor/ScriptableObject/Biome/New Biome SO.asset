@@ -22,12 +22,12 @@ MonoBehaviour:
     - key: 2
       value:
         groundType: 0
-        biomRate: 0.105
+        biomRate: 0.296
         groundTile: {fileID: 11400000, guid: 010a5f1942a6def40b5f794178b43b11, type: 2}
     - key: 1
       value:
         groundType: 1
-        biomRate: 0.8
+        biomRate: 0.69
         groundTile: {fileID: 11400000, guid: 2b99f76975c927b47b007f2fb24ee9aa, type: 2}
     - key: 0
       value:

@@ -8,17 +8,17 @@ using UnityEngine.Tilemaps;
 public class Chunk : MonoBehaviour
 {
     public Ground[,] grounds;
-    public Vector2Int position;
+    public Vector2Int ChunkPos { get; private set; }
     private Vector2Int chunkSize;
     private Tilemap groundTilemap;
     private Tilemap buildingTilemap;
     VoronoiNoise voronoiNoise;
     PerlinNoise perlinNoise;
     MapDataSO mapData;
-    public void Initialize(Vector2Int position, Vector2Int chunkSize, VoronoiNoise biomeNoise, PerlinNoise mapNoise, MapDataSO mapData)
+    public void Initialize(Vector2Int chunkPos, Vector2Int chunkSize, VoronoiNoise biomeNoise, PerlinNoise mapNoise, MapDataSO mapData)
     {
-        this.position = position;
-        this.transform.position = (Vector2)position * new Vector2(chunkSize.x, chunkSize.y);
+        this.ChunkPos = chunkPos;
+        this.transform.position = (Vector2)chunkPos * new Vector2(chunkSize.x, chunkSize.y);
         this.chunkSize = chunkSize;
 
         this.voronoiNoise = biomeNoise;
@@ -26,6 +26,7 @@ public class Chunk : MonoBehaviour
 
         this.mapData = mapData;
 
+        grounds = new Ground[chunkSize.x, chunkSize.y];
 
         CreateTilemap();
         GenerateMap();
@@ -50,10 +51,13 @@ public class Chunk : MonoBehaviour
 
                 GroundData groundData = SelectGroundTile(selectedBiome, perlinValue);
                 ground.groundType = groundData.groundType;
+                Debug.Log(ground.groundType);
 
-                Vector3Int cellPos = groundTilemap.WorldToCell(worldPos);
+                grounds[x, y] = ground;
+
+                Vector3Int cellPos = new Vector3Int(x, y);
+                // Vector3Int cellPos = groundTilemap.WorldToCell(worldPos);
                 groundTilemap.SetTile(cellPos, groundData.groundTile);
-                // groundTilemap.SetTile(cellPos, MapManager.Instance.GetTile(voronoiValue));
             }
     }
 
@@ -67,7 +71,6 @@ public class Chunk : MonoBehaviour
 
             if (biomeRate > (double)voronoiNoise / int.MaxValue)
             {
-                Debug.Log($"{biomeRate} {voronoiNoise / int.MaxValue}");
                 selectedBiome = biomeSO;
                 break;
             }
@@ -106,6 +109,13 @@ public class Chunk : MonoBehaviour
         buildingObj.transform.position = this.transform.position;
         buildingTilemap = buildingObj.AddComponent<Tilemap>();
         buildingObj.AddComponent<TilemapRenderer>();
+    }
+
+    public Ground GetGround(Vector2Int worldPos)
+    {
+        Vector2Int groundPos = new Vector2Int(worldPos.x - ChunkPos.x * chunkSize.x, worldPos.y - ChunkPos.y * chunkSize.y);
+        Debug.Log(groundPos + " groundPos");
+        return grounds[groundPos.x, groundPos.y];
     }
 
 #if UNITY_EDITOR

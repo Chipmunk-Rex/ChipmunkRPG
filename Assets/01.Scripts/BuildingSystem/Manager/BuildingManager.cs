@@ -21,7 +21,7 @@ public class BuildingManager : BaseBuildingManager<BaseBuilding, BuildingManager
         return true;
     }
 
-    public override void CreateBuilding(Vector2Int pos, BaseBuilding building)
+    public override void ConstructBuilding(Vector2Int pos, BaseBuilding building)
     {
         CreateBuildingEvent @event = new CreateBuildingEvent(building, buildingDatas, pos);
 
