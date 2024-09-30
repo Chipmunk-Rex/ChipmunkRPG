@@ -26,11 +26,8 @@ public class TestPer : MonoBehaviour
         for (int x = 0; x < size; x++)
             for (int y = 0; y < size; y++)
             {
-                float value = perlinNoise.CalculateNoise(new Vector2(x, y) / 2);
-                value = Mathf.Clamp(value, 0, 0.8f);
-                int colorIndex = Mathf.RoundToInt((value / (1 / (float)posibleColor.Length)) * 10)/ 10;
-                Debug.Log((1 / (float)posibleColor.Length));
-                Debug.Log($"{colorIndex} , {value}");
+                float value = perlinNoise.CalculateNoise(new Vector2(x, y) / 2);;
+                int colorIndex = Mathf.RoundToInt((value / (1 / (float)posibleColor.Length)) * 10) / 10;
                 Color color = posibleColor[colorIndex];
                 texture.SetPixel(x, y, color);
             }

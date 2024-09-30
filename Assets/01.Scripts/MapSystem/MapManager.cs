@@ -9,14 +9,20 @@ public class MapManager : MonoSingleton<MapManager>
     [SerializeField] Vector2Int chunkSize = new Vector2Int(5, 5);
     [SerializeField] int renderSize = 10;
     [SerializeField] int biomSize = 3;
+    [SerializeField] int perlinNoiseScale = 3;
     [SerializeField] int seed = int.MaxValue;
     VoronoiNoise voronoiNoise;
+    PerlinNoise perlinNoise;
+    
+    [SerializeField] MapDataSO mapData;
     protected override void Awake()
     {
         base.Awake();
         this.transform.position = Vector2.zero;
 
         voronoiNoise = new VoronoiNoise(biomSize, seed);
+        perlinNoise = new PerlinNoise(perlinNoiseScale, seed);
+
         GenerateChunkMap();
     }
     private void Update()
@@ -65,7 +71,7 @@ public class MapManager : MonoSingleton<MapManager>
         gameObject.name = $"Chunk {chunkPos.x}, {chunkPos.y}";
 
         Chunk chunk = gameObject.AddComponent<Chunk>();
-        chunk.Initialize(chunkPos, chunkSize, voronoiNoise);
+        chunk.Initialize(chunkPos, chunkSize, voronoiNoise, perlinNoise, mapData);
 
         return chunk;
     }

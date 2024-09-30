@@ -15,16 +15,11 @@ public class PerlinNoise
         Random.InitState(seed);
         offset = Random.Range(-100, 100);
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="position"></param>
-    /// <returns>0 ~ 1 float</returns>
     public float CalculateNoise(Vector2 position)
     {
         float xCoord = position.x / scale + offset;
         float yCoord = position.y / scale + offset;
 
-        return Mathf.PerlinNoise(xCoord, yCoord);
+        return Mathf.Clamp(Mathf.PerlinNoise(xCoord, yCoord), 0, 1 - Mathf.Epsilon);
     }
 }

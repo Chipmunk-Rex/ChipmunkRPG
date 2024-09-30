@@ -77,7 +77,6 @@ public class VoronoiNoise
     {
         Vector2Int cellPos = (position / cellSize);
         Vector2 cellPosData = noiseCellData[cellPos].Item1 + cellPos * cellSize;
-        Debug.Log($"{position} {cellPosData}");
 
         if (Vector2Int.RoundToInt(cellPosData) == position)
             return true;
