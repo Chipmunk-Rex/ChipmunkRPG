@@ -1,27 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class MapManager : MonoSingleton<MapManager>
+public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
     // [SerializeField] SerializableDictionary<Vector2Int, Chunk> chunkDatas = new();
+    EventMediatorContainer<EnumBuildingEvent, BuildingEvent> buildingEventContainer = new();
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
     [SerializeField] Vector3Int chunkSize = new Vector3Int(5, 5, 5);
     [SerializeField] int biomSize = 3;
     [SerializeField] int renderSize = 5;
     [SerializeField] int depthScale = 3;
     [SerializeField] int seed = int.MaxValue;
-    private Tilemap groundTilemap;
-    private Tilemap buildingTilemap;
+    public Tilemap groundTilemap { get; private set; }
+    public Tilemap buildingTilemap { get; private set; }
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
 
     [SerializeField] MapDataSO mapData;
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         this.transform.position = Vector2.zero;
 
         voronoiNoise = new VoronoiNoise(biomSize, seed);
@@ -42,7 +43,7 @@ public class MapManager : MonoSingleton<MapManager>
         //     Debug.Log(ground.groundType.ToString());
         // }
     }
-    #region Map
+    #region Generate
     public void GenerateMap()
     {
         GameObject gridObj = new GameObject("Grid");
@@ -84,6 +85,7 @@ public class MapManager : MonoSingleton<MapManager>
             }
         }
     }
+    #region Ground
     private bool TryCreateGround(Vector2Int worldPos)
     {
         if (groundDatas.ContainsKey(worldPos)) return false;
@@ -94,14 +96,14 @@ public class MapManager : MonoSingleton<MapManager>
     {
         Ground ground = new Ground();
         BiomeSO biome = SelectBiome(worldPos);
-        if(biome == null) return;
+        if (biome == null) return;
         GroundSO groundSO = SelectGround(biome, worldPos);
 
         ground.biome = biome;
         ground.groundSO = groundSO;
 
         groundDatas.Add(worldPos, ground);
-        groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2) worldPos), groundSO.groundTile);
+        groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), groundSO.groundTile);
     }
     private GroundSO SelectGround(BiomeSO selectedBiome, Vector2Int worldPos)
     {
@@ -118,6 +120,7 @@ public class MapManager : MonoSingleton<MapManager>
 
         return selectedGround;
     }
+    #endregion
     private BiomeSO SelectBiome(Vector2Int worldPos)
     {
         BiomeSO selectedBiome = null;
@@ -138,53 +141,80 @@ public class MapManager : MonoSingleton<MapManager>
     }
     [SerializeField] TileBase tile;
     #endregion
+    #region Ground
+    public Ground GetGround(Vector2Int worldPos)
+    {
+        if (!groundDatas.ContainsKey(worldPos))
+            return null;
+        return groundDatas[worldPos];
+    }
+    #endregion
+    #region building
 
-    #region Chunk
-    // public void GenerateChunkMap()
-    // {
-    //     Vector2 camPos = Camera.main.transform.position;
-    //     Vector2Int camPosInt = new Vector2Int(Mathf.RoundToInt(camPos.x), Mathf.RoundToInt(camPos.y));
+    public BaseBuilding GetBuilding(Vector2Int worldPos)
+    {
+        if (!groundDatas.ContainsKey(worldPos))
+            return null;
 
-    //     GenerateChunkMap(camPosInt - new Vector2Int(renderSize, renderSize), camPosInt + new Vector2Int(renderSize, renderSize));
-    // }
-    // public void GenerateChunkMap(Vector2Int minPos, Vector2Int maxPos)
-    // {
-    //     for (int x = minPos.x; x < maxPos.x; x++)
-    //     {
-    //         for (int y = minPos.y; y < maxPos.y; y++)
-    //         {
-    //             Vector2Int chunkPos = new Vector2Int(x, y);
-    //             Vector2Int worldPos = new Vector2Int(x, y) * new Vector2Int(chunkSize.x, chunkSize.y);
-    //             if (chunkDatas.ContainsKey(worldPos))
-    //                 if (chunkDatas[worldPos] != null)
-    //                     continue;
+        return groundDatas[worldPos].baseBuilding;
+    }
+    public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
+    {
+        foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
+        {
+            Vector2Int tilePos = worldPos + localPos;
+            if (GetBuilding(tilePos) != null)
+            {
+                Debug.Log("실행");
+                return false;
+            }
+        }
+        return true;
+    }
 
-    //             if (!chunkDatas.ContainsKey(worldPos) || chunkDatas[worldPos] == null)
-    //             {
-    //                 chunkDatas[worldPos] = MakeChunk(chunkPos);
-    //             }
-    //         }
-    //     }
-    // }
-    // private Chunk MakeChunk(Vector2Int chunkPos)
-    // {
-    //     GameObject gameObject = new GameObject();
-    //     gameObject.transform.SetParent(this.transform);
-    //     gameObject.name = $"Chunk {chunkPos.x}, {chunkPos.y}";
+    public void ConstructBuilding(BaseBuilding building)
+    {
+        CreateBuildingEvent @event = new CreateBuildingEvent(building, this, building.pos);
 
-    //     Chunk chunk = gameObject.AddComponent<Chunk>();
-    //     chunk.Initialize(chunkPos, chunkSize, voronoiNoise, perlinNoise, mapData);
+        buildingEventContainer.Execute(EnumBuildingEvent.CreateBuilding, @event);
+    }
+    public void ConstructBuilding(BaseBuilding building, Vector2Int pos)
+    {
+        building.pos = pos;
+        ConstructBuilding(building, pos);
+    }
 
-    //     Vector2Int worldPos = chunkPos * new Vector2Int(chunkSize.x, chunkSize.y);
-    //     for (int x = 0; x < chunkSize.x; x++)
-    //         for (int y = 0; y < chunkSize.y; y++)
-    //         {
-    //             Vector2Int worldGroundPos = worldPos + new Vector2Int(x, y);
-    //             chunkDatas[worldGroundPos] = chunk;
-    //         }
+    public void RemoveBuilding(Vector2Int pos)
+    {
+        BaseBuilding building = GetBuilding(pos);
+        RemoveBuildingEvent @event = new RemoveBuildingEvent(building, this);
 
+        @event.ExcuteEvent();
+    }
 
-    //     return chunk;
-    // }
+    public List<Vector2Int> GetBuildingWolrdPosList(BaseBuilding building)
+    {
+        List<Vector2Int> buildingPosList = GetBuildingPosList(building);
+        for (int i = 0; i < buildingPosList.Count; i++)
+        {
+            buildingPosList[i] = buildingPosList[i] + building.pos;
+        }
+        return buildingPosList;
+    }
+    public List<Vector2Int> GetBuildingPosList(BaseBuilding building)
+    {
+        List<Vector2Int> buildingPosList = new();
+        foreach (Vector2Int localPos in building.buildingSO.tileDatas.Keys)
+        {
+            Vector2Int tilePos = building.pos + localPos;
+            buildingPosList.Add(tilePos);
+        }
+        return buildingPosList;
+    }
+
+    public void SetBuilding(Vector2Int pos, BaseBuilding building)
+    {
+        throw new NotImplementedException();
+    }
     #endregion
 }

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventMediatorContainerType : EventMediatorContainer<Type>
+public class EventMediatorContainerType<TEvent> : EventMediatorContainer<Type, TEvent> where TEvent : BaseEvent
 {
-    public void Invoke<TKey>(BaseEvent @event) where TKey : BaseEvent
+    public void Invoke<TKey>(TEvent @event) where TKey : BaseEvent
     {
         Execute(typeof(TKey), @event);
     }
