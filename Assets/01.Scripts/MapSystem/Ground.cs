@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct Ground
+public class Ground
 {
     public GroundSO groundSO;
     public BiomeSO biome;

@@ -5,22 +5,24 @@ using UnityEngine.Tilemaps;
 
 public class RemoveBuildingEvent : BuildingEvent
 {
-    private Dictionary<Vector2Int, BaseBuilding> buildingDatas;
+    private World world;
     private Vector2Int pos;
-    public RemoveBuildingEvent(BaseBuilding building, Dictionary<Vector2Int, BaseBuilding> buildingDatas, Vector2Int pos) : base(building)
+    public RemoveBuildingEvent(BaseBuilding building, World world) : base(building)
     {
-        this.buildingDatas = buildingDatas;
-        this.pos = pos;
+        this.world = world;
+        this.pos = building.pos;
     }
 
     public override EnumEventResult ExcuteEvent()
     {
         foreach (Vector2Int localPos in building.buildingSO.tileDatas.Keys)
         {
-            Vector2Int tilePos = pos + localPos;
+            Vector2Int worldTilePos = pos + localPos;
 
-            buildingDatas[tilePos] = null;
-            BuildingManager.Instance.tilemap.SetTile((Vector3Int)tilePos, null);
+            Ground ground = world.GetGround(worldTilePos);
+            ground.baseBuilding = null;
+
+            world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
         }
 
         return EnumEventResult.Successed;

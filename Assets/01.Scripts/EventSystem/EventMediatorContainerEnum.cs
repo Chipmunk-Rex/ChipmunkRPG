@@ -3,6 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventMediatorContainerEnum<TEnum> : EventMediatorContainer<TEnum> where TEnum : Enum
+public class EventMediatorContainerEnum<TEnum, TEvent> : EventMediatorContainer<TEnum, TEvent> where TEnum : Enum where TEvent : BaseEvent
 {
 }

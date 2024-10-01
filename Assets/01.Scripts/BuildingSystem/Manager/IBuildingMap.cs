@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseBuildingManager<TBuilding, TBuildingManager> : MonoSingleton<TBuildingManager> where TBuildingManager : BaseBuildingManager<TBuilding, TBuildingManager>
+public interface IBuildingMap<TBuilding>
 {
-    protected Dictionary<Vector2Int, TBuilding> buildingDatas = new();
-    public abstract void ConstructBuilding(Vector2Int pos, TBuilding building);
+    public abstract void ConstructBuilding(TBuilding building, Vector2Int pos);
     public abstract void RemoveBuilding(Vector2Int pos);
     public abstract TBuilding GetBuilding(Vector2Int pos);
     public abstract List<Vector2Int> GetBuildingPosList(TBuilding building);
