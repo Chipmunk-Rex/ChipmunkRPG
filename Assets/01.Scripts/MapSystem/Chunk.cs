@@ -30,9 +30,6 @@ public class Chunk : MonoBehaviour
 
         CreateTilemap();
         GenerateMap();
-        
-        Tilemap tilemap;
-        tilemap.
     }
 
     private void GenerateMap()
@@ -51,10 +48,8 @@ public class Chunk : MonoBehaviour
                 if (selectedBiome == null) continue;
                 ground.biome = selectedBiome;
 
-
-                GroundData groundData = SelectGroundTile(selectedBiome, perlinValue);
-                ground.groundType = groundData.groundType;
-                Debug.Log(ground.groundType);
+                GroundSO groundData = SelectGroundDepth(selectedBiome, perlinValue);
+                ground.groundSO = groundData;
 
                 grounds[x, y] = ground;
 
@@ -81,12 +76,12 @@ public class Chunk : MonoBehaviour
 
         return selectedBiome;
     }
-    private GroundData SelectGroundTile(BiomeSO selectedBiome, float perlinNoise)
+    private GroundSO SelectGroundDepth(BiomeSO selectedBiome, float perlinNoise)
     {
-        GroundData selectedGround = new();
-        foreach (GroundData groundData in selectedBiome.groundDatas.Values)
+        GroundSO selectedGround = new();
+        foreach (GroundSO groundData in selectedBiome.groundDatas.Values)
         {
-            if (groundData.biomRate > perlinNoise)
+            if (groundData.groundRate > perlinNoise)
             {
                 selectedGround = groundData;
                 break;

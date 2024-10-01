@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa8802a72ac1844981ccc372eda42e2, type: 3}
-  m_Name: New Map Data SO
+  m_Script: {fileID: 11500000, guid: 5724de53a3c0eba419ddf1a38ca643a0, type: 3}
+  m_Name: New Ground SO 1
   m_EditorClassIdentifier: 
-  biomes:
-  - biomeSO: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-    biomeRate: 1
-  - biomeSO: {fileID: 0}
-    biomeRate: 0.01
+  groundType: 0
+  groundRate: 1
+  groundTile: {fileID: 11400000, guid: 3791b90b0f8b30f4c9e66f27a1d082af, type: 2}

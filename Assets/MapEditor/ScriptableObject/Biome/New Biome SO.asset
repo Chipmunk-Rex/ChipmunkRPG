@@ -20,17 +20,6 @@ MonoBehaviour:
   groundDatas:
     serializableItems:
     - key: 2
-      value:
-        groundType: 0
-        biomRate: 0.296
-        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
-    - key: 1
-      value:
-        groundType: 1
-        biomRate: 0.69
-        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
+      value: {fileID: 11400000, guid: cc4c3a154a7f42e49b049cce17a21967, type: 2}
     - key: 0
-      value:
-        groundType: 2
-        biomRate: 1
-        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
+      value: {fileID: 11400000, guid: 08bc5421147652341ba0d5ee07acf639, type: 2}
