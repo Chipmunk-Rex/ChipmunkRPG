@@ -30,6 +30,9 @@ public class Chunk : MonoBehaviour
 
         CreateTilemap();
         GenerateMap();
+        
+        Tilemap tilemap;
+        tilemap.
     }
 
     private void GenerateMap()

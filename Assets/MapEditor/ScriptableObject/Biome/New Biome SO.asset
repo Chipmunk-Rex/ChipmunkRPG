@@ -23,14 +23,14 @@ MonoBehaviour:
       value:
         groundType: 0
         biomRate: 0.296
-        groundTile: {fileID: 11400000, guid: 010a5f1942a6def40b5f794178b43b11, type: 2}
+        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
     - key: 1
       value:
         groundType: 1
         biomRate: 0.69
-        groundTile: {fileID: 11400000, guid: 2b99f76975c927b47b007f2fb24ee9aa, type: 2}
+        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
     - key: 0
       value:
         groundType: 2
         biomRate: 1
-        groundTile: {fileID: 11400000, guid: c50dad196f82ac84f9b83219f97b51d6, type: 2}
+        groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}

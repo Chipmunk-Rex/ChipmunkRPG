@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomes:
   - biomeSO: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-    biomeRate: 1
+    biomeRate: 0.481
   - biomeSO: {fileID: 0}
     biomeRate: 0.01
