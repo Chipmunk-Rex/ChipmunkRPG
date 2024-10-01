@@ -17,10 +17,19 @@ public class CreateBuildingEvent : BuildingEvent
         foreach (KeyValuePair<Vector2Int, TileBase> keyValue in building.buildingSO.tileDatas)
         {
             Vector2Int tilePos = pos + keyValue.Key;
+            Debug.Log($"설치 {tilePos}");
             TileBase tile = keyValue.Value;
 
-            // Ground ground =
-            // world..SetTile((Vector3Int)tilePos, tile);
+            Ground ground = world.GetGround(tilePos);
+            if (ground == null)
+            {
+                Debug.LogError($"CreateBuildingEvent : ground value is null!!");
+                return EnumEventResult.Failed;
+            }
+            Debug.Log($"{tilePos} {world.GetBuilding(tilePos) == null}");
+            ground.building = building;
+
+            world.buildingTilemap.SetTile((Vector3Int)tilePos, tile);
         }
 
         building.pos = pos;

@@ -8,5 +8,5 @@ public class Ground
 {
     public GroundSO groundSO;
     public BiomeSO biome;
-    public BaseBuilding baseBuilding;
+    public BaseBuilding building;
 }

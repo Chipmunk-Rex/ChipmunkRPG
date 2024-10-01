@@ -20,7 +20,7 @@ public class RemoveBuildingEvent : BuildingEvent
             Vector2Int worldTilePos = pos + localPos;
 
             Ground ground = world.GetGround(worldTilePos);
-            ground.baseBuilding = null;
+            ground.building = null;
 
             world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
         }

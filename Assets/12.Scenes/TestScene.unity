@@ -182,8 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff4f67426f90c045845f390f28d7e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDontDestroy: 0
-  tilemap: {fileID: 763144745}
 --- !u!4 &674834360
 Transform:
   m_ObjectHideFlags: 0
@@ -1283,15 +1281,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c0eced4ec0d6f41aa433a81eb40eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDontDestroy: 0
   groundDatas:
     serializableItems: []
   chunkSize: {x: 10, y: 10, z: 0}
   biomSize: 5
   renderSize: 100
   depthScale: 20
-  seed: 2147483647
+  seed: 2147344408
   mapData: {fileID: 11400000, guid: 2315ebae6809e8e4f9abef0a735098dc, type: 2}
+  buildingSO: {fileID: 11400000, guid: 446693759d539aa4ebeceb609ddcf3f5, type: 2}
   tile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
 --- !u!1 &1774447570
 GameObject:

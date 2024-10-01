@@ -22,7 +22,7 @@ namespace Chipmunk.Library.BuildingEditor
             {
                 VisualElement horizontalContainer = new VisualElement();
                 horizontalContainer.AddToClassList("HorizontalContainer");
-                for (int x = -size.Item4; x < size.Item2; x++)
+                for (int x = -size.Item4; x <= size.Item2; x++)
                 {
                     Vector2Int pos = new Vector2Int(x, y);
                     BuildingTileView tileView = new BuildingTileView(pos);
@@ -40,7 +40,8 @@ namespace Chipmunk.Library.BuildingEditor
 
             if (pos == Vector2Int.zero)
                 tileView.AddToClassList("CenterTile");
-            if (tileDatas.ContainsKey(pos) && tileDatas[pos] != null)
+            if (tileDatas.ContainsKey(pos))
+            // if(tileDatas[pos] != null)
             {
                 tileView.AddToClassList("PlaceTile");
 

@@ -33,15 +33,16 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         // CreateGround();
         // GenerateChunkMap();
     }
+    [SerializeField] BuildingSO buildingSO;
     private void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Vector2Int mousePos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        //     Debug.Log(mousePos);
-        //     Ground ground = chunkDatas[mousePos].GetGround(mousePos);
-        //     Debug.Log(ground.groundType.ToString());
-        // }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2Int mouseWorldIntPos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+            BaseBuilding building = new BaseBuilding(buildingSO);
+            ConstructBuilding(building, mouseWorldIntPos);
+        }
     }
     #region Generate
     public void GenerateMap()
@@ -57,7 +58,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         groundTilemap = groundObj.AddComponent<Tilemap>();
         TilemapRenderer groundRenderer = groundObj.AddComponent<TilemapRenderer>();
         groundRenderer.chunkSize = chunkSize;
-
+        groundRenderer.sortingLayerName = "Ground";
 
         GameObject buildingObj = new GameObject("Building Tilemap");
         buildingObj.transform.SetParent(gridObj.transform);
@@ -65,6 +66,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         buildingTilemap = buildingObj.AddComponent<Tilemap>();
         TilemapRenderer buildingRenderer = buildingObj.AddComponent<TilemapRenderer>();
         buildingRenderer.chunkSize = chunkSize;
+        buildingRenderer.sortingOrder = 10;
 
         groundTilemap.SetTile(Vector3Int.zero, tile);
     }
@@ -155,17 +157,17 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         if (!groundDatas.ContainsKey(worldPos))
             return null;
-
-        return groundDatas[worldPos].baseBuilding;
+        return groundDatas[worldPos].building;
     }
     public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
     {
+        Debug.Log("ming");
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
             Vector2Int tilePos = worldPos + localPos;
-            if (GetBuilding(tilePos) != null)
+            Ground ground = GetGround(tilePos);
+            if (ground == null || ground.building != null)
             {
-                Debug.Log("실행");
                 return false;
             }
         }
@@ -175,19 +177,20 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     public void ConstructBuilding(BaseBuilding building)
     {
         CreateBuildingEvent @event = new CreateBuildingEvent(building, this, building.pos);
-
         buildingEventContainer.Execute(EnumBuildingEvent.CreateBuilding, @event);
     }
     public void ConstructBuilding(BaseBuilding building, Vector2Int pos)
     {
         building.pos = pos;
-        ConstructBuilding(building, pos);
+        ConstructBuilding(building);
     }
 
     public void RemoveBuilding(Vector2Int pos)
     {
         BaseBuilding building = GetBuilding(pos);
+
         RemoveBuildingEvent @event = new RemoveBuildingEvent(building, this);
+        buildingEventContainer.Execute(EnumBuildingEvent.RemoveBuilding, @event);
 
         @event.ExcuteEvent();
     }
