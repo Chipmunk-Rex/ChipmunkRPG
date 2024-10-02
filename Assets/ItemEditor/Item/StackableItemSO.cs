@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class StackableItemSO : BaseItemSO
 {
-    
+    int maxStackCount = 64;
 }

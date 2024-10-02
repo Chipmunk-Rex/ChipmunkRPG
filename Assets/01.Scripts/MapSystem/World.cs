@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 
 public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
-    EventMediatorContainer<EnumBuildingEvent, BuildingEvent> buildingEventContainer = new();
+    EventMediatorContainer<EnumWorldEvent, BuildingEvent> buildingEventContainer = new();
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
     [SerializeField] List<Entity> entities = new();
     [SerializeField] int seed = int.MaxValue;

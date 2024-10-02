@@ -9,7 +9,7 @@ namespace Chipmunk.Library.PoolEditor
         public string poolName;
         public GameObject prefab;
         public IPoolAble poolItem { get; private set; }
-        public int count;
+        public int count = 1;
         private void OnValidate()
         {
             if (prefab != null)

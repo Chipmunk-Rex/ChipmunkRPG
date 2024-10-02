@@ -13,7 +13,6 @@ public class CreateBuildingEvent : BuildingEvent
         if (!world.CanBuild(pos, building.buildingSO))
             return EnumEventResult.Failed;
 
-
         foreach (KeyValuePair<Vector2Int, TileBase> keyValue in building.buildingSO.tileDatas)
         {
             Vector2Int tilePos = pos + keyValue.Key;
@@ -33,6 +32,8 @@ public class CreateBuildingEvent : BuildingEvent
         }
 
         building.pos = pos;
+        building.currentWorld = world;
+        
         return EnumEventResult.Successed;
     }
     public CreateBuildingEvent(BaseBuilding building, World world, Vector2Int pos) : base(building)

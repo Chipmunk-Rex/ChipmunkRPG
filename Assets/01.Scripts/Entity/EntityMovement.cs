@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnumGroundType
+public class EntityMovement : MonoBehaviour
 {
-    Ground, Water, None
+    Vector2 moveDir;
 }
