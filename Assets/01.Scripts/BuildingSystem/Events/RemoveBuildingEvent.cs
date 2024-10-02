@@ -5,11 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class RemoveBuildingEvent : BuildingEvent
 {
-    private World world;
     private Vector2Int pos;
-    public RemoveBuildingEvent(BaseBuilding building, World world) : base(building)
+    public RemoveBuildingEvent(World world, BaseBuilding building) : base(world, building)
     {
-        this.world = world;
         this.pos = building.pos;
     }
 

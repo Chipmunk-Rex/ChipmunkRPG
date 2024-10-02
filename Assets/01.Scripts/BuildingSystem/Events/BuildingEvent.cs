@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BuildingEvent : BaseEvent
+public abstract class BuildingEvent : WorldEvent
 {
     public BaseBuilding building;
-    public BuildingEvent(BaseBuilding building)
+
+    protected BuildingEvent(World world, BaseBuilding building) : base(world)
     {
         this.building = building;
     }

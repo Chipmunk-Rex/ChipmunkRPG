@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 public class CreateBuildingEvent : BuildingEvent
 {
     private Dictionary<Vector2Int, Ground> groundDatas;
-    private World world;
     public Vector2Int pos;
     public override EnumEventResult ExcuteEvent()
     {
@@ -33,12 +32,11 @@ public class CreateBuildingEvent : BuildingEvent
 
         building.pos = pos;
         building.currentWorld = world;
-        
+
         return EnumEventResult.Successed;
     }
-    public CreateBuildingEvent(BaseBuilding building, World world, Vector2Int pos) : base(building)
+    public CreateBuildingEvent(World world, BaseBuilding building, Vector2Int pos) : base(world, building)
     {
-        this.world = world;
         this.pos = pos;
     }
 }

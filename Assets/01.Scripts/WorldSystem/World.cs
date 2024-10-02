@@ -9,9 +9,10 @@ using UnityEngine.Tilemaps;
 
 public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
-    EventMediatorContainer<EnumWorldEvent, BuildingEvent> buildingEventContainer = new();
+    public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
-    [SerializeField] List<Entity> entities = new();
+    [field: SerializeField] public List<Entity> entities { get; private set; } = new();
+    [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [SerializeField] int seed = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
@@ -93,11 +94,13 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
             GameObject entityContainer = new GameObject("Entities");
             entityContainer.transform.SetParent(this.transform);
             entityContainer.transform.position = Vector2.zero;
+            entityContainerTrm = entityContainer.transform;
         }
         else
         {
             entityContainerTrm.SetAsLastSibling();
         }
+        this.entityContainerTrm = entityContainerTrm;
     }
     public void RenderMap()
     {
@@ -204,8 +207,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 
     public void ConstructBuilding(BaseBuilding building)
     {
-        CreateBuildingEvent @event = new CreateBuildingEvent(building, this, building.pos);
-        buildingEventContainer.Execute(EnumWorldEvent.BuildingCreate, @event);
+        CreateBuildingEvent @event = new CreateBuildingEvent(this, building, building.pos);
+        worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
     public void ConstructBuilding(BaseBuilding building, Vector2Int pos)
     {
@@ -217,8 +220,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         BaseBuilding building = GetBuilding(pos);
 
-        RemoveBuildingEvent @event = new RemoveBuildingEvent(building, this);
-        buildingEventContainer.Execute(EnumWorldEvent.BuildingCreate, @event);
+        RemoveBuildingEvent @event = new RemoveBuildingEvent(this, building);
+        worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
 
         @event.ExcuteEvent();
     }

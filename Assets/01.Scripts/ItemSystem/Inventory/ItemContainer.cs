@@ -39,11 +39,14 @@ public class ItemContainer : MonoBehaviour
     {
         return items[slotNum];
     }
-    public void DropItem(int slotNum)
+    public void DropItem(int slotNum, World world)
     {
         Item item = GetItem(slotNum);
-        
+
         ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
         itemEntity.Initialize(item);
+
+        EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity);
+        world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
     }
 }
