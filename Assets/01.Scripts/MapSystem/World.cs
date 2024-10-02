@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -29,10 +30,19 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         voronoiNoise = new VoronoiNoise(mapDataSO.biomSize, seed);
         perlinNoise = new PerlinNoise(mapDataSO.depthScale, seed);
 
+        SetRenderer();
         RenderMap();
-        // CreateGround();
-        // GenerateChunkMap();
     }
+
+    private void SetRenderer()
+    {
+        TilemapRenderer groundRenderer = groundTilemap.gameObject.GetComponent<TilemapRenderer>();
+        groundRenderer.chunkSize = mapDataSO.chunkSize;
+
+        TilemapRenderer buildingRenderer = buildingTilemap.gameObject.GetComponent<TilemapRenderer>();
+        buildingRenderer.chunkSize = mapDataSO.chunkSize;
+    }
+
     [SerializeField] BuildingSO buildingSO;
     private void Update()
     {
@@ -51,39 +61,43 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     #region Generate
     public void CreateObject()
     {
+        Grid grid = transform.GetComponentInChildren<Grid>();
+        if (grid != null)
+        {
+            Debug.LogWarning($"{gameObject.name} : Grid Is Already Exist, Remove Past Grid");
+            GameObject.DestroyImmediate(grid.gameObject);
+        }
+
         GameObject gridObj = new GameObject("Grid");
         gridObj.transform.SetParent(this.transform);
         gridObj.transform.position = new Vector3(-0.5f, -0.5f);
         gridObj.AddComponent<Grid>();
 
-        string groundMapName = "Ground Tilemap";
-        Transform finedGroundMap = transform.Find(groundMapName);
-        if (finedGroundMap)
-        {
-            groundTilemap = finedGroundMap.GetComponent<Tilemap>();
-        }
-        else
-        {
-            GameObject groundObj = new GameObject("Ground Tilemap");
-            groundObj.transform.SetParent(gridObj.transform);
-            groundObj.transform.position = groundObj.transform.parent.transform.position;
-            groundTilemap = groundObj.AddComponent<Tilemap>();
-            TilemapRenderer groundRenderer = groundObj.AddComponent<TilemapRenderer>();
-            groundRenderer.chunkSize = mapDataSO.chunkSize;
-            groundRenderer.sortingLayerName = "Ground";
-        }
+        GameObject groundObj = new GameObject("Ground Tilemap");
+        groundObj.transform.SetParent(gridObj.transform);
+        groundObj.transform.position = groundObj.transform.parent.transform.position;
+        groundTilemap = groundObj.AddComponent<Tilemap>();
+        TilemapRenderer groundRenderer = groundObj.AddComponent<TilemapRenderer>();
+        groundRenderer.sortingLayerName = "Ground";
 
         GameObject buildingObj = new GameObject("Building Tilemap");
         buildingObj.transform.SetParent(gridObj.transform);
         buildingObj.transform.position = buildingObj.transform.parent.transform.position;
         buildingTilemap = buildingObj.AddComponent<Tilemap>();
         TilemapRenderer buildingRenderer = buildingObj.AddComponent<TilemapRenderer>();
-        buildingRenderer.chunkSize = mapDataSO.chunkSize;
         buildingRenderer.sortingOrder = 10;
 
-        GameObject entityContainer = new GameObject("Entities");
-        entityContainer.transform.SetParent(this.transform);
-        entityContainer.transform.position = Vector2.zero;
+        Transform entityContainerTrm = transform.Find("Entities");
+        if (entityContainerTrm == null)
+        {
+            GameObject entityContainer = new GameObject("Entities");
+            entityContainer.transform.SetParent(this.transform);
+            entityContainer.transform.position = Vector2.zero;
+        }
+        else
+        {
+            entityContainerTrm.SetAsLastSibling();
+        }
     }
     public void RenderMap()
     {

@@ -17,3 +17,7 @@ MonoBehaviour:
     biomeRate: 0.678
   - biomeSO: {fileID: 0}
     biomeRate: 0.01
+  chunkSize: {x: 5, y: 5, z: 5}
+  biomSize: 3
+  renderSize: 20
+  depthScale: 3
