@@ -205,7 +205,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     public void ConstructBuilding(BaseBuilding building)
     {
         CreateBuildingEvent @event = new CreateBuildingEvent(building, this, building.pos);
-        buildingEventContainer.Execute(EnumBuildingEvent.CreateBuilding, @event);
+        buildingEventContainer.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
     public void ConstructBuilding(BaseBuilding building, Vector2Int pos)
     {
@@ -218,7 +218,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         BaseBuilding building = GetBuilding(pos);
 
         RemoveBuildingEvent @event = new RemoveBuildingEvent(building, this);
-        buildingEventContainer.Execute(EnumBuildingEvent.RemoveBuilding, @event);
+        buildingEventContainer.Execute(EnumWorldEvent.BuildingCreate, @event);
 
         @event.ExcuteEvent();
     }
