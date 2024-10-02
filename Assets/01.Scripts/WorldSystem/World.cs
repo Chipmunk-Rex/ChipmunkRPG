@@ -141,7 +141,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     }
     private GroundSO SelectGround(BiomeSO selectedBiome, Vector2Int worldPos)
     {
-        GroundSO selectedGround = new();
+        GroundSO selectedGround = null;
         float noiseValue = perlinNoise.CalculateNoise(worldPos);
         foreach (GroundSO groundData in selectedBiome.groundDatas.Values)
         {

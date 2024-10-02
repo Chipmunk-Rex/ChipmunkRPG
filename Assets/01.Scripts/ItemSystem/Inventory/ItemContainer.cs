@@ -6,19 +6,33 @@ using UnityEngine;
 public class ItemContainer : MonoBehaviour
 {
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
-    [SerializeField] Item[] items;
+    Item[] items;
     private void Awake()
     {
         items = new Item[containerSize.x * containerSize.y];
+        Debug.Log(items[0] == null);
+    }
+    [SerializeField] World world;
+    [SerializeField] ItemSO itemSO;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Item item = itemSO.CreateItem();
+            Debug.Log($"{items[0] == null} {AddItem(item)} {items[0] == null}");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            DropItem(0, world);
+        }
     }
     public bool AddItem(Item item)
     {
-        for (int i = 0; i < items.Length; i++)
+        if (item is StackableItem)
         {
-            Item tempItem = items[i];
-
-            if (item is StackableItem)
+            for (int i = 0; i < items.Length; i++)
             {
+                Item tempItem = items[i];
                 if (tempItem != null && tempItem is StackableItem)
                 {
                     StackableItem stackableTemp = (tempItem as StackableItem);
@@ -26,7 +40,12 @@ public class ItemContainer : MonoBehaviour
                     return true;
                 }
             }
-            if (tempItem == null)
+        }
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            Debug.Log("ming");
+            if (items[i] == null)
             {
                 items[i] = item;
                 return true;
