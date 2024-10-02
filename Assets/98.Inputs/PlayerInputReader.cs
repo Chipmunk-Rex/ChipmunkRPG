@@ -19,4 +19,14 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     {
         playerMoveDir.Value = context.ReadValue<Vector2>();
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnAttact(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }

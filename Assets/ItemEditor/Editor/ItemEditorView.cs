@@ -76,7 +76,7 @@ namespace Chipmunk.Library.ItemEditor
             AssetDatabase.FindAssets("", new[] { "Assets/ItemEditor/ScriptableObject" }).ToList().ForEach(guid =>
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                BaseItemSO itemSo = AssetDatabase.LoadAssetAtPath<ItemSO>(path);
+                BaseItemSO itemSo = AssetDatabase.LoadAssetAtPath<BaseItemSO>(path);
                 if (itemSo != null)
                 {
                     itemSOList.Add(itemSo);

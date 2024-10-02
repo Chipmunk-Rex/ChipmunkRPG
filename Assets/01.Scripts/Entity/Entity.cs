@@ -5,17 +5,15 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(BaseStats))]
 [RequireComponent(typeof(Health))]
 public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected Health health;
-    [SerializeField] protected BaseStats stats;
+    [field: SerializeField] public EntityDataSO entitySO;
+    public Vector2 lookDir = Vector2.down;
+    public World currentWorld;
     protected virtual void Awake()
     {
         health = ChipmunkLibrary.GetComponentWhenNull(this, ref health);
-        stats = ChipmunkLibrary.GetComponentWhenNull(this, ref stats);
-
-
     }
 }

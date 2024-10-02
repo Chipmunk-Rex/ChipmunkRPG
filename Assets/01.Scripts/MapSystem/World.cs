@@ -3,32 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
-    // [SerializeField] SerializableDictionary<Vector2Int, Chunk> chunkDatas = new();
     EventMediatorContainer<EnumBuildingEvent, BuildingEvent> buildingEventContainer = new();
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
-    [SerializeField] Vector3Int chunkSize = new Vector3Int(5, 5, 5);
-    [SerializeField] int biomSize = 3;
-    [SerializeField] int renderSize = 5;
-    [SerializeField] int depthScale = 3;
+    [SerializeField] List<Entity> entities = new();
     [SerializeField] int seed = int.MaxValue;
-    public Tilemap groundTilemap { get; private set; }
-    public Tilemap buildingTilemap { get; private set; }
+    [field: SerializeField] public Tilemap groundTilemap { get; private set; }
+    [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
 
-    [SerializeField] MapDataSO mapData;
+    [SerializeField] WorldConfigSO mapDataSO;
+    private void Reset()
+    {
+        CreateObject();
+    }
     private void Awake()
     {
         this.transform.position = Vector2.zero;
 
-        voronoiNoise = new VoronoiNoise(biomSize, seed);
-        perlinNoise = new PerlinNoise(depthScale, seed);
+        voronoiNoise = new VoronoiNoise(mapDataSO.biomSize, seed);
+        perlinNoise = new PerlinNoise(mapDataSO.depthScale, seed);
 
-        GenerateMap();
         RenderMap();
         // CreateGround();
         // GenerateChunkMap();
@@ -38,6 +38,10 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Clicked on the UI");
+            }
             Vector2Int mouseWorldIntPos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             BaseBuilding building = new BaseBuilding(buildingSO);
@@ -45,35 +49,46 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         }
     }
     #region Generate
-    public void GenerateMap()
+    public void CreateObject()
     {
         GameObject gridObj = new GameObject("Grid");
         gridObj.transform.SetParent(this.transform);
         gridObj.transform.position = new Vector3(-0.5f, -0.5f);
         gridObj.AddComponent<Grid>();
 
-        GameObject groundObj = new GameObject("Ground Tilemap");
-        groundObj.transform.SetParent(gridObj.transform);
-        groundObj.transform.position = groundObj.transform.parent.transform.position;
-        groundTilemap = groundObj.AddComponent<Tilemap>();
-        TilemapRenderer groundRenderer = groundObj.AddComponent<TilemapRenderer>();
-        groundRenderer.chunkSize = chunkSize;
-        groundRenderer.sortingLayerName = "Ground";
+        string groundMapName = "Ground Tilemap";
+        Transform finedGroundMap = transform.Find(groundMapName);
+        if (finedGroundMap)
+        {
+            groundTilemap = finedGroundMap.GetComponent<Tilemap>();
+        }
+        else
+        {
+            GameObject groundObj = new GameObject("Ground Tilemap");
+            groundObj.transform.SetParent(gridObj.transform);
+            groundObj.transform.position = groundObj.transform.parent.transform.position;
+            groundTilemap = groundObj.AddComponent<Tilemap>();
+            TilemapRenderer groundRenderer = groundObj.AddComponent<TilemapRenderer>();
+            groundRenderer.chunkSize = mapDataSO.chunkSize;
+            groundRenderer.sortingLayerName = "Ground";
+        }
 
         GameObject buildingObj = new GameObject("Building Tilemap");
         buildingObj.transform.SetParent(gridObj.transform);
         buildingObj.transform.position = buildingObj.transform.parent.transform.position;
         buildingTilemap = buildingObj.AddComponent<Tilemap>();
         TilemapRenderer buildingRenderer = buildingObj.AddComponent<TilemapRenderer>();
-        buildingRenderer.chunkSize = chunkSize;
+        buildingRenderer.chunkSize = mapDataSO.chunkSize;
         buildingRenderer.sortingOrder = 10;
 
-        groundTilemap.SetTile(Vector3Int.zero, tile);
+        GameObject entityContainer = new GameObject("Entities");
+        entityContainer.transform.SetParent(this.transform);
+        entityContainer.transform.position = Vector2.zero;
     }
     public void RenderMap()
     {
-        Vector2Int minPos = Vector2Int.RoundToInt(transform.position - new Vector3(renderSize, renderSize));
-        Vector2Int maxPos = Vector2Int.RoundToInt(transform.position + new Vector3(renderSize, renderSize));
+        Vector2Int minPos = Vector2Int.RoundToInt(transform.position - new Vector3(mapDataSO.renderSize, mapDataSO.renderSize));
+        Vector2Int maxPos = Vector2Int.RoundToInt(transform.position + new Vector3(mapDataSO.renderSize, mapDataSO.renderSize));
         GenerateGround(minPos, maxPos);
     }
     public void GenerateGround(Vector2Int minPos, Vector2Int maxPos)
@@ -127,7 +142,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         BiomeSO selectedBiome = null;
         double noiseValue = voronoiNoise.CalculateNoise(worldPos);
-        foreach (BiomeData biome in mapData.biomes)
+        foreach (BiomeData biome in mapDataSO.biomes)
         {
             BiomeSO biomeSO = biome.biomeSO;
             float biomeRate = biome.biomeRate;
@@ -141,7 +156,6 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 
         return selectedBiome;
     }
-    [SerializeField] TileBase tile;
     #endregion
     #region Ground
     public Ground GetGround(Vector2Int worldPos)

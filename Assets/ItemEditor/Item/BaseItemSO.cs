@@ -12,9 +12,10 @@ public abstract class BaseItemSO : ScriptableObject
     /// 내구도
     /// </summary>
     public int Durability;
-    public abstract void Initialize();
-    
-    private void OnValidate() {
-        
+    public abstract Item CreateItem();
+
+    private void OnValidate()
+    {
+
     }
 }

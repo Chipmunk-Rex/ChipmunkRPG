@@ -14,8 +14,8 @@ public class Chunk : MonoBehaviour
     private Tilemap buildingTilemap;
     VoronoiNoise voronoiNoise;
     PerlinNoise perlinNoise;
-    MapDataSO mapData;
-    public void Initialize(Vector2Int chunkPos, Vector2Int chunkSize, VoronoiNoise biomeNoise, PerlinNoise mapNoise, MapDataSO mapData)
+    WorldConfigSO mapData;
+    public void Initialize(Vector2Int chunkPos, Vector2Int chunkSize, VoronoiNoise biomeNoise, PerlinNoise mapNoise, WorldConfigSO mapData)
     {
         this.ChunkPos = chunkPos;
         this.transform.position = (Vector2)chunkPos * new Vector2(chunkSize.x, chunkSize.y);
