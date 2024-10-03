@@ -10,4 +10,5 @@ public class EntitySO : ScriptableObject
     public int attackDamage;
     public int moveSpeed;
     public int attackSpeed;
+    public GameObject shadowPrefab;
 }

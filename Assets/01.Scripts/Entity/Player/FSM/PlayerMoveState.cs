@@ -14,6 +14,9 @@ public class PlayerMoveState : FSMState<EnumPlayerState, Player>
     {
         PlayerMoveEvent @event = new PlayerMoveEvent(entity, inputReader.playerMoveDir.Value);
         entity.playerEventContainer.Execute(EnumPlayerEvents.MoveEvent, @event);
-        Debug.Log("mingggg");
+        if(inputReader.playerMoveDir.Value == Vector2.zero)
+        {
+            entity.FSMStateMachine.ChangeState(EnumPlayerState.Idle);
+        }
     }
 }
