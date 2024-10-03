@@ -7,5 +7,5 @@ using UnityEngine;
 public struct BiomeEntityData
 {
     [Range(0.01f, 1)] public float spawnRate;
-    public EntityDataSO entitySO;
+    public EntitySO entitySO;
 }

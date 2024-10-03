@@ -10,10 +10,14 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     Controls controls;
     public NotifyValue<Vector2> playerMoveDir = new();
 
-    private void Awake()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         controls = new();
+        
         controls.Player.SetCallbacks(this);
+        controls.Player.Enable();
     }
     public void OnMove(InputAction.CallbackContext context)
     {

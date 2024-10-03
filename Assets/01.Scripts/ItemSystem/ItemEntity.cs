@@ -12,12 +12,12 @@ public class ItemEntity : Entity, IPoolAble
     {
         this.item = item;
 
-        spriteRenderer.sprite = item.ItemSO.itemSprite;
+        spriteRendererCompo.sprite = item.ItemSO.itemSprite;
     }
 
     public void ResetItem()
     {
         item = null;
-        spriteRenderer.sprite = null;
+        spriteRendererCompo.sprite = null;
     }
 }

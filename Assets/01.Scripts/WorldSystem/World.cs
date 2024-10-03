@@ -10,6 +10,8 @@ using UnityEngine.Tilemaps;
 public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
+    [SerializeField] WorldConfigSO mapDataSO;
+    [SerializeField] Transform renderTrm;
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
@@ -19,7 +21,6 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
 
-    [SerializeField] WorldConfigSO mapDataSO;
     private void Reset()
     {
         CreateObject();
@@ -32,7 +33,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         perlinNoise = new PerlinNoise(mapDataSO.depthScale, seed);
 
         SetRenderer();
-        RenderMap();
+
+        StartCoroutine(RenderMap());
     }
 
     private void SetRenderer()
@@ -102,11 +104,21 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         }
         this.entityContainerTrm = entityContainerTrm;
     }
-    public void RenderMap()
+    public IEnumerator RenderMap()
     {
-        Vector2Int minPos = Vector2Int.RoundToInt(transform.position - new Vector3(mapDataSO.renderSize, mapDataSO.renderSize));
-        Vector2Int maxPos = Vector2Int.RoundToInt(transform.position + new Vector3(mapDataSO.renderSize, mapDataSO.renderSize));
-        GenerateGround(minPos, maxPos);
+        StopCoroutine(RenderMap());
+        while (true)
+        {
+            yield return new WaitForSeconds(mapDataSO.renderDuration);
+
+            Vector3 targetPos = Vector2.zero;
+            if (renderTrm != null)
+                targetPos = renderTrm.position;
+
+            Vector2Int minPos = Vector2Int.RoundToInt(targetPos - new Vector3(mapDataSO.chunkSize.x * mapDataSO.renderSize, mapDataSO.chunkSize.y * mapDataSO.renderSize));
+            Vector2Int maxPos = Vector2Int.RoundToInt(targetPos + new Vector3(mapDataSO.chunkSize.x * mapDataSO.renderSize, mapDataSO.chunkSize.y * mapDataSO.renderSize));
+            GenerateGround(minPos, maxPos);
+        }
     }
     public void GenerateGround(Vector2Int minPos, Vector2Int maxPos)
     {
@@ -145,13 +157,13 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         float noiseValue = perlinNoise.CalculateNoise(worldPos);
         foreach (GroundSO groundData in selectedBiome.groundDatas.Values)
         {
-            if (groundData.groundRate > noiseValue)
+            if (groundData.groundRate >= noiseValue)
             {
                 selectedGround = groundData;
                 break;
             }
         }
-
+        Debug.Log($"{selectedGround == null} {noiseValue}");
         return selectedGround;
     }
     #endregion
