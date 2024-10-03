@@ -29,7 +29,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         this.transform.position = Vector2.zero;
 
-        voronoiNoise = new VoronoiNoise(mapDataSO.biomSize, seed);
+        voronoiNoise = new VoronoiNoise(mapDataSO.biomSize, seed, mapDataSO.biomDetail);
         perlinNoise = new PerlinNoise(mapDataSO.depthScale, seed);
 
         SetRenderer();

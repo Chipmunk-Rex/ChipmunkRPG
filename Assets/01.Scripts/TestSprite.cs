@@ -13,7 +13,7 @@ public class TestSprite : MonoBehaviour
     [SerializeField] int seed;
     private void Awake()
     {
-        voronoiNoise = new(cellSize, seed);
+        voronoiNoise = new(cellSize, seed, 10);
         Genarate();
     }
     private void Update() {
@@ -33,7 +33,7 @@ public class TestSprite : MonoBehaviour
                 int value = voronoiNoise.CalculateNoise(new Vector2Int(x, y));
                 int colorIndex = value / (int.MaxValue / posibleColor.Length);
                 Color color = posibleColor[colorIndex];
-                if(voronoiNoise.isCell(new Vector2Int(x, y)))
+                if(voronoiNoise.isCellPoint(new Vector2Int(x, y)))
                     color = Color.black;
                 texture.SetPixel(x, y, color);
             }
