@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class VoronoiNoise
 {
-    /// <summary>
-    /// (셀 좌표, 좌표)
-    /// </summary>
     Dictionary<Vector2Int, (Vector2[], int)> noiseCellData = new();
-    int cellSize;
-    int pointCount;
+    readonly int cellSize;
+    readonly int pointCount;
     readonly int seed;
     public VoronoiNoise(int cellSize, int seed, int pointCount = 1)
     {
