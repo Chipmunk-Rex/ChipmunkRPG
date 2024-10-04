@@ -23,12 +23,19 @@ namespace Chipmunk.Library.BehaviourTreeEditor
             CreateNodeInputPorts();
             CreateNodeOutputPorts();
             AddToClassList("BT_NodeView");
+            
+            SetDesc();
         }
+
         public BT_Node node;
         public Port input;
         public Port output;
         public Action<BT_NodeView> onNodeSeleted;
         public Orientation orientation = Orientation.Vertical;
+        public void SetDesc()
+        {
+            this.Q<Label>("Description").text = node.nodeDescription;
+        }
         public static string NodeNameCreator(string name)
         {
             string[] splitName = name.Split("_");

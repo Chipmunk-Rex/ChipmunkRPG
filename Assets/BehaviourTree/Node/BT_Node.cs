@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class BT_Node : ScriptableObject
 {
+    [TextArea(1, 9)]
+    public string nodeDescription;
     [HideInInspector] public BT_EnumNodeState state = BT_EnumNodeState.Running;
     [HideInInspector] public bool isStarted = false;
     [HideInInspector] public string guid;

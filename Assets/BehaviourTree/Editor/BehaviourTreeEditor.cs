@@ -88,7 +88,10 @@ namespace Chipmunk.Library.BehaviourTreeEditor
             inspectorView.UpdateSelection(nodeView);
             inspectorViewHeader.UpdateSelection(nodeView);
             if (selectedNodeView != null)
+            {
+                selectedNodeView.SetDesc();
                 selectedNodeView.RemoveFromClassList("onSelected");
+            }
             selectedNodeView = nodeView;
             selectedNodeView.AddToClassList("onSelected");
         }

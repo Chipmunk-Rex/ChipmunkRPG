@@ -6,7 +6,7 @@
             <ui:VisualElement name="divider" class="horizontal" />
             <ui:VisualElement name="top">
                 <ui:VisualElement name="input" />
-                <ui:VisualElement name="title">
+                <ui:VisualElement name="title" style="font-size: 16px; -unity-font-style: bold;">
                     <ui:Label name="title-label" class="unity-text-element unity-label" />
                     <ui:VisualElement name="title-button-container">
                         <ui:VisualElement name="collapse-button">
@@ -14,6 +14,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
                 <ui:VisualElement name="divider" class="vertical" />
                 <ui:VisualElement name="output" />
             </ui:VisualElement>
