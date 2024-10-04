@@ -24,12 +24,26 @@ public abstract class Entity : MonoBehaviour
     {
         healthCompo = GetComponent<Health>();
         InitializeStats();
+
+        if (currentWorld == null)
+        {
+            SpawnEntity();
+        }
+    }
+
+    private void SpawnEntity()
+    {
+        currentWorld = ChipmunkLibrary.GetComponentWithParent<World>(transform);
+        if (currentWorld != null)
+        {
+            currentWorld.SpawnEntity(this);
+        }
     }
 
     private void InitializeStats()
     {
         if (entitySO == null) return;
-            stats.moveSpeed = entitySO.moveSpeed;
+        stats.moveSpeed = entitySO.moveSpeed;
         stats.maxHP = entitySO.maxHP;
         stats.attackDamage = entitySO.attackDamage;
         stats.attackSpeed = entitySO.attackSpeed;

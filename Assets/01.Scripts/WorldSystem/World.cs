@@ -262,5 +262,16 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         throw new NotImplementedException();
     }
+
+    public void DestoryEntity(Entity entity)
+    {
+        entities.Remove(entity);
+        Destroy(entity.gameObject);
+    }
+    public void SpawnEntity(Entity entity)
+    {
+        entities.Add(entity);
+        entity.transform.SetParent(entityContainerTrm);
+    }
     #endregion
 }
