@@ -18,25 +18,32 @@ public abstract class Entity : MonoBehaviour
     [field: SerializeField] public SpriteRenderer spriteRendererCompo { get; protected set; }
     [field: SerializeField] public EntityMovement movementCompo { get; protected set; }
     #endregion
-    [field: SerializeField] public EntitySO entitySO;
+    [field: SerializeField] public EntitySO entitySO { get; protected set; }
     public Vector2 lookDir = Vector2.down;
     protected virtual void Awake()
     {
         healthCompo = GetComponent<Health>();
         InitializeStats();
 
-        if (currentWorld == null)
+        if (currentWorld == null && entitySO != null)
         {
             SpawnEntity();
         }
     }
 
+    public void SpawnEntity(EntitySO entitySO)
+    {
+        this.entitySO = entitySO;
+        InitializeStats();
+        SpawnEntity();
+    }
     private void SpawnEntity()
     {
         currentWorld = ChipmunkLibrary.GetComponentWithParent<World>(transform);
         if (currentWorld != null)
         {
-            currentWorld.SpawnEntity(this);
+            EntitySpawnEvent @event = new EntitySpawnEvent(currentWorld, this);
+            currentWorld.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BT_WaitNode : BT_ActionNode
 {
-    private float duration = 1;
+    [SerializeField] private float duration = 1;
     private float startedTime;
     public override void OnNodeStart()
     {

@@ -7,7 +7,7 @@ public class BT_SelectorNode : BT_CompositeNode
     int current;
     public override void OnNodeStart()
     {
-
+        current = 0;
     }
 
     public override void OnNodeStop()
@@ -16,17 +16,20 @@ public class BT_SelectorNode : BT_CompositeNode
 
     protected override BT_EnumNodeState OnNodeUpdate()
     {
-        BT_Node childNode = GetChild()[current];
-        switch (childNode.UpdateNode())
+        while (current < GetChild().Count) 
         {
-            case BT_EnumNodeState.Running:
-                return BT_EnumNodeState.Running;
-            case BT_EnumNodeState.Success:
-                return BT_EnumNodeState.Success;
-            case BT_EnumNodeState.Failure:
-                current++;
-                break;
+            BT_Node childNode = GetChild()[current];
+            switch (childNode.UpdateNode())
+            {
+                case BT_EnumNodeState.Running:
+                    return BT_EnumNodeState.Running;
+                case BT_EnumNodeState.Success:
+                    return BT_EnumNodeState.Success;
+                case BT_EnumNodeState.Failure:
+                    current++; 
+                    break;
+            }
         }
-        return current == GetChild().Count ? BT_EnumNodeState.Failure : BT_EnumNodeState.Running;
+        return BT_EnumNodeState.Failure;
     }
 }

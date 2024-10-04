@@ -42,6 +42,7 @@ namespace Chipmunk.Library.PoolEditor
             if (_poolContainer.ContainsKey(itemName))
             {
                 GameObject item = _poolContainer[itemName].Pop();
+                item.GetComponent<IPoolAble>().InitializeItem();
                 return item;
             }
             Debug.LogError($"There is no pool {itemName}");

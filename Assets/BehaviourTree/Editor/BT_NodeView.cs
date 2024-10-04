@@ -109,7 +109,6 @@ namespace Chipmunk.Library.BehaviourTreeEditor
         {
             base.OnSelected();
             onNodeSeleted?.Invoke(this);
-            this.Q("selection-border").AddToClassList("onSelected");
         }
         public override void SetPosition(Rect newPos)
         {

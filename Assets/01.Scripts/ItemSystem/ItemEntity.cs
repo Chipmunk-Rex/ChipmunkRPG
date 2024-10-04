@@ -11,8 +11,13 @@ public class ItemEntity : Entity, IPoolAble
     public void Initialize(Item item)
     {
         this.item = item;
-
+        gameObject.name = $"Item ({item.ItemSO.itemName})";
         spriteRendererCompo.sprite = item.ItemSO.itemSprite;
+    }
+
+    public void InitializeItem()
+    {
+
     }
 
     public void ResetItem()

@@ -9,6 +9,7 @@ public class BT_BehaviourTreeExecutor : MonoBehaviour
     private void Start()
     {
         behaviourTreeClone = behaviourTree.Clone();
+        Debug.Log(behaviourTreeClone == null);
     }
     private void Update()
     {

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntitySpawnEvent : WorldEvent
+public class EntitySpawnEvent : EntityEvent
 {
-    Entity entity;
-    public EntitySpawnEvent(World world, Entity entity) : base(world)
+    public EntitySpawnEvent(World world, Entity entity) : base(world, entity)
     {
-        this.entity = entity;
     }
 
     public override EnumEventResult ExcuteEvent()

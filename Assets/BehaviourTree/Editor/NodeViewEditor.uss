@@ -50,17 +50,6 @@
     justify-content: center;
 }
 
-.onSelected {
-    border-left-color: rgba(212, 136, 83, 0.78);
-    border-right-color: rgba(212, 136, 83, 0.78);
-    border-top-color: rgba(212, 136, 83, 0.78);
-    border-bottom-color: rgba(212, 136, 83, 0.78);
-    border-top-width: 4px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 4px;
-}
-
 .running {
     border-top-width: 3px;
     border-right-width: 3px;
@@ -93,6 +82,17 @@
     border-right-width: 3px;
     border-bottom-width: 3px;
     border-left-width: 3px;
+}
+
+.onSelected {
+    border-left-color: rgba(212, 136, 83, 0.78);
+    border-right-color: rgba(212, 136, 83, 0.78);
+    border-top-color: rgba(212, 136, 83, 0.78);
+    border-bottom-color: rgba(212, 136, 83, 0.78);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 BT_NodeView {

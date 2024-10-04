@@ -163,7 +163,6 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
                 break;
             }
         }
-        Debug.Log($"{selectedGround == null} {noiseValue}");
         return selectedGround;
     }
     #endregion
@@ -261,17 +260,6 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     public void SetBuilding(Vector2Int pos, BaseBuilding building)
     {
         throw new NotImplementedException();
-    }
-
-    public void DestoryEntity(Entity entity)
-    {
-        entities.Remove(entity);
-        Destroy(entity.gameObject);
-    }
-    public void SpawnEntity(Entity entity)
-    {
-        entities.Add(entity);
-        entity.transform.SetParent(entityContainerTrm);
     }
     #endregion
 }

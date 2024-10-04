@@ -82,10 +82,15 @@ namespace Chipmunk.Library.BehaviourTreeEditor
                     break;
             }
         }
+        BT_NodeView selectedNodeView;
         private void OnNodeSeletionChange(BT_NodeView nodeView)
         {
             inspectorView.UpdateSelection(nodeView);
             inspectorViewHeader.UpdateSelection(nodeView);
+            if (selectedNodeView != null)
+                selectedNodeView.RemoveFromClassList("onSelected");
+            selectedNodeView = nodeView;
+            selectedNodeView.AddToClassList("onSelected");
         }
 
         private void OnSelectionChange()
@@ -93,6 +98,10 @@ namespace Chipmunk.Library.BehaviourTreeEditor
             inspectorViewHeader?.Initialize();
 
             BT_BehaviourTree tree = Selection.activeObject as BT_BehaviourTree;
+            if (treeView == null)
+            {
+                return;
+            }
             if (tree == null)
             {
                 GameObject selectedGameObject = Selection.activeGameObject;
