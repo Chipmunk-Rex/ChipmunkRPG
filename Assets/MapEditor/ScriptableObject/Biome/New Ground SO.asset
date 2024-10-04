@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New Ground SO
   m_EditorClassIdentifier: 
   groundType: 0
-  groundRate: 0.637
-  groundTile: {fileID: 11400000, guid: 4de41b9ed34dd544f99bcd333d8587e3, type: 2}
+  groundRate: 0.01
+  groundTile: {fileID: 11400000, guid: 9ea80b8b439949946949713cb8ce5821, type: 2}

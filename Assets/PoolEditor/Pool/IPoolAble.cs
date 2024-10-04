@@ -8,6 +8,7 @@ namespace Chipmunk.Library.PoolEditor
     {
         public string PoolName { get; }
         public GameObject ObjectPref { get; }
+        public void InitializeItem();
         public void ResetItem();
     }
 }

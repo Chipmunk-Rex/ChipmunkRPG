@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.devlab.chipmunklibrary": "https://github.com/Chipmunk-Rex/Chipmunk-Library.git?path=/ChipmunkLibrary",
+    "com.unity.cinemachine": "2.10.1",
     "com.unity.collab-proxy": "2.5.1",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.rider": "3.0.31",

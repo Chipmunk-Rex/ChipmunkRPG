@@ -42,7 +42,7 @@ namespace Chipmunk.Library.PoolEditor
             if (_poolContainer.ContainsKey(itemName))
             {
                 GameObject item = _poolContainer[itemName].Pop();
-                item.GetComponent<IPoolAble>().ResetItem();
+                item.GetComponent<IPoolAble>().InitializeItem();
                 return item;
             }
             Debug.LogError($"There is no pool {itemName}");
@@ -62,6 +62,7 @@ namespace Chipmunk.Library.PoolEditor
         {
             if (_poolContainer.ContainsKey(item.PoolName))
             {
+                item.ResetItem();
                 _poolContainer[item.PoolName].Push((item as MonoBehaviour).gameObject);
                 return;
             }
@@ -73,6 +74,7 @@ namespace Chipmunk.Library.PoolEditor
             IPoolAble poolAble = item.GetComponent<IPoolAble>();
             if (_poolContainer.ContainsKey(poolAble.PoolName))
             {
+                poolAble.ResetItem();
                 _poolContainer[poolAble.PoolName].Push(item);
                 return;
             }

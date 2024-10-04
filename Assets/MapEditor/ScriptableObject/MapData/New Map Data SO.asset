@@ -15,5 +15,11 @@ MonoBehaviour:
   biomes:
   - biomeSO: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
     biomeRate: 0.678
-  - biomeSO: {fileID: 0}
-    biomeRate: 0.01
+  - biomeSO: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
+    biomeRate: 1
+  chunkSize: {x: 5, y: 5, z: 5}
+  biomSize: 10
+  biomDetail: 10
+  renderSize: 5
+  renderDuration: 1
+  depthScale: 10

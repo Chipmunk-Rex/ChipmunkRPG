@@ -20,6 +20,4 @@ MonoBehaviour:
   groundDatas:
     serializableItems:
     - key: 2
-      value: {fileID: 11400000, guid: cc4c3a154a7f42e49b049cce17a21967, type: 2}
-    - key: 0
-      value: {fileID: 11400000, guid: 08bc5421147652341ba0d5ee07acf639, type: 2}
+      value: {fileID: 11400000, guid: 5c412372dbd97304a8a917f8a99ed7ac, type: 2}

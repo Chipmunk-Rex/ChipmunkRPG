@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7523099586392751086
+--- !u!114 &-3697959269830139939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,24 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9927de01cd6db2f41bd3a03281ce4b2e, type: 3}
   m_Name: PoolItem
   m_EditorClassIdentifier: 
-  poolName: ww
-  prefab: {fileID: 6238485361404293675, guid: 906a19e7d5dd05f44bf6606fe5d5b5f1, type: 3}
-  count: 15
---- !u!114 &-3599010989812032371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9927de01cd6db2f41bd3a03281ce4b2e, type: 3}
-  m_Name: PoolItem
-  m_EditorClassIdentifier: 
-  poolName: imtestPrawddaw
-  prefab: {fileID: 6238485361404293675, guid: 83b3776e7cc82184394ce23c8a292f2a, type: 3}
-  count: 0
+  poolName: ItemEntity
+  prefab: {fileID: 1880004669073565418, guid: 1e55cfff312e5ee4b972d3aa5238c99c, type: 3}
+  count: 5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,5 +29,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Pool
   itemList:
-  - {fileID: -7523099586392751086}
-  - {fileID: -3599010989812032371}
+  - {fileID: -3697959269830139939}

@@ -8,10 +8,16 @@ namespace Chipmunk.Library.PoolEditor
     public class PoolAble : MonoBehaviour, IPoolAble
     {
         [SerializeField] public UnityEvent onResetItem;
+        [SerializeField] public UnityEvent onInitializeItem;
         public string poolName;
         public string PoolName => poolName;
 
         public GameObject ObjectPref => gameObject;
+
+        public void InitializeItem()
+        {
+            onInitializeItem?.Invoke();
+        }
 
         public void ResetItem()
         {
