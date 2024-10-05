@@ -103,6 +103,7 @@ namespace Chipmunk.Library.BuildingEditor
                 buildingSO.tileDatas[selectedTilepos] = tile;
 
             OnSelectTileView(selectedTilepos);
+            EditorUtility.SetDirty(buildingSO);
         }
 
         private void OnSelectTileView(Vector2Int pos)

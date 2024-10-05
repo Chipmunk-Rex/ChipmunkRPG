@@ -13,13 +13,24 @@ MonoBehaviour:
   m_Name: New Map Data SO
   m_EditorClassIdentifier: 
   biomes:
-  - biomeSO: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-    biomeRate: 0.678
-  - biomeSO: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
-    biomeRate: 1
+  - percentage: 40
+    color: {r: 1, g: 0.16509432, b: 0.16509432, a: 1}
+    Value:
+      rate: 0
+      biomeSO: {fileID: 0}
+  - percentage: 50
+    color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+    Value:
+      rate: 0
+      biomeSO: {fileID: 0}
+  - percentage: 30
+    color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+    Value:
+      rate: 0
+      biomeSO: {fileID: 0}
   chunkSize: {x: 5, y: 5, z: 5}
-  biomSize: 10
-  biomDetail: 10
-  renderSize: 5
+  biomSize: 30
+  biomDetail: 20
+  renderSize: 20
   renderDuration: 1
   depthScale: 10

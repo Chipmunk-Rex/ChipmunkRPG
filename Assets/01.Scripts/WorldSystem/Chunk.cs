@@ -62,10 +62,10 @@ public class Chunk : MonoBehaviour
     private BiomeSO SelectBiome(int voronoiNoise)
     {
         BiomeSO selectedBiome = null;
-        foreach (BiomeData biome in mapData.biomes)
+        foreach (WorldBiomeData biome in mapData.biomes)
         {
             BiomeSO biomeSO = biome.biomeSO;
-            float biomeRate = biome.biomeRate;
+            float biomeRate = biome.rate;
 
             if (biomeRate > (double)voronoiNoise / int.MaxValue)
             {

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct BiomeData
+public struct WorldBiomeData
 {
+    [Range(0.01f, 1)] public float rate;
     public BiomeSO biomeSO;
-    [Range(0.01f, 1)] public float biomeRate;
 }

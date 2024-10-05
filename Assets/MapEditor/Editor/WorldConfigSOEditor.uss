@@ -1,0 +1,6 @@
+PieChartView {
+    margin-top: 84px;
+    margin-right: 84px;
+    margin-bottom: 84px;
+    margin-left: 84px;
+}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5724de53a3c0eba419ddf1a38ca643a0, type: 3}
-  m_Name: New Ground SO
+  m_Name: Snow
   m_EditorClassIdentifier: 
   groundType: 0
-  groundRate: 0.01
-  groundTile: {fileID: 11400000, guid: 9ea80b8b439949946949713cb8ce5821, type: 2}
+  groundRate: 1
+  groundTile: {fileID: 11400000, guid: daa5653a913570645ba36562deeaef56, type: 2}

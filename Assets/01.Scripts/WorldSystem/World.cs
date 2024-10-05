@@ -170,10 +170,10 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         BiomeSO selectedBiome = null;
         double noiseValue = voronoiNoise.CalculateNoise(worldPos);
-        foreach (BiomeData biome in mapDataSO.biomes)
+        foreach (WorldBiomeData biome in mapDataSO.biomes)
         {
             BiomeSO biomeSO = biome.biomeSO;
-            float biomeRate = biome.biomeRate;
+            float biomeRate = biome.rate;
 
             if (biomeRate > noiseValue / int.MaxValue)
             {

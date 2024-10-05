@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5724de53a3c0eba419ddf1a38ca643a0, type: 3}
-  m_Name: New Ground SO 2
+  m_Name: Grass
   m_EditorClassIdentifier: 
   groundType: 0
   groundRate: 1
