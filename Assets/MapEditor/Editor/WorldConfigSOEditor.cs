@@ -16,10 +16,23 @@ public class WorldConfigSOEditor : Editor
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/MapEditor/Editor/WorldConfigSOEditor.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
-        root.Add(new PieChartView(worldConfigSO.biomes.ToArray()));
+        root.Add(new PieChartView(worldConfigSO.biomes.ToArray(), 50));
 
         root.Q<Label>().AddManipulator(new DragAndDropManipulator(root.Q<Label>()));
 
+        SerializedProperty property = serializedObject.GetIterator();
+        property.NextVisible(true);
+        while (property.NextVisible(false))
+        {
+            PropertyField propertyField = new PropertyField(property);
+            propertyField.SetEnabled(property.name != "m_Script");
+            root.Add(propertyField);
+        }
+
         return root;
+    }
+    private void OnDisable()
+    {
+        Debug.Log("OnDisable");
     }
 }

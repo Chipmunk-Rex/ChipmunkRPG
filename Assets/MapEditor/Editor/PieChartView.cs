@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PieChartView : VisualElement
 {
     float m_Radius = 100.0f;
-    float m_Value = 40.0f;
 
     public float radius
     {
@@ -20,9 +20,12 @@ public class PieChartView : VisualElement
     public float diameter => m_Radius * 2.0f;
 
     public PieChartData[] pieChartDatas;
+    public PieChartPoint[] pieChartPoints;
 
-    public PieChartView(PieChartData[] pieChartDatas)
+    public PieChartView(PieChartData[] pieChartDatas, float radius = 100.0f)
     {
+        this.pieChartDatas = pieChartDatas;
+        this.radius = radius;
         generateVisualContent += DrawCanvas;
         this.style.width = radius * 2;
         this.style.height = radius * 2;
@@ -32,12 +35,25 @@ public class PieChartView : VisualElement
     }
     public void SetPercentages(PieChartData[] pieChartDatas)
     {
-        this.pieChartDatas = pieChartDatas;
+        pieChartPoints = new PieChartPoint[pieChartDatas.Length];
+
         for (int i = 0; i < pieChartDatas.Length; i++)
         {
             PieChartPoint pieChartPoint = new PieChartPoint(this, pieChartDatas[i]);
+            pieChartPoints[i] = pieChartPoint;
             pieChartPoint.onValueChanged += v =>
             {
+                float maxAngle = 360.0f;
+                float sumAngle = 0.0f;
+                foreach (PieChartPoint point in pieChartPoints)
+                {
+                    point.SetMaxAngle(maxAngle - sumAngle);
+                    point.SetMinAngle(sumAngle);
+                    if (point == pieChartPoint)
+                        Debug.Log($"{maxAngle - sumAngle} maxAngle");
+                    sumAngle += point.angle;
+                }
+
                 MarkDirtyRepaint();
             };
             this.Add(pieChartPoint);
@@ -50,23 +66,21 @@ public class PieChartView : VisualElement
         painter.strokeColor = Color.white;
         painter.fillColor = Color.white;
 
-        var colors = new Color32[] {
-            new Color32(182,235,122,255),
-            new Color32(251,120,19,255)
-        };
-        float angle = 0.0f;
         float anglePct = 0.0f;
-        foreach (PieChartData pieChartData in pieChartDatas)
+        float angleSum = 0.0f;
+        var targetDraws = pieChartDatas;
+        foreach (PieChartData pieChartData in targetDraws)
         {
-            anglePct += 360.0f * (pieChartData.percentage / 100);
+            float angle = 360.0f * (pieChartData.percentage / 100);
+            anglePct = angle + angleSum;
 
             painter.fillColor = pieChartData.color;
             painter.BeginPath();
             painter.MoveTo(new Vector2(m_Radius, m_Radius));
-            painter.Arc(new Vector2(m_Radius, m_Radius), m_Radius, angle, anglePct);
+            painter.Arc(new Vector2(m_Radius, m_Radius), m_Radius, angleSum, anglePct);
             painter.Fill();
 
-            angle = anglePct;
+            angleSum += angle;
         }
     }
 }

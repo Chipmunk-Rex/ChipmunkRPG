@@ -8,8 +8,31 @@ public class RangeDragAndDropManipulator : PointerManipulator
 {
     private readonly float radius;
     private readonly VisualElement container;
-    public float Angle { get; private set; }
+    public float _angle;
+    public float Angle
+    {
+        get { return _angle; }
+        set
+        {
+            float angle = value;
+
+            if (angle <= 0)
+            {
+                angle += 360;
+            }
+            if (angle > 360)
+            {
+                angle -= 360;
+            }
+            angle = Mathf.Clamp(angle, minAngle, maxAngle);
+
+            SetPos(angle);
+            _angle = angle;
+        }
+    }
     public Action<float> OnValueChanged;
+    public float minAngle = 0f;
+    public float maxAngle = 360f;
     public RangeDragAndDropManipulator(VisualElement target, VisualElement container, float radius)
     {
         this.target = target;
@@ -17,6 +40,8 @@ public class RangeDragAndDropManipulator : PointerManipulator
 
         this.radius = radius;
         this.container = container;
+
+        GetDir();
     }
 
     protected override void RegisterCallbacksOnTarget()
@@ -49,6 +74,7 @@ public class RangeDragAndDropManipulator : PointerManipulator
         pointerStartPosition = evt.position;
         target.CapturePointer(evt.pointerId);
         enabled = true;
+        GetDir();
     }
 
     private void PointerMoveHandler(PointerMoveEvent evt)
@@ -61,30 +87,53 @@ public class RangeDragAndDropManipulator : PointerManipulator
                 Mathf.Clamp(targetStartPosition.x + pointerDelta.x, 0, target.panel.visualTree.worldBound.width),
                 Mathf.Clamp(targetStartPosition.y + pointerDelta.y, 0, target.panel.visualTree.worldBound.height));
 
-            Vector2 targetSize = new Vector3(target.style.width.value.value, target.style.height.value.value);
-            Vector2 containerSize = new Vector3(container.style.width.value.value, container.style.height.value.value);
+            Vector2 direction = GetDir();
 
-            Vector2 centorPos = (Vector2)container.transform.position + containerSize / 2 - targetSize / 2;
-            Vector2 direction = ((Vector2)target.transform.position - centorPos).normalized;
-            target.transform.position = centorPos + direction * radius;
-
-            float value = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            value += 90;
-            if (value <= 0)
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            // value += 90;
+            if (angle <= 0)
             {
-                value += 360;
+                angle += 360;
             }
-            if (value > 360)
+            if (angle > 360)
             {
-                value -= 360;
+                angle -= 360;
             }
+            angle = Mathf.Clamp(angle, minAngle, maxAngle);
+            SetPos(angle);
 
-            if (value != this.Angle)
+            if (angle != this.Angle)
             {
                 OnValueChanged?.Invoke(this.Angle);
             }
-            this.Angle = value;
+            this.Angle = angle;
         }
+    }
+    public void SetPos(float angle)
+    {
+        Vector2 targetSize = new Vector3(target.style.width.value.value, target.style.height.value.value);
+        Vector2 containerSize = new Vector3(container.style.width.value.value, container.style.height.value.value);
+
+        Vector2 centorPos = (Vector2)container.transform.position + containerSize / 2 - targetSize / 2;
+        angle = Mathf.Clamp(angle, minAngle, maxAngle);
+
+        float angleRad = angle * Mathf.Deg2Rad;
+
+        float x = Mathf.Cos(angleRad);
+        float y = Mathf.Sin(angleRad);
+        Vector2 dir = new Vector2(x, y);
+
+
+        target.transform.position = centorPos + dir * radius;
+    }
+    private Vector2 GetDir()
+    {
+        Vector2 targetSize = new Vector3(target.style.width.value.value, target.style.height.value.value);
+        Vector2 containerSize = new Vector3(container.style.width.value.value, container.style.height.value.value);
+
+        Vector2 centorPos = (Vector2)container.transform.position + containerSize / 2 - targetSize / 2;
+        Vector2 direction = ((Vector2)target.transform.position - centorPos).normalized;
+        return direction;
     }
 
     private void PointerUpHandler(PointerUpEvent evt)

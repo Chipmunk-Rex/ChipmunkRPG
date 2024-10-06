@@ -13,17 +13,12 @@ MonoBehaviour:
   m_Name: New Map Data SO
   m_EditorClassIdentifier: 
   biomes:
-  - percentage: 40
-    color: {r: 1, g: 0.16509432, b: 0.16509432, a: 1}
-    Value:
-      rate: 0
-      biomeSO: {fileID: 0}
-  - percentage: 50
+  - percentage: 10.690424
     color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
     Value:
       rate: 0
       biomeSO: {fileID: 0}
-  - percentage: 30
+  - percentage: 65.184105
     color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
     Value:
       rate: 0
