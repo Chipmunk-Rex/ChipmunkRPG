@@ -20,6 +20,8 @@ public class PieChartPoint : VisualElement
         this.chartData = pieChartData;
         this.radius = pieChartView.radius;
 
+        SetStyle(pieChartData);
+        
         float angle = (pieChartData.percentage / 100) * 360;
 
         drangNDropManipulator = new RangeDragAndDropManipulator(this, pieChartView, radius);
@@ -27,7 +29,6 @@ public class PieChartPoint : VisualElement
         drangNDropManipulator.OnValueChanged += OnValueChanged;
         this.AddManipulator(drangNDropManipulator);
 
-        SetStyle(pieChartData);
         // SetPos(pieChartData.percentage, pieChartView.radius);
 
         this.RegisterCallback<PointerDownEvent>(PointerDownHandler);

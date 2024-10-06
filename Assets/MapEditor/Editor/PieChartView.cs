@@ -21,7 +21,6 @@ public class PieChartView : VisualElement
 
     public PieChartData[] pieChartDatas;
     public PieChartPoint[] pieChartPoints;
-
     public PieChartView(PieChartData[] pieChartDatas, float radius = 100.0f)
     {
         this.pieChartDatas = pieChartDatas;
@@ -30,10 +29,10 @@ public class PieChartView : VisualElement
         this.style.width = radius * 2;
         this.style.height = radius * 2;
 
-        SetPercentages(pieChartDatas);
+        CreatePoint(pieChartDatas);
         MarkDirtyRepaint();
     }
-    public void SetPercentages(PieChartData[] pieChartDatas)
+    public void CreatePoint(PieChartData[] pieChartDatas)
     {
         pieChartPoints = new PieChartPoint[pieChartDatas.Length];
 

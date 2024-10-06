@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 0
   attackDamage: 0
-  moveSpeed: 2
+  moveSpeed: 4
   attackSpeed: 0
+  shadowPrefab: {fileID: 0}

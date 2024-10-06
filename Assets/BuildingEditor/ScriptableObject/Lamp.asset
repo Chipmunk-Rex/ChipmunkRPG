@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Lamp
   m_EditorClassIdentifier: 
   tileDatas:
-    serializableItems: []
+    serializableItems:
+    - key: {x: 0, y: 0}
+      value: {fileID: 11400000, guid: 48a91644ad22df348a9b0b3738c64b21, type: 2}
   top: 0
   right: 0
   down: 0
