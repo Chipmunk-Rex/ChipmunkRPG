@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: GameVolume
   m_EditorClassIdentifier: 
   components:
+  - {fileID: 2905495747711255298}
   - {fileID: 2679787474217198085}
   - {fileID: 1469205152733423700}
   - {fileID: 2940393789451306232}
-  - {fileID: 2905495747711255298}
 --- !u!114 &1469205152733423700
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -88,10 +88,10 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1.5
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.8
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
