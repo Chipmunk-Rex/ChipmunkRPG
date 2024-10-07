@@ -13,7 +13,7 @@ public class TestSprite : MonoBehaviour
     [SerializeField] int seed;
     private void Awake()
     {
-        voronoiNoise = new(cellSize, seed, 10);
+        voronoiNoise = new(cellSize, seed, 30);
         Genarate();
     }
     private void Update() {
