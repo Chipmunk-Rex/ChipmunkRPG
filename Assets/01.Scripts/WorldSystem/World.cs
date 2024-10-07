@@ -88,6 +88,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         buildingObj.transform.position = buildingObj.transform.parent.transform.position;
         buildingTilemap = buildingObj.AddComponent<Tilemap>();
         TilemapRenderer buildingRenderer = buildingObj.AddComponent<TilemapRenderer>();
+        buildingRenderer.mode = TilemapRenderer.Mode.Individual;
         buildingRenderer.sortingOrder = 10;
 
         Transform entityContainerTrm = transform.Find("Entities");
