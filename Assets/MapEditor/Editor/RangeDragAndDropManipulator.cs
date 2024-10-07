@@ -24,13 +24,13 @@ public class RangeDragAndDropManipulator : PointerManipulator
             {
                 angle -= 360;
             }
-            angle = Mathf.Clamp(angle, minAngle, maxAngle);
+            angle = ClampAngle(angle, minAngle, maxAngle);
 
             SetPos(angle);
             _angle = angle;
         }
     }
-    public Action<float> OnValueChanged;
+    public Action<float> onAngleChanged;
     public float minAngle = 0f;
     public float maxAngle = 360f;
     public RangeDragAndDropManipulator(VisualElement target, VisualElement container, float radius)
@@ -99,15 +99,38 @@ public class RangeDragAndDropManipulator : PointerManipulator
             {
                 angle -= 360;
             }
-            angle = Mathf.Clamp(angle, minAngle, maxAngle);
-            SetPos(angle);
+            angle = ClampAngle(angle, minAngle, maxAngle);
 
             if (angle != this.Angle)
             {
-                OnValueChanged?.Invoke(this.Angle);
+                onAngleChanged?.Invoke(this.Angle);
             }
             this.Angle = angle;
         }
+    }
+    public float ClampAngle(float angle, float minAngle, float maxAngle)
+    {
+        float calculatedAngle = angle;
+        if (angle != Mathf.Clamp(angle, minAngle, maxAngle))
+        {
+            float minAbs = Mathf.Abs(angle - minAngle);
+            float maxAbs = Mathf.Abs(angle - maxAngle);
+            if (minAngle == 0)
+            {
+                minAbs = Mathf.Abs(angle - (minAngle + 360));
+                Debug.Log(minAbs + " " + maxAbs);
+                // minAngle = 360;
+            }else
+            if (maxAngle == 360)
+            {
+                maxAbs = Mathf.Abs(angle - (maxAngle - 360));
+                // maxAngle = 0;
+            }
+            calculatedAngle = minAbs < maxAbs ? minAngle : maxAngle;
+            Debug.Log("calculatedAngle" + calculatedAngle);
+        }
+
+        return calculatedAngle;
     }
     public void SetPos(float angle)
     {
@@ -115,14 +138,12 @@ public class RangeDragAndDropManipulator : PointerManipulator
         Vector2 containerSize = new Vector3(container.style.width.value.value, container.style.height.value.value);
 
         Vector2 centorPos = (Vector2)container.transform.position + containerSize / 2 - targetSize / 2;
-        angle = Mathf.Clamp(angle, minAngle, maxAngle);
 
         float angleRad = angle * Mathf.Deg2Rad;
 
         float x = Mathf.Cos(angleRad);
         float y = Mathf.Sin(angleRad);
         Vector2 dir = new Vector2(x, y);
-
 
         target.transform.position = centorPos + dir * radius;
     }

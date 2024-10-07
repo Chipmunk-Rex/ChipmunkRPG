@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,6 +10,7 @@ using UnityEngine.UIElements;
 public class WorldConfigSOEditor : Editor
 {
     WorldConfigSO worldConfigSO;
+    PieChartView pieChartView;
     public override VisualElement CreateInspectorGUI()
     {
         worldConfigSO = target as WorldConfigSO;
@@ -16,7 +18,16 @@ public class WorldConfigSOEditor : Editor
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/MapEditor/Editor/WorldConfigSOEditor.uxml");
         VisualElement root = visualTreeAsset.CloneTree();
 
-        root.Add(new PieChartView(worldConfigSO.biomes.ToArray(), 50));
+        Button refreshBtn = new Button(Refresh);
+        refreshBtn.text = "Refresh";
+        refreshBtn.style.width = 100;
+        root.Add(refreshBtn);
+
+        pieChartView = new PieChartView(worldConfigSO.biomeDatas.ToArray(), 50);
+        pieChartView.onDataChanged += OnChartDataChanged;
+        pieChartView.onSelect += OnSelectPoint;
+        root.Add(pieChartView);
+
 
         root.Q<Label>().AddManipulator(new DragAndDropManipulator(root.Q<Label>()));
 
@@ -31,8 +42,28 @@ public class WorldConfigSOEditor : Editor
 
         return root;
     }
+
+    private void Refresh()
+    {
+        pieChartView.DrawView(worldConfigSO.biomeDatas.ToArray());
+    }
+
+    private void OnChartDataChanged(PieChartData data)
+    {
+        // PieChartData<WorldBiomeData> pieChartData = data as PieChartData<WorldBiomeData>;
+        // pieChartDataView.DrawView(data);
+    }
+
+    private void OnSelectPoint(PieChartData data)
+    {
+        Debug.Log("OnSelectPoint");
+        PieChartData<BiomeSO> pieChartData = data as PieChartData<BiomeSO>;
+        Debug.Log(pieChartData);
+    }
+
     private void OnDisable()
     {
         Debug.Log("OnDisable");
+        EditorUtility.SetDirty(worldConfigSO);
     }
 }

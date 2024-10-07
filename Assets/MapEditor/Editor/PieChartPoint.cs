@@ -9,7 +9,7 @@ public class PieChartPoint : VisualElement
     float radius;
 
     PieChartView pieChartView;
-    public Action<float> onValueChanged;
+    public Action<float, PieChartPoint> onAngleValueChanged;
     public Action<PieChartPoint> onSelect;
     public PieChartData chartData { get; private set; }
     public float angle;
@@ -21,12 +21,12 @@ public class PieChartPoint : VisualElement
         this.radius = pieChartView.radius;
 
         SetStyle(pieChartData);
-        
-        float angle = (pieChartData.percentage / 100) * 360;
+
+        angle = (pieChartData.percentage / 100) * 360;
 
         drangNDropManipulator = new RangeDragAndDropManipulator(this, pieChartView, radius);
-        drangNDropManipulator.SetPos(angle);
-        drangNDropManipulator.OnValueChanged += OnValueChanged;
+        drangNDropManipulator.Angle = angle;
+        drangNDropManipulator.onAngleChanged += OnAngleValueChanged;
         this.AddManipulator(drangNDropManipulator);
 
         // SetPos(pieChartData.percentage, pieChartView.radius);
@@ -74,12 +74,12 @@ public class PieChartPoint : VisualElement
         }
         drangNDropManipulator.minAngle = minAngle;
     }
-    private void OnValueChanged(float angle)
+    private void OnAngleValueChanged(float angle)
     {
+        Debug.Log("angleChanged");
         this.angle = angle;
         chartData.percentage = (angle / 360) * 100;
-        Debug.Log(chartData.percentage + " " + angle);
-        onValueChanged?.Invoke(angle);
+        onAngleValueChanged?.Invoke(angle, this);
     }
 
     private void PointerDownHandler(PointerDownEvent evt)

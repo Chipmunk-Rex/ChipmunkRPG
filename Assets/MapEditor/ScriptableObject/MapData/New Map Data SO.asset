@@ -12,25 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa8802a72ac1844981ccc372eda42e2, type: 3}
   m_Name: New Map Data SO
   m_EditorClassIdentifier: 
-  biomes:
-  - percentage: 20.726873
-    color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
-    Value:
-      rate: 0.475
-      biomeSO: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
-  - percentage: 24.706623
-    color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
-    Value:
-      rate: 0.675
-      biomeSO: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-  - percentage: 56.364864
-    color: {r: 1, g: 0, b: 0, a: 1}
-    Value:
-      rate: 1
-      biomeSO: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
+  biomeDatas:
+  - percentage: 62.789455
+    color: {r: 0.1595366, g: 1, b: 0, a: 1}
+    Value: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
+  - percentage: 71.88833
+    color: {r: 1, g: 0.71942556, b: 0, a: 1}
+    Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
+  - percentage: 99.92064
+    color: {r: 1, g: 1, b: 1, a: 1}
+    Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
   chunkSize: {x: 5, y: 5, z: 5}
   biomSize: 30
-  biomDetail: 10
+  biomDetail: 20
   renderSize: 20
   renderDuration: 1
   depthScale: 10

@@ -62,10 +62,10 @@ public class Chunk : MonoBehaviour
     private BiomeSO SelectBiome(int voronoiNoise)
     {
         BiomeSO selectedBiome = null;
-        foreach (WorldBiomeData biome in mapData.biomes)
+        foreach (PieChartData<BiomeSO> biome in mapData.biomeDatas)
         {
-            BiomeSO biomeSO = biome.biomeSO;
-            float biomeRate = biome.rate;
+            BiomeSO biomeSO = biome.Value;
+            float biomeRate = biome.percentage / 100f;
 
             if (biomeRate > (double)voronoiNoise / int.MaxValue)
             {

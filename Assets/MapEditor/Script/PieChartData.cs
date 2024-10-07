@@ -5,17 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class PieChartData
 {
-    public float percentage;
-    public Color color;
+    public float percentage = 100;
+    public Color color = Color.green;
+    public PieChartData()
+    {
+        this.percentage = 1;
+        // this.color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
+    }
     public PieChartData(float percentage)
     {
         this.percentage = percentage;
-        this.color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
+        // this.color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
     }
     public PieChartData(float percentage, Color color)
     {
         this.percentage = percentage;
-        this.color = color;
+        // this.color = color;
     }
 }
 [System.Serializable]
