@@ -10,7 +10,7 @@ using UnityEngine.Tilemaps;
 public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
-    [SerializeField] WorldConfigSO mapDataSO;
+    [SerializeField] WorldConfigSO worldSO;
     [SerializeField] Transform renderTrm;
     [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
@@ -29,8 +29,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         this.transform.position = Vector2.zero;
 
-        voronoiNoise = new VoronoiNoise(mapDataSO.biomSize, seed, mapDataSO.biomDetail);
-        perlinNoise = new PerlinNoise(mapDataSO.depthScale, seed);
+        voronoiNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
+        perlinNoise = new PerlinNoise(worldSO.depthScale, seed);
 
         SetRenderer();
 
@@ -40,10 +40,10 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     private void SetRenderer()
     {
         TilemapRenderer groundRenderer = groundTilemap.gameObject.GetComponent<TilemapRenderer>();
-        groundRenderer.chunkSize = mapDataSO.chunkSize;
+        groundRenderer.chunkSize = worldSO.chunkSize;
 
         TilemapRenderer buildingRenderer = buildingTilemap.gameObject.GetComponent<TilemapRenderer>();
-        buildingRenderer.chunkSize = mapDataSO.chunkSize;
+        buildingRenderer.chunkSize = worldSO.chunkSize;
     }
 
     [SerializeField] BuildingSO buildingSO;
@@ -110,17 +110,19 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         StopCoroutine(RenderMap());
         while (true)
         {
-            yield return new WaitForSeconds(mapDataSO.renderDuration);
+            yield return new WaitForSeconds(worldSO.renderDuration);
 
             Vector3 targetPos = Vector2.zero;
             if (renderTrm != null)
                 targetPos = renderTrm.position;
 
-            Vector2Int minPos = Vector2Int.RoundToInt(targetPos - new Vector3(mapDataSO.chunkSize.x * mapDataSO.renderSize, mapDataSO.chunkSize.y * mapDataSO.renderSize));
-            Vector2Int maxPos = Vector2Int.RoundToInt(targetPos + new Vector3(mapDataSO.chunkSize.x * mapDataSO.renderSize, mapDataSO.chunkSize.y * mapDataSO.renderSize));
+            Vector2Int minPos = Vector2Int.RoundToInt(targetPos - new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
+            Vector2Int maxPos = Vector2Int.RoundToInt(targetPos + new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
             GenerateGround(minPos, maxPos);
         }
     }
+    #endregion
+    #region Ground
     public void GenerateGround(Vector2Int minPos, Vector2Int maxPos)
     {
         for (int x = minPos.x; x < maxPos.x; x++)
@@ -132,7 +134,6 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
             }
         }
     }
-    #region Ground
     private bool TryCreateGround(Vector2Int worldPos)
     {
         if (groundDatas.ContainsKey(worldPos)) return false;
@@ -141,52 +142,16 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     }
     private void CreateGround(Vector2Int worldPos)
     {
-        Ground ground = new Ground();
-        BiomeSO biome = SelectBiome(worldPos);
-        if (biome == null) return;
-        GroundSO groundSO = SelectGround(biome, worldPos);
-
-        ground.biome = biome;
-        ground.groundSO = groundSO;
-
+        Ground ground = new GroundBuilder()
+            .Position(worldPos)
+            .VoronoiNoise(voronoiNoise)
+            .PerlinNoise(perlinNoise)
+            .World(worldSO)
+            .Build();
+            
         groundDatas.Add(worldPos, ground);
-        groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), groundSO.groundTile);
+        groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), ground.groundSO.groundTile);
     }
-    private GroundSO SelectGround(BiomeSO selectedBiome, Vector2Int worldPos)
-    {
-        GroundSO selectedGround = null;
-        float noiseValue = perlinNoise.CalculateNoise(worldPos);
-        foreach (GroundSO groundData in selectedBiome.groundDatas.Values)
-        {
-            if (groundData.groundRate >= noiseValue)
-            {
-                selectedGround = groundData;
-                break;
-            }
-        }
-        return selectedGround;
-    }
-    #endregion
-    private BiomeSO SelectBiome(Vector2Int worldPos)
-    {
-        BiomeSO selectedBiome = null;
-        double noiseValue = voronoiNoise.CalculateNoise(worldPos);
-        foreach (PieChartData<BiomeSO> biome in mapDataSO.biomeDatas)
-        {
-            BiomeSO biomeSO = biome.Value;
-            float biomeRate = biome.percentage / 100f;
-
-            if (biomeRate > noiseValue / int.MaxValue)
-            {
-                selectedBiome = biomeSO;
-                break;
-            }
-        }
-
-        return selectedBiome;
-    }
-    #endregion
-    #region Ground
     public Ground GetGround(Vector2Int worldPos)
     {
         if (!groundDatas.ContainsKey(worldPos))
