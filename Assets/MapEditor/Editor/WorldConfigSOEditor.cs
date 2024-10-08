@@ -10,7 +10,11 @@ using UnityEngine.UIElements;
 public class WorldConfigSOEditor : Editor
 {
     WorldConfigSO worldConfigSO;
+
+    #region View
     PieChartView pieChartView;
+    WorldPreview worldPreview;
+    #endregion
     public override VisualElement CreateInspectorGUI()
     {
         worldConfigSO = target as WorldConfigSO;
@@ -28,6 +32,8 @@ public class WorldConfigSOEditor : Editor
         pieChartView.onSelect += OnSelectPoint;
         root.Add(pieChartView);
 
+        worldPreview = new WorldPreview();
+        root.Add(worldPreview);
 
         root.Q<Label>().AddManipulator(new DragAndDropManipulator(root.Q<Label>()));
 
@@ -46,6 +52,7 @@ public class WorldConfigSOEditor : Editor
     private void Refresh()
     {
         pieChartView.DrawView(worldConfigSO.biomeDatas.ToArray());
+        worldPreview.DrawView(worldConfigSO);
     }
 
     private void OnChartDataChanged(PieChartData data)

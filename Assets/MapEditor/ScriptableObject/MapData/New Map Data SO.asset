@@ -19,12 +19,12 @@ MonoBehaviour:
   - percentage: 53.774117
     color: {r: 1, g: 0.71942556, b: 0, a: 1}
     Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
-  - percentage: 65.52319
+  - percentage: 99.93583
     color: {r: 1, g: 1, b: 1, a: 1}
     Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
   chunkSize: {x: 5, y: 5, z: 5}
-  biomSize: 30
+  biomSize: 10
   biomDetail: 30
   renderSize: 20
   renderDuration: 1
-  depthScale: 10
+  depthScale: 3
