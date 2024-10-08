@@ -51,6 +51,9 @@ public class WorldConfigSOEditor : Editor
 
     private void Refresh()
     {
+        worldConfigSO.biomeDatas.Sort((a, b) => a.percentage.CompareTo(b.percentage));
+        worldConfigSO.biomeDatas[worldConfigSO.biomeDatas.Count - 1].percentage = 100;
+
         pieChartView.DrawView(worldConfigSO.biomeDatas.ToArray());
         worldPreview.DrawView(worldConfigSO);
     }
