@@ -25,6 +25,6 @@ MonoBehaviour:
   chunkSize: {x: 5, y: 5, z: 5}
   biomSize: 10
   biomDetail: 30
-  renderSize: 20
+  renderSize: 3
   renderDuration: 1
   depthScale: 3
