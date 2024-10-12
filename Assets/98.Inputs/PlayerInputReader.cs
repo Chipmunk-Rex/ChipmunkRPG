@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library;
@@ -9,13 +10,14 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
 {
     Controls controls;
     public NotifyValue<Vector2> playerMoveDir = new();
+    public event Action onInventory;
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
         controls = new();
-        
+
         controls.Player.SetCallbacks(this);
         controls.Player.Enable();
     }
@@ -32,5 +34,10 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     public void OnAttact(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        onInventory?.Invoke();
     }
 }

@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library.PoolEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemContainer : MonoBehaviour
 {
+    [SerializeField] ItemContainerType containerType = ItemContainerType.Default;
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
-    Item[] items;
+    public int SlotLength { get => containerSize.x * containerSize.y; }
+    public UnityEvent<int> onSlotDataChanged;
+    private Item[] items;
+    public Item[] Items { get; private set; }
     private void Awake()
     {
         items = new Item[containerSize.x * containerSize.y];
@@ -21,37 +27,32 @@ public class ItemContainer : MonoBehaviour
             Item item = itemSO.CreateItem();
             Debug.Log($"{items[0] == null} {AddItem(item)} {items[0] == null}");
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             DropItem(0, world);
         }
     }
     public bool AddItem(Item item)
     {
-        if (item is StackableItem)
-        {
-            for (int i = 0; i < items.Length; i++)
-            {
-                Item tempItem = items[i];
-                if (tempItem != null && tempItem is StackableItem)
-                {
-                    StackableItem stackableTemp = (tempItem as StackableItem);
-                    stackableTemp.itemCount = stackableTemp.itemCount + (item as StackableItem).itemCount;
-                    return true;
-                }
-            }
-        }
-
         for (int i = 0; i < items.Length; i++)
         {
             Debug.Log("ming");
             if (items[i] == null)
             {
                 items[i] = item;
+                onSlotDataChanged?.Invoke(i);
                 return true;
             }
+            else if (items[i] is StackableItem)
+            {
+                if (item is StackableItem)
+                {
+                    StackableItem slotItem = (items[i] as StackableItem);
+                    slotItem.itemCount += (item as StackableItem).itemCount;
+                    return true;
+                }
+            }
         }
-
         return false;
     }
     public Item GetItem(int slotNum)
@@ -67,5 +68,6 @@ public class ItemContainer : MonoBehaviour
 
         EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
+        onSlotDataChanged?.Invoke(slotNum);
     }
 }

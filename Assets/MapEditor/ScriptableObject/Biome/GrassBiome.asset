@@ -18,6 +18,6 @@ MonoBehaviour:
     buildingSO: {fileID: 11400000, guid: ae6af284fdb516442bad2f5b531c6a28, type: 2}
   biomeEntitys: []
   groundDatas:
-    serializableItems:
-    - key: 2
-      value: {fileID: 11400000, guid: 5c412372dbd97304a8a917f8a99ed7ac, type: 2}
+  - percentage: 100
+    color: {r: 0.161767, g: 1, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 5c412372dbd97304a8a917f8a99ed7ac, type: 2}
