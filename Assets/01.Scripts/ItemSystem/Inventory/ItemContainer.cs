@@ -7,15 +7,17 @@ using UnityEngine.Events;
 
 public class ItemContainer : MonoBehaviour
 {
+    #region Properties
+    public int SlotLength { get => containerSize.x * containerSize.y; }
+    public Vector2Int ContainerSize { get => containerSize; }
+    #endregion
     [SerializeField] ItemContainerType containerType = ItemContainerType.Default;
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
-    public int SlotLength { get => containerSize.x * containerSize.y; }
     public UnityEvent<int> onSlotDataChanged;
     private Item[] items;
-    public Item[] Items { get; private set; }
     private void Awake()
     {
-        items = new Item[containerSize.x * containerSize.y];
+        items = new Item[SlotLength];
         Debug.Log(items[0] == null);
     }
     [SerializeField] World world;

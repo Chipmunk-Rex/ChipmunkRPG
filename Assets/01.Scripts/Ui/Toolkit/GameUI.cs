@@ -7,6 +7,7 @@ public class GameUI : BaseDocument
 {
     ItemContainerView itemContainerView;
     Player player;
+    public bool isShowingInventory { get; private set; }
     private void OnEnable()
     {
         itemContainerView = document.rootVisualElement.Q<ItemContainerView>();
@@ -17,6 +18,8 @@ public class GameUI : BaseDocument
     }
     public void OpenInventory()
     {
+        isShowingInventory = !isShowingInventory;
+        itemContainerView.style.display = isShowingInventory ? DisplayStyle.Flex : DisplayStyle.None;
         itemContainerView.DrawView(player.inventory);
     }
 }

@@ -38,6 +38,7 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
 
     public void OnInventory(InputAction.CallbackContext context)
     {
-        onInventory?.Invoke();
+        if (context.performed)
+            onInventory?.Invoke();
     }
 }

@@ -7,14 +7,10 @@ using UnityEngine.UIElements;
 public class ItemSlotView : VisualElement
 {
     public ItemSlotItemView slotItem;
-    public Label countLbl;
     public ItemSlotView()
     {
         slotItem = new ItemSlotItemView();
         this.Add(slotItem);
-        countLbl = new Label("0");
-        countLbl.visible = false;
-        this.Add(countLbl);
     }
     public void DrawView(Item item)
     {
@@ -36,14 +32,15 @@ public class ItemSlotView : VisualElement
 
     private void DrawCount(Item item)
     {
-        if (item == null)
+        int count = 0;
+        if (item != null)
         {
-            countLbl.visible = false;
+            if (item is StackableItem)
+                count = (item as StackableItem).itemCount;
+            else
+                count = 1;
         }
 
-        if (item is StackableItem)
-            countLbl.text = (item as StackableItem).itemCount.ToString();
-        else
-            countLbl.text = "1";
+        slotItem.SetItemCount(count);
     }
 }
