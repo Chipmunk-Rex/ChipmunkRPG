@@ -8,6 +8,11 @@ public class BuildingItem : StackableItem, IInteractableItem
     {
     }
 
+    public void BeforeInteract(Entity target)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Interact(Entity target)
     {
     }

@@ -11,6 +11,7 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     Controls controls;
     public NotifyValue<Vector2> playerMoveDir = new();
     public event Action onInventory;
+    public event Action<float> onWheel;
 
     protected override void OnEnable()
     {
@@ -40,5 +41,11 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     {
         if (context.performed)
             onInventory?.Invoke();
+    }
+
+    public void OnWheel(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            onWheel?.Invoke(context.ReadValue<float>());
     }
 }

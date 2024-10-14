@@ -8,6 +8,12 @@ public class FoodItem : StackableItem, IInteractableItem
     {
         
     }
+
+    public void BeforeInteract(Entity target)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public FoodItem(BaseItemSO itemSO) : base(itemSO)
     {
     }
