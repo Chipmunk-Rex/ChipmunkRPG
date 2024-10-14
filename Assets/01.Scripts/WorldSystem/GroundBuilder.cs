@@ -58,7 +58,7 @@ public class GroundBuilder
     {
         GroundSO selectedGround = null;
         float noiseValue = perlinNoise.CalculateNoise(worldPos);
-        foreach (GroundSO groundData in selectedBiome.groundDatas.Values)
+        foreach (GroundSO groundData in selectedBiome.groundDatas)
         {
             if (groundData.groundRate >= noiseValue)
             {

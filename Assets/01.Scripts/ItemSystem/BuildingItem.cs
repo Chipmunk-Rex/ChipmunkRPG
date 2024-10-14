@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingItem : Item, IInteractableItem
+public class BuildingItem : StackableItem, IInteractableItem
 {
     public BuildingItem(BaseItemSO itemSO) : base(itemSO)
     {

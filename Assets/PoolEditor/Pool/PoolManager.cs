@@ -7,20 +7,21 @@ namespace Chipmunk.Library.PoolEditor
 {
     public class PoolManager : MonoSingleton<PoolManager>
     {
-        [SerializeField] PoolSO poolList;
+        [SerializeField] List<PoolSO> poolSOList;
         private Dictionary<string, Pool> _poolContainer = new();
         protected override void Awake()
         {
             base.Awake();
 
-            CreatePool();
+            foreach (PoolSO poolSO in poolSOList)
+                CreatePool(poolSO);
         }
 
-        private void CreatePool()
+        private void CreatePool(PoolSO poolSO)
         {
-            if (poolList == null) return;
+            if (poolSOList == null) return;
 
-            foreach (PoolItemSO poolItemSO in poolList.itemList)
+            foreach (PoolItemSO poolItemSO in poolSO.itemList)
             {
                 if (_poolContainer.ContainsKey(poolItemSO.poolName))
                 {

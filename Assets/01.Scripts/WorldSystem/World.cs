@@ -20,7 +20,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
-
+    // [SerializeField] uint tickRate = 1;
+    // private uint tick = 0;
     private void Reset()
     {
         CreateObject();
@@ -49,6 +50,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     [SerializeField] BuildingSO buildingSO;
     private void Update()
     {
+        // tick = (uint)Mathf.RoundToInt(Time.time * tickRate);
+
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -148,7 +151,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
             .PerlinNoise(perlinNoise)
             .World(worldSO)
             .Build();
-            
+
         groundDatas.Add(worldPos, ground);
         groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), ground.groundSO.groundTile);
     }

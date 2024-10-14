@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class Health : MonoBehaviour
         set
         {
             if (value - hp < 0)
-                onDamaged?.Invoke(value);
+                OnDamaged(value);
 
             hp = value;
 
@@ -20,6 +21,11 @@ public class Health : MonoBehaviour
                 onDeath?.Invoke();
         }
     }
+
     public UnityEvent<int> onDamaged;
     public UnityEvent onDeath;
+    private void OnDamaged(int value)
+    {
+        onDamaged?.Invoke(value);
+    }
 }

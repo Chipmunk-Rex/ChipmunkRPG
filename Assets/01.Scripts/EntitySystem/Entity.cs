@@ -46,6 +46,10 @@ public abstract class Entity : MonoBehaviour
             currentWorld.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
     }
+    public virtual void OnSpawn()
+    {
+        
+    }
 
     private void InitializeStats()
     {

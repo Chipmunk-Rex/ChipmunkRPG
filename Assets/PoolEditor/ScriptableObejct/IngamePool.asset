@@ -25,8 +25,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 964d27c033b09b0419fd17e0135b1f07, type: 3}
-  m_Name: Pool
+  m_Name: IngamePool
   m_EditorClassIdentifier: 
-  poolName: Pool
+  poolName: IngamePool
   itemList:
   - {fileID: -3697959269830139939}

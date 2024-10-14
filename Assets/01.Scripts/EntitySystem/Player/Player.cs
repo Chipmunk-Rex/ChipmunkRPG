@@ -3,17 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 {
 
+    #region getter
     public Animator Animator => animatorCompo;
-
+    public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
+    #endregion;
+    #region Event
+    public UnityEvent inventoryOpenEvent;
+    #endregion
+    [SerializeField] public ItemContainer inventory;
     public bool CanChangeState => true;
     [field: SerializeField] public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
-    public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
 
     protected override void Awake()
     {
@@ -23,12 +29,19 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 
         InitializeStateMachine();
     }
-    private void Update() {
+    private void Update()
+    {
         FSMStateMachine.UpdateState();
     }
     private void SubscribeInput()
     {
         playerInputReader.playerMoveDir.OnvalueChanged += OnMove;
+        playerInputReader.onInventory += OnOpenInventory;
+    }
+
+    private void OnOpenInventory()
+    {
+        inventoryOpenEvent?.Invoke();
     }
 
     private void OnMove(Vector2 prev, Vector2 next)

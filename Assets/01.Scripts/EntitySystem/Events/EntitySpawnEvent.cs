@@ -14,6 +14,7 @@ public class EntitySpawnEvent : EntityEvent
         {
             world.entities.Add(entity);
             entity.transform.SetParent(world.entityContainerTrm);
+            entity.OnSpawn();
         }
         catch
         {
