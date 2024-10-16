@@ -7,7 +7,7 @@ public class InventoryHotbar : MonoBehaviour
 {
     #region Getter
     public ItemContainer ItemContainer => itemContainer;
-    public event Action<InventoryHotbar> OnHotbarChenged;
+    public event Action<InventoryHotbar> OnHotbarSizeChanged;
     public event Action<int> onSelectedIndexChange;
     #endregion
 
@@ -34,14 +34,14 @@ public class InventoryHotbar : MonoBehaviour
         set
         {
             hotbarSize = value;
-            OnHotbarChenged?.Invoke(this);
+            OnHotbarSizeChanged?.Invoke(this);
         }
     }
     private int hotbarSize = 5;
 
     protected virtual void Awake()
     {
-        OnHotbarChenged?.Invoke(this);
+        OnHotbarSizeChanged?.Invoke(this);
         PlayerInputReader.Instance.onWheel += ChangeSelectedIndex;
     }
     void Reset()

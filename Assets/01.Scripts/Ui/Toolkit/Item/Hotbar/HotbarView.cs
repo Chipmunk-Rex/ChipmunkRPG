@@ -15,17 +15,25 @@ public class HotbarView : VisualElement
     public void InitializeView(InventoryHotbar hotbar)
     {
         this.hotbar = hotbar;
-
         itemContainer.onSlotDataChanged.AddListener(OnSlotDataChanged);
-
-        hotbar.onSelectedIndexChange += OnSlotDataChanged;
-        hotbar.OnHotbarChenged += OnHotbarChanged;
-
-
+        hotbar.onSelectedIndexChange += OnSelectedSlotChanged;
+        hotbar.OnHotbarSizeChanged += DrawView;
+        DrawView(hotbar);
     }
 
-    private void OnHotbarChanged(InventoryHotbar hotbar)
+    ItemSlotView selectedSlot;
+    private void OnSelectedSlotChanged(int index)
     {
+        if (selectedSlot != null)
+            selectedSlot.RemoveFromClassList("SelectedSlot");
+
+        selectedSlot = itemSlots[index];
+        selectedSlot.AddToClassList("SelectedSlot");
+    }
+
+    private void DrawView(InventoryHotbar hotbar)
+    {
+        this.Clear();
         int hotbarSize = hotbar.HotbarSize;
 
         itemSlots = new ItemSlotView[hotbarSize];
@@ -53,19 +61,13 @@ public class HotbarView : VisualElement
         return itemSlot;
     }
 
-    ItemSlotView selectedSlot;
     private void OnSlotDataChanged(int value)
     {
         Debug.Log("OnSlotDataChanged");
         if (value < hotbar.HotbarSize)
         {
-            if (selectedSlot != null)
-                selectedSlot.RemoveFromClassList("SelectedSlot");
             Item item = itemContainer.GetItem(value);
             itemSlots[value].DrawView(item);
-
-            selectedSlot = itemSlots[value];
-            selectedSlot.AddToClassList("SelectedSlot");
         }
     }
 }

@@ -11,17 +11,17 @@ public class ItemContainer : MonoBehaviour
     public int SlotLength { get => containerSize.x * containerSize.y; }
     public Vector2Int ContainerSize { get => containerSize; }
     #endregion
+    public UnityEvent<int> onSlotDataChanged;
+    [SerializeField] public World world;
     [SerializeField] ItemContainerType containerType = ItemContainerType.Default;
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
-    public UnityEvent<int> onSlotDataChanged;
+    [SerializeField] private ItemSO itemSO;
     private Item[] items;
     private void Awake()
     {
         items = new Item[SlotLength];
         Debug.Log(items[0] == null);
     }
-    [SerializeField] public World world;
-    [SerializeField] ItemSO itemSO;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -60,11 +60,19 @@ public class ItemContainer : MonoBehaviour
     public void SetItem(int slotNum, Item item)
     {
         items[slotNum] = item;
+        onSlotDataChanged?.Invoke(slotNum);
     }
     public Item GetItem(int slotNum)
     {
-        Debug.Log("'으앵'");
-        return items[slotNum];
+        try
+        {
+
+            return items[slotNum];
+        }
+        catch
+        {
+            return null;
+        }
     }
     public void DropItem(int slotNum, World world)
     {
@@ -76,6 +84,5 @@ public class ItemContainer : MonoBehaviour
 
         EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, transform.position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
-        onSlotDataChanged?.Invoke(slotNum);
     }
 }
