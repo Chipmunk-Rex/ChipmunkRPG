@@ -9,11 +9,14 @@ public class ItemSlotView : VisualElement
     public ItemSlotItemView slotItem;
     public ItemSlotView()
     {
-        slotItem = new ItemSlotItemView();
-        this.Add(slotItem);
     }
     public void DrawView(Item item)
     {
+        this.Clear();
+        
+        slotItem = new ItemSlotItemView(item);
+        this.Add(slotItem);
+
         DrawVisual(item);
         DrawCount(item);
     }

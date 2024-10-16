@@ -16,7 +16,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     #region Event
     public UnityEvent inventoryOpenEvent;
     #endregion
-    [SerializeField] public ItemContainer inventory;
+    [SerializeField] public Inventory inventory;
     public bool CanChangeState => true;
     [field: SerializeField] public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
@@ -24,6 +24,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     protected override void Awake()
     {
         base.Awake();
+        inventory.world = currentWorld;
 
         SubscribeInput();
 
@@ -35,7 +36,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     }
     void FixedUpdate()
     {
-        lookDir = playerInputReader.mouseWorldPos - (Vector2)transform.position;
+        lookDir = (playerInputReader.mouseWorldPos - (Vector2)transform.position).normalized;
     }
     private void SubscribeInput()
     {

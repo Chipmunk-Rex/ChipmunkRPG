@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/11.Uis/USS/InventoryUI.uss?fileID=7433441132597879392&amp;guid=61ee05f07a7da6a4f9469d6551e8234c&amp;type=3#InventoryUI" />
-    <ItemContainerView />
+    <Style src="project://database/Assets/11.Uis/USS/HotbarUI.uss?fileID=7433441132597879392&amp;guid=6921bb43ff73fe646a7f9a6b49be2979&amp;type=3#HotbarUI" />
+    <HotbarView style="align-self: center;" />
 </ui:UXML>

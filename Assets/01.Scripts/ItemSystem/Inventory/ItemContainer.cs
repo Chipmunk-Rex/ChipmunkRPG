@@ -20,7 +20,7 @@ public class ItemContainer : MonoBehaviour
         items = new Item[SlotLength];
         Debug.Log(items[0] == null);
     }
-    [SerializeField] World world;
+    [SerializeField] public World world;
     [SerializeField] ItemSO itemSO;
     private void Update()
     {
@@ -57,13 +57,19 @@ public class ItemContainer : MonoBehaviour
         }
         return false;
     }
+    public void SetItem(int slotNum, Item item)
+    {
+        items[slotNum] = item;
+    }
     public Item GetItem(int slotNum)
     {
+        Debug.Log("'으앵'");
         return items[slotNum];
     }
     public void DropItem(int slotNum, World world)
     {
         Item item = GetItem(slotNum);
+        SetItem(slotNum, null);
 
         ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
         itemEntity.Initialize(item);

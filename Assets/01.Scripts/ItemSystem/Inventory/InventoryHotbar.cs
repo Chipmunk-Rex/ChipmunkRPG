@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class InventoryHotbar : MonoBehaviour
 {
+    #region Getter
+    public ItemContainer ItemContainer => itemContainer;
+    public event Action<InventoryHotbar> OnHotbarChenged;
+    public event Action<int> onSelectedIndexChange;
+    #endregion
+
     [SerializeField] protected ItemContainer itemContainer;
     [SerializeField] protected Entity owner;
     private protected int selectedIndex = 0;
@@ -16,14 +22,31 @@ public class InventoryHotbar : MonoBehaviour
             selectedIndex = Mathf.Clamp(value, 0, hotbarSize - 1);
         }
     }
+
+
     protected IInteractableItem targetUseItem;
     protected IInteractableItem beforeFrameItem;
     protected float lastInteractedTime;
     protected float interactStartedTime;
-    int hotbarSize = 5;
+    public int HotbarSize
+    {
+        get => hotbarSize;
+        set
+        {
+            hotbarSize = value;
+            OnHotbarChenged?.Invoke(this);
+        }
+    }
+    private int hotbarSize = 5;
+
     protected virtual void Awake()
     {
+        OnHotbarChenged?.Invoke(this);
         PlayerInputReader.Instance.onWheel += ChangeSelectedIndex;
+    }
+    void Reset()
+    {
+        itemContainer = transform.parent.GetComponent<Inventory>();
     }
     void Update()
     {
@@ -66,6 +89,7 @@ public class InventoryHotbar : MonoBehaviour
     {
         Debug.Log(value);
         SelectedIndex += (int)value / 120;
+        onSelectedIndexChange?.Invoke(SelectedIndex);
     }
     public Item GetSelectedItem()
     {

@@ -64,11 +64,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51f6437dfad7924bb0dd5785a052da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  entitySO: {fileID: 0}
-  lookDir: {x: 0, y: -1}
   currentWorld: {fileID: 0}
-  spriteRenderer: {fileID: 8737656467283360203}
+  stats:
+    moveSpeed: 1
+    attackSpeed: 0
+    attackDamage: 0
+    maxHP: 0
+  <healthCompo>k__BackingField: {fileID: 0}
+  <animatorCompo>k__BackingField: {fileID: 0}
+  <spriteRendererCompo>k__BackingField: {fileID: 8737656467283360203}
+  <movementCompo>k__BackingField: {fileID: 0}
+  <entitySO>k__BackingField: {fileID: 0}
+  lookDir: {x: 0, y: -1}
 --- !u!1 &5334913669371911637
 GameObject:
   m_ObjectHideFlags: 0

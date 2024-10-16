@@ -7,16 +7,18 @@ public class ItemSlotItemView : VisualElement
 {
     VisualElement visual;
     public Label countLbl;
-    public ItemSlotItemView()
+    public readonly Item item;
+    public ItemSlotItemView(Item item)
     {
+        this.item = item;
+
         visual = new VisualElement();
-        visual.style.width = 50;
-        visual.style.height = 50;
         visual.name = "ItemVisual";
         this.Add(visual);
 
         countLbl = new Label("0");
         countLbl.visible = false;
+        countLbl.name = "ItemCount";
         this.Add(countLbl);
     }
     public void SetSprite(Sprite sprite)

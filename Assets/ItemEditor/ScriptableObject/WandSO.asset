@@ -18,6 +18,8 @@ MonoBehaviour:
   enumItemRarity: 3
   Durability: 0
   damage: 1
-  <InteractDuration>k__BackingField: 2
+  <InteractDuration>k__BackingField: 10
   <InteractCool>k__BackingField: 2
+  spreadPower: 0.2
+  shootDelay: 0.5
   bulletPref: {fileID: 1427045406025766028, guid: e7c3d94914594e04d88e60e4facb9cbb, type: 3}
