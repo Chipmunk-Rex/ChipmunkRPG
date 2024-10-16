@@ -26,10 +26,10 @@ public class WandItem : WeaponItem
         if (Time.time - lastShootTime > wandSO.shootDelay)
         {
             lastShootTime = Time.time;
-            Shoot(target.currentWorld, target.lookDir, target.transform.position);
+            Shoot(target.currentWorld, target.lookDir, target.transform);
         }
     }
-    public void Shoot(World world, Vector2 dir, Vector2 pos)
+    public void Shoot(World world, Vector2 dir, Transform transfrom)
     {
         Vector2 shootDir = dir;
 
@@ -44,7 +44,8 @@ public class WandItem : WeaponItem
             projectile = GameObject.Instantiate(projectilePref);
         }
         projectile.SpawnEntity(world, wandSO.projectileSO);
-        projectile.Initialize(null, pos);
+        projectile.Initialize(null, transfrom.position);
+        projectile.transform.SetParent(transfrom);  
 
         var main = projectile.Particle.main;
         var zR = main.startRotationZ;

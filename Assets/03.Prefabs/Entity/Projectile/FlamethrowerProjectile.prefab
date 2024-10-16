@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3224437109858888022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1, y: 0.8, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 3224437109858888022}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd986159284acc246be78c96e39f320f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   <movementCompo>k__BackingField: {fileID: 0}
   <entitySO>k__BackingField: {fileID: 11400000, guid: 7d54be0df461bc84298b20bf14e11ff8, type: 2}
   lookDir: {x: 0, y: -1}
-  lifeTime: 1.5
+  lifeTime: 0.8
   rigidCompo: {fileID: 5942061207817874289}
   particleSystem: {fileID: 982585869891303853}
 --- !u!50 &5942061207817874289
