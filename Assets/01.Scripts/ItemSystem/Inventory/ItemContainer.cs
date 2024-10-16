@@ -74,7 +74,7 @@ public class ItemContainer : MonoBehaviour
         ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
         itemEntity.Initialize(item);
 
-        EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity);
+        EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, transform.position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         onSlotDataChanged?.Invoke(slotNum);
     }

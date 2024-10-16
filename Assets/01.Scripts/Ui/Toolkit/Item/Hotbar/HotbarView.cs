@@ -53,13 +53,19 @@ public class HotbarView : VisualElement
         return itemSlot;
     }
 
+    ItemSlotView selectedSlot;
     private void OnSlotDataChanged(int value)
     {
         Debug.Log("OnSlotDataChanged");
         if (value < hotbar.HotbarSize)
         {
+            if (selectedSlot != null)
+                selectedSlot.RemoveFromClassList("SelectedSlot");
             Item item = itemContainer.GetItem(value);
             itemSlots[value].DrawView(item);
+
+            selectedSlot = itemSlots[value];
+            selectedSlot.AddToClassList("SelectedSlot");
         }
     }
 }

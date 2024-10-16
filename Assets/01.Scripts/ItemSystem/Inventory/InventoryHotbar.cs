@@ -88,7 +88,7 @@ public class InventoryHotbar : MonoBehaviour
     public void ChangeSelectedIndex(float value)
     {
         Debug.Log(value);
-        SelectedIndex += (int)value / 120;
+        SelectedIndex -= (int)value / 120;
         onSelectedIndexChange?.Invoke(SelectedIndex);
     }
     public Item GetSelectedItem()

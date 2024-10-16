@@ -34,6 +34,7 @@ namespace Chipmunk.Library.PoolEditor
             {
                 GameObject gameObj = GameObject.Instantiate(_poolItemSO.prefab, this.transform);
                 gameObj.name = _poolItemSO.poolName;
+                item = gameObj;
             }
             else
             {

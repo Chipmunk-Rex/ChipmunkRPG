@@ -9,3 +9,15 @@ HotbarView {
     align-items: center;
     padding-top: 20px;
 }
+
+HotbarView > ItemSlotView {
+    background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-1184789779&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_9");
+    width: 180px;
+    height: 180px;
+}
+
+.SelectedSlot {
+    scale: 1.1 1.1;
+    transition-property: scale;
+    transition-duration: 250ms;
+}
