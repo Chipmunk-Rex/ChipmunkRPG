@@ -28,13 +28,10 @@ public class Projectile : BaseProjectile
         rigidCompo.velocity = dir * stats.moveSpeed;
 
         float rotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Debug.Log(dir + " " + rotation);
 
         var main = particleSystem.main;
         var zR = main.startRotationZ;
         zR.constant = rotation;
-        Debug.Log(main.startRotationZ.constant);
-    
 
         particleSystem.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }

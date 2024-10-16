@@ -9,6 +9,10 @@ public class ItemContainerView : VisualElement
     public new class UxmlFactory : UxmlFactory<ItemContainerView, VisualElement.UxmlTraits> { }
     public ItemContainer ItemContainer { get; private set; }
     private ItemSlotView[] itemSlots;
+    public ItemContainerView()
+    {
+        this.style.flexWrap = Wrap.Wrap;
+    }
     public void DrawView(ItemContainer itemContainer)
     {
         if (ItemContainer != null)
@@ -29,17 +33,18 @@ public class ItemContainerView : VisualElement
         itemSlots = new ItemSlotView[SlotLength];
         for (int y = 0; y < size.y; y++)
         {
-            VisualElement rowContainer = new VisualElement();
-            rowContainer.name = "RowContainer";
-            rowContainer.AddToClassList("rowContainer");
-            rowContainer.style.flexDirection = FlexDirection.Row;
-            this.Add(rowContainer);
+            // VisualElement rowContainer = new VisualElement();
+            // rowContainer.name = "RowContainer";
+            // rowContainer.AddToClassList("rowContainer");
+            // rowContainer.style.flexDirection = FlexDirection.Row;
+            // this.Add(rowContainer);
             for (int x = 0; x < size.x; x++)
             {
                 int index = y * size.x + x;
                 Item item = itemContainer.GetItem(index);
                 ItemSlotView itemSlot = CreateSlotView(index, item);
-                rowContainer.Add(itemSlot);
+                this.Add(itemSlot);
+                // rowContainer.Add(itemSlot);
             }
         }
     }

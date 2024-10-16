@@ -12,6 +12,8 @@ public class ItemSlotItemView : VisualElement
     {
         this.item = item;
 
+        this.AddManipulator(new DragAndDropManipulator(this));
+
         visual = new VisualElement();
         visual.name = "ItemVisual";
         this.Add(visual);

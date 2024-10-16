@@ -1,83 +1,101 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class DragAndDropManipulator : PointerManipulator
 {
     // Write a constructor to set target and store a reference to the
     // root of the visual tree.
-    public DragAndDropManipulator(VisualElement target)
+    public DragAndDropManipulator(VisualElement target, VisualElement root = null)
     {
         this.target = target;
-        root = target.parent;
+
+        this.root = root;
     }
 
     protected override void RegisterCallbacksOnTarget()
     {
         // Register the four callbacks on target.
-        target.RegisterCallback<PointerDownEvent>(PointerDownHandler);
-        target.RegisterCallback<PointerMoveEvent>(PointerMoveHandler);
-        target.RegisterCallback<PointerUpEvent>(PointerUpHandler);
-        target.RegisterCallback<PointerCaptureOutEvent>(PointerCaptureOutHandler);
+        target.RegisterCallback<MouseDownEvent>(MouseDownHandler);
+        target.RegisterCallback<MouseMoveEvent>(MouseMoveHandler);
+        target.RegisterCallback<MouseUpEvent>(MouseUpHandler);
     }
+
 
     protected override void UnregisterCallbacksFromTarget()
     {
         // Un-register the four callbacks from target.
-        target.UnregisterCallback<PointerDownEvent>(PointerDownHandler);
-        target.UnregisterCallback<PointerMoveEvent>(PointerMoveHandler);
-        target.UnregisterCallback<PointerUpEvent>(PointerUpHandler);
-        target.UnregisterCallback<PointerCaptureOutEvent>(PointerCaptureOutHandler);
+        target.UnregisterCallback<MouseDownEvent>(MouseDownHandler);
+        target.UnregisterCallback<MouseMoveEvent>(MouseMoveHandler);
+        target.UnregisterCallback<MouseUpEvent>(MouseUpHandler);
     }
 
-    private Vector2 targetStartPosition { get; set; }
 
-    private Vector3 pointerStartPosition { get; set; }
+    private Vector2 dragStartPos { get; set; }
+    private Vector2 targetStartWorldBound { get; set; }
+    private Vector2 targetAfterWorldBound { get; set; }
+
+    private Vector2 pointerStartPosition { get; set; }
+    private Vector2 afterMovePosition;
 
     private bool enabled { get; set; }
 
-    private VisualElement root { get; }
-
-    // This method stores the starting position of target and the pointer,
-    // makes target capture the pointer, and denotes that a drag is now in progress.
-    private void PointerDownHandler(PointerDownEvent evt)
+    private VisualElement root { get; set; }
+    VisualElement defaultParent;
+    private void MouseDownHandler(MouseDownEvent evt)
     {
-        targetStartPosition = target.transform.position;
-        pointerStartPosition = evt.position;
-        target.CapturePointer(evt.pointerId);
+        Debug.Log("Down");
+        if (root == null)
+        {
+            root = target.parent.parent;
+        }
+
+        dragStartPos = evt.localMousePosition;
+
+        defaultParent = target.parent;
+        root.Add(target);
+
+        target.CaptureMouse();
+
+        Vector2 offset = evt.mousePosition - root.worldBound.position - dragStartPos;
+
+        target.style.position = Position.Absolute;
+        target.style.left = offset.x;
+        target.style.top = offset.y;
+
         enabled = true;
     }
-
-    // This method checks whether a drag is in progress and whether target has captured the pointer.
-    // If both are true, calculates a new position for target within the bounds of the window.
-    private void PointerMoveHandler(PointerMoveEvent evt)
+    private void MouseMoveHandler(MouseMoveEvent evt)
     {
-        if (enabled && target.HasPointerCapture(evt.pointerId))
+        Debug.Log("Move");
+        if (enabled && target.HasMouseCapture())
         {
-            Vector3 pointerDelta = evt.position - pointerStartPosition;
+            Vector2 diff = evt.localMousePosition - dragStartPos;
 
-            target.transform.position = new Vector2(
-                Mathf.Clamp(targetStartPosition.x + pointerDelta.x, 0, target.panel.visualTree.worldBound.width),
-                Mathf.Clamp(targetStartPosition.y + pointerDelta.y, 0, target.panel.visualTree.worldBound.height));
+            float x = target.layout.x;
+            float y = target.layout.y;
+            Debug.Log("move Suc" + diff);
+
+            target.style.left = x + diff.x;
+            target.style.top = y + diff.y;
         }
     }
-
-    // This method checks whether a drag is in progress and whether target has captured the pointer.
-    // If both are true, makes target release the pointer.
-    private void PointerUpHandler(PointerUpEvent evt)
+    private void MouseUpHandler(MouseUpEvent evt)
     {
-        if (enabled && target.HasPointerCapture(evt.pointerId))
+        if (enabled && target.HasMouseCapture())
         {
-            target.ReleasePointer(evt.pointerId);
+            defaultParent.Add(target);
+
+            enabled = false;
+            target.ReleaseMouse();
+            target.style.position = Position.Relative;
+            target.style.top = StyleKeyword.Null;
+            target.style.left = StyleKeyword.Null;
         }
     }
-
-    // This method checks whether a drag is in progress. If true, queries the root
-    // of the visual tree to find all slots, decides which slot is the closest one
-    // that overlaps target, and sets the position of target so that it rests on top
-    // of that slot. Sets the position of target back to its original position
-    // if there is no overlapping slot.
     private void PointerCaptureOutHandler(PointerCaptureOutEvent evt)
     {
         if (enabled)
@@ -98,7 +116,7 @@ public class DragAndDropManipulator : PointerManipulator
             target.transform.position =
                 closestOverlappingSlot != null ?
                 closestPos :
-                targetStartPosition;
+                dragStartPos;
 
             enabled = false;
         }

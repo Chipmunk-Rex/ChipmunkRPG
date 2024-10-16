@@ -55,7 +55,6 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 
     private void OnMove(Vector2 prev, Vector2 next)
     {
-        Debug.Log("wwww");
         FSMStateMachine.ChangeState(EnumPlayerState.Move);
     }
 

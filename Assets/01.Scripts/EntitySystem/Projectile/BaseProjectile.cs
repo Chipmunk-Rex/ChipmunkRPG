@@ -16,7 +16,6 @@ public abstract class BaseProjectile : Entity
     {
         if ((Time.time - spawnedTime) > lifeTime)
         {
-            Debug.Log(Time.time - spawnedTime);
             Destroy(this.gameObject); // 나중에 풀 가능한 아이템이면 다시 넣는 코드 작성필요s
         }
     }
