@@ -8,11 +8,18 @@ public class SwordItem : WeaponItem
     {
     }
 
-    public override void BeforeInteract(Entity target)
+    public override IInteractableItemSO interactableItemSO => throw new System.NotImplementedException();
+
+    public override void OnBeforeInteract(Entity target)
     {
     }
 
-    public override void Interact(Entity target)
+    public override void OnEndInteract(Entity target)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnInteract(Entity target)
     {
 
     }

@@ -23,8 +23,8 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
   chunkSize: {x: 5, y: 5, z: 5}
-  biomSize: 10
-  biomDetail: 30
-  renderSize: 3
+  biomSize: 50
+  biomDetail: 10
+  renderSize: 10
   renderDuration: 1
   depthScale: 3

@@ -33,10 +33,18 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     {
         FSMStateMachine.UpdateState();
     }
+    void FixedUpdate()
+    {
+        lookDir = playerInputReader.mouseWorldPos - (Vector2)transform.position;
+    }
     private void SubscribeInput()
     {
         playerInputReader.playerMoveDir.OnvalueChanged += OnMove;
         playerInputReader.onInventory += OnOpenInventory;
+        playerInputReader.onItemUse += OnItemUse;
+    }
+    private void OnItemUse(bool obj)
+    {
     }
 
     private void OnOpenInventory()

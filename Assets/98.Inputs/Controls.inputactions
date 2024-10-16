@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attact",
+                    "name": "ItemUse",
                     "type": "Button",
                     "id": "df780df3-aba4-43a6-9d24-c02bfcc87ed9",
                     "expectedControlType": "Button",
@@ -46,6 +46,15 @@
                     "type": "Value",
                     "id": "c34914d2-7434-4959-bf67-2e10361538bc",
                     "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "d36d126f-41e5-4164-9587-398251b752b3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -176,11 +185,11 @@
                 {
                     "name": "",
                     "id": "79e7bb80-ee87-4f79-aef7-23d59a6bae66",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attact",
+                    "action": "ItemUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -227,6 +236,17 @@
                     "action": "Wheel",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7dcb31a5-2c44-4bcb-9325-d404e5065e38",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

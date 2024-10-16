@@ -37,6 +37,12 @@ namespace Chipmunk.Library.PoolEditor
                 _poolContainer.Add(poolItemSO.poolName, pool);
             }
         }
+        public bool CheckPool(string poolName)
+        {
+            if (_poolContainer.ContainsKey(poolName))
+                return true;
+            return false;
+        }
         #region Pop
         public GameObject Pop(string itemName)
         {

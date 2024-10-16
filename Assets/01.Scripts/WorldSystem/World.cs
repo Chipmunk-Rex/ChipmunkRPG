@@ -52,17 +52,17 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     {
         // tick = (uint)Mathf.RoundToInt(Time.time * tickRate);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                Debug.Log("Clicked on the UI");
-            }
-            Vector2Int mouseWorldIntPos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     if (EventSystem.current.IsPointerOverGameObject())
+        //     {
+        //         Debug.Log("Clicked on the UI");
+        //     }
+        //     Vector2Int mouseWorldIntPos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-            BaseBuilding building = new BaseBuilding(buildingSO);
-            ConstructBuilding(building, mouseWorldIntPos);
-        }
+        //     BaseBuilding building = new BaseBuilding(buildingSO);
+        //     ConstructBuilding(building, mouseWorldIntPos);
+        // }
     }
     #region Generate
     public void CreateObject()

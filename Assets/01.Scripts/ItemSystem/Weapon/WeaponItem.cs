@@ -8,7 +8,11 @@ public abstract class WeaponItem : Item, IInteractableItem
     {
     }
 
-    public abstract void BeforeInteract(Entity target);
+    public abstract IInteractableItemSO interactableItemSO { get; }
 
-    public abstract void Interact(Entity target);
+    public abstract void OnBeforeInteract(Entity target);
+
+    public abstract void OnEndInteract(Entity target);
+
+    public abstract void OnInteract(Entity target);
 }

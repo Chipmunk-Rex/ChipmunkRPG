@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct EntityStats
+public class EntityStats
 {
-    public int moveSpeed;
+    public int moveSpeed = 1;
     public int attackSpeed;
-    public int attackDamange;
     public int attackDamage;
     public int maxHP;
 }

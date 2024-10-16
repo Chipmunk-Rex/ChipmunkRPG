@@ -10,8 +10,12 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
 {
     Controls controls;
     public NotifyValue<Vector2> playerMoveDir = new();
+    public event Action<bool> onItemUse;
     public event Action onInventory;
     public event Action<float> onWheel;
+    public Vector2 mousePos { get; private set; }
+    public Vector2 mouseWorldPos { get => Camera.main.ScreenToWorldPoint(mousePos); }
+
 
     protected override void OnEnable()
     {
@@ -32,11 +36,6 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
         throw new System.NotImplementedException();
     }
 
-    public void OnAttact(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void OnInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -47,5 +46,20 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     {
         if (context.performed)
             onWheel?.Invoke(context.ReadValue<float>());
+    }
+
+    public void OnItemUse(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            onItemUse?.Invoke(true);
+        if (context.canceled)
+            onItemUse?.Invoke(false);
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            mousePos = context.ReadValue<Vector2>();
+
     }
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IInteractableItem
 {
-    public void Interact(Entity target);
+    public IInteractableItemSO interactableItemSO { get; }
+    public void OnBeforeInteract(Entity target);
+    public void OnInteract(Entity target);
+    public void OnEndInteract(Entity target);
 }
