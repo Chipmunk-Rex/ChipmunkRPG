@@ -26,19 +26,18 @@ public abstract class Entity : MonoBehaviour
 
         if (currentWorld == null)
         {
-            SpawnEntity(entitySO);
+            SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), entitySO);
         }
     }
 
-    public void SpawnEntity(EntitySO entitySO)
+    public void SpawnEntity(World world, EntitySO entitySO)
     {
         this.entitySO = entitySO;
+        animatorCompo.runtimeAnimatorController = entitySO.animatorController;
         if (entitySO != null)
         {
             InitializeStats();
         }
-
-        World world = ChipmunkLibrary.GetComponentWithParent<World>(transform);
         SpawnEntity(world);
     }
     public void SpawnEntity(World world)

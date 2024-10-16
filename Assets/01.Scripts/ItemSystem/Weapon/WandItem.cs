@@ -43,8 +43,14 @@ public class WandItem : WeaponItem
         {
             projectile = GameObject.Instantiate(projectilePref);
         }
-        projectile.SpawnEntity(world);
+        projectile.SpawnEntity(world, wandSO.projectileSO);
         projectile.Initialize(null, pos);
+
+        var main = projectile.Particle.main;
+        var zR = main.startRotationZ;
+        zR.constant = Mathf.Atan2(dir.y, dir.x) + 90 * Mathf.Deg2Rad;
+        main.startRotationZ = zR;
+
         projectile.Shoot(dir);
     }
 }

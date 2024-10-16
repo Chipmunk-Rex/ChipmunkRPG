@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d65294b7606c7c43871fbf17f7b47de, type: 3}
-  m_Name: EntityData
+  m_Script: {fileID: 11500000, guid: 5cb14f1318f764548beb8d5b9cbc01af, type: 3}
+  m_Name: Flame
   m_EditorClassIdentifier: 
   maxHP: 0
   attackDamage: 0
-  moveSpeed: 0
+  moveSpeed: 2
   attackSpeed: 0
   shadowPrefab: {fileID: 0}
-  animatorController: {fileID: 9100000, guid: e24f5bc50f3b1b94abe9991d2ed4f36e, type: 2}
+  animatorController: {fileID: 9100000, guid: fd986159284acc246be78c96e39f320f, type: 2}

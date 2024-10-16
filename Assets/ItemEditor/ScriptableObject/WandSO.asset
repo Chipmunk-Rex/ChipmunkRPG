@@ -21,5 +21,6 @@ MonoBehaviour:
   <InteractDuration>k__BackingField: 10
   <InteractCool>k__BackingField: 2
   spreadPower: 0.2
-  shootDelay: 0.5
+  shootDelay: 0.1
   bulletPref: {fileID: 1427045406025766028, guid: e7c3d94914594e04d88e60e4facb9cbb, type: 3}
+  projectileSO: {fileID: 11400000, guid: 411c8b8939c00b848a2c4cf6e448ec03, type: 2}

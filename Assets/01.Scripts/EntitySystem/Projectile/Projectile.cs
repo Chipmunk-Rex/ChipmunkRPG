@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Projectile : BaseProjectile
 {
+    #region Getter
+    public ParticleSystem Particle => particleSystem;
+    #endregion
     [SerializeField] Rigidbody2D rigidCompo;
     [SerializeField] ParticleSystem particleSystem;
     protected override void Awake()
@@ -25,14 +28,11 @@ public class Projectile : BaseProjectile
     }
     public override void Shoot(Vector2 dir)
     {
-        rigidCompo.velocity = dir * stats.moveSpeed;
 
         float rotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        var main = particleSystem.main;
-        var zR = main.startRotationZ;
-        zR.constant = rotation;
-
-        particleSystem.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+        
+        rigidCompo.velocity = dir * stats.moveSpeed;
     }
 }

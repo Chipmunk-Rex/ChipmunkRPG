@@ -1,8 +1,8 @@
 HotbarView {
     background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-407159618&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_10");
-    height: 15%;
+    height: 10%;
     bottom: 0;
-    width: 80%;
+    width: 60%;
     position: absolute;
     flex-direction: row;
     justify-content: space-around;
@@ -12,8 +12,8 @@ HotbarView {
 
 HotbarView > ItemSlotView {
     background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-1184789779&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_9");
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
 }
 
 .SelectedSlot {
