@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: FireWand
   itemSprite: {fileID: 1339511130, guid: aaa35d9c74a98c042b79a8abaeb69e3c, type: 3}
-  maxStackCount: 64
   enumItemRarity: 3
   Durability: 0
   damage: 1
   <InteractDuration>k__BackingField: 10
   <InteractCool>k__BackingField: 2
   spreadPower: 0.2
-  shootDelay: 0.1
+  shootDelay: 0.18
   bulletPref: {fileID: 1427045406025766028, guid: e7c3d94914594e04d88e60e4facb9cbb, type: 3}
   projectileSO: {fileID: 11400000, guid: 411c8b8939c00b848a2c4cf6e448ec03, type: 2}

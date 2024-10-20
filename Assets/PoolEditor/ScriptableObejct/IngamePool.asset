@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoolItem
   m_EditorClassIdentifier: 
   poolName: ItemEntity
-  prefab: {fileID: 1880004669073565418, guid: 1e55cfff312e5ee4b972d3aa5238c99c, type: 3}
+  prefab: {fileID: 4504369577357764823, guid: 1ff099fc123bb8047ab2c85ddad58eea, type: 3}
   count: 5
 --- !u!114 &11400000
 MonoBehaviour:

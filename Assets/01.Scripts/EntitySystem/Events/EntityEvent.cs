@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EntityEvent : WorldEvent
+public abstract  class EntityEvent : BaseEvent
 {
-    protected Entity entity;
-    public EntityEvent(World world, Entity entity) : base(world)
+    public Entity entity { get; }
+    public EntityEvent(Entity entity)
     {
         this.entity = entity;
     }

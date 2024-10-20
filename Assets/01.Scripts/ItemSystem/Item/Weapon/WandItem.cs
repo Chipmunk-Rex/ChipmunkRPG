@@ -15,6 +15,7 @@ public class WandItem : WeaponItem
 
     public override void OnBeforeInteract(Entity target)
     {
+        
     }
 
     public override void OnEndInteract(Entity target)

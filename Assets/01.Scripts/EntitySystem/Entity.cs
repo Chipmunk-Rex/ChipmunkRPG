@@ -19,6 +19,7 @@ public abstract class Entity : MonoBehaviour
     #endregion
     [field: SerializeField] public EntitySO entitySO { get; protected set; }
     public Vector2 lookDir = Vector2.down;
+    public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> entityEvents;
     protected virtual void Awake()
     {
         healthCompo = GetComponent<Health>();
@@ -33,9 +34,9 @@ public abstract class Entity : MonoBehaviour
     public void SpawnEntity(World world, EntitySO entitySO)
     {
         this.entitySO = entitySO;
-        animatorCompo.runtimeAnimatorController = entitySO.animatorController;
         if (entitySO != null)
         {
+            animatorCompo.runtimeAnimatorController = entitySO.animatorController;
             InitializeStats();
         }
         SpawnEntity(world);
@@ -65,6 +66,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Reset()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("Entity");
         GameObject visualObj = transform.Find("Visual")?.gameObject;
         if (visualObj == null)
         {

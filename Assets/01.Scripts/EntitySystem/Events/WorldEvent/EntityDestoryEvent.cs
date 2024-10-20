@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityDestoryEvent : EntityEvent
+public class EntityDestoryEvent : WorldEntityEvent
 {
     public EntityDestoryEvent(World world, Entity entity) : base(world, entity)
     {

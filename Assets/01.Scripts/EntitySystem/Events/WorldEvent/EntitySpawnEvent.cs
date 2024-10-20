@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntitySpawnEvent : EntityEvent
+public class EntitySpawnEvent : WorldEntityEvent
 {
     public Vector2 spawnPos;
     public EntitySpawnEvent(World world, Entity entity) : base(world, entity)
