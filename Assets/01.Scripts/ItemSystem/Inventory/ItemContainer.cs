@@ -77,6 +77,8 @@ public class ItemContainer : MonoBehaviour
     public void DropItem(int slotNum, World world)
     {
         Item item = GetItem(slotNum);
+        if (item == null)
+            return;
         SetItem(slotNum, null);
 
         ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
