@@ -64,6 +64,55 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         //     ConstructBuilding(building, mouseWorldIntPos);
         // }
     }
+    #region SaveLoad
+    [ContextMenu("Save")]
+    public void Save()
+    {
+        WorldData worldData = new WorldData()
+        {
+            groundDatas = groundDatas,
+            entities = entities,
+            worldConfig = worldSO
+        };
+        string jsonData = JsonUtility.ToJson(worldData);
+
+        string path = $"{Application.persistentDataPath}/World/worldData.json";
+        System.IO.File.WriteAllText(path, jsonData);
+    }
+    [ContextMenu("Load")]
+    public void Load()
+    {
+        string path = $"{Application.persistentDataPath}/World/worldData.json";
+        string jsonData = System.IO.File.ReadAllText(path);
+        WorldData worldData = JsonUtility.FromJson<WorldData>(jsonData);
+
+        Load(worldData);
+
+        SetRenderer();
+    }
+    public void Load(WorldData worldData)
+    {
+        groundDatas = worldData.groundDatas;
+        entities = worldData.entities;
+        
+        Destroy(entityContainerTrm.gameObject);
+        entityContainerTrm = new GameObject("Entities").transform;
+        entityContainerTrm.SetParent(this.transform);
+        entityContainerTrm.position = Vector2.zero;
+        foreach(var entity in entities)
+        {
+            entity.transform.SetParent(entityContainerTrm);
+        }
+        
+        worldSO = worldData.worldConfig;
+
+        foreach (var groundData in groundDatas)
+        {
+            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.Key), groundData.Value.groundSO.groundTile);
+        }
+    }
+
+    #endregion
     #region Generate
     public void CreateObject()
     {
