@@ -60,8 +60,8 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 
     public void InitializeStateMachine()
     {
-        FSMStateMachine.AddState(EnumPlayerState.Idle, new PlayerIdleState(this, "Idle"));
-        FSMStateMachine.AddState(EnumPlayerState.Move, new PlayerMoveState(this, "Move"));
+        FSMStateMachine.AddState(EnumPlayerState.Idle, new PlayerIdleState(this, ""));
+        FSMStateMachine.AddState(EnumPlayerState.Move, new PlayerMoveState(this, ""));
         FSMStateMachine.Initailize(EnumPlayerState.Idle, this);
     }
 }
