@@ -12,6 +12,7 @@ public class BuildingItemSO : StackableItemSO, IInteractableItemSO
 
     public override Item CreateItem()
     {
-        throw new System.NotImplementedException();
+        BuildingItem item = new BuildingItem(this);
+        return item;
     }
 }

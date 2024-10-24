@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingItem : StackableItem, IInteractableItem
 {
-    
+
     public BuildingItem(BaseItemSO itemSO) : base(itemSO)
     {
         buildingItemSO = itemSO as BuildingItemSO;
@@ -14,12 +14,15 @@ public class BuildingItem : StackableItem, IInteractableItem
 
     public void OnBeforeInteract(Entity target)
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnEndInteract(Entity target)
     {
-        throw new System.NotImplementedException();
+        Vector2 position = (Vector2)target.transform.position + target.lookDir;
+        Debug.Log(position);
+        Building building = new Building(buildingItemSO.buildingSO);
+        WorldEvent @event = new CreateBuildingEvent(target.currentWorld, building, Vector2Int.RoundToInt(position));
+        target.currentWorld.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
 
     public void OnInteract(Entity target)

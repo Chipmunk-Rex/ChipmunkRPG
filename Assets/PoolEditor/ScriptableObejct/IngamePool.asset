@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3697959269830139939
+--- !u!114 &-7299206519741639968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 964d27c033b09b0419fd17e0135b1f07, type: 3}
-  m_Name: IngamePool
+  m_Name: InGamePool
   m_EditorClassIdentifier: 
-  poolName: IngamePool
+  poolName: InGamePool
   itemList:
-  - {fileID: -3697959269830139939}
+  - {fileID: -7299206519741639968}

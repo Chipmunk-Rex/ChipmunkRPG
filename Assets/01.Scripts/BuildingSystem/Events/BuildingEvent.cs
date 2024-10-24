@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class BuildingEvent : WorldEvent
 {
-    public BaseBuilding building;
+    public Building building;
 
-    protected BuildingEvent(World world, BaseBuilding building) : base(world)
+    protected BuildingEvent(World world, Building building) : base(world)
     {
         this.building = building;
     }

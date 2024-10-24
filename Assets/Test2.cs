@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StackableItemSO : BaseItemSO
+public class Test2 : Test1
 {
-    public int maxStackCount = 64;
+    public string value = "value";
 }

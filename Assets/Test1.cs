@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StackableItemSO : BaseItemSO
+[Serializable]
+public class Test1
 {
-    public int maxStackCount = 64;
 }

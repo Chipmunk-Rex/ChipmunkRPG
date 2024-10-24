@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class BaseBuilding
+public class Building
 {
     public BuildingSO buildingSO { get; private set; }
-    public World currentWorld;
+    // public World currentWorld;
     public Vector2Int pos;
-    public BaseBuilding(BuildingSO buildingSO)
+    public Building(BuildingSO buildingSO)
     {
         this.buildingSO = buildingSO;
     }

@@ -55,11 +55,11 @@ public class CreateBuildingEvent : BuildingEvent
         // }
 
         building.pos = pos;
-        building.currentWorld = world;
+        // building.currentWorld = world;
 
         return EnumEventResult.Successed;
     }
-    public CreateBuildingEvent(World world, BaseBuilding building, Vector2Int pos) : base(world, building)
+    public CreateBuildingEvent(World world, Building building, Vector2Int pos) : base(world, building)
     {
         this.pos = pos;
     }

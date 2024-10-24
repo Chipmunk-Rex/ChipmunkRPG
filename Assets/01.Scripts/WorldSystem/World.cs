@@ -1,18 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
+public class World : MonoBehaviour, IBuildingMap<Building>
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
     [SerializeField] WorldConfigSO worldSO;
     [SerializeField] Transform renderTrm;
-    [SerializeField] SerializableDictionary<Vector2Int, Ground> groundDatas = new();
+    [SerializeField] SerializableDictionary<Vector2Int, Ground> grounds = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [SerializeField] int seed = int.MaxValue;
@@ -68,45 +72,79 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     [ContextMenu("Save")]
     public void Save()
     {
-        WorldData worldData = new WorldData()
-        {
-            groundDatas = groundDatas,
-            entities = entities,
-            worldConfig = worldSO
-        };
-        string jsonData = JsonUtility.ToJson(worldData);
+        // GroundData[] groundDatas = new GroundData[this.grounds.Count];
+        // Ground[] grounds = this.grounds.Values.ToArray();
+        // for (int i = 0; i < groundDatas.Length; i++)
+        // {
+        //     GroundData groundData = grounds[i];
+        //     groundDatas[i] = groundData;
+        // }
 
-        string path = $"{Application.persistentDataPath}/World/worldData.json";
-        System.IO.File.WriteAllText(path, jsonData);
+        // WorldData worldData = new WorldData()
+        // {
+        //     groundDatas = groundDatas,
+        //     entities = entities,
+        //     worldConfig = worldSO
+        // };
+        // Save("World", JsonUtility.ToJson(worldData.worldConfig));
+        // Save("Map", JsonConvert.SerializeObject(worldData.groundDatas));
+        // Save("Entity", JsonConvert.SerializeObject(worldData.entities, new JsonSerializerSettings
+        // {
+        //     PreserveReferencesHandling = PreserveReferencesHandling.Objects
+        // }));
+    }
+    public void Save(string path, string jsonData)
+    {
+        string dirPath = $"{Application.persistentDataPath}/World";
+        System.IO.Directory.CreateDirectory(dirPath);
+        System.IO.File.WriteAllText($"{dirPath}/{path}", jsonData);
     }
     [ContextMenu("Load")]
     public void Load()
     {
         string path = $"{Application.persistentDataPath}/World/worldData.json";
         string jsonData = System.IO.File.ReadAllText(path);
-        WorldData worldData = JsonUtility.FromJson<WorldData>(jsonData);
+        WorldData worldData = JsonConvert.DeserializeObject<WorldData>(jsonData, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
 
         Load(worldData);
 
         SetRenderer();
     }
+    public T Load<T>(string path)
+    {
+        string jsonData = System.IO.File.ReadAllText($"{Application.persistentDataPath}/World/{path}");
+        T value = JsonConvert.DeserializeObject<T>(jsonData, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+        return value;
+    }
     public void Load(WorldData worldData)
     {
-        groundDatas = worldData.groundDatas;
+        grounds.Clear();
+        foreach (GroundData groundData in worldData.groundDatas)
+        {
+            grounds.Add(groundData.worldPos, groundData);
+        }
         entities = worldData.entities;
-        
+
         Destroy(entityContainerTrm.gameObject);
         entityContainerTrm = new GameObject("Entities").transform;
         entityContainerTrm.SetParent(this.transform);
         entityContainerTrm.position = Vector2.zero;
-        foreach(var entity in entities)
+        foreach (var entity in entities)
         {
-            entity.transform.SetParent(entityContainerTrm);
+            Debug.Log(entity);
+            Entity spawnedEntity = Instantiate(entity);
+            spawnedEntity.transform.SetParent(entityContainerTrm);
         }
-        
+
         worldSO = worldData.worldConfig;
 
-        foreach (var groundData in groundDatas)
+        foreach (var groundData in grounds)
         {
             groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.Key), groundData.Value.groundSO.groundTile);
         }
@@ -157,6 +195,8 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         }
         this.entityContainerTrm = entityContainerTrm;
     }
+    // 생각해보면 렌더링을 월드가 하는게 아닌 렌더러가 하는게 맞다.
+    // 나중에 고쳐야지;
     public IEnumerator RenderMap()
     {
         StopCoroutine(RenderMap());
@@ -188,7 +228,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
     }
     private bool TryCreateGround(Vector2Int worldPos)
     {
-        if (groundDatas.ContainsKey(worldPos)) return false;
+        if (grounds.ContainsKey(worldPos)) return false;
         CreateGround(worldPos);
         return true;
     }
@@ -201,23 +241,23 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
             .World(worldSO)
             .Build();
 
-        groundDatas.Add(worldPos, ground);
+        grounds.Add(worldPos, ground);
         groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), ground.groundSO.groundTile);
     }
     public Ground GetGround(Vector2Int worldPos)
     {
-        if (!groundDatas.ContainsKey(worldPos))
+        if (!grounds.ContainsKey(worldPos))
             return null;
-        return groundDatas[worldPos];
+        return grounds[worldPos];
     }
     #endregion
     #region building
 
-    public BaseBuilding GetBuilding(Vector2Int worldPos)
+    public Building GetBuilding(Vector2Int worldPos)
     {
-        if (!groundDatas.ContainsKey(worldPos))
+        if (!grounds.ContainsKey(worldPos))
             return null;
-        return groundDatas[worldPos].building;
+        return grounds[worldPos].building;
     }
     public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
     {
@@ -228,18 +268,19 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
             Ground ground = GetGround(tilePos);
             if (ground == null || ground.building != null)
             {
+                Debug.Log($"{tilePos} {ground.building} {ground}");
                 return false;
             }
         }
         return true;
     }
 
-    public void ConstructBuilding(BaseBuilding building)
+    public void ConstructBuilding(Building building)
     {
         CreateBuildingEvent @event = new CreateBuildingEvent(this, building, building.pos);
         worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
-    public void ConstructBuilding(BaseBuilding building, Vector2Int pos)
+    public void ConstructBuilding(Building building, Vector2Int pos)
     {
         building.pos = pos;
         ConstructBuilding(building);
@@ -247,7 +288,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
 
     public void RemoveBuilding(Vector2Int pos)
     {
-        BaseBuilding building = GetBuilding(pos);
+        Building building = GetBuilding(pos);
 
         RemoveBuildingEvent @event = new RemoveBuildingEvent(this, building);
         worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
@@ -255,7 +296,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         @event.ExcuteEvent();
     }
 
-    public List<Vector2Int> GetBuildingWolrdPosList(BaseBuilding building)
+    public List<Vector2Int> GetBuildingWolrdPosList(Building building)
     {
         List<Vector2Int> buildingPosList = GetBuildingPosList(building);
         for (int i = 0; i < buildingPosList.Count; i++)
@@ -264,7 +305,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         }
         return buildingPosList;
     }
-    public List<Vector2Int> GetBuildingPosList(BaseBuilding building)
+    public List<Vector2Int> GetBuildingPosList(Building building)
     {
         List<Vector2Int> buildingPosList = new();
         foreach (Vector2Int localPos in building.buildingSO.tileDatas.Keys)
@@ -275,7 +316,7 @@ public class World : MonoBehaviour, IBuildingMap<BaseBuilding>
         return buildingPosList;
     }
 
-    public void SetBuilding(Vector2Int pos, BaseBuilding building)
+    public void SetBuilding(Vector2Int pos, Building building)
     {
         throw new NotImplementedException();
     }

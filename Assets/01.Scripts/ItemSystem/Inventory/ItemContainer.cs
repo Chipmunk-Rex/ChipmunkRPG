@@ -15,7 +15,7 @@ public class ItemContainer : MonoBehaviour
     [SerializeField] public World world;
     [SerializeField] ItemContainerType containerType = ItemContainerType.Default;
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
-    [SerializeField] private ItemSO itemSO;
+    [SerializeField] private BaseItemSO itemSO;
     private Item[] items;
     private void Awake()
     {
