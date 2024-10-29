@@ -6,7 +6,9 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    public int MaxHP => maxHp;
     private int hp;
+    private int maxHp;
     public int HP
     {
         get => hp;
@@ -20,6 +22,11 @@ public class Health : MonoBehaviour
             if (hp <= 0)
                 onDeath?.Invoke();
         }
+    }
+    public void Initailize(int maxHp)
+    {
+        this.maxHp = maxHp;
+        hp = maxHp;
     }
 
     public UnityEvent<int> onDamaged;

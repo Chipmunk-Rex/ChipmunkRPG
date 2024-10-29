@@ -28,9 +28,23 @@ public abstract class Entity : MonoBehaviour
         if (currentWorld == null)
         {
             SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), entitySO);
-        }
+        }   
     }
-
+    public void Initailize(EntityJsonData entityJsonData)
+    {
+        ScriptableObject scriptableObject = entityJsonData.entitySO;
+        entitySO = scriptableObject as EntitySO;
+        stats = entityJsonData.stats;
+        healthCompo.Initailize(entityJsonData.healthData.maxHealth);
+        movementCompo.Initailize(entityJsonData.stats.moveSpeed);
+        transform.position = entityJsonData.position;
+        lookDir = entityJsonData.lookDir;
+    }
+    public void Initialize(EntitySO entitySO)
+    {
+        this.entitySO = entitySO;
+        InitializeStats();
+    }
     public void SpawnEntity(World world, EntitySO entitySO)
     {
         this.entitySO = entitySO;

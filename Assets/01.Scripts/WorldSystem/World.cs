@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -41,6 +39,12 @@ public class World : MonoBehaviour, IBuildingMap<Building>
 
         StartCoroutine(RenderMap());
     }
+    public void Initailize(WorldJsonData worldJsonData)
+    {
+        seed = worldJsonData.seed;
+        worldSO = worldJsonData.worldConfigSO;
+        Load();
+    }
 
     private void SetRenderer()
     {
@@ -72,26 +76,7 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     [ContextMenu("Save")]
     public void Save()
     {
-        // GroundData[] groundDatas = new GroundData[this.grounds.Count];
-        // Ground[] grounds = this.grounds.Values.ToArray();
-        // for (int i = 0; i < groundDatas.Length; i++)
-        // {
-        //     GroundData groundData = grounds[i];
-        //     groundDatas[i] = groundData;
-        // }
-
-        // WorldData worldData = new WorldData()
-        // {
-        //     groundDatas = groundDatas,
-        //     entities = entities,
-        //     worldConfig = worldSO
-        // };
-        // Save("World", JsonUtility.ToJson(worldData.worldConfig));
-        // Save("Map", JsonConvert.SerializeObject(worldData.groundDatas));
-        // Save("Entity", JsonConvert.SerializeObject(worldData.entities, new JsonSerializerSettings
-        // {
-        //     PreserveReferencesHandling = PreserveReferencesHandling.Objects
-        // }));
+        // WorldJsonSaver.SaveWorld(this);
     }
     public void Save(string path, string jsonData)
     {
@@ -102,16 +87,8 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     [ContextMenu("Load")]
     public void Load()
     {
-        string path = $"{Application.persistentDataPath}/World/worldData.json";
-        string jsonData = System.IO.File.ReadAllText(path);
-        WorldData worldData = JsonConvert.DeserializeObject<WorldData>(jsonData, new JsonSerializerSettings
-        {
-            TypeNameHandling = TypeNameHandling.All
-        });
-
-        Load(worldData);
-
-        SetRenderer();
+        // World world = WorldJsonSaver.LoadWorld();
+        // Load(world);
     }
     public T Load<T>(string path)
     {

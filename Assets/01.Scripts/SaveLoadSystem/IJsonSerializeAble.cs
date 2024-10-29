@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Newtonsoft.Json;
 
 public interface IJsonSerializeAble
 {
-    public Object OnDeSerialize();
-    public string OnSerialize();
+    void DeSerialize(JsonReader reader, JsonSerializer serializer);
+    string OnSerialize(JsonWriter writer, JsonSerializer serializer);
 }

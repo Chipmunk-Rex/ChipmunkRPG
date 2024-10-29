@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,4 +17,9 @@ public abstract class BaseEntityMovement : MonoBehaviour
         entity = GetComponent<Entity>();
     }
     public abstract void Move(Vector2 moveDir);
+
+    internal void Initailize(float moveSpeed)
+    {
+        throw new NotImplementedException();
+    }
 }
