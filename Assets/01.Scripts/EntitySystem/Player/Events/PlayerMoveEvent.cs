@@ -12,7 +12,7 @@ public class PlayerMoveEvent : PlayerEvent
 
     public override EnumEventResult ExcuteEvent()
     {
-        player.movementCompo.Move(moveDir);
+        player.RigidCompo.velocity = moveDir;
         return EnumEventResult.Successed;
     }
 }

@@ -1,58 +1,51 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
 using Chipmunk.Library;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(Health))]
-public abstract class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     public World currentWorld;
     public EntityStats stats;
     #region CompoRegion
-    [field: SerializeField] public Health healthCompo { get; protected set; }
-    [field: SerializeField] public Animator animatorCompo { get; protected set; }
-    [field: SerializeField] public SpriteRenderer spriteRendererCompo { get; protected set; }
-    [field: SerializeField] public BaseEntityMovement movementCompo { get; protected set; }
+    [field: SerializeField] public Animator AnimatorCompo { get; protected set; }
+    [field: SerializeField] public SpriteRenderer SpriteRendererCompo { get; protected set; }
+    [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
+    [field: SerializeField] public BehaviorTree BehaviorTreeCompo { get; protected set; }
     #endregion
-    [field: SerializeField] public EntitySO entitySO { get; protected set; }
+    [field: SerializeField] public EntitySO EntitySO { get; protected set; }
     public Vector2 lookDir = Vector2.down;
     public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> entityEvents;
+    public int hp;
     protected virtual void Awake()
-    {
-        healthCompo = GetComponent<Health>();
-        InitializeStats();
-
-        if (currentWorld == null)
+    {if (currentWorld == null)
         {
-            SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), entitySO);
-        }   
+            SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), EntitySO);
+        }
     }
     public void Initailize(EntityJsonData entityJsonData)
     {
         ScriptableObject scriptableObject = entityJsonData.entitySO;
-        entitySO = scriptableObject as EntitySO;
+        EntitySO = scriptableObject as EntitySO;
         stats = entityJsonData.stats;
-        healthCompo.Initailize(entityJsonData.healthData.maxHealth);
-        movementCompo.Initailize(entityJsonData.stats.moveSpeed);
         transform.position = entityJsonData.position;
         lookDir = entityJsonData.lookDir;
+        hp = entityJsonData.hp;
     }
     public void Initialize(EntitySO entitySO)
     {
-        this.entitySO = entitySO;
-        InitializeStats();
+        this.EntitySO = entitySO;
+    }
+    public void TakeDamage(int damage)
+    {
+        throw new NotImplementedException();
     }
     public void SpawnEntity(World world, EntitySO entitySO)
     {
-        this.entitySO = entitySO;
-        if (entitySO != null)
-        {
-            animatorCompo.runtimeAnimatorController = entitySO.animatorController;
-            InitializeStats();
-        }
         SpawnEntity(world);
     }
     public void SpawnEntity(World world)
@@ -69,15 +62,6 @@ public abstract class Entity : MonoBehaviour
 
     }
 
-    private void InitializeStats()
-    {
-        if (entitySO == null) return;
-        stats.moveSpeed = entitySO.moveSpeed;
-        stats.maxHP = entitySO.maxHP;
-        stats.attackDamage = entitySO.attackDamage;
-        stats.attackSpeed = entitySO.attackSpeed;
-    }
-
     protected virtual void Reset()
     {
         this.gameObject.layer = LayerMask.NameToLayer("Entity");
@@ -85,15 +69,16 @@ public abstract class Entity : MonoBehaviour
         if (visualObj == null)
         {
             visualObj = new GameObject("Visual");
-            spriteRendererCompo = visualObj.AddComponent<SpriteRenderer>();
-            animatorCompo = visualObj.AddComponent<Animator>();
+            SpriteRendererCompo = visualObj.AddComponent<SpriteRenderer>();
+            AnimatorCompo = visualObj.AddComponent<Animator>();
         }
         else
         {
-            spriteRendererCompo = visualObj.GetComponent<SpriteRenderer>();
-            animatorCompo = visualObj.GetComponent<Animator>();
+            SpriteRendererCompo = visualObj.GetComponent<SpriteRenderer>();
+            AnimatorCompo = visualObj.GetComponent<Animator>();
         }
         visualObj.transform.SetParent(this.transform);
-        spriteRendererCompo.sortingLayerName = "Entity";
+        SpriteRendererCompo.sortingLayerName = "Entity";
     }
+
 }

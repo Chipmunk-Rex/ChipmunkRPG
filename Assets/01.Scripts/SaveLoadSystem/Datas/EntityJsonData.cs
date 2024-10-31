@@ -4,19 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class EntityJsonData
+public class EntityJsonData : JsonData<Entity, EntityJsonData>
 {
     public SOAddressData entitySO;
-    public Vector2 position;
-    public Vector2 lookDir;
+    public JsonVector2 position;
+    public JsonVector2 lookDir;
     public EntityStats stats;
-    public HealthJsonData healthData;
-    public EntityJsonData(Entity entity)
+    public int currentHealth;
+    public int hp;
+    public override EntityJsonData Serialize(Entity entity)
     {
-        entitySO = entity.entitySO;
+        entitySO = entity.EntitySO;
         position = entity.transform.position;
         lookDir = entity.lookDir;
         stats = entity.stats;
-        healthData = new HealthJsonData(entity.healthCompo);
+        hp = entity.hp;
+        return this;
     }
 }

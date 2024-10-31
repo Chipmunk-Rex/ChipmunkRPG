@@ -10,7 +10,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 {
 
     #region getter
-    public Animator Animator => animatorCompo;
+    public Animator Animator => AnimatorCompo;
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     #endregion;
     #region Event

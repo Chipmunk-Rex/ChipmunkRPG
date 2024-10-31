@@ -9,7 +9,7 @@ public class EntityJsonSaver
         EntityJsonData[] entityJsonDatas = new EntityJsonData[entity.Count];
         for (int i = 0; i < entity.Count; i++)
         {
-            entityJsonDatas[i] = new EntityJsonData(entity[i]);
+            entityJsonDatas[i] = new EntityJsonData().Serialize(entity[i]);
         }
         string json = JsonUtility.ToJson(entityJsonDatas);
         System.IO.File.WriteAllText(Application.dataPath + "/SaveData/Entity.json", json);

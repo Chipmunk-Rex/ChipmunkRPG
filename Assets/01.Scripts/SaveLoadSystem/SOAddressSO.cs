@@ -14,6 +14,10 @@ public class SOAddressSO : Chipmunk.Library.ScriptableSingleton<SOAddressSO>
     }
     public uint GetIDBySO(ScriptableObject so)
     {
+        if(so == null)
+        {
+            throw new System.Exception("This ScriptableObject is Null");
+        }
         foreach (KeyValuePair<uint, ScriptableObject> keyValuePair in assetPaths)
         {
             if (keyValuePair.Value == so)

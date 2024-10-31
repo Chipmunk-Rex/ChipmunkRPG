@@ -15,7 +15,7 @@ public class ItemEntity : Entity, IPoolAble
     {
         this.item = item;
         gameObject.name = $"Item ({item.ItemSO.itemName})";
-        spriteRendererCompo.sprite = item.ItemSO.itemSprite;
+        SpriteRendererCompo.sprite = item.ItemSO.itemSprite;
     }
 
     public override void OnSpawn()
@@ -31,7 +31,7 @@ public class ItemEntity : Entity, IPoolAble
     public void ResetItem()
     {
         item = null;
-        spriteRendererCompo.sprite = null;
+        SpriteRendererCompo.sprite = null;
     }
 
     internal void Collect(ItemContainer target, float magneticPower)

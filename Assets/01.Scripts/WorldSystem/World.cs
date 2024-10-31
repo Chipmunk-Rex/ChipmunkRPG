@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Chipmunk.Library.PoolEditor;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
     [SerializeField] WorldConfigSO worldSO;
     [SerializeField] Transform renderTrm;
-    [SerializeField] SerializableDictionary<Vector2Int, Ground> grounds = new();
+    [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds {get; private set;} = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [SerializeField] int seed = int.MaxValue;
@@ -44,6 +45,29 @@ public class World : MonoBehaviour, IBuildingMap<Building>
         seed = worldJsonData.seed;
         worldSO = worldJsonData.worldConfigSO;
         Load();
+
+        foreach (Entity entity in entities)
+        {
+            if (entity.GetComponent<Player>() == null)
+                PoolManager.Instance.Push(entity.gameObject);
+        }
+        entities.Clear();
+
+        foreach (EntityJsonData entityData in worldJsonData.entities)
+        {
+            Entity entity = PoolManager.Instance.Pop("Entity").GetComponent<Entity>();
+            entity.Initailize(entityData);
+            entity.name = entity.EntitySO.name;
+            entity.SpawnEntity(this);
+        }
+
+        // groundTilemap.ClearAllTiles();
+        // foreach (KeyValuePair<Vector2Int,Ground> groundData in grounds)
+        // {
+        //     groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.Key), groundData.Value.groundSO.groundTile);
+        // }
+        buildingTilemap.ClearAllTiles();
+
     }
 
     private void SetRenderer()

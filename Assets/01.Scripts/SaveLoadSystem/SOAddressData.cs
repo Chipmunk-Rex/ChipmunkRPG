@@ -7,7 +7,6 @@ using UnityEngine;
 public struct SOAddressData
 {
     public uint id;
-    public ScriptableObject SO => SOAddressSO.Instance.GetSOByID(id);
     public SOAddressData(ScriptableObject so)
     {
         this.id = SOAddressSO.Instance.GetIDBySO(so);
@@ -18,6 +17,6 @@ public struct SOAddressData
     }
     public static implicit operator ScriptableObject(SOAddressData soAddressData)
     {
-        return soAddressData.SO;
+        return SOAddressSO.Instance.GetSOByID(soAddressData.id);
     }
 }

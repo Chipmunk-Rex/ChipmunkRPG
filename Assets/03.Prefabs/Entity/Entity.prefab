@@ -115,11 +115,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3552179100780494461}
-  - component: {fileID: 1763390561098315093}
+  - component: {fileID: -6081433587601149760}
   - component: {fileID: 5011779984776827811}
   - component: {fileID: 3760370888882610184}
   - component: {fileID: 3541427512729573091}
   - component: {fileID: 8558564361637170945}
+  - component: {fileID: 6102541672321676062}
+  - component: {fileID: 5483591032069590741}
   m_Layer: 7
   m_Name: Entity
   m_TagString: Untagged
@@ -143,7 +145,7 @@ Transform:
   - {fileID: 2537574306824724099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1763390561098315093
+--- !u!114 &-6081433587601149760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,15 +154,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7359664159418633281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5087832f7ebe52749baa2051c06b76d9, type: 3}
+  m_Script: {fileID: 11500000, guid: c4aa2292a0d255e49bf16ebf3ea1e481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  currentWorld: {fileID: 0}
+  stats:
+    moveSpeed: 1
+    attackSpeed: 0
+    attackDamage: 0
+    maxHP: 0
+  <animatorCompo>k__BackingField: {fileID: 7493607851500583129}
+  <spriteRendererCompo>k__BackingField: {fileID: 1378678016596762946}
+  <rigidCompo>k__BackingField: {fileID: 5011779984776827811}
+  <behaviorTreeCompo>k__BackingField: {fileID: 5483591032069590741}
+  <entitySO>k__BackingField: {fileID: 0}
+  lookDir: {x: 0, y: -1}
+  hp: 0
 --- !u!50 &5011779984776827811
 Rigidbody2D:
   serializedVersion: 4
@@ -187,7 +196,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3760370888882610184
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -249,7 +258,7 @@ MonoBehaviour:
   - {x: 0.3499999, y: -0.099999905, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 40488
+  m_InstanceId: 41450
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.3499999, y: 0.099999905, z: 0}
@@ -295,7 +304,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2cdf04d54cf255349b09eaf16292e7c8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -305,3 +314,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6102541672321676062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359664159418633281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8eff69fbf255cc4880b50e7b359a1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onResetItem:
+    m_PersistentCalls:
+      m_Calls: []
+  onInitializeItem:
+    m_PersistentCalls:
+      m_Calls: []
+  poolName: Entity
+--- !u!114 &5483591032069590741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359664159418633281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.10
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1

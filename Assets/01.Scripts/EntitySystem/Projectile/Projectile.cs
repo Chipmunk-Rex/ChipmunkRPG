@@ -23,7 +23,7 @@ public class Projectile : BaseProjectile
     }
     public void Initialize(Sprite sprite, Vector2 position)
     {
-        spriteRendererCompo.sprite = sprite;
+        SpriteRendererCompo.sprite = sprite;
         transform.position = position;
     }
     public override void Shoot(Vector2 dir)
