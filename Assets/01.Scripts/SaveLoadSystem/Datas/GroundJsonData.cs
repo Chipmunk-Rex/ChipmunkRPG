@@ -6,8 +6,8 @@ using UnityEngine;
 public class GroundJsonData : JsonData<KeyValuePair<Vector2Int, Ground>, GroundJsonData>
 {
     public JsonVector2 worldPos;
-    public SOAddressData groundSO;
-    public SOAddressData biomeSO;
+    public SOAddressData<GroundSO> groundSO;
+    public SOAddressData<BiomeSO> biomeSO;
 
     public override GroundJsonData Serialize(KeyValuePair<Vector2Int, Ground> data)
     {

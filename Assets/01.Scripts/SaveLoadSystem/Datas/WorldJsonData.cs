@@ -8,16 +8,18 @@ public class WorldJsonData : JsonData<World, WorldJsonData>
 {
     public List<EntityJsonData> entities = new();
     public List<GroundJsonData> grounds = new();
-    public WorldConfigSO worldConfigSO;
+    public SOAddressData<WorldConfigSO> worldConfigSO;
     public int seed;
 
-    public override WorldJsonData Serialize(World data)
+    public override WorldJsonData Serialize(World world)
     {
-        foreach (var entity in data.entities)
+        worldConfigSO = world.worldSO;
+        seed = world.seed;
+        foreach (var entity in world.entities)
         {
             entities.Add(new EntityJsonData().Serialize(entity));
         }
-        foreach (var ground in data.grounds)
+        foreach (var ground in world.grounds)
         {
             grounds.Add(new GroundJsonData().Serialize(ground));
         }

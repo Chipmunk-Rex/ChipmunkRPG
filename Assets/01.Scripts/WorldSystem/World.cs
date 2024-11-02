@@ -13,12 +13,12 @@ using UnityEngine.Tilemaps;
 public class World : MonoBehaviour, IBuildingMap<Building>
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
-    [SerializeField] WorldConfigSO worldSO;
+    [field: SerializeField] public WorldConfigSO worldSO { get; private set; }
     [SerializeField] Transform renderTrm;
-    [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds {get; private set;} = new();
+    [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds { get; private set; } = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
-    [SerializeField] int seed = int.MaxValue;
+    [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     private VoronoiNoise voronoiNoise;
@@ -44,7 +44,17 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     {
         seed = worldJsonData.seed;
         worldSO = worldJsonData.worldConfigSO;
-        Load();
+
+        groundTilemap.ClearAllTiles();
+        grounds.Clear();
+        foreach (GroundJsonData groundData in worldJsonData.grounds)
+        {
+            Vector2Int worldPos = groundData.worldPos;
+            Debug.Log(worldPos);
+            Ground ground = new Ground(groundData.worldPos, groundData.groundSO, groundData.biomeSO, null);
+            grounds.Add(groundData.worldPos, ground);
+            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.worldPos), ground.groundSO.groundTile);
+        }
 
         foreach (Entity entity in entities)
         {
@@ -61,11 +71,6 @@ public class World : MonoBehaviour, IBuildingMap<Building>
             entity.SpawnEntity(this);
         }
 
-        // groundTilemap.ClearAllTiles();
-        // foreach (KeyValuePair<Vector2Int,Ground> groundData in grounds)
-        // {
-        //     groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.Key), groundData.Value.groundSO.groundTile);
-        // }
         buildingTilemap.ClearAllTiles();
 
     }

@@ -5558,7 +5558,7 @@ MonoBehaviour:
     serializableItems: []
   <entities>k__BackingField: []
   <entityContainerTrm>k__BackingField: {fileID: 1886022457}
-  seed: 213
+  <seed>k__BackingField: 2147483647
   <groundTilemap>k__BackingField: {fileID: 1972919616}
   <buildingTilemap>k__BackingField: {fileID: 535174022}
   buildingSO: {fileID: 11400000, guid: 22f095279749ce748893c7a2a946585a, type: 2}
@@ -5893,7 +5893,7 @@ MonoBehaviour:
   <SpriteRendererCompo>k__BackingField: {fileID: 0}
   <RigidCompo>k__BackingField: {fileID: 0}
   <BehaviorTreeCompo>k__BackingField: {fileID: 0}
-  <EntitySO>k__BackingField: {fileID: 0}
+  <EntitySO>k__BackingField: {fileID: 11400000, guid: 59abaca996e3dc049963c7feb1651146, type: 2}
   lookDir: {x: 0, y: -1}
   hp: 0
 --- !u!50 &594474429
@@ -7800,6 +7800,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 517137703}
+    - target: {fileID: 6246109023860828433, guid: b31589b91e6d6304f8d6459c1e48c26c, type: 3}
+      propertyPath: <EntitySO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bc7e9936c8f5e3438a45337cc7f8923, type: 2}
     - target: {fileID: 6246109023860828433, guid: b31589b91e6d6304f8d6459c1e48c26c, type: 3}
       propertyPath: <entitySO>k__BackingField
       value: 
