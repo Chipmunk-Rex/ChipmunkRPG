@@ -18,8 +18,9 @@ public class WorldJsonSaver : JsonSaver
                 TypeNameHandling = TypeNameHandling.All
             }
         );
-        System.IO.Directory.CreateDirectory(Application.dataPath + "/SaveData");
-        System.IO.File.WriteAllText(Application.dataPath + "/SaveData/World.json", json);
+        System.IO.Directory.CreateDirectory($"{Application.dataPath}/SaveData/Worlds");
+        System.IO.File.WriteAllText($"{Application.dataPath}/SaveData/Worlds/world.json", json);
+        System.IO.File.WriteAllText($"{Application.dataPath}/SaveData/Worlds/{world.worldSO.worldName}.json", json);
         EntityJsonSaver.SaveEntity(world.entities);
         Debug.Log($"path: {Application.dataPath}/SaveData/World.json");
     }
@@ -27,7 +28,7 @@ public class WorldJsonSaver : JsonSaver
     public override void Load()
     {
         WorldJsonData worldJsonData = null;
-        string json = System.IO.File.ReadAllText(Application.dataPath + "/SaveData/World.json");
+        string json = System.IO.File.ReadAllText(Application.dataPath + "/SaveData/Worlds/World.json");
         worldJsonData = JsonConvert.DeserializeObject<WorldJsonData>(json,
             new JsonSerializerSettings
             {
