@@ -5,11 +5,11 @@ using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WorldJsonSaver : MonoBehaviour
+public class WorldJsonSaver : JsonSaver
 {
     [SerializeField] private World world;
-    [ContextMenu("Save World")]
-    public void SaveWorld()
+    [ContextMenu("JsonSave")]
+    public override void Save()
     {
         WorldJsonData worldJsonData = new WorldJsonData().Serialize(world);
         string json = JsonConvert.SerializeObject(worldJsonData,
@@ -23,8 +23,8 @@ public class WorldJsonSaver : MonoBehaviour
         EntityJsonSaver.SaveEntity(world.entities);
         Debug.Log($"path: {Application.dataPath}/SaveData/World.json");
     }
-    [ContextMenu("Load World")]
-    public void LoadWorld()
+    [ContextMenu("JsonLoad")]
+    public override void Load()
     {
         WorldJsonData worldJsonData = null;
         string json = System.IO.File.ReadAllText(Application.dataPath + "/SaveData/World.json");
@@ -34,16 +34,7 @@ public class WorldJsonSaver : MonoBehaviour
                 TypeNameHandling = TypeNameHandling.All
             }
         );
-        // world.Load(worldJsonData);
         world.Initailize(worldJsonData);
-        // List<EntityJsonData> entityDatas = worldJsonData.entities;
-        // foreach(EntityJsonData entityData in entityDatas)
-        // {
-        //     ScriptableObject scriptableObject = entityData.entitySO;
-        //     Debug.Log(scriptableObject.name);
-        //     Entity entity = PoolManager.Instance.Pop("Entity").GetComponent<Entity>();
-        //     entity.Initailize(entityData);
-        // }
 
     }
 }
