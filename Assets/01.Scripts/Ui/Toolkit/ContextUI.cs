@@ -24,8 +24,8 @@ public class ContextUI : BaseDocument
     {
         isShowingInventory = !isShowingInventory;
         itemContainerView.parent.style.display = isShowingInventory ? DisplayStyle.Flex : DisplayStyle.None;
-        itemContainerView.DrawView(player.inventory);
+        itemContainerView.DrawView(player.InventoryCompo);
 
-        hotbarView.InitializeView(player.inventory.Hotbar);
+        hotbarView.InitializeView(player.InventoryCompo.Hotbar);
     }
 }

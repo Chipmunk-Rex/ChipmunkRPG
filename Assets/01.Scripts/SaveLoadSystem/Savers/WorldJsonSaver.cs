@@ -12,7 +12,6 @@ public class WorldJsonSaver : MonoBehaviour
     public void SaveWorld()
     {
         WorldJsonData worldJsonData = new WorldJsonData().Serialize(world);
-        Debug.Log(worldJsonData.entities[0]);
         string json = JsonConvert.SerializeObject(worldJsonData,
             new JsonSerializerSettings
             {

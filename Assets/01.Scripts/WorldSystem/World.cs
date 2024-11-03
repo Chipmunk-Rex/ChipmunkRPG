@@ -66,7 +66,7 @@ public class World : MonoBehaviour, IBuildingMap<Building>
         foreach (EntityJsonData entityData in worldJsonData.entities)
         {
             Entity entity = PoolManager.Instance.Pop("Entity").GetComponent<Entity>();
-            entity.Initailize(entityData);
+            entity.Initialize(entityData);
             entity.name = entity.EntitySO.name;
             entity.SpawnEntity(this);
         }

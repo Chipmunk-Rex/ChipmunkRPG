@@ -17,6 +17,10 @@ public class WorldJsonData : JsonData<World, WorldJsonData>
         seed = world.seed;
         foreach (var entity in world.entities)
         {
+            if (entity is Player)
+            {
+                continue;
+            }
             entities.Add(new EntityJsonData().Serialize(entity));
         }
         foreach (var ground in world.grounds)

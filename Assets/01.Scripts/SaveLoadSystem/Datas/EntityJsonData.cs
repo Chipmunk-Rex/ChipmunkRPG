@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class EntityJsonData : JsonData<Entity, EntityJsonData>
 {
-    public SOAddressData entitySO;
+    public SOAddressData<EntitySO> entitySO;
     public JsonVector2 position;
     public JsonVector2 lookDir;
     public EntityStats stats;

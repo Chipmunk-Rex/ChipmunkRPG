@@ -44,8 +44,8 @@ public class WandItem : WeaponItem
         {
             projectile = GameObject.Instantiate(projectilePref);
         }
-        projectile.SpawnEntity(world, wandSO.projectileSO);
-        projectile.Initialize(null, transfrom.position);
+        projectile.Initialize(wandSO.projectileSO);
+        projectile.SpawnEntity(world);
         projectile.transform.SetParent(transfrom);  
 
         var main = projectile.Particle.main;

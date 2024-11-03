@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using Chipmunk.Library;
+using Chipmunk.Library.PoolEditor;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Entity : MonoBehaviour, IDamageable
+public class Entity : MonoBehaviour, IPoolAble, IDamageable
 {
     public World currentWorld;
     public EntityStats stats;
@@ -16,21 +17,32 @@ public class Entity : MonoBehaviour, IDamageable
     [field: SerializeField] public SpriteRenderer SpriteRendererCompo { get; protected set; }
     [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
     [field: SerializeField] public BehaviorTree BehaviorTreeCompo { get; protected set; }
+    [field: SerializeField] public Inventory InventoryCompo { get; protected set; }
     #endregion
     [field: SerializeField] public EntitySO EntitySO { get; protected set; }
+
+    public string PoolName => "Entity";
+
+    public GameObject ObjectPref => gameObject;
+
     public Vector2 lookDir = Vector2.down;
     public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> entityEvents;
     public int hp;
+    private int moveSpeed;
     protected virtual void Awake()
-    {if (currentWorld == null)
+    {
+        if (currentWorld == null)
         {
-            SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), EntitySO);
+            if (EntitySO != null)
+            {
+                Initialize(EntitySO);
+                SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform));
+            }
         }
     }
-    public void Initailize(EntityJsonData entityJsonData)
+    public void Initialize(EntityJsonData entityJsonData)
     {
-        ScriptableObject scriptableObject = entityJsonData.entitySO;
-        EntitySO = scriptableObject as EntitySO;
+        Initialize(entityJsonData.entitySO);
         stats = entityJsonData.stats;
         transform.position = entityJsonData.position;
         lookDir = entityJsonData.lookDir;
@@ -39,14 +51,13 @@ public class Entity : MonoBehaviour, IDamageable
     public void Initialize(EntitySO entitySO)
     {
         this.EntitySO = entitySO;
+        hp = entitySO.maxHP;
+        BehaviorTreeCompo.enabled = entitySO.externalBehaviorTree != null;
+        BehaviorTreeCompo.ExternalBehavior = entitySO.externalBehaviorTree;
     }
     public void TakeDamage(int damage)
     {
         throw new NotImplementedException();
-    }
-    public void SpawnEntity(World world, EntitySO entitySO)
-    {
-        SpawnEntity(world);
     }
     public void SpawnEntity(World world)
     {
@@ -81,4 +92,11 @@ public class Entity : MonoBehaviour, IDamageable
         SpriteRendererCompo.sortingLayerName = "Entity";
     }
 
+    public void InitializeItem()
+    {
+    }
+
+    public void ResetItem()
+    {
+    }
 }
