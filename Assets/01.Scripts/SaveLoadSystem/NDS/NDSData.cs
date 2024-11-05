@@ -1,23 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
+[Serializable]
 public struct NDSData
 {
-    public SerializableDictionary<string, object> Data { get; set; }
-    public NDSData(SerializableDictionary<string, object> data = null)
+    [field: SerializeField] public SerializableDictionary<string, string> Data { get; set; }
+    public NDSData(SerializableDictionary<string, string> data = null)
     {
-        Data = data ?? new SerializableDictionary<string, object>();
+        Data = data ?? new SerializableDictionary<string, string>();
     }
     public void AddData(string key, object value)
     {
+        string json = JsonConvert.SerializeObject(value, new JsonSerializerSettings
+        { TypeNameHandling = TypeNameHandling.All }
+        );
         if (Data.ContainsKey(key))
         {
-            Data[key] = value;
+            Data[key] = json;
         }
         else
         {
-            Data.Add(key, value);
+            Data.Add(key, json);
         }
     }
     public void RemoveData(string key)
@@ -27,7 +34,7 @@ public struct NDSData
             Data.Remove(key);
         }
     }
-    public object GetData(string key)
+    public string GetData(string key)
     {
         if (Data.ContainsKey(key))
         {
@@ -39,7 +46,10 @@ public struct NDSData
     {
         if (Data.ContainsKey(key))
         {
-            return (T)Data[key];
+            object value = JsonConvert.DeserializeObject(Data[key], new JsonSerializerSettings
+            { TypeNameHandling = TypeNameHandling.All }
+            );
+            return (T)value;
         }
         return default;
     }
@@ -57,11 +67,16 @@ public struct NDSData
     {
         if (Data.ContainsKey(key))
         {
-            value = (T)Data[key];
+            value = JsonConvert.DeserializeObject<T>(Data[key], new JsonSerializerSettings
+            { TypeNameHandling = TypeNameHandling.All }
+            );
             return true;
         }
         value = default;
         return false;
     }
-
+    public void Clear()
+    {
+        Data.Clear();
+    }
 }
