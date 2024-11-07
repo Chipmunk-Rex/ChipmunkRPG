@@ -5,7 +5,7 @@ using UnityEngine;
 public class EntityMoveEvent : EntityEvent
 {
     public Vector2 dir;
-    public EntityMoveEvent(Entity entity, Vector2 dir) : base(entity)
+    public EntityMoveEvent(EntityCompo entity, Vector2 dir) : base(entity)
     {
         this.dir = dir;
     }

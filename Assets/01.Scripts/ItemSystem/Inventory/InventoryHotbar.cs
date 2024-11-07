@@ -12,7 +12,7 @@ public class InventoryHotbar : MonoBehaviour
     #endregion
 
     [SerializeField] protected ItemContainer itemContainer;
-    [SerializeField] protected Entity owner;
+    [SerializeField] protected EntityCompo owner;
     private protected int selectedIndex = 0;
     public int SelectedIndex
     {

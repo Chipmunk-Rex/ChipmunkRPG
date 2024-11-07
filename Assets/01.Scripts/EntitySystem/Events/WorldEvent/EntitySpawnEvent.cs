@@ -5,11 +5,11 @@ using UnityEngine;
 public class EntitySpawnEvent : WorldEntityEvent
 {
     public Vector2 spawnPos;
-    public EntitySpawnEvent(World world, Entity entity) : base(world, entity)
+    public EntitySpawnEvent(World world, EntityCompo entity) : base(world, entity)
     {
         spawnPos = Vector2.zero;
     }
-    public EntitySpawnEvent(World world, Entity entity, Vector2 pos) : base(world, entity)
+    public EntitySpawnEvent(World world, EntityCompo entity, Vector2 pos) : base(world, entity)
     {
         this.spawnPos = pos;
     }

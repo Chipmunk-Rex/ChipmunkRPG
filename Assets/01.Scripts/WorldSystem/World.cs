@@ -10,13 +10,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class World : MonoBehaviour, IBuildingMap<Building>
+public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeAble
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
     [field: SerializeField] public WorldConfigSO worldSO { get; private set; }
     [SerializeField] Transform renderTrm;
     [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds { get; private set; } = new();
-    [field: SerializeField] public List<Entity> entities { get; private set; } = new();
+    [field: SerializeField] public List<EntityCompo> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
@@ -29,7 +29,7 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     {
         CreateObject();
     }
-    private void Awake()
+    protected override void Awake()
     {
         this.transform.position = Vector2.zero;
 
@@ -38,41 +38,8 @@ public class World : MonoBehaviour, IBuildingMap<Building>
 
         SetRenderer();
 
-        StartCoroutine(RenderMap());
-    }
-    public void Initailize(WorldJsonData worldJsonData)
-    {
-        seed = worldJsonData.seed;
-        worldSO = worldJsonData.worldConfigSO;
-
-        groundTilemap.ClearAllTiles();
-        grounds.Clear();
-        foreach (GroundJsonData groundData in worldJsonData.grounds)
-        {
-            Vector2Int worldPos = groundData.worldPos;
-            Debug.Log(worldPos);
-            Ground ground = new Ground(groundData.worldPos, groundData.groundSO, groundData.biomeSO, null);
-            grounds.Add(groundData.worldPos, ground);
-            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.worldPos), ground.groundSO.groundTile);
-        }
-
-        foreach (Entity entity in entities)
-        {
-            if (entity.GetComponent<Player>() == null)
-                PoolManager.Instance.Push(entity.gameObject);
-        }
-        entities.Clear();
-
-        foreach (EntityJsonData entityData in worldJsonData.entities)
-        {
-            Entity entity = PoolManager.Instance.Pop("Entity").GetComponent<Entity>();
-            entity.Initialize(entityData);
-            entity.name = entity.EntitySO.name;
-            entity.SpawnEntity(this);
-        }
-
-        buildingTilemap.ClearAllTiles();
-
+        Render();
+        // StartCoroutine(RenderMap());
     }
 
     private void SetRenderer()
@@ -83,80 +50,6 @@ public class World : MonoBehaviour, IBuildingMap<Building>
         TilemapRenderer buildingRenderer = buildingTilemap.gameObject.GetComponent<TilemapRenderer>();
         buildingRenderer.chunkSize = worldSO.chunkSize;
     }
-
-    [SerializeField] BuildingSO buildingSO;
-    private void Update()
-    {
-        // tick = (uint)Mathf.RoundToInt(Time.time * tickRate);
-
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     if (EventSystem.current.IsPointerOverGameObject())
-        //     {
-        //         Debug.Log("Clicked on the UI");
-        //     }
-        //     Vector2Int mouseWorldIntPos = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-        //     BaseBuilding building = new BaseBuilding(buildingSO);
-        //     ConstructBuilding(building, mouseWorldIntPos);
-        // }
-    }
-    #region SaveLoad
-    [ContextMenu("Save")]
-    public void Save()
-    {
-        // WorldJsonSaver.SaveWorld(this);
-    }
-    public void Save(string path, string jsonData)
-    {
-        string dirPath = $"{Application.persistentDataPath}/World";
-        System.IO.Directory.CreateDirectory(dirPath);
-        System.IO.File.WriteAllText($"{dirPath}/{path}", jsonData);
-    }
-    [ContextMenu("Load")]
-    public void Load()
-    {
-        // World world = WorldJsonSaver.LoadWorld();
-        // Load(world);
-    }
-    public T Load<T>(string path)
-    {
-        string jsonData = System.IO.File.ReadAllText($"{Application.persistentDataPath}/World/{path}");
-        T value = JsonConvert.DeserializeObject<T>(jsonData, new JsonSerializerSettings
-        {
-            TypeNameHandling = TypeNameHandling.All
-        });
-        return value;
-    }
-    public void Load(WorldData worldData)
-    {
-        grounds.Clear();
-        foreach (GroundData groundData in worldData.groundDatas)
-        {
-            grounds.Add(groundData.worldPos, groundData);
-        }
-        entities = worldData.entities;
-
-        Destroy(entityContainerTrm.gameObject);
-        entityContainerTrm = new GameObject("Entities").transform;
-        entityContainerTrm.SetParent(this.transform);
-        entityContainerTrm.position = Vector2.zero;
-        foreach (var entity in entities)
-        {
-            Debug.Log(entity);
-            Entity spawnedEntity = Instantiate(entity);
-            spawnedEntity.transform.SetParent(entityContainerTrm);
-        }
-
-        worldSO = worldData.worldConfig;
-
-        foreach (var groundData in grounds)
-        {
-            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.Key), groundData.Value.groundSO.groundTile);
-        }
-    }
-
-    #endregion
     #region Generate
     public void CreateObject()
     {
@@ -209,15 +102,19 @@ public class World : MonoBehaviour, IBuildingMap<Building>
         while (true)
         {
             yield return new WaitForSeconds(worldSO.renderDuration);
-
-            Vector3 targetPos = Vector2.zero;
-            if (renderTrm != null)
-                targetPos = renderTrm.position;
-
-            Vector2Int minPos = Vector2Int.RoundToInt(targetPos - new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
-            Vector2Int maxPos = Vector2Int.RoundToInt(targetPos + new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
-            GenerateGround(minPos, maxPos);
+            Render();
         }
+    }
+
+    private void Render()
+    {
+        Vector3 targetPos = Vector2.zero;
+        if (renderTrm != null)
+            targetPos = renderTrm.position;
+
+        Vector2Int minPos = Vector2Int.RoundToInt(targetPos - new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
+        Vector2Int maxPos = Vector2Int.RoundToInt(targetPos + new Vector3(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize));
+        GenerateGround(minPos, maxPos);
     }
     #endregion
     #region Ground
@@ -325,6 +222,59 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     public void SetBuilding(Vector2Int pos, Building building)
     {
         throw new NotImplementedException();
+    }
+    #endregion
+    #region Serialize
+    [SerializeField] NDSData ndsData = new();
+    [ContextMenu("Serialize")]
+    public NDSData Serialize()
+    {
+        NDSData worldNdsData = new NDSData();
+
+        NDSData groundsNDSData = new NDSData();
+        foreach (var keyValuePair in grounds)
+        {
+            NDSData groundNds = keyValuePair.Value.Serialize();
+            groundsNDSData.AddData(NDSData.ToString(keyValuePair.Key), groundNds);
+        }
+
+        List<NDSData> entitiesNDSData = new List<NDSData>();
+        foreach (var entityCompo in entities)
+        {
+            entitiesNDSData.Add(entityCompo.entity.Serialize());
+        }
+
+        worldNdsData.AddData("seed", seed);
+        worldNdsData.AddData("worldSO", SOAddressSO.Instance.GetIDBySO(worldSO));
+        worldNdsData.AddData("grounds", groundsNDSData);
+        worldNdsData.AddData("entities", entitiesNDSData);
+
+        this.ndsData = worldNdsData;
+        return worldNdsData;
+    }
+    [ContextMenu("Deserialize")]
+    public void Deserialize()
+    {
+        Deserialize(ndsData);
+    }
+    public void Deserialize(NDSData data)
+    {
+        seed = int.Parse(data.GetDataString("seed"));
+
+        worldSO = SOAddressSO.Instance.GetSOByID<WorldConfigSO>(uint.Parse(ndsData.GetDataString("worldSO")));
+
+        grounds.Clear();
+        NDSData groundsNDS = data.GetData<NDSData>("grounds");
+        foreach (var keyValuePair in data.GetData<NDSData>("grounds").Data)
+        {
+            Ground ground = new Ground(Vector2Int.zero, null, null);
+            ground.Deserialize(groundsNDS.GetData<NDSData>(keyValuePair.Key));
+            grounds.Add(NDSData.ToObject<Vector2Int>(keyValuePair.Key), ground);
+        }
+
+        entities.Clear();
+        List<NDSData> entitiesNDSData = data.GetData<List<NDSData>>("entities");
+
     }
     #endregion
 }

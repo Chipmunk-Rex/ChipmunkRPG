@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class SOAddressData : JsonData<ScriptableObject, SOAddressData>
+public class SOAddressData
 {
+    public static SOAddressData Create(ScriptableObject scriptableObject)
+    {
+        return new SOAddressData().Serialize(scriptableObject);
+    }
     public uint id;
-    public override SOAddressData Serialize(ScriptableObject so)
+    public virtual SOAddressData Serialize(ScriptableObject so)
     {
         this.id = SOAddressSO.Instance.GetIDBySO(so);
         return this;

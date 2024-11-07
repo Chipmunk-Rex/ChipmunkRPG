@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IInteractableItem
 {
     public IInteractableItemSO interactableItemSO { get; }
-    public void OnBeforeInteract(Entity target);
-    public void OnInteract(Entity target);
-    public void OnEndInteract(Entity target);
+    public void OnBeforeInteract(EntityCompo target);
+    public void OnInteract(EntityCompo target);
+    public void OnEndInteract(EntityCompo target);
 }

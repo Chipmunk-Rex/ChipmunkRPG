@@ -10,13 +10,12 @@ public class NDSTest : MonoBehaviour, INDSerializeAble
 
     public void Deserialize(NDSData data)
     {
-        testInt = int.Parse(data.GetData("testInt"));
+        // testInt = int.Parse(data.GetData("testInt"));
     }
 
     public NDSData Serialize()
     {
         data.Clear();
-        data.AddData("testInt", testInt);
         return data;
     }
 
@@ -27,5 +26,8 @@ public class NDSTest : MonoBehaviour, INDSerializeAble
         Serialize();
         Debug.Log(data.GetData("testInt"));
         Deserialize(data);
+        
+        Debug.Log(data.Serialize());
+        Debug.Log(NDSData.Deserialize(data.Serialize()));
     }
 }

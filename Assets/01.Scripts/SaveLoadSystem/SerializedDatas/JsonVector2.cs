@@ -4,10 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class JsonVector2
+public struct JsonVector2
 {
     public float x;
     public float y;
+    public JsonVector2(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    public JsonVector2(Vector2 vector)
+    {
+        x = vector.x;
+        y = vector.y;
+    }
+    public JsonVector2(Vector2Int vector)
+    {
+        x = vector.x;
+        y = vector.y;
+    }
+    public JsonVector2(Vector3 vector)
+    {
+        x = vector.x;
+        y = vector.y;
+    }
     public static implicit operator Vector2Int(JsonVector2 jsonVector)
     {
         return new Vector2Int(Mathf.RoundToInt(jsonVector.x), Mathf.RoundToInt(jsonVector.y));

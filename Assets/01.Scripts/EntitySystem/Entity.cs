@@ -1,102 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using BehaviorDesigner.Runtime;
-using Chipmunk.Library;
 using Chipmunk.Library.PoolEditor;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public class Entity : MonoBehaviour, IPoolAble, IDamageable
+public abstract class Entity : INDSerializeAble
 {
-    public World currentWorld;
-    public EntityStats stats;
-    #region CompoRegion
-    [field: SerializeField] public Animator AnimatorCompo { get; protected set; }
-    [field: SerializeField] public SpriteRenderer SpriteRendererCompo { get; protected set; }
-    [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
-    [field: SerializeField] public BehaviorTree BehaviorTreeCompo { get; protected set; }
-    [field: SerializeField] public Inventory InventoryCompo { get; protected set; }
-    #endregion
-    [field: SerializeField] public EntitySO EntitySO { get; protected set; }
+    public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> EntityEvents { get; private set; } = new();
+    protected EntityCompo entityCompo { get; private set; }
+    protected Transform transform => entityCompo.transform;
+    public GameObject gameObject => entityCompo.gameObject;
+    public SpriteRenderer SpriteRendererCompo => entityCompo.SpriteRendererCompo;
+    public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
-    public string PoolName => "Entity";
+    public EntitySO EntitySO { get; private set; }
 
-    public GameObject ObjectPref => gameObject;
+    public bool IsSpawned => isSpawned;
+    public bool isSpawned;
 
+    public string entityName;
     public Vector2 lookDir = Vector2.down;
-    public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> entityEvents;
-    public int hp;
-    private int moveSpeed;
-    protected virtual void Awake()
+    public void SpawnEntity(EntityCompo entityCompo)
     {
-        if (currentWorld == null)
-        {
-            if (EntitySO != null)
-            {
-                Initialize(EntitySO);
-                SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform));
-            }
-        }
+        this.entityCompo = entityCompo;
+        // entityCompo.entity = this;
+        isSpawned = true;
+        entityCompo.OnSpawn();
     }
-    public void Initialize(EntityJsonData entityJsonData)
+    public EntityCompo SpawnEntity()
     {
-        Initialize(entityJsonData.entitySO);
-        stats = entityJsonData.stats;
-        transform.position = entityJsonData.position;
-        lookDir = entityJsonData.lookDir;
-        hp = entityJsonData.hp;
+        entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
+        SpriteRendererCompo.sprite = EntitySO.defaultSprite;
+        return entityCompo;
     }
-    public void Initialize(EntitySO entitySO)
+    private void Spawn()
+    {
+
+    }
+    public virtual void Initialize(EntitySO entitySO)
     {
         this.EntitySO = entitySO;
-        hp = entitySO.maxHP;
-        BehaviorTreeCompo.enabled = entitySO.externalBehaviorTree != null;
-        BehaviorTreeCompo.ExternalBehavior = entitySO.externalBehaviorTree;
+        entityName = entitySO.entityName;
     }
-    public void TakeDamage(int damage)
-    {
-        throw new NotImplementedException();
-    }
-    public void SpawnEntity(World world)
-    {
-        currentWorld = world;
-        if (world != null)
-        {
-            EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
-            world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
-        }
-    }
-    public virtual void OnSpawn()
-    {
+    public virtual void Awake() { }
+    public virtual void OnEnable() { }
+    public virtual void OnDisable() { }
 
-    }
-
-    protected virtual void Reset()
+    public virtual void Update() { }
+    public virtual void FixedUpdate() { }
+    public T GetComponent<T>() where T : Component
     {
-        this.gameObject.layer = LayerMask.NameToLayer("Entity");
-        GameObject visualObj = transform.Find("Visual")?.gameObject;
-        if (visualObj == null)
-        {
-            visualObj = new GameObject("Visual");
-            SpriteRendererCompo = visualObj.AddComponent<SpriteRenderer>();
-            AnimatorCompo = visualObj.AddComponent<Animator>();
-        }
-        else
-        {
-            SpriteRendererCompo = visualObj.GetComponent<SpriteRenderer>();
-            AnimatorCompo = visualObj.GetComponent<Animator>();
-        }
-        visualObj.transform.SetParent(this.transform);
-        SpriteRendererCompo.sortingLayerName = "Entity";
+        return gameObject.GetComponent<T>();
     }
-
-    public void InitializeItem()
+    public virtual NDSData Serialize()
     {
+        NDSData entityNDSData = new NDSData();
+        entityNDSData.AddData("Position", new JsonVector2(transform.position));
+        entityNDSData.AddData("EntitySO", SOAddressSO.Instance.GetIDBySO(EntitySO));
+        entityNDSData.AddData("LookDir", new JsonVector2(lookDir));
+        return entityNDSData;
     }
+    public virtual void Deserialize(NDSData data) { }
 
-    public void ResetItem()
-    {
-    }
+    public virtual void OnPoped() { }
+
+    public virtual void OnPushed() { }
 }

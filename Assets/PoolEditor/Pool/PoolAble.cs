@@ -14,12 +14,12 @@ namespace Chipmunk.Library.PoolEditor
 
         public GameObject ObjectPref => gameObject;
 
-        public void InitializeItem()
+        public void OnPoped()
         {
             onInitializeItem?.Invoke();
         }
 
-        public void ResetItem()
+        public void OnPushed()
         {
             onResetItem?.Invoke();
         }

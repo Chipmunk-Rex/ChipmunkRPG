@@ -9,31 +9,28 @@ using UnityEngine.Tilemaps;
 public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 {
 
-    #region getter
-    public Animator Animator => AnimatorCompo;
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
-    #endregion;
-    #region Event
     public UnityEvent inventoryOpenEvent;
-    #endregion
     public bool CanChangeState => true;
     [field: SerializeField] public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
+    public Animator animator;
+    public Animator Animator => animator;
+
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
 
-    protected override void Awake()
+    public override void Awake()
     {
+        animator = GetComponent<Animator>();
         base.Awake();
-        InventoryCompo.world = currentWorld;
-
         SubscribeInput();
 
         InitializeStateMachine();
     }
-    private void Update()
+    public override void Update()
     {
         FSMStateMachine.UpdateState();
     }
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
         lookDir = (playerInputReader.mouseWorldPos - (Vector2)transform.position).normalized;
     }

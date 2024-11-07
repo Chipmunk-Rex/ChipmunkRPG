@@ -13,21 +13,21 @@ public class WandItem : WeaponItem
 
     public override IInteractableItemSO interactableItemSO => wandSO;
 
-    public override void OnBeforeInteract(Entity target)
+    public override void OnBeforeInteract(EntityCompo target)
     {
         
     }
 
-    public override void OnEndInteract(Entity target)
+    public override void OnEndInteract(EntityCompo target)
     {
     }
     float lastShootTime;
-    public override void OnInteract(Entity target)
+    public override void OnInteract(EntityCompo target)
     {
         if (Time.time - lastShootTime > wandSO.shootDelay)
         {
             lastShootTime = Time.time;
-            Shoot(target.currentWorld, target.lookDir, target.transform);
+            // Shoot(target.currentWorld, target.lookDir, target.transform);
         }
     }
     public void Shoot(World world, Vector2 dir, Transform transfrom)
@@ -36,17 +36,17 @@ public class WandItem : WeaponItem
 
         Projectile projectilePref = wandSO.bulletPref;
         Projectile projectile = null;
-        if (wandSO.bulletPref.TryGetComponent(out IPoolAble poolable))
-        {
-            projectile = PoolManager.Instance.Pop(poolable.PoolName).GetComponent<Projectile>();
-        }
-        else
-        {
-            projectile = GameObject.Instantiate(projectilePref);
-        }
-        projectile.Initialize(wandSO.projectileSO);
-        projectile.SpawnEntity(world);
-        projectile.transform.SetParent(transfrom);  
+        // if (wandSO.bulletPref.TryGetComponent(out IPoolAble poolable))
+        // {
+        //     projectile = PoolManager.Instance.Pop(poolable.PoolName).GetComponent<Projectile>();
+        // }
+        // else
+        // {
+        //     projectile = GameObject.Instantiate(projectilePref);
+        // }
+        // projectile.Initialize(wandSO.projectileSO);
+        // projectile.SpawnEntity(world);
+        // projectile.transform.SetParent(transfrom);  
 
         var main = projectile.Particle.main;
         var zR = main.startRotationZ;

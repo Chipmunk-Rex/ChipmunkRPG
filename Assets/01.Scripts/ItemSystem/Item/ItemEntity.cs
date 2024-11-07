@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library.PoolEditor;
 using UnityEngine;
-public class ItemEntity : Entity, IPoolAble
+public class ItemEntity : EntityCompo, IPoolAble
 {
     public string PoolName => "ItemEntity";
     public GameObject ObjectPref => gameObject;
@@ -23,12 +23,12 @@ public class ItemEntity : Entity, IPoolAble
         base.OnSpawn();
         spawnedTime = Time.time;
     }
-    public void InitializeItem()
+    public void OnPoped()
     {
 
     }
 
-    public void ResetItem()
+    public void OnPushed()
     {
         item = null;
         SpriteRendererCompo.sprite = null;
