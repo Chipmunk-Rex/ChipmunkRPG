@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cb14f1318f764548beb8d5b9cbc01af, type: 3}
-  m_Name: PlayerSO
+  m_Name: GreenSnake
   m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 0}
   maxHP: 0
   attackDamage: 0
-  moveSpeed: 4
+  moveSpeed: 1
   attackSpeed: 0
   shadowPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  externalBehaviorTree: {fileID: 11400000, guid: 3b3ee18d9145b1448bc0c984761d1212, type: 2}

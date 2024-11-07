@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/MapData")]
 public class WorldConfigSO : ScriptableObject
 {
+    public string worldName = "New World";
     public List<PieChartData<BiomeSO>> biomeDatas = new();
     public Vector3Int chunkSize = new Vector3Int(5, 5, 5);
     public int biomSize = 3;

@@ -79,14 +79,12 @@ namespace Chipmunk.Library.PoolEditor
         public void Push(GameObject item)
         {
             IPoolAble poolAble = item.GetComponent<IPoolAble>();
-            if (_poolContainer.ContainsKey(poolAble.PoolName))
+            if(poolAble == null)
             {
-                poolAble.ResetItem();
-                _poolContainer[poolAble.PoolName].Push(item);
+                Debug.LogError($"There is no IPoolAble in {item.name}");
                 return;
             }
-
-            Debug.LogError($"There is no pool {poolAble.PoolName}");
+            Push(poolAble);
         }
         #endregion
     }

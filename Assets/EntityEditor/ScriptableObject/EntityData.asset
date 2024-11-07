@@ -18,3 +18,4 @@ MonoBehaviour:
   attackSpeed: 0
   shadowPrefab: {fileID: 0}
   animatorController: {fileID: 9100000, guid: e24f5bc50f3b1b94abe9991d2ed4f36e, type: 2}
+  externalBehaviorTree: {fileID: 11400000, guid: 3b3ee18d9145b1448bc0c984761d1212, type: 2}

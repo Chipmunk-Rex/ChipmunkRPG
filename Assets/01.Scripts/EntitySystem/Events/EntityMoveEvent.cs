@@ -12,7 +12,7 @@ public class EntityMoveEvent : EntityEvent
 
     public override EnumEventResult ExcuteEvent()
     {
-        entity.movementCompo.Move(dir);
+        entity.RigidCompo.velocity = dir;
         return EnumEventResult.Successed;
     }
 }

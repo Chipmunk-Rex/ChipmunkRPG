@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Chipmunk.Library.PoolEditor;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -14,12 +13,12 @@ using UnityEngine.Tilemaps;
 public class World : MonoBehaviour, IBuildingMap<Building>
 {
     public EventMediatorContainer<EnumWorldEvent, WorldEvent> worldEvents = new();
-    [SerializeField] WorldConfigSO worldSO;
+    [field: SerializeField] public WorldConfigSO worldSO { get; private set; }
     [SerializeField] Transform renderTrm;
-    [SerializeField] SerializableDictionary<Vector2Int, Ground> grounds = new();
+    [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds { get; private set; } = new();
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
-    [SerializeField] int seed = int.MaxValue;
+    [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     private VoronoiNoise voronoiNoise;
@@ -40,6 +39,40 @@ public class World : MonoBehaviour, IBuildingMap<Building>
         SetRenderer();
 
         StartCoroutine(RenderMap());
+    }
+    public void Initailize(WorldJsonData worldJsonData)
+    {
+        seed = worldJsonData.seed;
+        worldSO = worldJsonData.worldConfigSO;
+
+        groundTilemap.ClearAllTiles();
+        grounds.Clear();
+        foreach (GroundJsonData groundData in worldJsonData.grounds)
+        {
+            Vector2Int worldPos = groundData.worldPos;
+            Debug.Log(worldPos);
+            Ground ground = new Ground(groundData.worldPos, groundData.groundSO, groundData.biomeSO, null);
+            grounds.Add(groundData.worldPos, ground);
+            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundData.worldPos), ground.groundSO.groundTile);
+        }
+
+        foreach (Entity entity in entities)
+        {
+            if (entity.GetComponent<Player>() == null)
+                PoolManager.Instance.Push(entity.gameObject);
+        }
+        entities.Clear();
+
+        foreach (EntityJsonData entityData in worldJsonData.entities)
+        {
+            Entity entity = PoolManager.Instance.Pop("Entity").GetComponent<Entity>();
+            entity.Initialize(entityData);
+            entity.name = entity.EntitySO.name;
+            entity.SpawnEntity(this);
+        }
+
+        buildingTilemap.ClearAllTiles();
+
     }
 
     private void SetRenderer()
@@ -72,26 +105,7 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     [ContextMenu("Save")]
     public void Save()
     {
-        // GroundData[] groundDatas = new GroundData[this.grounds.Count];
-        // Ground[] grounds = this.grounds.Values.ToArray();
-        // for (int i = 0; i < groundDatas.Length; i++)
-        // {
-        //     GroundData groundData = grounds[i];
-        //     groundDatas[i] = groundData;
-        // }
-
-        // WorldData worldData = new WorldData()
-        // {
-        //     groundDatas = groundDatas,
-        //     entities = entities,
-        //     worldConfig = worldSO
-        // };
-        // Save("World", JsonUtility.ToJson(worldData.worldConfig));
-        // Save("Map", JsonConvert.SerializeObject(worldData.groundDatas));
-        // Save("Entity", JsonConvert.SerializeObject(worldData.entities, new JsonSerializerSettings
-        // {
-        //     PreserveReferencesHandling = PreserveReferencesHandling.Objects
-        // }));
+        // WorldJsonSaver.SaveWorld(this);
     }
     public void Save(string path, string jsonData)
     {
@@ -102,16 +116,8 @@ public class World : MonoBehaviour, IBuildingMap<Building>
     [ContextMenu("Load")]
     public void Load()
     {
-        string path = $"{Application.persistentDataPath}/World/worldData.json";
-        string jsonData = System.IO.File.ReadAllText(path);
-        WorldData worldData = JsonConvert.DeserializeObject<WorldData>(jsonData, new JsonSerializerSettings
-        {
-            TypeNameHandling = TypeNameHandling.All
-        });
-
-        Load(worldData);
-
-        SetRenderer();
+        // World world = WorldJsonSaver.LoadWorld();
+        // Load(world);
     }
     public T Load<T>(string path)
     {

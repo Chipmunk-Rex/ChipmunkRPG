@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6102541672321676062, guid: 347791f9b6c63624da31e361be7cfbb3, type: 3}
+      propertyPath: poolName
+      value: ItemEntity
+      objectReference: {fileID: 0}
     - target: {fileID: 7359664159418633281, guid: 347791f9b6c63624da31e361be7cfbb3, type: 3}
       propertyPath: m_Name
       value: ItemEntity
@@ -87,12 +91,12 @@ MonoBehaviour:
     attackSpeed: 0
     attackDamage: 0
     maxHP: 0
-  <healthCompo>k__BackingField: {fileID: 0}
   <animatorCompo>k__BackingField: {fileID: 4566332744227560527}
   <spriteRendererCompo>k__BackingField: {fileID: 5441042783224579540}
   <movementCompo>k__BackingField: {fileID: 0}
   <entitySO>k__BackingField: {fileID: 0}
   lookDir: {x: 0, y: -1}
+  hp: 0
 --- !u!95 &4566332744227560527 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7493607851500583129, guid: 347791f9b6c63624da31e361be7cfbb3, type: 3}
