@@ -12,19 +12,22 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
     public bool CanChangeState => true;
-    [field: SerializeField] public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
+    public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
     public Animator animator;
     public Animator Animator => animator;
 
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
-
-    public override void Awake()
+    override public void OnEnable()
     {
+        base.OnEnable();
         animator = GetComponent<Animator>();
-        base.Awake();
         SubscribeInput();
 
         InitializeStateMachine();
+    }
+    public override void Awake()
+    {
+        base.Awake();
     }
     public override void Update()
     {

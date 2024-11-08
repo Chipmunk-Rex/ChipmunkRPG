@@ -14,7 +14,6 @@ public abstract class Entity : INDSerializeAble
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
     public EntitySO EntitySO { get; private set; }
-
     public bool IsSpawned => isSpawned;
     public bool isSpawned;
 
@@ -23,6 +22,7 @@ public abstract class Entity : INDSerializeAble
     public void SpawnEntity(EntityCompo entityCompo)
     {
         this.entityCompo = entityCompo;
+        this.EntitySO = entityCompo.EntitySO;
         // entityCompo.entity = this;
         isSpawned = true;
         entityCompo.OnSpawn();
@@ -36,11 +36,6 @@ public abstract class Entity : INDSerializeAble
     private void Spawn()
     {
 
-    }
-    public virtual void Initialize(EntitySO entitySO)
-    {
-        this.EntitySO = entitySO;
-        entityName = entitySO.entityName;
     }
     public virtual void Awake() { }
     public virtual void OnEnable() { }

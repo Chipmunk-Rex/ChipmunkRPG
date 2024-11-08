@@ -11,15 +11,13 @@ using UnityEngine;
 public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
 {
     public World currentWorld;
-    public EntityStats stats;
     #region CompoRegion
+    [field: SerializeField] public EntitySO EntitySO { get; protected set; }
     [field: SerializeField] public Animator AnimatorCompo { get; protected set; }
     [field: SerializeField] public SpriteRenderer SpriteRendererCompo { get; protected set; }
     [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
-    [field: SerializeField] public BehaviorTree BehaviorTreeCompo { get; protected set; }
     [field: SerializeField] public Inventory InventoryCompo { get; protected set; }
     #endregion
-    [field: SerializeField] public EntitySO EntitySO { get; protected set; }
     public Entity entity { get; protected set; }
 
     public string PoolName => "Entity";

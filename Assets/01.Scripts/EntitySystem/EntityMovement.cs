@@ -8,6 +8,6 @@ public class EntityMovement : BaseEntityMovement
     public override void Move(Vector2 moveDir)
     {
         this.moveDir = moveDir;
-        rigidBodyCompo.velocity = moveDir * entity.stats.moveSpeed;
+        rigidBodyCompo.velocity = moveDir * entity.EntitySO.speed;
     }
 }
