@@ -16,7 +16,7 @@ public class ContextUI : BaseDocument
 
         if (player == null)
         {
-            player = GameObject.FindAnyObjectByType<Player>();
+            // player = GameObject.FindAnyObjectByType<Player>();
         }
         itemContainerView.parent.style.display = DisplayStyle.None;
     }
@@ -24,8 +24,9 @@ public class ContextUI : BaseDocument
     {
         isShowingInventory = !isShowingInventory;
         itemContainerView.parent.style.display = isShowingInventory ? DisplayStyle.Flex : DisplayStyle.None;
-        itemContainerView.DrawView(player.InventoryCompo);
+        // itemContainerView.DrawView(player.InventoryCompo);
 
-        hotbarView.InitializeView(player.InventoryCompo.Hotbar);
+        // hotbarView.InitializeView(player.InventoryCompo.Hotbar);
+        
     }
 }

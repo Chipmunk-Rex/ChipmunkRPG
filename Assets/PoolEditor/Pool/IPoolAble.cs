@@ -8,7 +8,13 @@ namespace Chipmunk.Library.PoolEditor
     {
         public string PoolName { get; }
         public GameObject ObjectPref { get; }
-        public void InitializeItem();
-        public void ResetItem();
+        /// <summary>
+        /// Called when pop from pool
+        /// </summary>
+        public void OnPoped();
+        /// <summary>
+        /// Called when go to pool
+        /// </summary>
+        public void OnPushed();
     }
 }

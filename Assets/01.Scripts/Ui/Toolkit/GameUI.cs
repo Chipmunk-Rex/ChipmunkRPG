@@ -11,6 +11,6 @@ public class GameUI : BaseDocument
     void OnEnable()
     {
         hotbarView = document.rootVisualElement.Q<HotbarView>();
-        hotbarView.InitializeView(player.InventoryCompo.Hotbar);
+        // hotbarView.InitializeView(player.InventoryCompo.Hotbar);
     }
 }

@@ -17,7 +17,7 @@ public class GroundData
     }
     public static implicit operator GroundData(Ground v)
     {
-        GroundData groundData = new GroundData(v.WorldPos, v.groundSO, v.biome, v.building);
+        GroundData groundData = new GroundData(v.WorldPos, v.groundSO, v.biomeSO, v.building);
         return groundData;
     }
     public static implicit operator Ground(GroundData v)

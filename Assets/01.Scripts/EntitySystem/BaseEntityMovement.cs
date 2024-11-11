@@ -7,14 +7,14 @@ using UnityEngine;
 public abstract class BaseEntityMovement : MonoBehaviour
 {
     protected Vector2 moveDir;
-    protected Entity entity;
+    protected EntityCompo entity;
     public Rigidbody2D rigidBodyCompo { get; private set; }
     protected virtual void Awake()
     {
         rigidBodyCompo = GetComponent<Rigidbody2D>();
         rigidBodyCompo.gravityScale = 0;
 
-        entity = GetComponent<Entity>();
+        entity = GetComponent<EntityCompo>();
     }
     public abstract void Move(Vector2 moveDir);
 

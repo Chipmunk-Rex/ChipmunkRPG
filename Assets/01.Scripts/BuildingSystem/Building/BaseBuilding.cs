@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building
+public class Building : INDSerializeAble
 {
     public BuildingSO buildingSO { get; private set; }
     // public World currentWorld;
@@ -11,5 +11,15 @@ public class Building
     public Building(BuildingSO buildingSO)
     {
         this.buildingSO = buildingSO;
+    }
+
+    public NDSData Serialize()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Deserialize(NDSData data)
+    {
+        throw new NotImplementedException();
     }
 }

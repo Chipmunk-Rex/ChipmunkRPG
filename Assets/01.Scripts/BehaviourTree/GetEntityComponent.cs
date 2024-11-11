@@ -2,7 +2,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class GetEntityComponent : GetComponent<Entity>
+public class GetEntityComponent : GetComponent<EntityCompo>
 {
 	public override void OnStart()
 	{

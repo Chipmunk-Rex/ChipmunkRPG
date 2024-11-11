@@ -7,14 +7,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SOAddressSO", menuName = "ScriptableObjects/SOAddressSO", order = 1)]
 public class SOAddressSO : Chipmunk.Library.ScriptableSingleton<SOAddressSO>
 {
+#if UNITY_EDITOR
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void EditorInitialize()
+    {
+        Instance.SetAssetAddress();
+    }
+#endif
     public SerializableDictionary<uint, ScriptableObject> assetPaths;
     public ScriptableObject GetSOByID(uint id)
     {
         return assetPaths[id];
     }
+    public T GetSOByID<T>(uint id) where T : ScriptableObject
+    {
+        return assetPaths[id] as T;
+    }
     public uint GetIDBySO(ScriptableObject so)
     {
-        if(so == null)
+        if (so == null)
         {
             throw new System.Exception("This ScriptableObject is Null");
         }
@@ -27,13 +38,13 @@ public class SOAddressSO : Chipmunk.Library.ScriptableSingleton<SOAddressSO>
         }
         throw new System.Exception("This ScriptableObject is NotResistered");
     }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-#if UNITY_EDITOR
-        SetAssetAddress();
-#endif
-    }
+//     protected override void OnEnable()
+//     {
+//         base.OnEnable();
+// #if UNITY_EDITOR
+//         SetAssetAddress();
+// #endif
+//     }
 #if UNITY_EDITOR
     [ContextMenu("SetAssetAddress")]
     public void SetAssetAddress()
@@ -44,7 +55,6 @@ public class SOAddressSO : Chipmunk.Library.ScriptableSingleton<SOAddressSO>
         {
             ScriptableObject targetSO = scriptableObjects[(int)i] as ScriptableObject;
             assetPaths.Add(i, targetSO);
-            Debug.Log(i + targetSO.name);
         }
 
         EditorUtility.SetDirty(this);

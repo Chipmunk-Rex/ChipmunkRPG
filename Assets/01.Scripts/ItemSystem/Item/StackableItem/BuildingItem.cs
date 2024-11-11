@@ -12,20 +12,19 @@ public class BuildingItem : StackableItem, IInteractableItem
     BuildingItemSO buildingItemSO;
     public IInteractableItemSO interactableItemSO => buildingItemSO;
 
-    public void OnBeforeInteract(Entity target)
+    public void OnBeforeInteract(EntityCompo target)
     {
     }
 
-    public void OnEndInteract(Entity target)
+    public void OnEndInteract(EntityCompo target)
     {
-        Vector2 position = (Vector2)target.transform.position + target.lookDir;
-        Debug.Log(position);
+        // Vector2 position = (Vector2)target.transform.position + target.lookDir;
         Building building = new Building(buildingItemSO.buildingSO);
-        WorldEvent @event = new CreateBuildingEvent(target.currentWorld, building, Vector2Int.RoundToInt(position));
-        target.currentWorld.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
+        // WorldEvent @event = new CreateBuildingEvent(target.currentWorld, building, Vector2Int.RoundToInt(position));
+        // target.currentWorld.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
 
-    public void OnInteract(Entity target)
+    public void OnInteract(EntityCompo target)
     {
     }
 }

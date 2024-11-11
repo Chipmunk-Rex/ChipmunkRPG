@@ -6,17 +6,16 @@ public abstract class BaseProjectile : Entity
 {
     [SerializeField] protected float lifeTime = 8f;
     private float spawnedTime;
-    public abstract void Shoot(Vector2 dir);
-    public override void OnSpawn()
+    public virtual void Shoot(Vector2 dir)
     {
-        base.OnSpawn();
         spawnedTime = Time.time;
     }
-    protected virtual void FixedUpdate()
+    protected abstract void OnShoot(Vector2 dir);
+    public override void FixedUpdate()
     {
         if ((Time.time - spawnedTime) > lifeTime)
         {
-            Destroy(this.gameObject); // 나중에 풀 가능한 아이템이면 다시 넣는 코드 작성필요s
+            GameObject.Destroy(this.gameObject); // 나중에 풀링 가능한 아이템이면 다시 넣는 코드 작성필요s
         }
     }
 }
