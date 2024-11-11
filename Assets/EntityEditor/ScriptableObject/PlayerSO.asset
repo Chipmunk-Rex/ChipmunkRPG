@@ -18,7 +18,7 @@ MonoBehaviour:
   animatorController: {fileID: 0}
   maxHealth: 0
   damage: 0
-  speed: 5
+  speed: 100
   attackRange: 0
   attackRate: 0
   attackDuration: 0

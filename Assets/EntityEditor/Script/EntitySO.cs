@@ -21,5 +21,9 @@ public abstract class EntitySO : ScriptableObject
     public float attackCooldown = 0.5f;
     public float attackDelay = 0.5f;
     public float attackKnockback = 1;
-    public abstract Entity CreateEntity();
+    protected abstract Entity CreateEntityInstance();
+    public virtual Entity CreateEntity()
+    {
+        return CreateEntityInstance().Initialize(this);
+    }
 }

@@ -5,7 +5,16 @@ using UnityEngine;
 public class Inventory : ItemContainer
 {
     #region getter
-    public InventoryHotbar Hotbar => hotbar;
     #endregion
-    [SerializeField] private InventoryHotbar hotbar;
+    public Entity Owner { get; private set; }
+    private InventoryHotbar hotbar;
+    public void Initialize(Item[] items, Vector2Int containerSize, Entity owner, int hotbarSize)
+    {
+        base.Initialize(items, containerSize);
+        this.Owner = owner;
+    }
+    public sealed override void Initialize(Item[] items, Vector2Int containerSize)
+    {
+        base.Initialize(items, containerSize);
+    }
 }

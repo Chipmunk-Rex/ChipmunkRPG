@@ -6,11 +6,15 @@ using UnityEngine.UIElements;
 
 public class GameUI : BaseDocument
 {
-    [SerializeField] Player player;
     HotbarView hotbarView;
+    
+    [SerializeField] EntityCompo playerCompo;
+    private Player player;
     void OnEnable()
     {
+        player = playerCompo.Entity as Player;
         hotbarView = document.rootVisualElement.Q<HotbarView>();
-        // hotbarView.InitializeView(player.InventoryCompo.Hotbar);
+
+        hotbarView.InitializeView(new PlayerInventoryHotbar(player, player.Inventory, 5));
     }
 }

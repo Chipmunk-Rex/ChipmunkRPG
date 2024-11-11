@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class WorldEntityEvent : WorldEvent
 {
-    protected EntityCompo entity;
-    public WorldEntityEvent(World world, EntityCompo entity) : base(world)
+    protected Entity entity;
+    public WorldEntityEvent(World world, Entity entity) : base(world)
     {
         this.entity = entity;
     }

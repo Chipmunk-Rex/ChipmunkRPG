@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] public ItemContainer target;
+    [SerializeField] public Inventory target;
     [SerializeField] public float collectRange;
     [SerializeField] private float magneticPower = 2;
     [SerializeField] private ContactFilter2D contactFilter2D;
@@ -12,7 +12,7 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private Collider2D[] collects;
     private void Reset()
     {
-        target = transform.parent.GetComponent<ItemContainer>();
+        target = transform.parent.GetComponent<Inventory>();
 
     }
     void Awake()
@@ -24,9 +24,10 @@ public class ItemCollector : MonoBehaviour
         int count = Physics2D.OverlapCircle(transform.position, collectRange, contactFilter2D, collects);
         for(int i = 0; i < count; i++)
         {
-            if (collects[i].TryGetComponent(out ItemEntity item))
+            if (collects[i].TryGetComponent(out EntityCompo entityCompo))
             {
-                item.Collect(target, magneticPower);
+                if(entityCompo.Entity is ItemEntity item)
+                    item.Collect(target, magneticPower);
             }
         }
     }

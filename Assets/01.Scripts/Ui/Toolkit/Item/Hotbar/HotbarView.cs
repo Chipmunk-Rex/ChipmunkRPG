@@ -10,12 +10,12 @@ public class HotbarView : VisualElement
     public new class UxmlFactory : UxmlFactory<HotbarView, UxmlTraits> { }
     private ItemSlotView[] itemSlots;
     InventoryHotbar hotbar;
-    ItemContainer itemContainer => hotbar.ItemContainer;
+    ItemContainer itemContainer => hotbar.Inventory;
 
     public void InitializeView(InventoryHotbar hotbar)
     {
         this.hotbar = hotbar;
-        itemContainer.onSlotDataChanged.AddListener(OnSlotDataChanged);
+        itemContainer.onSlotDataChanged += OnSlotDataChanged;
         hotbar.onSelectedIndexChange += OnSelectedSlotChanged;
         hotbar.OnHotbarSizeChanged += DrawView;
         DrawView(hotbar);

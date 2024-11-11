@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class PlayerInventoryHotbar : InventoryHotbar
 {
-    protected override void Awake()
+    public PlayerInventoryHotbar(Entity owner, Inventory inventory, int hotbarSize) : base(owner, inventory, hotbarSize)
     {
-        base.Awake();
         PlayerInputReader.Instance.onItemUse += UseItem;
     }
 
     private void UseItem(bool value)
     {
+        Debug.Log(this.GetSelectedItem());
         if (value)
-            this.targetUseItem = this.GetSelectedItem() as IInteractableItem;
+            UseItem(this.GetSelectedItem() as IInteractableItem);
         else
-            this.targetUseItem = null;
+            UseItem(null);
     }
 }

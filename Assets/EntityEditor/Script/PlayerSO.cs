@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerSO", menuName = "ScriptableObjects/Entity/PlayerSO", order = 1)]
 public class PlayerSO : EntitySO
 {
-    public override Entity CreateEntity()
+    protected override Entity CreateEntityInstance()
     {
         return new Player();
     }

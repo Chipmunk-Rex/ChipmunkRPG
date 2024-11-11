@@ -5,22 +5,20 @@ using Chipmunk.Library.PoolEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ItemContainer : MonoBehaviour, INDSerializeAble
+public class ItemContainer : INDSerializeAble
 {
     #region Properties
     public int SlotLength { get => containerSize.x * containerSize.y; }
     public Vector2Int ContainerSize { get => containerSize; }
     #endregion
-    public UnityEvent<int> onSlotDataChanged;
-    [SerializeField] public World world;
-    [SerializeField] ItemContainerType containerType = ItemContainerType.Default;
+    public event Action<int> onSlotDataChanged;
     [SerializeField] Vector2Int containerSize = new Vector2Int(8, 2);
     public Item[] Items { get; private set; }
     private void Awake()
     {
         Items = new Item[SlotLength];
     }
-    public void Initialize(Item[] items, Vector2Int containerSize)
+    public virtual void Initialize(Item[] items, Vector2Int containerSize)
     {
         this.Items = items;
         this.containerSize = containerSize;
@@ -65,7 +63,7 @@ public class ItemContainer : MonoBehaviour, INDSerializeAble
             return null;
         }
     }
-    public void DropItem(int slotNum, World world)
+    public void DropItem(int slotNum, World world, Vector2 position)
     {
         Item item = GetItem(slotNum);
         if (item == null)
@@ -75,7 +73,7 @@ public class ItemContainer : MonoBehaviour, INDSerializeAble
         ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
         itemEntity.Initialize(item);
 
-        EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, transform.position);
+        EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
     }
 

@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6645977168070427980}
   - component: {fileID: 8802039814204125128}
-  - component: {fileID: 1427045406025766028}
   - component: {fileID: 5942061207817874289}
   m_Layer: 0
   m_Name: FlamethrowerProjectile
@@ -161,33 +160,6 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1427045406025766028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5568768215149914958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589d643f21947184d9da82a3493fb8c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWorld: {fileID: 0}
-  stats:
-    moveSpeed: 1
-    attackSpeed: 0
-    attackDamage: 0
-    maxHP: 0
-  <healthCompo>k__BackingField: {fileID: 0}
-  <animatorCompo>k__BackingField: {fileID: 7682833750144204510}
-  <spriteRendererCompo>k__BackingField: {fileID: 7899955691936018531}
-  <movementCompo>k__BackingField: {fileID: 0}
-  <entitySO>k__BackingField: {fileID: 11400000, guid: 7d54be0df461bc84298b20bf14e11ff8, type: 2}
-  lookDir: {x: 0, y: -1}
-  lifeTime: 0.8
-  rigidCompo: {fileID: 5942061207817874289}
-  particleSystem: {fileID: 982585869891303853}
 --- !u!50 &5942061207817874289
 Rigidbody2D:
   serializedVersion: 4

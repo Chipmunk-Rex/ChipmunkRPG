@@ -16,7 +16,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public WorldConfigSO worldSO { get; private set; }
     [SerializeField] Transform renderTrm;
     [field: SerializeField] public SerializableDictionary<Vector2Int, Ground> grounds { get; private set; } = new();
-    [field: SerializeField] public List<EntityCompo> entities { get; private set; } = new();
+    [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
@@ -239,9 +239,9 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         }
 
         List<NDSData> entitiesNDSData = new List<NDSData>();
-        foreach (var entityCompo in entities)
+        foreach (Entity entity in entities)
         {
-            entitiesNDSData.Add(entityCompo.entity.Serialize());
+            entitiesNDSData.Add(entity.Serialize());
         }
 
         worldNdsData.AddData("seed", seed);

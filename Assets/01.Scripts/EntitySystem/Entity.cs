@@ -7,25 +7,44 @@ using UnityEngine;
 public abstract class Entity : INDSerializeAble
 {
     public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> EntityEvents { get; private set; } = new();
-    protected EntityCompo entityCompo { get; private set; }
-    protected Transform transform => entityCompo.transform;
+    public EntityCompo entityCompo { get; set; }
+    public Transform transform => entityCompo.transform;
     public GameObject gameObject => entityCompo.gameObject;
     public SpriteRenderer SpriteRendererCompo => entityCompo.SpriteRendererCompo;
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
     public EntitySO EntitySO { get; private set; }
-    public bool IsSpawned => isSpawned;
-    public bool isSpawned;
+    public bool IsSpawned => currentWorld != null;
+    public World currentWorld;
 
+    public Action onSpawn;
     public string entityName;
     public Vector2 lookDir = Vector2.down;
-    public void SpawnEntity(EntityCompo entityCompo)
+    public Entity Initialize<T>(T entitySO) where T : EntitySO
+    {
+        EntitySO = entitySO;
+        entityName = entitySO.entityName;
+        return this;
+    }
+    public void SpawnEntity(World world, EntityCompo entityCompo)
     {
         this.entityCompo = entityCompo;
-        this.EntitySO = entityCompo.EntitySO;
-        // entityCompo.entity = this;
-        isSpawned = true;
-        entityCompo.OnSpawn();
+        currentWorld = world;
+        if (world != null)
+        {
+            EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
+            world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
+        }
+    }
+    public void SpawnEntity(World world)
+    {
+        Debug.Log(world);
+        currentWorld = world;
+        if (world != null)
+        {
+            EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
+            world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
+        }
     }
     public EntityCompo SpawnEntity()
     {
@@ -33,10 +52,7 @@ public abstract class Entity : INDSerializeAble
         SpriteRendererCompo.sprite = EntitySO.defaultSprite;
         return entityCompo;
     }
-    private void Spawn()
-    {
-
-    }
+    public virtual void OnSpawn() { }
     public virtual void Awake() { }
     public virtual void OnEnable() { }
     public virtual void OnDisable() { }
@@ -55,9 +71,17 @@ public abstract class Entity : INDSerializeAble
         entityNDSData.AddData("LookDir", new JsonVector2(lookDir));
         return entityNDSData;
     }
+
+    public void StartCoroutine(IEnumerator enumerator)
+    {
+        entityCompo.StartCoroutine(enumerator);
+    }
+    public void StopCoroutine(IEnumerator enumerator)
+    {
+        entityCompo.StopCoroutine(enumerator);
+    }
     public virtual void Deserialize(NDSData data) { }
 
-    public virtual void OnPoped() { }
-
     public virtual void OnPushed() { }
+
 }

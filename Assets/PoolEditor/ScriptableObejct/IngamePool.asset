@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7299206519741639968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9927de01cd6db2f41bd3a03281ce4b2e, type: 3}
-  m_Name: PoolItem
-  m_EditorClassIdentifier: 
-  poolName: ItemEntity
-  prefab: {fileID: 4504369577357764823, guid: 1ff099fc123bb8047ab2c85ddad58eea, type: 3}
-  count: 5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: InGamePool
   itemList:
-  - {fileID: -7299206519741639968}
   - {fileID: 5236258203511344743}
 --- !u!114 &5236258203511344743
 MonoBehaviour:
@@ -45,4 +29,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Entity
   prefab: {fileID: 7359664159418633281, guid: 347791f9b6c63624da31e361be7cfbb3, type: 3}
-  count: 1
+  count: 50

@@ -18,7 +18,7 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
     [field: SerializeField] public Inventory InventoryCompo { get; protected set; }
     #endregion
-    public Entity entity { get; protected set; }
+    public Entity Entity { get; set; }
 
     public string PoolName => "Entity";
 
@@ -28,33 +28,24 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     {
         throw new NotImplementedException();
     }
-    public void SpawnEntity(World world)
-    {
-        currentWorld = world;
-        if (world != null)
-        {
-            EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
-            world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
-        }
-    }
     protected virtual void OnEnable()
     {
-        if(EntitySO != null)
+        if (EntitySO != null)
         {
-            entity = EntitySO.CreateEntity();
-            entity.SpawnEntity(this);
+            Entity = EntitySO.CreateEntity();
+            Entity.SpawnEntity(ChipmunkLibrary.GetComponentWithParent<World>(transform), this);
         }
-        entity?.OnEnable();
+        Entity?.OnEnable();
     }
-    protected virtual void OnDisable() => entity?.OnDisable();
-    protected virtual void Awake() => entity?.Awake();
+    protected virtual void OnDisable() => Entity?.OnDisable();
+    protected virtual void Awake() => Entity?.Awake();
 
-    protected virtual void Update() => entity?.Update();
-    protected virtual void FixedUpdate() => entity?.FixedUpdate();
-    public void OnPoped() => entity?.OnPoped();
-    public void OnPushed() => entity?.OnPushed();
-    public virtual void OnSpawn()
+    protected virtual void Update() => Entity?.Update();
+    protected virtual void FixedUpdate() => Entity?.FixedUpdate();
+    public void OnPoped() => Entity?.OnPoped();
+    public void OnPushed()
     {
-
+        Entity?.OnPushed();
+        Entity = null;
     }
 }

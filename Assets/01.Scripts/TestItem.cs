@@ -5,13 +5,13 @@ using UnityEngine;
 public class TestItem : MonoBehaviour
 {
     [SerializeField] private BaseItemSO itemSO;
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private EntityCompo playerCompo;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Item item = itemSO.CreateItem();
-            inventory.AddItem(item);
+            (playerCompo.Entity as Player).Inventory.AddItem(item);
         }
     }
 }

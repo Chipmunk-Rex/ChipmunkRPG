@@ -106,58 +106,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &4193015082176659689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3697156306750910311}
-  - component: {fileID: 2462853449122641836}
-  m_Layer: 7
-  m_Name: Inventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3697156306750910311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193015082176659689}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3552179100780494461}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2462853449122641836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193015082176659689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c78b42483f6fb184f9d08adc782cbf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onSlotDataChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  world: {fileID: 0}
-  containerType: 0
-  containerSize: {x: 8, y: 2}
-  itemSO: {fileID: 0}
-  hotbar: {fileID: 0}
 --- !u!1 &7359664159418633281
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +121,6 @@ GameObject:
   - component: {fileID: 3541427512729573091}
   - component: {fileID: 8558564361637170945}
   - component: {fileID: 6102541672321676062}
-  - component: {fileID: 5483591032069590741}
   m_Layer: 7
   m_Name: Entity
   m_TagString: Untagged
@@ -195,7 +142,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2537574306824724099}
-  - {fileID: 3697156306750910311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6081433587601149760
@@ -211,18 +157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWorld: {fileID: 0}
-  stats:
-    moveSpeed: 1
-    attackSpeed: 0
-    attackDamage: 0
-    maxHP: 0
+  <EntitySO>k__BackingField: {fileID: 0}
   <AnimatorCompo>k__BackingField: {fileID: 7493607851500583129}
   <SpriteRendererCompo>k__BackingField: {fileID: 1378678016596762946}
   <RigidCompo>k__BackingField: {fileID: 5011779984776827811}
-  <BehaviorTreeCompo>k__BackingField: {fileID: 5483591032069590741}
-  <EntitySO>k__BackingField: {fileID: 0}
-  lookDir: {x: 0, y: -1}
-  hp: 0
 --- !u!50 &5011779984776827811
 Rigidbody2D:
   serializedVersion: 4
@@ -311,7 +249,7 @@ MonoBehaviour:
   - {x: 0.3499999, y: -0.099999905, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46252
+  m_InstanceId: 42802
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.3499999, y: 0.099999905, z: 0}
@@ -386,43 +324,3 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   poolName: Entity
---- !u!114 &5483591032069590741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7359664159418633281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 0
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 0}
-  mBehaviorSource:
-    behaviorName: Behavior
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects: []
-        byteData: 
-        byteDataArray: 
-      Version: 1.7.10
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1

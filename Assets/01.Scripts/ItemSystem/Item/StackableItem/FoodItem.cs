@@ -11,17 +11,17 @@ public class FoodItem : StackableItem, IInteractableItem
     private FoodSO foodSO;
     public IInteractableItemSO interactableItemSO => foodSO;
 
-    public void OnInteract(EntityCompo target)
+    public void OnInteract(Entity target)
     {
         
     }
 
-    public void OnBeforeInteract(EntityCompo target)
+    public void OnBeforeInteract(Entity target)
     {
         throw new System.NotImplementedException();
     }
 
-    public void OnEndInteract(EntityCompo target)
+    public void OnEndInteract(Entity target)
     {
         throw new System.NotImplementedException();
     }

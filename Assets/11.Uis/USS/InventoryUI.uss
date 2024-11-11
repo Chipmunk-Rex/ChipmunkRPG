@@ -1,5 +1,5 @@
 .rowContainer {
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
 }
@@ -7,28 +7,21 @@
 ItemContainerView {
     width: 90%;
     height: 70%;
-    padding-top: 0;
-    padding-right: 10%;
-    padding-bottom: 0;
-    padding-left: 10%;
-    align-items: center;
     flex-direction: row;
-    justify-content: flex-start;
-    flex-shrink: 399;
-    margin-top: 170px;
+    margin-top: 110px;
     margin-right: 140px;
     margin-bottom: 100px;
     margin-left: 140px;
 }
 
 ItemSlotItemView {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
 }
 
 ItemSlotView {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-1219906068&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_7");
     padding-top: 20px;
     padding-right: 20px;
@@ -36,6 +29,10 @@ ItemSlotView {
     padding-left: 20px;
     align-items: center;
     justify-content: center;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 #ItemVisual {
@@ -59,4 +56,13 @@ ItemSlotView {
     height: 80%;
     margin-top: 5%;
     align-items: center;
+}
+
+HotbarView > ItemSlotView {
+    background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-1184789779&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_9");
+    width: 140px;
+    height: 140px;
+    scale: 0.8 0.8;
+    transition-property: scale;
+    transition-duration: 250ms;
 }

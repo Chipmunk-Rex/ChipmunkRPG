@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityDestoryEvent : WorldEntityEvent
 {
-    public EntityDestoryEvent(World world, EntityCompo entity) : base(world, entity)
+    public EntityDestoryEvent(World world, Entity entity) : base(world, entity)
     {
     }
 

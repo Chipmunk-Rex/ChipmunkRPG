@@ -8,13 +8,16 @@ using UnityEngine.Tilemaps;
 
 public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 {
+    public static Action<Player> OnPlayerCreated;
 
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
-    public bool CanChangeState => true;
     public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
+    public bool CanChangeState => true;
     public Animator animator;
     public Animator Animator => animator;
+
+    public Inventory Inventory { get; private set; } = new();
 
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
     override public void OnEnable()
@@ -24,6 +27,8 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
         SubscribeInput();
 
         InitializeStateMachine();
+        Inventory.Initialize(new Item[20], new Vector2Int(7, 3), this,5);
+        OnPlayerCreated?.Invoke(this);
     }
     public override void Awake()
     {

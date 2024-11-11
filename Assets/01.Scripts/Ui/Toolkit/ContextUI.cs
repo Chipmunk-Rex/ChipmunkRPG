@@ -7,26 +7,27 @@ public class ContextUI : BaseDocument
 {
     ItemContainerView itemContainerView;
     HotbarView hotbarView;
-    Player player;
+    [SerializeField] EntityCompo playerCompo;
+    private Player player;
     public bool isShowingInventory { get; private set; }
     private void OnEnable()
     {
+        player = playerCompo.Entity as Player;
+
         itemContainerView = document.rootVisualElement.Q<ItemContainerView>();
         hotbarView = document.rootVisualElement.Q<HotbarView>();
-
-        if (player == null)
-        {
-            // player = GameObject.FindAnyObjectByType<Player>();
-        }
         itemContainerView.parent.style.display = DisplayStyle.None;
+
+        PlayerInputReader.Instance.onInventory += OpenInventory;
     }
+    [ContextMenu("Open Inventory")]
     public void OpenInventory()
     {
         isShowingInventory = !isShowingInventory;
         itemContainerView.parent.style.display = isShowingInventory ? DisplayStyle.Flex : DisplayStyle.None;
-        // itemContainerView.DrawView(player.InventoryCompo);
+        itemContainerView.DrawView(player.Inventory);
 
-        // hotbarView.InitializeView(player.InventoryCompo.Hotbar);
+        hotbarView.InitializeView(new InventoryHotbar(player, player.Inventory, 5));
         
     }
 }

@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class InventoryHotbar : MonoBehaviour
+public class InventoryHotbar
 {
     #region Getter
-    public ItemContainer ItemContainer => itemContainer;
+    public ItemContainer Inventory => inventory;
     public event Action<InventoryHotbar> OnHotbarSizeChanged;
     public event Action<int> onSelectedIndexChange;
     #endregion
 
-    [SerializeField] protected ItemContainer itemContainer;
-    [SerializeField] protected EntityCompo owner;
+    protected Inventory inventory;
+    protected Entity Owner { get; private set; }
     private protected int selectedIndex = 0;
     public int SelectedIndex
     {
@@ -38,48 +39,54 @@ public class InventoryHotbar : MonoBehaviour
         }
     }
     private int hotbarSize = 5;
-
-    protected virtual void Awake()
+    public InventoryHotbar(Entity owner, Inventory inventory, int hotbarSize)
     {
+        this.Owner = owner;
+        this.inventory = inventory;
+        this.hotbarSize = hotbarSize;
+
         OnHotbarSizeChanged?.Invoke(this);
         PlayerInputReader.Instance.onWheel += ChangeSelectedIndex;
     }
-    void Reset()
+    private IEnumerator UseItemCoroutine()
     {
-        itemContainer = transform.parent.GetComponent<Inventory>();
-    }
-    void Update()
-    {
-        if (targetUseItem != null)
+        while (targetUseItem != null)
         {
             if ((Time.time - lastInteractedTime) > targetUseItem.interactableItemSO.InteractCool)
-                UseItem();
+                ItemInteract();
+            yield return null;
         }
-        else
+        if (beforeFrameItem != null)
         {
-            if (beforeFrameItem != null)
-            {
-                beforeFrameItem.OnEndInteract(owner);
-                lastInteractedTime = Time.time;
-                beforeFrameItem = null;
-            }
+            beforeFrameItem.OnEndInteract(Owner);
+            lastInteractedTime = Time.time;
+            beforeFrameItem = null;
         }
     }
+    public void UseItem(IInteractableItem item)
+    {
+        Owner.StopCoroutine(UseItemCoroutine());
+        targetUseItem = item;
+        if (targetUseItem == null) return;
+        Debug.Log("UseItem");
+        Owner.StartCoroutine(UseItemCoroutine());
+    }
 
-    private void UseItem()
+
+    private void ItemInteract()
     {
         if (targetUseItem != beforeFrameItem)
         {
-            targetUseItem.OnBeforeInteract(owner);
+            targetUseItem.OnBeforeInteract(Owner);
             interactStartedTime = Time.time;
             beforeFrameItem = targetUseItem;
         }
 
         if ((Time.time - interactStartedTime) < targetUseItem.interactableItemSO.InteractDuration)
-            targetUseItem.OnInteract(owner);
+            targetUseItem.OnInteract(Owner);
         else
         {
-            targetUseItem.OnEndInteract(owner);
+            targetUseItem.OnEndInteract(Owner);
             lastInteractedTime = Time.time;
             beforeFrameItem = null;
         }
@@ -92,6 +99,6 @@ public class InventoryHotbar : MonoBehaviour
     }
     public Item GetSelectedItem()
     {
-        return itemContainer.GetItem(SelectedIndex);
+        return inventory.GetItem(SelectedIndex);
     }
 }

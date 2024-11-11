@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library.PoolEditor;
 using UnityEngine;
-public class ItemEntity : EntityCompo, IPoolAble
+public class ItemEntity : Entity
 {
     public string PoolName => "ItemEntity";
     public GameObject ObjectPref => gameObject;
@@ -23,10 +23,6 @@ public class ItemEntity : EntityCompo, IPoolAble
         base.OnSpawn();
         spawnedTime = Time.time;
     }
-    public void OnPoped()
-    {
-
-    }
 
     public void OnPushed()
     {
@@ -34,7 +30,7 @@ public class ItemEntity : EntityCompo, IPoolAble
         SpriteRendererCompo.sprite = null;
     }
 
-    internal void Collect(ItemContainer target, float magneticPower)
+    internal void Collect(Inventory target, float magneticPower)
     {
         if (Time.time - spawnedTime < notCollectableTime)
         {
@@ -43,18 +39,18 @@ public class ItemEntity : EntityCompo, IPoolAble
         StartCoroutine(CollectRoutine(target, magneticPower));
     }
 
-    private IEnumerator CollectRoutine(ItemContainer target, float magneticPower)
+    private IEnumerator CollectRoutine(Inventory target, float magneticPower)
     {
-        float distance = Vector2.Distance(transform.position, target.transform.position);
+        float distance = Vector2.Distance(transform.position, target.Owner.transform.position);
         float duration = distance / magneticPower;
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.position = Vector2.Lerp(transform.position, target.transform.position, elapsedTime / duration);
+            transform.position = Vector2.Lerp(transform.position, target.Owner.transform.position, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         target.AddItem(item);
-        PoolManager.Instance.Push(this);
+        PoolManager.Instance.Push(entityCompo);
     }
 }
