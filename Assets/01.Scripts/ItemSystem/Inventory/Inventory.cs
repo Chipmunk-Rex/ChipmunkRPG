@@ -7,7 +7,6 @@ public class Inventory : ItemContainer
     #region getter
     #endregion
     public Entity Owner { get; private set; }
-    private InventoryHotbar hotbar;
     public void Initialize(Item[] items, Vector2Int containerSize, Entity owner, int hotbarSize)
     {
         base.Initialize(items, containerSize);

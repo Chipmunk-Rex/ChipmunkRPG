@@ -8,7 +8,6 @@ using UnityEngine.Tilemaps;
 
 public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 {
-    public static Action<Player> OnPlayerCreated;
 
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
@@ -18,17 +17,26 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     public Animator Animator => animator;
 
     public Inventory Inventory { get; private set; } = new();
-
+    public PlayerInventoryHotbar InventoryHotbar { get; private set; }
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
     override public void OnEnable()
     {
         base.OnEnable();
-        animator = GetComponent<Animator>();
-        SubscribeInput();
 
+    }
+    public override Entity Initialize<T>(T entitySO)
+    {
+        base.Initialize(entitySO);
+        SubscribeInput();
         InitializeStateMachine();
-        Inventory.Initialize(new Item[20], new Vector2Int(7, 3), this,5);
-        OnPlayerCreated?.Invoke(this);
+        Inventory.Initialize(new Item[20], new Vector2Int(7, 3), this, 5);
+        InventoryHotbar = new PlayerInventoryHotbar(this, Inventory, 5);
+        return this;
+    }
+    public override void OnSpawn()
+    {
+        base.OnSpawn();
+        animator = GetComponent<Animator>();
     }
     public override void Awake()
     {

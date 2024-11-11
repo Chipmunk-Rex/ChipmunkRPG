@@ -25,17 +25,22 @@ public class EntitySpawnEvent : WorldEntityEvent
                 Debug.LogError("Entity already exist in world");
                 return EnumEventResult.Failed;
             }
-            if (entity.entityCompo == null)
+            EntityCompo entityCompo = entity.entityCompo;
+            if (entityCompo == null)
             {
                 Debug.LogWarning("EntityCompo is null, create new one");
-                EntityCompo entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
+                entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
                 entity.entityCompo = entityCompo;
             }
 
+            Debug.Log(entityCompo.Entity);
+            entityCompo.Entity = entity;
+            Debug.Log(entityCompo.Entity);
             world.entities.Add(entity);
             entity.transform.SetParent(world.entityContainerTrm);
             entity.transform.position = spawnPos;
             entity.OnSpawn();
+            Debug.Log(entityCompo.Entity);
         }
         catch
         {

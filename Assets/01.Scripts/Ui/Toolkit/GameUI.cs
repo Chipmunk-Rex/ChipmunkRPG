@@ -7,14 +7,33 @@ using UnityEngine.UIElements;
 public class GameUI : BaseDocument
 {
     HotbarView hotbarView;
-    
+
     [SerializeField] EntityCompo playerCompo;
-    private Player player;
+    private Player player => playerCompo.Entity as Player;
     void OnEnable()
     {
-        player = playerCompo.Entity as Player;
         hotbarView = document.rootVisualElement.Q<HotbarView>();
 
-        hotbarView.InitializeView(new PlayerInventoryHotbar(player, player.Inventory, 5));
+        Debug.Log("startUI");
+        if (player != null)
+        {
+            Debug.Log("startUIm");
+            InitializeHotbar();
+        }
+        else
+        {
+            playerCompo.OnSpawnEvent.AddListener(() => InitializeHotbar());
+        }
+    }
+
+    private void InitializeHotbar()
+    {
+        Debug.Log("InitializeHotbar");
+        Debug.Log(player);
+        Debug.Log("InitializeHotbar");
+        Debug.Log(player.InventoryHotbar != null);
+        Debug.Log(true);
+        hotbarView.InitializeView(player.InventoryHotbar);
+        Debug.Log("InitializedHotbar");
     }
 }
