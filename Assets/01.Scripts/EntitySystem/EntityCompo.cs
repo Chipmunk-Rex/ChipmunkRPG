@@ -42,7 +42,7 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
 
     protected virtual void Update() => Entity?.Update();
     protected virtual void FixedUpdate() => Entity?.FixedUpdate();
-    public void OnPoped() => Entity?.OnPoped();
+    public void OnPoped() { }
     public void OnPushed()
     {
         Entity?.OnPushed();

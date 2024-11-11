@@ -11,6 +11,7 @@ public abstract class Entity : INDSerializeAble
     public Transform transform => entityCompo.transform;
     public GameObject gameObject => entityCompo.gameObject;
     public SpriteRenderer SpriteRendererCompo => entityCompo.SpriteRendererCompo;
+    public Animator AnimatorCompo => entityCompo.AnimatorCompo;
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
     public EntitySO EntitySO { get; private set; }
@@ -46,13 +47,12 @@ public abstract class Entity : INDSerializeAble
             world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
     }
-    public EntityCompo SpawnEntity()
+    public virtual void OnSpawn()
     {
-        entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
         SpriteRendererCompo.sprite = EntitySO.defaultSprite;
-        return entityCompo;
+        AnimatorCompo.runtimeAnimatorController = EntitySO.animatorController;
+
     }
-    public virtual void OnSpawn() { }
     public virtual void Awake() { }
     public virtual void OnEnable() { }
     public virtual void OnDisable() { }
