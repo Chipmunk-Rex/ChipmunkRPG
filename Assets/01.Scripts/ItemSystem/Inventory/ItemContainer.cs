@@ -80,12 +80,35 @@ public class ItemContainer : INDSerializeAble
     public NDSData Serialize()
     {
         NDSData data = new NDSData();
+        List<NDSData> itemNDSDatas = new List<NDSData>();
+        for (int i = 0; i < Items.Length; i++)
+        {
+            if (Items[i] != null)
+            {
+                NDSData itemNDSData = Items[i].Serialize();
+                itemNDSData.AddData("slotNum", i);
+                itemNDSDatas.Add(itemNDSData);
+            }
+        }
+
         data.AddData("containerSize", containerSize);
-        data.AddData("items", Items);
+        data.AddData("items", itemNDSDatas);
         return data;
     }
 
     public void Deserialize(NDSData data)
     {
+        for (int i = 0; i < Items.Length; i++)
+            SetItem(i, null);
+        containerSize = data.GetData<Vector2Int>("containerSize");
+        List<NDSData> itemNDSDatas = data.GetData<List<NDSData>>("items");
+        foreach (NDSData itemNDSData in itemNDSDatas)
+        {
+            int slotNum = itemNDSData.GetData<int>("slotNum");
+            ItemSO itemSO = SOAddressSO.Instance.GetSOByID<ItemSO>(uint.Parse(itemNDSData.GetDataString("ItemSO")));
+            Item item = itemSO.CreateItem();
+            item.Deserialize(itemNDSData);
+            SetItem(slotNum, item);
+        }
     }
 }

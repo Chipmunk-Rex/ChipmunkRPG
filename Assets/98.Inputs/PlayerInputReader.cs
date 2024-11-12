@@ -14,7 +14,7 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     public event Action onInventory;
     public event Action<float> onWheel;
     public Vector2 mousePos { get; private set; }
-    public Vector2 mouseWorldPos { get => Camera.main.ScreenToWorldPoint(mousePos); }
+    public Vector2 MouseWorldPos { get => Camera.main.ScreenToWorldPoint(mousePos); }
 
 
     protected override void OnEnable()

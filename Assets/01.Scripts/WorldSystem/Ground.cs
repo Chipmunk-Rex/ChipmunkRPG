@@ -25,7 +25,7 @@ public class Ground : INDSerializeAble
         JsonVector2 jsonVector2 = worldPos;
         data.AddData("worldPos", jsonVector2);
         data.AddData("groundSO", SOAddressSO.Instance.GetIDBySO(groundSO));
-        data.AddData("biome", SOAddressSO.Instance.GetIDBySO(biomeSO));
+        data.AddData("biomeSO", SOAddressSO.Instance.GetIDBySO(biomeSO));
         if (building != null)
             data.AddData("building", building.Serialize());
         return data;
@@ -33,6 +33,13 @@ public class Ground : INDSerializeAble
 
     public void Deserialize(NDSData data)
     {
-        Debug.Log("Deserializing Ground");
+        worldPos = data.GetData<JsonVector2>("worldPos");
+        groundSO = SOAddressSO.Instance.GetSOByID<GroundSO>(uint.Parse(data.GetDataString("groundSO")));
+        biomeSO = SOAddressSO.Instance.GetSOByID<BiomeSO>(uint.Parse(data.GetDataString("biomeSO")));
+        if (data.Data.ContainsKey("building"))
+        {
+            // building = new Building();
+            // building.Deserialize(data.GetData<NDSData>("building"));
+        }
     }
 }

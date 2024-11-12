@@ -21,6 +21,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
+    [field: SerializeField] public EntityCompo playerCompo { get; private set; }
+    [field: SerializeField] public Player player => playerCompo.Entity as Player;
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
     // [SerializeField] uint tickRate = 1;
@@ -241,9 +243,10 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         List<NDSData> entitiesNDSData = new List<NDSData>();
         foreach (Entity entity in entities)
         {
+            if(entity is Player) continue;
             entitiesNDSData.Add(entity.Serialize());
         }
-
+        worldNdsData.AddData("Player", player.Serialize());
         worldNdsData.AddData("seed", seed);
         worldNdsData.AddData("worldSO", SOAddressSO.Instance.GetIDBySO(worldSO));
         worldNdsData.AddData("grounds", groundsNDSData);
@@ -269,12 +272,27 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         {
             Ground ground = new Ground(Vector2Int.zero, null, null);
             ground.Deserialize(groundsNDS.GetData<NDSData>(keyValuePair.Key));
+            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)ground.WorldPos), ground.groundSO.groundTile);
             grounds.Add(NDSData.ToObject<Vector2Int>(keyValuePair.Key), ground);
         }
 
+        foreach (Entity entity in entities)
+        {
+            if (entity is Player) continue;
+            PoolManager.Instance.Push(entity.entityCompo as IPoolAble);
+        }
         entities.Clear();
         List<NDSData> entitiesNDSData = data.GetData<List<NDSData>>("entities");
+        foreach (NDSData entityNDSData in entitiesNDSData)
+        {
+            EntitySO entitySO = SOAddressSO.Instance.GetSOByID<EntitySO>(uint.Parse(entityNDSData.GetDataString("EntitySO")));
+            Entity entity = entitySO.CreateEntity();
+            entity.SpawnEntity(this);
+            entity.Deserialize(entityNDSData);
+            entities.Add(entity);
+        }
 
+        player.Deserialize(data.GetData<NDSData>("Player"));
     }
     #endregion
 }

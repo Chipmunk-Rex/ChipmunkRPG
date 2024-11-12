@@ -68,7 +68,6 @@ public class InventoryHotbar
         Owner.StopCoroutine(UseItemCoroutine());
         targetUseItem = item;
         if (targetUseItem == null) return;
-        Debug.Log("UseItem");
         Owner.StartCoroutine(UseItemCoroutine());
     }
 
@@ -78,15 +77,24 @@ public class InventoryHotbar
         if (targetUseItem != beforeFrameItem)
         {
             targetUseItem.OnBeforeInteract(Owner);
+            if (Owner is IItemInteractHandler itemInteractHandler)
+                itemInteractHandler.OnBeforeInteract(targetUseItem as Item);
             interactStartedTime = Time.time;
             beforeFrameItem = targetUseItem;
         }
 
         if ((Time.time - interactStartedTime) < targetUseItem.interactableItemSO.InteractDuration)
+        {
+
             targetUseItem.OnInteract(Owner);
+            if (Owner is IItemInteractHandler itemInteractHandler)
+                itemInteractHandler.OnInteract(targetUseItem as Item);
+        }
         else
         {
             targetUseItem.OnEndInteract(Owner);
+            if (Owner is IItemInteractHandler itemInteractHandler)
+                itemInteractHandler.OnEndInteract(targetUseItem as Item);
             lastInteractedTime = Time.time;
             beforeFrameItem = null;
         }

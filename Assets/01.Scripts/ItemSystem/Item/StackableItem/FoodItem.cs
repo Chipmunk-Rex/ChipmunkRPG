@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Chipmunk.Library;
 using UnityEngine;
 
 public class FoodItem : StackableItem, IInteractableItem
@@ -11,15 +12,15 @@ public class FoodItem : StackableItem, IInteractableItem
     private FoodSO foodSO;
     public IInteractableItemSO interactableItemSO => foodSO;
 
-    public void OnInteract(Entity target)
+    public void OnBeforeInteract(Entity target)
     {
         
     }
-
-    public void OnBeforeInteract(Entity target)
+    public void OnInteract(Entity target)
     {
-        throw new System.NotImplementedException();
+
     }
+
 
     public void OnEndInteract(Entity target)
     {
