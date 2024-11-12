@@ -6,6 +6,7 @@ using Chipmunk.Library;
 using Chipmunk.Library.PoolEditor;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.Events;
 
 [DisallowMultipleComponent]
 public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
@@ -23,6 +24,7 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     public string PoolName => "Entity";
 
     public GameObject ObjectPref => gameObject;
+    [field: SerializeField] public UnityEvent OnSpawnEvent { get; set; } = new UnityEvent();
 
     public void TakeDamage(int damage)
     {
@@ -30,6 +32,7 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     }
     protected virtual void OnEnable()
     {
+        OnSpawnEvent.AddListener(() => { Debug.Log("Spawned"); });
         if (EntitySO != null)
         {
             Entity = EntitySO.CreateEntity();

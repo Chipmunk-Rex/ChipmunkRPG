@@ -24,8 +24,9 @@ public class ItemEntity : Entity
         spawnedTime = Time.time;
     }
 
-    public void OnPushed()
+    public override void OnPushed()
     {
+        base.OnPushed();
         item = null;
         SpriteRendererCompo.sprite = null;
     }

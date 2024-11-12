@@ -21,7 +21,7 @@ public abstract class Entity : INDSerializeAble
     public Action onSpawn;
     public string entityName;
     public Vector2 lookDir = Vector2.down;
-    public Entity Initialize<T>(T entitySO) where T : EntitySO
+    public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
     {
         EntitySO = entitySO;
         entityName = entitySO.entityName;
@@ -52,6 +52,7 @@ public abstract class Entity : INDSerializeAble
         SpriteRendererCompo.sprite = EntitySO.defaultSprite;
         AnimatorCompo.runtimeAnimatorController = EntitySO.animatorController;
 
+        entityCompo.OnSpawnEvent?.Invoke();
     }
     public virtual void Awake() { }
     public virtual void OnEnable() { }

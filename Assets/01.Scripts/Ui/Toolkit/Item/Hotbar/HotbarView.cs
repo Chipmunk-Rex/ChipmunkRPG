@@ -14,11 +14,13 @@ public class HotbarView : VisualElement
 
     public void InitializeView(InventoryHotbar hotbar)
     {
+        Debug.Log("InitializeView");    
         this.hotbar = hotbar;
         itemContainer.onSlotDataChanged += OnSlotDataChanged;
         hotbar.onSelectedIndexChange += OnSelectedSlotChanged;
         hotbar.OnHotbarSizeChanged += DrawView;
         DrawView(hotbar);
+
     }
 
     ItemSlotView selectedSlot;
