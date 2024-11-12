@@ -1,0 +1,634 @@
+fileFormatVersion: 2
+guid: 6ad3d2def2e5aff4a9bc810264b14ade
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 165
+        width: 86
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74a805ac1c35cb4cb2b526a377fa82f
+      internalID: 881702378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_17
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 146
+        width: 86
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d383d5154c18e1445af0bc3c42577502
+      internalID: 178208968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_47
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55291f66a9ceb6747b958969a5ba3146
+      internalID: 1367102402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60f7c409e1723a4ea969140593d012c
+      internalID: -752708893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_49
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 884bc079f856c6040b2afc028d575b68
+      internalID: -1663188777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2c88aba00d1b6e46b8edfa2ca16a697
+      internalID: 371298827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_51
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53ca5a557c41e3348a5263f9ddcd45b6
+      internalID: -1076236029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89a799da7101c2409dce518b43fa32e
+      internalID: 141119127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_53
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 29
+        width: 6
+        height: 17
+      alignment: 9
+      pivot: {x: 0.465374, y: 0.08449308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d9feae5352fe4e4b898e1e0d0d624be
+      internalID: -1834563109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620c23d16fd4d9842b6f4577a99084ca
+      internalID: -1457312360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_55
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfa0f6e672a74e4391446760dcc6437
+      internalID: -1202071166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_56
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed92f2373ea736409344d95e6573de4
+      internalID: -101223062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_57
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ae6d4b2c1129b4da108aa7c8dbbf6e
+      internalID: 424558743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_58
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a497f9a4b3919f4428af1e7a092539db
+      internalID: 1640140395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_59
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 12
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.4896141, y: 0.14385231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a70237a91486894faecc725ca2e0c09
+      internalID: 1336168294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a359ba70514e144478fa16e3cd24fd30
+      internalID: -1950713776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_61
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c189f0994aa799b46addebd9e70da800
+      internalID: 106404424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_62
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 408812123066d2749b2b09f865b68f79
+      internalID: -242200292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_63
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62083b980022e6c40bb8781f01ff8bd9
+      internalID: -2086943618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83517a9a9b566e24f9d74f23768abdcd
+      internalID: 1043875885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStatusUI_241112_65
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8969817cf9656440beab97b3191b746
+      internalID: -679931047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PlayerStatusUI_241112_0: 881702378
+      PlayerStatusUI_241112_1: -607349483
+      PlayerStatusUI_241112_10: -665179805
+      PlayerStatusUI_241112_11: -1966562854
+      PlayerStatusUI_241112_12: 1076544770
+      PlayerStatusUI_241112_13: 1452617081
+      PlayerStatusUI_241112_14: -460246074
+      PlayerStatusUI_241112_15: 1365465698
+      PlayerStatusUI_241112_16: 2066498784
+      PlayerStatusUI_241112_17: 178208968
+      PlayerStatusUI_241112_18: 594294017
+      PlayerStatusUI_241112_19: -34056695
+      PlayerStatusUI_241112_2: 249095509
+      PlayerStatusUI_241112_20: -1822358697
+      PlayerStatusUI_241112_21: 1166932775
+      PlayerStatusUI_241112_22: 500778498
+      PlayerStatusUI_241112_23: -213916550
+      PlayerStatusUI_241112_24: -1985504398
+      PlayerStatusUI_241112_25: -658578921
+      PlayerStatusUI_241112_26: 1800478338
+      PlayerStatusUI_241112_27: -849360658
+      PlayerStatusUI_241112_28: -293070751
+      PlayerStatusUI_241112_29: 2094457758
+      PlayerStatusUI_241112_3: -1830960938
+      PlayerStatusUI_241112_30: 4640439
+      PlayerStatusUI_241112_31: -1497554849
+      PlayerStatusUI_241112_32: 100905390
+      PlayerStatusUI_241112_33: 374970454
+      PlayerStatusUI_241112_34: 1354625149
+      PlayerStatusUI_241112_35: -1418245315
+      PlayerStatusUI_241112_36: 1109110393
+      PlayerStatusUI_241112_37: 1089069412
+      PlayerStatusUI_241112_38: 130659843
+      PlayerStatusUI_241112_39: 805438126
+      PlayerStatusUI_241112_4: -949937296
+      PlayerStatusUI_241112_40: 1021435953
+      PlayerStatusUI_241112_41: -1536529028
+      PlayerStatusUI_241112_42: -1909709445
+      PlayerStatusUI_241112_43: -141936862
+      PlayerStatusUI_241112_44: -357499325
+      PlayerStatusUI_241112_45: -709431485
+      PlayerStatusUI_241112_46: 771956868
+      PlayerStatusUI_241112_47: 1367102402
+      PlayerStatusUI_241112_48: -752708893
+      PlayerStatusUI_241112_49: -1663188777
+      PlayerStatusUI_241112_5: 1367988138
+      PlayerStatusUI_241112_50: 371298827
+      PlayerStatusUI_241112_51: -1076236029
+      PlayerStatusUI_241112_52: 141119127
+      PlayerStatusUI_241112_53: -1834563109
+      PlayerStatusUI_241112_54: -1457312360
+      PlayerStatusUI_241112_55: -1202071166
+      PlayerStatusUI_241112_56: -101223062
+      PlayerStatusUI_241112_57: 424558743
+      PlayerStatusUI_241112_58: 1640140395
+      PlayerStatusUI_241112_59: 1336168294
+      PlayerStatusUI_241112_6: 1975731234
+      PlayerStatusUI_241112_60: -1950713776
+      PlayerStatusUI_241112_61: 106404424
+      PlayerStatusUI_241112_62: -242200292
+      PlayerStatusUI_241112_63: -2086943618
+      PlayerStatusUI_241112_64: 1043875885
+      PlayerStatusUI_241112_65: -679931047
+      PlayerStatusUI_241112_7: 1714656617
+      PlayerStatusUI_241112_8: -1740129582
+      PlayerStatusUI_241112_9: -813359629
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
