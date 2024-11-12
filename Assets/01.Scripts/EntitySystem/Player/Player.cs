@@ -6,18 +6,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
+public class Player : Entity, IFSMEntity<EnumEntityState, Player>
 {
 
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
-    public FSMStateMachine<EnumPlayerState, Player> FSMStateMachine { get; private set; } = new();
+    public FSMStateMachine<EnumEntityState, Player> FSMStateMachine { get; private set; } = new();
     public bool CanChangeState => true;
-    public Animator animator;
-    public Animator Animator => animator;
+    public Animator Animator => AnimatorCompo;
 
     public Inventory Inventory { get; private set; } = new();
     public PlayerInventoryHotbar InventoryHotbar { get; private set; }
+    int animXHash = Animator.StringToHash("X");
+    int animYHash = Animator.StringToHash("Y");
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
     override public void OnEnable()
     {
@@ -27,8 +28,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     public override Entity Initialize<T>(T entitySO)
     {
         base.Initialize(entitySO);
-        SubscribeInput();
-        InitializeStateMachine();
+        Subscribe();
         Inventory.Initialize(new Item[20], new Vector2Int(7, 3), this, 5);
         InventoryHotbar = new PlayerInventoryHotbar(this, Inventory, 5);
         return this;
@@ -36,7 +36,7 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     public override void OnSpawn()
     {
         base.OnSpawn();
-        animator = GetComponent<Animator>();
+        InitializeStateMachine();
     }
     public override void Awake()
     {
@@ -46,18 +46,29 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
     {
         FSMStateMachine.UpdateState();
     }
-    public override void FixedUpdate()
+    private void Subscribe()
     {
-        lookDir = (playerInputReader.mouseWorldPos - (Vector2)transform.position).normalized;
-    }
-    private void SubscribeInput()
-    {
-        playerInputReader.playerMoveDir.OnvalueChanged += OnMove;
         playerInputReader.onInventory += OnOpenInventory;
         playerInputReader.onItemUse += OnItemUse;
+
+        lookDir.OnvalueChanged += OnLookDirChanged;
     }
+
     private void OnItemUse(bool obj)
     {
+        SetLookDirByMousePos();
+    }
+    public void SetLookDirByMousePos()
+    {
+        Vector2 dir = (playerInputReader.MouseWorldPos - (Vector2)transform.position).normalized;
+        this.lookDir.Value = dir;
+    }
+
+    private void OnLookDirChanged(Vector2 prev, Vector2 next)
+    {
+        transform.localScale = new Vector3(-Mathf.Sign(next.x), transform.localScale.y, transform.localScale.z);
+        Animator.SetFloat(animXHash, next.x);
+        Animator.SetFloat(animYHash, next.y);
     }
 
     private void OnOpenInventory()
@@ -67,13 +78,28 @@ public class Player : Entity, IFSMEntity<EnumPlayerState, Player>
 
     private void OnMove(Vector2 prev, Vector2 next)
     {
-        FSMStateMachine.ChangeState(EnumPlayerState.Move);
+        FSMStateMachine.ChangeState(EnumEntityState.Move);
     }
 
     public void InitializeStateMachine()
     {
-        FSMStateMachine.AddState(EnumPlayerState.Idle, new PlayerIdleState(this, ""));
-        FSMStateMachine.AddState(EnumPlayerState.Move, new PlayerMoveState(this, ""));
-        FSMStateMachine.Initailize(EnumPlayerState.Idle, this);
+        Debug.Log(AnimatorCompo);
+        FSMStateMachine.AddState(EnumEntityState.Idle, new PlayerIdleState(this, "Idle"));
+        FSMStateMachine.AddState(EnumEntityState.Move, new PlayerMoveState(this, "Move"));
+        FSMStateMachine.AddState(EnumEntityState.Build, new PlayerBuildState(this, "Build"));
+        FSMStateMachine.AddState(EnumEntityState.Use, new PlayerBuildState(this, "Use"));
+        FSMStateMachine.AddState(EnumEntityState.Eat, new PlayerBuildState(this, "Eat"));
+        FSMStateMachine.Initailize(EnumEntityState.Idle, this);
+    }
+    public override NDSData Serialize()
+    {
+        NDSData entityNDSData = base.Serialize();
+        entityNDSData.AddData("Inventory", Inventory.Serialize());
+        return entityNDSData;
+    }
+    public override void Deserialize(NDSData data)
+    {
+        base.Deserialize(data);
+        Inventory.Deserialize(data.GetData<NDSData>("Inventory"));
     }
 }

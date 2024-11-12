@@ -13,6 +13,7 @@ public class PlayerMoveEvent : PlayerEvent
     public override EnumEventResult ExcuteEvent()
     {
         player.RigidCompo.velocity = moveDir * player.EntitySO.speed;
+        player.lookDir.Value = moveDir;
         return EnumEventResult.Successed;
     }
 }

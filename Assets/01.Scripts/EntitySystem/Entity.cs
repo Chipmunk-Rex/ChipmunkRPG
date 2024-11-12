@@ -20,7 +20,7 @@ public abstract class Entity : INDSerializeAble
 
     public Action onSpawn;
     public string entityName;
-    public Vector2 lookDir = Vector2.down;
+    public NotifyValue<Vector2> lookDir = new(Vector2.down);
     public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
     {
         EntitySO = entitySO;
@@ -69,7 +69,7 @@ public abstract class Entity : INDSerializeAble
         NDSData entityNDSData = new NDSData();
         entityNDSData.AddData("Position", new JsonVector2(transform.position));
         entityNDSData.AddData("EntitySO", SOAddressSO.Instance.GetIDBySO(EntitySO));
-        entityNDSData.AddData("LookDir", new JsonVector2(lookDir));
+        entityNDSData.AddData("LookDir", new JsonVector2(lookDir.Value));
         return entityNDSData;
     }
 
@@ -81,7 +81,12 @@ public abstract class Entity : INDSerializeAble
     {
         entityCompo.StopCoroutine(enumerator);
     }
-    public virtual void Deserialize(NDSData data) { }
+    public virtual void Deserialize(NDSData data)
+    {
+        transform.position = data.GetData<JsonVector2>("Position");
+        EntitySO = SOAddressSO.Instance.GetSOByID<EntitySO>(uint.Parse(data.GetDataString("EntitySO")));
+        lookDir.Value = data.GetData<JsonVector2>("LookDir");
+    }
 
     public virtual void OnPushed() { }
 
