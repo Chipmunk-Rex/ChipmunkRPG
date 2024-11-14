@@ -8,11 +8,10 @@ public class ContextUI : BaseDocument
     ItemContainerView itemContainerView;
     HotbarView hotbarView;
     [SerializeField] EntityCompo playerCompo;
-    private Player player;
+    private Player player => playerCompo.Entity as Player;
     public bool isShowingInventory { get; private set; }
     private void OnEnable()
     {
-        player = playerCompo.Entity as Player;
 
         itemContainerView = document.rootVisualElement.Q<ItemContainerView>();
         hotbarView = document.rootVisualElement.Q<HotbarView>();
@@ -28,6 +27,6 @@ public class ContextUI : BaseDocument
         itemContainerView.DrawView(player.Inventory);
 
         hotbarView.InitializeView(new InventoryHotbar(player, player.Inventory, 5));
-        
+
     }
 }

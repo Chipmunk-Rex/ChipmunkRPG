@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class Player : Entity, IFSMEntity<EnumEntityState, Player>
+public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler
 {
 
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
@@ -101,5 +101,25 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>
     {
         base.Deserialize(data);
         Inventory.Deserialize(data.GetData<NDSData>("Inventory"));
+    }
+
+    public void OnBeforeInteract(Item target)
+    {
+        if(target is FoodItem)
+        {
+            FSMStateMachine.ChangeState(EnumEntityState.Eat);
+        }
+        else
+        {
+            FSMStateMachine.ChangeState(EnumEntityState.Use);
+        }
+    }
+
+    public void OnInteract(Item target)
+    {
+    }
+
+    public void OnEndInteract(Item target)
+    {
     }
 }

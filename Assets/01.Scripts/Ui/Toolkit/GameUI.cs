@@ -28,11 +28,6 @@ public class GameUI : BaseDocument
 
     private void InitializeHotbar()
     {
-        Debug.Log("InitializeHotbar");
-        Debug.Log(player);
-        Debug.Log("InitializeHotbar");
-        Debug.Log(player.InventoryHotbar != null);
-        Debug.Log(true);
         hotbarView.InitializeView(player.InventoryHotbar);
         Debug.Log("InitializedHotbar");
     }

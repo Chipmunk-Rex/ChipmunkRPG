@@ -12,7 +12,7 @@ public class FoodSO : StackableItemSO, IInteractableItemSO
 
     public override Item CreateItem()
     {
-        Item item = new Item(this);
+        Item item = new FoodItem(this);
         return item;
     }
 }

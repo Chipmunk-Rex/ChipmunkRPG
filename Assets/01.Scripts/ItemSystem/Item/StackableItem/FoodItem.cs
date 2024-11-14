@@ -18,13 +18,12 @@ public class FoodItem : StackableItem, IInteractableItem
     }
     public void OnInteract(Entity target)
     {
-
+        Debug.Log("Eat");
     }
 
 
     public void OnEndInteract(Entity target)
     {
-        throw new System.NotImplementedException();
     }
 
 
