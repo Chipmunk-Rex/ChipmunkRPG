@@ -105,7 +105,16 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
 
     public void OnBeforeInteract(Item target)
     {
-        if(target is FoodItem)
+        ChangeStateByItem(target);
+    }
+    public void ChangeStateByItem(Item target)
+    {
+        if (target == null)
+        {
+            FSMStateMachine.ChangeState(EnumEntityState.Idle);
+            return;
+        }
+        if (target is FoodItem)
         {
             FSMStateMachine.ChangeState(EnumEntityState.Eat);
         }
@@ -114,12 +123,12 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
             FSMStateMachine.ChangeState(EnumEntityState.Use);
         }
     }
-
     public void OnInteract(Item target)
     {
     }
 
     public void OnEndInteract(Item target)
     {
+        ChangeStateByItem(null);
     }
 }

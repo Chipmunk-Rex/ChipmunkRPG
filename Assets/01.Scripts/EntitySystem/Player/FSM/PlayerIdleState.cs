@@ -12,6 +12,7 @@ public class PlayerIdleState : FSMState<EnumEntityState, Player>
     public override void EnterState()
     {
         base.EnterState();
+        entity.RigidCompo.velocity = Vector2.zero;
         
         PlayerInputReader.Instance.playerMoveDir.OnvalueChanged += OnMove;
     }

@@ -58,9 +58,7 @@ public class InventoryHotbar
         }
         if (beforeFrameItem != null)
         {
-            beforeFrameItem.OnEndInteract(Owner);
-            lastInteractedTime = Time.time;
-            beforeFrameItem = null;
+            EndInteract(beforeFrameItem);
         }
     }
     public void UseItem(IInteractableItem item)
@@ -68,6 +66,7 @@ public class InventoryHotbar
         Owner.StopCoroutine(UseItemCoroutine());
         targetUseItem = item;
         if (targetUseItem == null) return;
+        
         Owner.StartCoroutine(UseItemCoroutine());
     }
 
@@ -76,28 +75,40 @@ public class InventoryHotbar
     {
         if (targetUseItem != beforeFrameItem)
         {
-            targetUseItem.OnBeforeInteract(Owner);
-            if (Owner is IItemInteractHandler itemInteractHandler)
-                itemInteractHandler.OnBeforeInteract(targetUseItem as Item);
-            interactStartedTime = Time.time;
-            beforeFrameItem = targetUseItem;
+            StartInteract(targetUseItem);
         }
 
         if ((Time.time - interactStartedTime) < targetUseItem.interactableItemSO.InteractDuration)
         {
-
-            targetUseItem.OnInteract(Owner);
-            if (Owner is IItemInteractHandler itemInteractHandler)
-                itemInteractHandler.OnInteract(targetUseItem as Item);
+            DuringInteract(targetUseItem);
         }
         else
         {
-            targetUseItem.OnEndInteract(Owner);
-            if (Owner is IItemInteractHandler itemInteractHandler)
-                itemInteractHandler.OnEndInteract(targetUseItem as Item);
-            lastInteractedTime = Time.time;
-            beforeFrameItem = null;
+            EndInteract(targetUseItem);
         }
+    }
+    private void StartInteract(IInteractableItem targetItem)
+    {
+        targetItem.OnBeforeInteract(Owner);
+        if (Owner is IItemInteractHandler itemInteractHandler)
+            itemInteractHandler.OnBeforeInteract(targetItem as Item);
+        interactStartedTime = Time.time;
+        beforeFrameItem = targetItem;
+    }
+
+    private void DuringInteract(IInteractableItem targetItem)
+    {
+        targetItem.OnInteract(Owner);
+        if (Owner is IItemInteractHandler itemInteractHandler)
+            itemInteractHandler.OnInteract(targetItem as Item);
+    }
+    private void EndInteract(IInteractableItem targetItem)
+    {
+        targetItem.OnEndInteract(Owner);
+        if (Owner is IItemInteractHandler itemInteractHandler)
+            itemInteractHandler.OnEndInteract(targetItem as Item);
+        lastInteractedTime = Time.time;
+        beforeFrameItem = null;
     }
 
     public void ChangeSelectedIndex(float value)
