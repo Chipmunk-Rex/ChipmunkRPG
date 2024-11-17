@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IInteractableItem
 {
     public IInteractableItemSO interactableItemSO { get; }
+    public bool VisualOnInteract { get; }
     public void OnBeforeInteract(Entity target);
     public void OnInteract(Entity target);
     public void OnEndInteract(Entity target);

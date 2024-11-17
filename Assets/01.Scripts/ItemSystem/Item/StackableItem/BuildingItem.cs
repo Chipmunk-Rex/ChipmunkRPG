@@ -12,6 +12,8 @@ public class BuildingItem : StackableItem, IInteractableItem
     BuildingItemSO buildingItemSO;
     public IInteractableItemSO interactableItemSO => buildingItemSO;
 
+    [field: SerializeField] public bool VisualOnInteract { get; private set; }
+
     public void OnBeforeInteract(Entity target)
     {
     }

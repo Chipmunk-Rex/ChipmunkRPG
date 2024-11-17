@@ -12,13 +12,14 @@ public class FoodItem : StackableItem, IInteractableItem
     private FoodSO foodSO;
     public IInteractableItemSO interactableItemSO => foodSO;
 
+    [field: SerializeField] public bool VisualOnInteract { get; private set; }
+
     public void OnBeforeInteract(Entity target)
     {
-        
+
     }
     public void OnInteract(Entity target)
     {
-        Debug.Log("Eat");
     }
 
 

@@ -6,9 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler
+public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler, IItemVisualable
 {
-
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
     public FSMStateMachine<EnumEntityState, Player> FSMStateMachine { get; private set; } = new();
@@ -17,6 +16,11 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
 
     public Inventory Inventory { get; private set; } = new();
     public PlayerInventoryHotbar InventoryHotbar { get; private set; }
+
+    public SpriteRenderer ItemSpriteCompo { get; private set; }
+
+    public Animator ItemAnimatorCompo { get; private set; }
+
     int animXHash = Animator.StringToHash("X");
     int animYHash = Animator.StringToHash("Y");
     public EventMediatorContainer<EnumPlayerEvents, PlayerEvent> playerEventContainer = new();
@@ -37,6 +41,13 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     {
         base.OnSpawn();
         InitializeStateMachine();
+
+        // ItemSpriteCompo = new GameObject("ItemVisual").AddComponent<SpriteRenderer>();
+        ItemSpriteCompo = SpriteRendererCompo.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        ItemSpriteCompo.sortingLayerName = "Entity";
+        ItemSpriteCompo.sortingOrder = 1;
+        ItemSpriteCompo.transform.SetParent(SpriteRendererCompo.transform);
+        ItemAnimatorCompo = ItemSpriteCompo.gameObject.AddComponent<Animator>();
     }
     public override void Awake()
     {

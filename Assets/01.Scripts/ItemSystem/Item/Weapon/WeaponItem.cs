@@ -8,7 +8,9 @@ public abstract class WeaponItem : Item, IInteractableItem
     {
     }
 
+    [field: SerializeField] public bool VisualOnInteract { get; private set; }
     public abstract IInteractableItemSO interactableItemSO { get; }
+
 
     public abstract void OnBeforeInteract(Entity target);
 

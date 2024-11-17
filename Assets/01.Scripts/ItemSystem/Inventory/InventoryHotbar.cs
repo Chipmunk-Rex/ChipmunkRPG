@@ -90,8 +90,11 @@ public class InventoryHotbar
     private void StartInteract(IInteractableItem targetItem)
     {
         targetItem.OnBeforeInteract(Owner);
+
         if (Owner is IItemInteractHandler itemInteractHandler)
             itemInteractHandler.OnBeforeInteract(targetItem as Item);
+        if (Owner is IItemVisualable itemVisualable)
+            itemVisualable.OnVisual(targetItem as Item);
         interactStartedTime = Time.time;
         beforeFrameItem = targetItem;
     }
@@ -107,6 +110,8 @@ public class InventoryHotbar
         targetItem.OnEndInteract(Owner);
         if (Owner is IItemInteractHandler itemInteractHandler)
             itemInteractHandler.OnEndInteract(targetItem as Item);
+        if (Owner is IItemVisualable itemVisualable)
+            itemVisualable.OnVisual(null);
         lastInteractedTime = Time.time;
         beforeFrameItem = null;
     }
