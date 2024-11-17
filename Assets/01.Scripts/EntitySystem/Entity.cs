@@ -21,10 +21,18 @@ public abstract class Entity : INDSerializeAble
     public Action onSpawn;
     public string entityName;
     public NotifyValue<Vector2> lookDir = new(Vector2.down);
+    public Dictionary<EnumMeterType, Meter> meters = new();
     public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
     {
         EntitySO = entitySO;
         entityName = entitySO.entityName;
+
+        meters.Add(EnumMeterType.Health, new MeterHealth(this, entitySO.meterDatas[EnumMeterType.Health]));
+        meters.Add(EnumMeterType.Hunger, new MeterHunger(this, entitySO.meterDatas[EnumMeterType.Hunger]));
+        meters.Add(EnumMeterType.Thirsty, new MeterThirsty(this, entitySO.meterDatas[EnumMeterType.Thirsty]));
+        meters.Add(EnumMeterType.Mentality, new MeterMentality(this, entitySO.meterDatas[EnumMeterType.Mentality]));
+        meters.Add(EnumMeterType.Temperature, new MeterTemperature(this, entitySO.meterDatas[EnumMeterType.Temperature]));
+
         return this;
     }
     public void SpawnEntity(World world, EntityCompo entityCompo)

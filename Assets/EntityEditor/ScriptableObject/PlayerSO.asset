@@ -25,3 +25,35 @@ MonoBehaviour:
   attackCooldown: 0
   attackDelay: 0
   attackKnockback: 0
+  meterDatas:
+    serializableItems:
+    - key: 0
+      value:
+        maxValue: 100
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 1
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 2
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 3
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 4
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0

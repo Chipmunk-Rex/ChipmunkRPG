@@ -21,4 +21,9 @@ public class PlayerMoveState : FSMState<EnumEntityState, Player>
         PlayerMoveEvent @event = new PlayerMoveEvent(entity, inputReader.playerMoveDir.Value);
         entity.playerEventContainer.Execute(EnumPlayerEvents.MoveEvent, @event);
     }
+    public override void ExitState()
+    {
+        base.ExitState();
+        entity.RigidCompo.velocity = Vector2.zero;
+    }
 }

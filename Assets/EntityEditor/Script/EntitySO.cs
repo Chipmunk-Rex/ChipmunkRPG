@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using Chipmunk.Library;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "EntityData", menuName = "SO/EntityData")]
 public abstract class EntitySO : ScriptableObject
@@ -21,6 +23,7 @@ public abstract class EntitySO : ScriptableObject
     public float attackCooldown = 0.5f;
     public float attackDelay = 0.5f;
     public float attackKnockback = 1;
+    public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new();
     protected abstract Entity CreateEntityInstance();
     public virtual Entity CreateEntity()
     {

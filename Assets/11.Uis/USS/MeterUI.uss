@@ -1,0 +1,75 @@
+MeterView {
+    margin-top: 4%;
+}
+
+MeterView > * {
+}
+
+MeterView > * > #Value {
+    position: absolute;
+    width: 235px;
+    height: 40%;
+    top: 32%;
+    left: 95px;
+    align-self: flex-start;
+}
+
+MeterView > * > #Background {
+    width: 344px;
+    height: 92px;
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=881702378&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_0");
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4px;
+    padding-left: 4px;
+    position: absolute;
+}
+
+MeterView > * > #Visual {
+    width: 80px;
+    height: 80px;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+MeterView > #Health > #Value {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusBarUI.png?fileID=1633015940&guid=9a89acf700153fe4796bc4c3fe70c955&type=3#PlayerStatusBarUI_0");
+}
+
+MeterView > #Health > #Visual {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=-1663188777&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_49");
+}
+
+MeterView > #Mentality > #Value {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusBarUI.png?fileID=-2033783131&guid=9a89acf700153fe4796bc4c3fe70c955&type=3#PlayerStatusBarUI_2");
+}
+
+MeterView > #Mentality > #Visual {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=-752708893&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_48");
+}
+
+MeterView > #Hunger > #Value {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusBarUI.png?fileID=364988946&guid=9a89acf700153fe4796bc4c3fe70c955&type=3#PlayerStatusBarUI_3");
+}
+
+MeterView > #Hunger > #Visual {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=141119127&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_52");
+}
+
+MeterView > #Thirsty > #Value {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusBarUI.png?fileID=1069735346&guid=9a89acf700153fe4796bc4c3fe70c955&type=3#PlayerStatusBarUI_1");
+}
+
+MeterView > #Thirsty > #Visual {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=371298827&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_50");
+}
+
+MeterView > #Temperature > #Value {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusBarUI.png?fileID=-1584874001&guid=9a89acf700153fe4796bc4c3fe70c955&type=3#PlayerStatusBarUI_4");
+}
+
+MeterView > #Temperature > #Visual {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=424558743&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_57");
+}
