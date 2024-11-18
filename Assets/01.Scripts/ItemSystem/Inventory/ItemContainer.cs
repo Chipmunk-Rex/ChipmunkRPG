@@ -75,7 +75,7 @@ public class ItemContainer : INDSerializeAble
         int itemIndex = GetItemIndex(foodItem);
         if (itemIndex == -1)
         {
-            Debug.LogError("Item not found");
+            Debug.LogError("ItemContainer.RemoveItem() : Item not found");
             return;
         }
         SetItem(itemIndex, null);

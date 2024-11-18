@@ -20,12 +20,17 @@ public class InventoryHotbar
         get => selectedIndex;
         set
         {
+            int prevIndex = selectedIndex;
             selectedIndex = Mathf.Clamp(value, 0, hotbarSize - 1);
+            if (prevIndex != selectedIndex)
+            {
+                onSelectedIndexChange?.Invoke(selectedIndex);
+            }
         }
     }
 
 
-    protected IInteractableItem targetUseItem;
+    protected Item targetUseItem => inventory.GetItem(selectedIndex);
     protected IInteractableItem beforeFrameItem;
     protected float lastInteractedTime;
     protected float interactStartedTime;
@@ -46,20 +51,23 @@ public class InventoryHotbar
         this.hotbarSize = hotbarSize;
 
         OnHotbarSizeChanged?.Invoke(this);
-        PlayerInputReader.Instance.onWheel += ChangeSelectedIndex;
+        PlayerInputReader.Instance.onWheel += OnWheel;
 
         inventory.onSlotDataChanged += (slotNum) =>
         {
-            if (slotNum == SelectedIndex)
-                onSelectedIndexChange?.Invoke(SelectedIndex);
+            Item item = inventory.GetItem(slotNum);
+            if (targetUseItem == item)
+            {
+            }
         };
     }
     private IEnumerator UseItemCoroutine()
     {
         while (targetUseItem != null)
         {
-            if ((Time.time - lastInteractedTime) > targetUseItem.interactableItemSO.InteractCool)
-                ItemInteract();
+            IInteractableItem targetItem = targetUseItem as IInteractableItem;
+            if ((Time.time - lastInteractedTime) > targetItem.interactableItemSO.InteractCool)
+                ItemInteract(targetItem as IInteractableItem);
             yield return null;
         }
         if (beforeFrameItem != null)
@@ -70,27 +78,27 @@ public class InventoryHotbar
     public void UseItem(IInteractableItem item)
     {
         Owner.StopCoroutine(UseItemCoroutine());
-        targetUseItem = item;
+        SelectedIndex = inventory.GetItemIndex(item as Item);
         if (targetUseItem == null) return;
-        
+
         Owner.StartCoroutine(UseItemCoroutine());
     }
 
 
-    private void ItemInteract()
+    private void ItemInteract(IInteractableItem targetItem)
     {
-        if (targetUseItem != beforeFrameItem)
+        if (targetItem != beforeFrameItem)
         {
-            StartInteract(targetUseItem);
+            StartInteract(targetItem);
         }
 
-        if ((Time.time - interactStartedTime) < targetUseItem.interactableItemSO.InteractDuration)
+        if ((Time.time - interactStartedTime) < targetItem.interactableItemSO.InteractDuration)
         {
-            DuringInteract(targetUseItem);
+            DuringInteract(targetItem);
         }
         else
         {
-            EndInteract(targetUseItem);
+            EndInteract(targetItem);
         }
     }
     private void StartInteract(IInteractableItem targetItem)
@@ -122,10 +130,9 @@ public class InventoryHotbar
         beforeFrameItem = null;
     }
 
-    public void ChangeSelectedIndex(float value)
+    public void OnWheel(float value)
     {
         SelectedIndex -= (int)value / 120;
-        onSelectedIndexChange?.Invoke(SelectedIndex);
     }
     public Item GetSelectedItem()
     {
