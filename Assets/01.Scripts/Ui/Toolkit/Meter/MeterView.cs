@@ -10,6 +10,7 @@ public class MeterView : VisualElement
     {
     }
     public Dictionary<EnumMeterType, VisualElement> Meters { get; private set; } = new();
+    private int defaultWidth = 235;
     public MeterView()
     {
         foreach (EnumMeterType meterType in System.Enum.GetValues(typeof(EnumMeterType)))
@@ -33,5 +34,19 @@ public class MeterView : VisualElement
             Meters.Add(meterType, meterView);
             Add(meterView);
         }
+    }
+    public void Initailize(Dictionary<EnumMeterType, Meter> meters)
+    {
+        foreach (KeyValuePair<EnumMeterType, Meter> meterPair in meters)
+        {
+            SetMeterBar(meterPair.Key, meterPair.Value);
+            meterPair.Value.OnValueChanged += (prev, next) => SetMeterBar(meterPair.Key, meterPair.Value);
+        }
+    }
+
+    private void SetMeterBar(EnumMeterType meterType, Meter meter)
+    {
+        if (meter.MeterData.maxValue == 0) return;
+        Meters[meterType].Q<VisualElement>("Value").style.width = defaultWidth * meter.Value / meter.MeterData.maxValue;
     }
 }

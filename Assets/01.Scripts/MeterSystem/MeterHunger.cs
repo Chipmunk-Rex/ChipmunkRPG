@@ -12,11 +12,9 @@ public class MeterHunger : Meter
 
     protected override void OnNegativeEffect()
     {
-        throw new System.NotImplementedException();
     }
 
     protected override void OnPositiveEffect()
     {
-        throw new System.NotImplementedException();
     }
 }

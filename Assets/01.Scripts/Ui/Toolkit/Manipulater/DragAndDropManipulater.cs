@@ -14,6 +14,11 @@ public class DragAndDropManipulator : PointerManipulator
         this.target = target;
 
         this.root = root;
+        if (root == null)
+        {
+            root = target.parent.parent;
+        }
+
     }
 
     protected override void RegisterCallbacksOnTarget()
@@ -48,11 +53,6 @@ public class DragAndDropManipulator : PointerManipulator
     private void MouseDownHandler(MouseDownEvent evt)
     {
         Debug.Log("Down");
-        if (root == null)
-        {
-            root = target.parent.parent;
-        }
-
         dragStartPos = evt.localMousePosition;
 
         defaultParent = target.parent;
@@ -70,14 +70,14 @@ public class DragAndDropManipulator : PointerManipulator
     }
     private void MouseMoveHandler(MouseMoveEvent evt)
     {
-        Debug.Log("Move");
+        // Debug.Log("Move");
         if (enabled && target.HasMouseCapture())
         {
             Vector2 diff = evt.localMousePosition - dragStartPos;
 
             float x = target.layout.x;
             float y = target.layout.y;
-            Debug.Log("move Suc" + diff);
+            // Debug.Log("move Suc" + diff);
 
             target.style.left = x + diff.x;
             target.style.top = y + diff.y;
@@ -85,6 +85,7 @@ public class DragAndDropManipulator : PointerManipulator
     }
     private void MouseUpHandler(MouseUpEvent evt)
     {
+        Debug.Log("Mani Up");
         if (enabled && target.HasMouseCapture())
         {
             defaultParent.Add(target);

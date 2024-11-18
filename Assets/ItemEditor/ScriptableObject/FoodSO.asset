@@ -17,6 +17,6 @@ MonoBehaviour:
   enumItemRarity: 1
   Durability: 0
   maxStackCount: 64
-  hunger: 1
-  <InteractDuration>k__BackingField: 0.5
+  hunger: 10
+  <InteractDuration>k__BackingField: 4
   <InteractCool>k__BackingField: 0

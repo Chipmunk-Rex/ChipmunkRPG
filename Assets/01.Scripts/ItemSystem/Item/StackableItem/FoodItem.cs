@@ -23,8 +23,14 @@ public class FoodItem : StackableItem, IInteractableItem
     }
 
 
-    public void OnEndInteract(Entity target)
+    public void OnEndInteract(Entity target, bool isCanceled)
     {
+        if (isCanceled)
+            return;
+        target.meters[EnumMeterType.Hunger].Value += foodSO.hunger;
+
+        IInventoryOwner inventoryOwner = target as IInventoryOwner;
+        inventoryOwner.Inventory.RemoveItem(this);
     }
 
 

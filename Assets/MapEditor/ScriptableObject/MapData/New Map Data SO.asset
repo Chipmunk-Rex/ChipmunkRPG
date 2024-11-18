@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa8802a72ac1844981ccc372eda42e2, type: 3}
   m_Name: New Map Data SO
   m_EditorClassIdentifier: 
+  worldName: New World
   biomeDatas:
   - percentage: 62.910606
     color: {r: 0.1595366, g: 1, b: 0, a: 1}

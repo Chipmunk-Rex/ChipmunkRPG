@@ -58,7 +58,7 @@ public class InventoryHotbar
         }
         if (beforeFrameItem != null)
         {
-            EndInteract(beforeFrameItem);
+            EndInteract(beforeFrameItem, true);
         }
     }
     public void UseItem(IInteractableItem item)
@@ -105,11 +105,11 @@ public class InventoryHotbar
         if (Owner is IItemInteractHandler itemInteractHandler)
             itemInteractHandler.OnInteract(targetItem as Item);
     }
-    private void EndInteract(IInteractableItem targetItem)
+    private void EndInteract(IInteractableItem targetItem, bool isCanceled = false)
     {
-        targetItem.OnEndInteract(Owner);
+        targetItem.OnEndInteract(Owner, isCanceled);
         if (Owner is IItemInteractHandler itemInteractHandler)
-            itemInteractHandler.OnEndInteract(targetItem as Item);
+            itemInteractHandler.OnEndInteract(targetItem as Item, isCanceled);
         if (Owner is IItemVisualable itemVisualable)
             itemVisualable.OnVisual(null);
         lastInteractedTime = Time.time;

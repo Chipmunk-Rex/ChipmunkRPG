@@ -8,7 +8,7 @@ public class ItemContainerView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<ItemContainerView, VisualElement.UxmlTraits> { }
     public ItemContainer ItemContainer { get; private set; }
-    private ItemSlotView[] itemSlots;
+    public ItemSlotView[] itemSlots { get; private set; }
     public ItemContainerView()
     {
         this.style.flexWrap = Wrap.Wrap;
@@ -44,15 +44,15 @@ public class ItemContainerView : VisualElement
             {
                 int index = y * size.x + x;
                 Item item = itemContainer.GetItem(index);
-                ItemSlotView itemSlot = CreateSlotView(index, item);
-                // this.Add(itemSlot);
+                ItemSlotView itemSlot = CreateSlotView(index);
                 rowContainer.Add(itemSlot);
+                itemSlot.DrawView(item, index, ItemContainer);
             }
         }
     }
 
 
-    private ItemSlotView CreateSlotView(int i, Item item)
+    private ItemSlotView CreateSlotView(int i)
     {
         ItemSlotView itemSlot = new ItemSlotView();
         try
@@ -65,13 +65,12 @@ public class ItemContainerView : VisualElement
             Debug.Log(e);
             Debug.Log(i);
         }
-        itemSlot.DrawView(item);
         return itemSlot;
     }
 
     private void OnSlotDataChanged(int slotNum)
     {
         Item item = ItemContainer.GetItem(slotNum);
-        itemSlots[slotNum].DrawView(item);
+        itemSlots[slotNum].DrawView(item, slotNum, ItemContainer);
     }
 }

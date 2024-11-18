@@ -14,7 +14,7 @@ public class SwordItem : WeaponItem
     {
     }
 
-    public override void OnEndInteract(Entity target)
+    public override void OnEndInteract(Entity target, bool isCanceled)
     {
         throw new System.NotImplementedException();
     }

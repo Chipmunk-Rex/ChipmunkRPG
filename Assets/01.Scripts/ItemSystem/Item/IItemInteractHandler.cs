@@ -6,5 +6,5 @@ public interface IItemInteractHandler
 {
     public void OnBeforeInteract(Item target);
     public void OnInteract(Item target);
-    public void OnEndInteract(Item target);
+    public void OnEndInteract(Item target, bool isCanceled);
 }

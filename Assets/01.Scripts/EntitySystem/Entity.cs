@@ -20,6 +20,7 @@ public abstract class Entity : INDSerializeAble
 
     public Action onSpawn;
     public string entityName;
+    public Vector2 LookDir => lookDir.Value;
     public NotifyValue<Vector2> lookDir = new(Vector2.down);
     public Dictionary<EnumMeterType, Meter> meters = new();
     public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
@@ -60,7 +61,15 @@ public abstract class Entity : INDSerializeAble
         SpriteRendererCompo.sprite = EntitySO.defaultSprite;
         AnimatorCompo.runtimeAnimatorController = EntitySO.animatorController;
 
-        entityCompo.OnSpawnEvent?.Invoke();
+        try
+        {
+
+            entityCompo.OnSpawnEvent?.Invoke();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
     public virtual void Awake() { }
     public virtual void OnEnable() { }

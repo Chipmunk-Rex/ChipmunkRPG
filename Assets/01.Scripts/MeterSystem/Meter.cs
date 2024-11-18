@@ -6,20 +6,39 @@ using UnityEngine;
 public abstract class Meter
 {
     protected abstract EnumMeterType _meterType { get; }
-    public NotifyValue<int> Value = new();
-    protected MeterData MeterData { get; private set; }
+    private int value;
+    public delegate void ValueChanged(int prev, int next);
+    public event ValueChanged OnValueChanged;
+    public int Value
+    {
+        get
+        {
+            return value;
+        }
+        set
+        {
+            int value2 = this.value;
+            this.value = value;
+            this.value = Mathf.Clamp(this.value, 0, MeterData.maxValue);
+            if (!value2.Equals(this.value))
+            {
+                this.OnValueChanged?.Invoke(value2, this.value);
+            }
+        }
+    }
+    public MeterData MeterData { get; private set; }
     protected Entity Owner { get; private set; }
     public Meter(Entity owner, MeterData meterData)
     {
         this.MeterData = meterData;
-        this.Value.Value = meterData.defaultValue;
+        this.Value = meterData.defaultValue;
         this.Owner = owner;
 
-        Value.OnvalueChanged += ValueChangeHandler;
+        OnValueChanged += ValueChangeHandler;
     }
     protected virtual void Initailize()
     {
-        Value.Value = MeterData.defaultValue;
+        Value = MeterData.defaultValue;
     }
 
     private void ValueChangeHandler(int prev, int next)

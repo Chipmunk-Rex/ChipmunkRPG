@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler, IItemVisualable
+public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler, IItemVisualable, IInventoryOwner
 {
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
@@ -39,7 +39,6 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     }
     public override void OnSpawn()
     {
-        base.OnSpawn();
         InitializeStateMachine();
 
         // ItemSpriteCompo = new GameObject("ItemVisual").AddComponent<SpriteRenderer>();
@@ -48,6 +47,8 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         ItemSpriteCompo.sortingOrder = 1;
         ItemSpriteCompo.transform.SetParent(SpriteRendererCompo.transform);
         ItemAnimatorCompo = ItemSpriteCompo.gameObject.AddComponent<Animator>();
+        
+        base.OnSpawn();
     }
     public override void Awake()
     {
@@ -138,7 +139,7 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     {
     }
 
-    public void OnEndInteract(Item target)
+    public void OnEndInteract(Item target, bool isCanceled)
     {
         ChangeStateByItem(null);
     }

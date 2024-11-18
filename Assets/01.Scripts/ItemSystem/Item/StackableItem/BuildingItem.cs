@@ -18,8 +18,10 @@ public class BuildingItem : StackableItem, IInteractableItem
     {
     }
 
-    public void OnEndInteract(Entity target)
+    public void OnEndInteract(Entity target, bool isCanceled)
     {
+        if (isCanceled)
+            return;
         Vector2 position = (Vector2)target.transform.position + target.lookDir.Value;
         Building building = new Building(buildingItemSO.buildingSO);
         WorldEvent @event = new CreateBuildingEvent(target.currentWorld, building, Vector2Int.RoundToInt(position));

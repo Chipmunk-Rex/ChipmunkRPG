@@ -14,14 +14,16 @@ public class ItemEntity : Entity
     public void Initialize(Item item)
     {
         this.item = item;
-        gameObject.name = $"Item ({item.ItemSO.itemName})";
-        SpriteRendererCompo.sprite = item.ItemSO.itemSprite;
     }
 
     public override void OnSpawn()
     {
         base.OnSpawn();
         spawnedTime = Time.time;
+        Debug.Log("ItemEntity OnSpawn");
+
+        gameObject.name = $"Item ({item.ItemSO.itemName})";
+        SpriteRendererCompo.sprite = item.ItemSO.itemSprite;
     }
 
     public override void OnPushed()

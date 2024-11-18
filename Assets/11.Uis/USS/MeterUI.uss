@@ -1,8 +1,14 @@
 MeterView {
     margin-top: 4%;
+    align-items: flex-start;
 }
 
 MeterView > * {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    scale: 0.8 0.8;
 }
 
 MeterView > * > #Value {
@@ -12,6 +18,8 @@ MeterView > * > #Value {
     top: 32%;
     left: 95px;
     align-self: flex-start;
+    transition-property: width;
+    transition-duration: 500ms;
 }
 
 MeterView > * > #Background {

@@ -18,7 +18,7 @@ public class WandItem : WeaponItem
 
     }
 
-    public override void OnEndInteract(Entity target)
+    public override void OnEndInteract(Entity target, bool isCanceled)
     {
     }
     float lastShootTime;

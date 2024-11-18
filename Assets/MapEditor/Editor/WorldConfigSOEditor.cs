@@ -35,8 +35,6 @@ public class WorldConfigSOEditor : Editor
         worldPreview = new WorldPreview();
         root.Add(worldPreview);
 
-        root.Q<Label>().AddManipulator(new DragAndDropManipulator(root.Q<Label>()));
-
         SerializedProperty property = serializedObject.GetIterator();
         property.NextVisible(true);
         while (property.NextVisible(false))

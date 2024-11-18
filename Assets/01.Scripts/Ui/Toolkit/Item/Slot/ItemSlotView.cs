@@ -7,14 +7,22 @@ using UnityEngine.UIElements;
 public class ItemSlotView : VisualElement
 {
     public ItemSlotItemView slotItem;
+    public int index { get; private set; }
+    public ItemContainer ItemContainer { get; private set; }
     public ItemSlotView()
     {
+        this.AddToClassList("item-slot");
     }
-    public void DrawView(Item item)
+    public void DrawView(Item item, int index, ItemContainer container)
     {
         this.Clear();
-        
-        slotItem = new ItemSlotItemView(item);
+        if (slotItem != null)
+            slotItem.RemoveFromHierarchy();
+
+        this.index = index;
+        this.ItemContainer = container;
+
+        slotItem = new ItemSlotItemView(item, this);
         this.Add(slotItem);
 
         DrawVisual(item);

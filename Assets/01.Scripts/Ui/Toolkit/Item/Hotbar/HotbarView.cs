@@ -14,7 +14,7 @@ public class HotbarView : VisualElement
 
     public void InitializeView(InventoryHotbar hotbar)
     {
-        Debug.Log("InitializeView");    
+        Debug.Log("InitializeView");
         this.hotbar = hotbar;
         itemContainer.onSlotDataChanged += OnSlotDataChanged;
         hotbar.onSelectedIndexChange += OnSelectedSlotChanged;
@@ -44,6 +44,7 @@ public class HotbarView : VisualElement
             Item item = itemContainer.GetItem(index);
             ItemSlotView itemSlot = CreateSlotView(index, item);
             this.Add(itemSlot);
+            itemSlot.DrawView(item, index, itemContainer);
         }
     }
 
@@ -59,7 +60,6 @@ public class HotbarView : VisualElement
             Debug.Log(e);
             Debug.Log(i);
         }
-        itemSlot.DrawView(item);
         return itemSlot;
     }
 
@@ -69,7 +69,7 @@ public class HotbarView : VisualElement
         if (value < hotbar.HotbarSize)
         {
             Item item = itemContainer.GetItem(value);
-            itemSlots[value].DrawView(item);
+            itemSlots[value].DrawView(item, value, itemContainer);
         }
     }
 }

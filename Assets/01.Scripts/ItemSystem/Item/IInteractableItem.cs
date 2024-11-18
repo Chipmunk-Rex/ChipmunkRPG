@@ -8,5 +8,5 @@ public interface IInteractableItem
     public bool VisualOnInteract { get; }
     public void OnBeforeInteract(Entity target);
     public void OnInteract(Entity target);
-    public void OnEndInteract(Entity target);
+    public void OnEndInteract(Entity target, bool isCanceled);
 }

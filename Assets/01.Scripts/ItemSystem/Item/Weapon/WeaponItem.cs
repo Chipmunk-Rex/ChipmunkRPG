@@ -14,7 +14,7 @@ public abstract class WeaponItem : Item, IInteractableItem
 
     public abstract void OnBeforeInteract(Entity target);
 
-    public abstract void OnEndInteract(Entity target);
+    public abstract void OnEndInteract(Entity target, bool isCanceled);
 
     public abstract void OnInteract(Entity target);
 }

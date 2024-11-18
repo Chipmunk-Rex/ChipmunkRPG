@@ -27,11 +27,9 @@ public class ItemContainer : INDSerializeAble
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Debug.Log("ming");
             if (Items[i] == null)
             {
-                Items[i] = item;
-                onSlotDataChanged?.Invoke(i);
+                SetItem(i, item);
                 return true;
             }
             else if (Items[i] is StackableItem)
@@ -63,16 +61,38 @@ public class ItemContainer : INDSerializeAble
             return null;
         }
     }
-    public void DropItem(int slotNum, World world, Vector2 position)
+    public int GetItemIndex(Item item)
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            if (Items[i] == item)
+                return i;
+        }
+        return -1;
+    }
+    internal void RemoveItem(FoodItem foodItem)
+    {
+        int itemIndex = GetItemIndex(foodItem);
+        if (itemIndex == -1)
+        {
+            Debug.LogError("Item not found");
+            return;
+        }
+        SetItem(itemIndex, null);
+    }
+    public void DropItem(int slotNum, Vector2 position, World world = null)
     {
         Item item = GetItem(slotNum);
         if (item == null)
             return;
+        if (world == null)
+            world = World.Instance;
         SetItem(slotNum, null);
 
-        ItemEntity itemEntity = PoolManager.Instance.Pop("ItemEntity").GetComponent<ItemEntity>();
-        itemEntity.Initialize(item);
+        ItemEntity itemEntity = new ItemEntity();
 
+        itemEntity.Initialize(item);
+        
         EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
     }
@@ -110,5 +130,12 @@ public class ItemContainer : INDSerializeAble
             item.Deserialize(itemNDSData);
             SetItem(slotNum, item);
         }
+    }
+    public void SwapItem(int slotNum1, int slotNum2)
+    {
+        Item item1 = GetItem(slotNum1);
+        Item item2 = GetItem(slotNum2);
+        SetItem(slotNum1, item2);
+        SetItem(slotNum2, item1);
     }
 }
