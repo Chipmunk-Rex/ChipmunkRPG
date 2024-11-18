@@ -10,7 +10,7 @@ public abstract class Entity : INDSerializeAble
     public EntityCompo entityCompo { get; set; }
     public Transform transform => entityCompo.transform;
     public GameObject gameObject => entityCompo.gameObject;
-    public SpriteRenderer SpriteRendererCompo => entityCompo.SpriteRendererCompo;
+    public SpriteRenderer Visual => entityCompo.SpriteRendererCompo;
     public Animator AnimatorCompo => entityCompo.AnimatorCompo;
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
@@ -58,8 +58,11 @@ public abstract class Entity : INDSerializeAble
     }
     public virtual void OnSpawn()
     {
-        SpriteRendererCompo.sprite = EntitySO.defaultSprite;
-        AnimatorCompo.runtimeAnimatorController = EntitySO.animatorController;
+        if (EntitySO != null)
+        {
+            Visual.sprite = EntitySO.defaultSprite;
+            AnimatorCompo.runtimeAnimatorController = EntitySO.animatorController;
+        }
 
         try
         {

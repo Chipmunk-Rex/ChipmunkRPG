@@ -14,7 +14,7 @@ public class Projectile : BaseProjectile
     }
     public void Initialize(Sprite sprite, Vector2 position)
     {
-        SpriteRendererCompo.sprite = sprite;
+        Visual.sprite = sprite;
         transform.position = position;
     }
 }

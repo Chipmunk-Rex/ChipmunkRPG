@@ -47,6 +47,12 @@ public class InventoryHotbar
 
         OnHotbarSizeChanged?.Invoke(this);
         PlayerInputReader.Instance.onWheel += ChangeSelectedIndex;
+
+        inventory.onSlotDataChanged += (slotNum) =>
+        {
+            if (slotNum == SelectedIndex)
+                onSelectedIndexChange?.Invoke(SelectedIndex);
+        };
     }
     private IEnumerator UseItemCoroutine()
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Chipmunk.Library.PoolEditor;
+using DG.Tweening;
 using UnityEngine;
 public class ItemEntity : Entity
 {
@@ -18,19 +19,25 @@ public class ItemEntity : Entity
 
     public override void OnSpawn()
     {
-        base.OnSpawn();
-        spawnedTime = Time.time;
         Debug.Log("ItemEntity OnSpawn");
+        base.OnSpawn();
+        Debug.Log("ItemEntity OnSpawn");
+        spawnedTime = Time.time;
 
         gameObject.name = $"Item ({item.ItemSO.itemName})";
-        SpriteRendererCompo.sprite = item.ItemSO.itemSprite;
+        Visual.sprite = item.ItemSO.itemSprite;
+
+        Visual.transform.DOMoveY(Visual.transform.position.y + 0.5f, 2.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
     }
 
     public override void OnPushed()
     {
         base.OnPushed();
         item = null;
-        SpriteRendererCompo.sprite = null;
+        Visual.sprite = null;
+
+        Visual.transform.DOKill();
+        Visual.transform.position = Vector2.zero;
     }
 
     internal void Collect(Inventory target, float magneticPower)

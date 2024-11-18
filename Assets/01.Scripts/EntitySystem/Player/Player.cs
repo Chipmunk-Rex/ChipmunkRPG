@@ -42,10 +42,10 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         InitializeStateMachine();
 
         // ItemSpriteCompo = new GameObject("ItemVisual").AddComponent<SpriteRenderer>();
-        ItemSpriteCompo = SpriteRendererCompo.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        ItemSpriteCompo = Visual.transform.GetChild(0).GetComponent<SpriteRenderer>();
         ItemSpriteCompo.sortingLayerName = "Entity";
         ItemSpriteCompo.sortingOrder = 1;
-        ItemSpriteCompo.transform.SetParent(SpriteRendererCompo.transform);
+        ItemSpriteCompo.transform.SetParent(Visual.transform);
         ItemAnimatorCompo = ItemSpriteCompo.gameObject.AddComponent<Animator>();
         
         base.OnSpawn();
