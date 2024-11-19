@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Flags]
 public enum EnumEntityState
 {
-    Idle, Move, Attack, Swim, Use, Died, Build, Eat
+    Idle, Move, Attack, Swim, Use, Died, Build, Eat, Die
 }

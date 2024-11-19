@@ -12,7 +12,7 @@ public class MeterHealth : Meter
 
     protected override void OnNegativeEffect()
     {
-        throw new System.NotImplementedException();
+        Owner.Die();
     }
 
     protected override void OnPositiveEffect()

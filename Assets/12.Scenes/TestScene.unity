@@ -773,8 +773,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 2
+      scalar: 3.1415927
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -826,8 +826,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 2
+      scalar: 3.1415927
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -879,8 +879,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 2
+      scalar: 3.1415927
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5337,7 +5337,7 @@ GameObject:
   - component: {fileID: 469884603}
   - component: {fileID: 469884602}
   m_Layer: 0
-  m_Name: GlobalLight
+  m_Name: DayLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5401,12 +5401,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469884601}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.5201235, y: 0.70380104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 493343659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493343657
 GameObject:
@@ -5440,6 +5440,7 @@ Transform:
   m_Children:
   - {fileID: 622104939}
   - {fileID: 1886022457}
+  - {fileID: 469884603}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &493343660
@@ -5464,6 +5465,12 @@ MonoBehaviour:
   <groundTilemap>k__BackingField: {fileID: 1972919616}
   <buildingTilemap>k__BackingField: {fileID: 535174022}
   <playerCompo>k__BackingField: {fileID: 1739893402907997161}
+  <Time>k__BackingField:
+    OnvalueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    _value: 0
+  dayLight: {fileID: 469884602}
   ndsData:
     data:
       serializableItems: []
@@ -8044,7 +8051,6 @@ SceneRoots:
   - {fileID: 603050744}
   - {fileID: 1879596395}
   - {fileID: 939879921}
-  - {fileID: 469884603}
   - {fileID: 1561701865}
   - {fileID: 638533196}
   - {fileID: 289180472}

@@ -30,7 +30,7 @@ MonoBehaviour:
     - key: 0
       value:
         maxValue: 100
-        positiveEffectThreshold: 0
+        positiveEffectThreshold: 100
         negativeEffectThreshold: 0
         defaultValue: 0
     - key: 1

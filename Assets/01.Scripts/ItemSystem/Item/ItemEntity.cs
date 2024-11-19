@@ -63,4 +63,9 @@ public class ItemEntity : Entity
         target.AddItem(item);
         PoolManager.Instance.Push(entityCompo);
     }
+
+    public override void Die()
+    {
+        throw new NotImplementedException();
+    }
 }

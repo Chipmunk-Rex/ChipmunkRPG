@@ -110,4 +110,5 @@ public abstract class Entity : INDSerializeAble
 
     public virtual void OnPushed() { }
 
+    public abstract void Die();
 }

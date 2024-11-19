@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Chipmunk.Library.PoolEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -63,6 +64,9 @@ public class ItemContainer : INDSerializeAble
     }
     public int GetItemIndex(Item item)
     {
+        if (item == null)
+            return -1;
+
         for (int i = 0; i < Items.Length; i++)
         {
             if (Items[i] == item)
@@ -92,7 +96,7 @@ public class ItemContainer : INDSerializeAble
         ItemEntity itemEntity = new ItemEntity();
 
         itemEntity.Initialize(item);
-        
+
         EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
     }

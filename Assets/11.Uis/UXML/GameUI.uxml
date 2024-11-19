@@ -2,6 +2,8 @@
     <Style src="project://database/Assets/11.Uis/USS/InventoryUI.uss?fileID=7433441132597879392&amp;guid=61ee05f07a7da6a4f9469d6551e8234c&amp;type=3#InventoryUI" />
     <Style src="project://database/Assets/11.Uis/USS/HotbarUI.uss?fileID=7433441132597879392&amp;guid=6921bb43ff73fe646a7f9a6b49be2979&amp;type=3#HotbarUI" />
     <Style src="project://database/Assets/11.Uis/USS/MeterUI.uss?fileID=7433441132597879392&amp;guid=554862911cfac4f4cbd2235c333081a7&amp;type=3#MeterUI" />
+    <Style src="project://database/Assets/11.Uis/USS/WorldTimeUI.uss?fileID=7433441132597879392&amp;guid=0fc9acd138ebe8d47b7ee2d6a420ddbf&amp;type=3#WorldTimeUI" />
     <HotbarView style="align-self: center;" />
-    <MeterView />
+    <MeterView style="position: absolute;" />
+    <WorldTimeView style="position: absolute;" />
 </ui:UXML>

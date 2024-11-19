@@ -143,4 +143,9 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     {
         ChangeStateByItem(null);
     }
+
+    public override void Die()
+    {
+        FSMStateMachine.ChangeState(EnumEntityState.Die);
+    }
 }

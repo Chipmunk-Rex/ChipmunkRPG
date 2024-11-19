@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -25,6 +26,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public Player player => playerCompo.Entity as Player;
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
+    [field: SerializeField] public SerializeableNotifyValue<int> Time { get; private set; } = new SerializeableNotifyValue<int>();
+    [SerializeField] Light2D dayLight;
     // [SerializeField] uint tickRate = 1;
     // private uint tick = 0;
     private void Reset()
@@ -43,7 +46,14 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         Render();
         // StartCoroutine(RenderMap());
     }
-
+    private void FixedUpdate()
+    {
+        float time = UnityEngine.Time.time % (worldSO.dayDuration * 60);
+        Time.Value = Mathf.RoundToInt(time);
+        float lightIntensity = worldSO.lightByTime.Evaluate(time / (worldSO.dayDuration * 60));
+        // Debug.Log(lightIntensity);
+        dayLight.intensity = lightIntensity;
+    }
     private void SetRenderer()
     {
         TilemapRenderer groundRenderer = groundTilemap.gameObject.GetComponent<TilemapRenderer>();
@@ -243,7 +253,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         List<NDSData> entitiesNDSData = new List<NDSData>();
         foreach (Entity entity in entities)
         {
-            if(entity is Player) continue;
+            if (entity is Player) continue;
             entitiesNDSData.Add(entity.Serialize());
         }
         worldNdsData.AddData("Player", player.Serialize());

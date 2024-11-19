@@ -17,4 +17,9 @@ public class Projectile : BaseProjectile
         Visual.sprite = sprite;
         transform.position = position;
     }
+
+    public override void Die()
+    {
+        
+    }
 }
