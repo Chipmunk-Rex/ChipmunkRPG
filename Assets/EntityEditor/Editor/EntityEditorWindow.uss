@@ -1,0 +1,79 @@
+#Header {
+    background-color: rgb(37, 37, 37);
+    height: 20px;
+}
+
+#Title {
+    color: rgb(210, 210, 210);
+    -unity-text-align: middle-left;
+    padding-left: 4px;
+}
+
+EntityInspectorView {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+EntityListView {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+EntityListViewItem {
+    border-left-color: rgb(37, 37, 37);
+    border-right-color: rgb(37, 37, 37);
+    border-top-color: rgb(37, 37, 37);
+    border-bottom-color: rgb(37, 37, 37);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 3px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    margin-left: 10px;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+
+EntityListViewItem:hover {
+    border-left-color: rgb(88, 88, 88);
+    border-right-color: rgb(88, 88, 88);
+    border-top-color: rgb(88, 88, 88);
+    border-bottom-color: rgb(88, 88, 88);
+}
+
+EntityListViewItem > #SpriteVisual {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+EntityListViewItem > #Name {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+EntityListView > .Selected {
+    border-left-color: rgb(217, 217, 217);
+    border-right-color: rgb(217, 217, 217);
+    border-top-color: rgb(217, 217, 217);
+    border-bottom-color: rgb(217, 217, 217);
+}

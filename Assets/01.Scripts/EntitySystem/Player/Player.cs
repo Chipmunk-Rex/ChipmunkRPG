@@ -101,6 +101,7 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         FSMStateMachine.AddState(EnumEntityState.Build, new PlayerBuildState(this, "Build"));
         FSMStateMachine.AddState(EnumEntityState.Use, new PlayerBuildState(this, "Use"));
         FSMStateMachine.AddState(EnumEntityState.Eat, new PlayerBuildState(this, "Eat"));
+        FSMStateMachine.AddState(EnumEntityState.Die, new PlayerDeadState(this, "Die"));
         FSMStateMachine.Initailize(EnumEntityState.Idle, this);
     }
     public override NDSData Serialize()

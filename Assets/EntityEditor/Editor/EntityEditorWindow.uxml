@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/EntityEditor/Editor/EntityEditorWindow.uss?fileID=7433441132597879392&amp;guid=1f4a5c672fe526c418a68a997f7aa374&amp;type=3#EntityEditorWindow" />
+    <Chipmunk.Library.EntityEditor.EntityEditorSplitView fixed-pane-initial-dimension="250">
+        <ui:VisualElement name="LeftPane" style="width: 200px; height: 100%; min-width: 250px;">
+            <ui:VisualElement name="Header">
+                <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+            </ui:VisualElement>
+            <ui:ScrollView>
+                <Chipmunk.Library.EntityEditor.EntityInspectorView />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightPane">
+            <Chipmunk.Library.EntityEditor.EntityEditorSplitView>
+                <ui:VisualElement name="LeftPane" style="width: 200px; height: 100%; min-width: 400px;">
+                    <ui:VisualElement name="Header">
+                        <ui:Label tabindex="-1" text="EntityList" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+                    </ui:VisualElement>
+                    <Chipmunk.Library.EntityEditor.EntityListView />
+                </ui:VisualElement>
+                <ui:VisualElement name="RightPane" style="min-width: 250px;">
+                    <ui:VisualElement name="Header">
+                        <ui:Label tabindex="-1" text="EntitySO" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+                    </ui:VisualElement>
+                    <Chipmunk.Library.EntityEditor.EntitySOView name="EntitySOView" />
+                </ui:VisualElement>
+            </Chipmunk.Library.EntityEditor.EntityEditorSplitView>
+        </ui:VisualElement>
+    </Chipmunk.Library.EntityEditor.EntityEditorSplitView>
+</ui:UXML>

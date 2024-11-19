@@ -43,11 +43,11 @@ public abstract class Meter
 
     private void ValueChangeHandler(int prev, int next)
     {
-        if (next > MeterData.positiveEffectThreshold)
+        if (next >= MeterData.positiveEffectThreshold)
         {
             OnPositiveEffect();
         }
-        if (next < MeterData.negativeEffectThreshold)
+        if (next <= MeterData.negativeEffectThreshold)
         {
             OnNegativeEffect();
         }

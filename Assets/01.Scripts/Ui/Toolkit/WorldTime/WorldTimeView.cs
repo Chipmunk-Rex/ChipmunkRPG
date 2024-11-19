@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
@@ -14,9 +15,15 @@ public class WorldTimeView : VisualElement
     public void DrawView(World world)
     {
         Clear();
+        world.Time.OnvalueChanged.AddListener(OnWorldTimeChanged);
         // world.Time = 0;
         // var timeLabel = new Label($"Time: {time}");
         // Add(timeLabel);
 
+    }
+
+    private void OnWorldTimeChanged(int prev, int next)
+    {
+        
     }
 }

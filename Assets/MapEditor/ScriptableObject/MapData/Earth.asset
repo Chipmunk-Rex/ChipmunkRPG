@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaa8802a72ac1844981ccc372eda42e2, type: 3}
-  m_Name: New Map Data SO
+  m_Name: Earth
   m_EditorClassIdentifier: 
-  worldName: New World
+  worldName: Earth
   biomeDatas:
-  - percentage: 62.910606
+  - percentage: 64.32976
     color: {r: 0.1595366, g: 1, b: 0, a: 1}
     Value: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-  - percentage: 85.331215
+  - percentage: 81.83944
     color: {r: 1, g: 0.71942556, b: 0, a: 1}
     Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
   - percentage: 100
@@ -34,22 +34,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.00000025518239
-      value: 0.51179874
-      inSlope: 1.426351
-      outSlope: 1.426351
+      time: 0
+      value: 0.5315615
+      inSlope: 0.4022087
+      outSlope: 0.4022087
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.101627246
+      outWeight: 0.29128662
     - serializedVersion: 3
-      time: 1
-      value: 0.49998856
-      inSlope: -2.8305871
-      outSlope: -2.8305871
+      time: 0.99032235
+      value: 0.5417489
+      inSlope: -0.45537308
+      outSlope: -0.45537308
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.06881673
+      inWeight: 0.17540228
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

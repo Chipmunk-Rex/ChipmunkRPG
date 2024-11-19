@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public abstract class BaseItemSO : ScriptableObject
@@ -11,6 +12,7 @@ public abstract class BaseItemSO : ScriptableObject
     /// <summary>
     /// 내구도
     /// </summary>
+    [Tooltip("내구도(미구현)")]
     public int Durability;
     public abstract Item CreateItem();
 

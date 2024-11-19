@@ -38,7 +38,7 @@ public class ItemContainer : INDSerializeAble
                 if (item is StackableItem)
                 {
                     StackableItem slotItem = (Items[i] as StackableItem);
-                    slotItem.itemCount += (item as StackableItem).itemCount;
+                    slotItem.ItemCount += (item as StackableItem).ItemCount;
                     return true;
                 }
             }
@@ -74,9 +74,9 @@ public class ItemContainer : INDSerializeAble
         }
         return -1;
     }
-    internal void RemoveItem(FoodItem foodItem)
+    internal void RemoveItem(Item item)
     {
-        int itemIndex = GetItemIndex(foodItem);
+        int itemIndex = GetItemIndex(item);
         if (itemIndex == -1)
         {
             Debug.LogError("ItemContainer.RemoveItem() : Item not found");
