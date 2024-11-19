@@ -27,12 +27,22 @@ public abstract class Entity : INDSerializeAble
     {
         EntitySO = entitySO;
         entityName = entitySO.entityName;
-
-        meters.Add(EnumMeterType.Health, new MeterHealth(this, entitySO.meterDatas[EnumMeterType.Health]));
-        meters.Add(EnumMeterType.Hunger, new MeterHunger(this, entitySO.meterDatas[EnumMeterType.Hunger]));
-        meters.Add(EnumMeterType.Thirsty, new MeterThirsty(this, entitySO.meterDatas[EnumMeterType.Thirsty]));
-        meters.Add(EnumMeterType.Mentality, new MeterMentality(this, entitySO.meterDatas[EnumMeterType.Mentality]));
-        meters.Add(EnumMeterType.Temperature, new MeterTemperature(this, entitySO.meterDatas[EnumMeterType.Temperature]));
+        try
+        {
+            meters.Add(EnumMeterType.Health, new MeterHealth(this, entitySO.meterDatas[EnumMeterType.Health]));
+            meters.Add(EnumMeterType.Hunger, new MeterHunger(this, entitySO.meterDatas[EnumMeterType.Hunger]));
+            meters.Add(EnumMeterType.Thirsty, new MeterThirsty(this, entitySO.meterDatas[EnumMeterType.Thirsty]));
+            meters.Add(EnumMeterType.Mentality, new MeterMentality(this, entitySO.meterDatas[EnumMeterType.Mentality]));
+            meters.Add(EnumMeterType.Temperature, new MeterTemperature(this, entitySO.meterDatas[EnumMeterType.Temperature]));
+        }
+        catch
+        {
+            meters.Add(EnumMeterType.Health, null);
+            meters.Add(EnumMeterType.Hunger, null);
+            meters.Add(EnumMeterType.Thirsty, null);
+            meters.Add(EnumMeterType.Mentality, null);
+            meters.Add(EnumMeterType.Temperature, null);
+        }
 
         return this;
     }
@@ -46,13 +56,14 @@ public abstract class Entity : INDSerializeAble
             world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
     }
-    public void SpawnEntity(World world)
+    public void SpawnEntity(World world = null, Vector2 pos = default)
     {
-        Debug.Log(world);
+        if (world == null)
+            world = World.Instance;
         currentWorld = world;
         if (world != null)
         {
-            EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
+            EntitySpawnEvent @event = new EntitySpawnEvent(world, this, pos);
             world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
     }

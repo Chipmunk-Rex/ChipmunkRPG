@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c6f215e9139f94f875c1a7b28af81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 11400000, guid: d016af7a687f1b044b137c70edad938f, type: 2}
+  itemSO: {fileID: 11400000, guid: d0c4a415edc3fda4daebe8ff094ae2d1, type: 2}
   playerCompo: {fileID: 1739893402907997161}
 --- !u!4 &218397304
 Transform:

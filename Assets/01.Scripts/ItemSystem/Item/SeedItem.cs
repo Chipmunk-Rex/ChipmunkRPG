@@ -24,11 +24,15 @@ public class SeedItem : StackableItem, IInteractableItem
         if (isCanceled)
             return;
 
-        IInventoryOwner inventoryOwner = target as IInventoryOwner;
-        this.itemCount--;
-        if (this.itemCount <= 0)
+        Vector2Int plantPos = Vector2Int.RoundToInt(target.lookDir.Value + (Vector2)target.transform.position);
+
+        BuildingSO buildingSO = ScriptableObject.CreateInstance<BuildingSO>();
+        buildingSO.buildingEntity = seedSO.plantSO;
+
+        if (target.currentWorld.CanBuild(plantPos))
         {
-            inventoryOwner.Inventory.RemoveItem(this);
+            target.currentWorld.CreateBuilding(plantPos, buildingSO);
+            RemoveStack(target);
         }
     }
 

@@ -11,6 +11,7 @@ using UnityEngine.Rendering;
 public abstract class EntitySO : ScriptableObject
 {
     public string entityName;
+    public string description;
     public Sprite defaultSprite;
     public GameObject shadowPrefab;
     public RuntimeAnimatorController animatorController;
@@ -23,7 +24,14 @@ public abstract class EntitySO : ScriptableObject
     public float attackCooldown = 0.5f;
     public float attackDelay = 0.5f;
     public float attackKnockback = 1;
-    public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new();
+    public int test = 5;
+    public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new(){
+        {EnumMeterType.Health, new MeterData()},
+        {EnumMeterType.Hunger, new MeterData()},
+        {EnumMeterType.Mentality, new MeterData()},
+        {EnumMeterType.Temperature, new MeterData()},
+        {EnumMeterType.Thirsty, new MeterData()},
+    };
     protected abstract Entity CreateEntityInstance();
     public virtual Entity CreateEntity()
     {

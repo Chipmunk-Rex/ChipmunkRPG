@@ -17,6 +17,15 @@ public abstract class StackableItem : Item
             }
         }
     }
+    public void RemoveStack(Entity target)
+    {
+        IInventoryOwner inventoryOwner = target as IInventoryOwner;
+        this.itemCount--;
+        if (this.itemCount <= 0)
+        {
+            inventoryOwner.Inventory.RemoveItem(this);
+        }
+    }
 
     public StackableItem(BaseItemSO itemSO) : base(itemSO)
     {

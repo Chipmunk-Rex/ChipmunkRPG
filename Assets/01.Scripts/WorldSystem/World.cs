@@ -176,31 +176,45 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     }
     public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
     {
-        Debug.Log("ming");
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
             Vector2Int tilePos = worldPos + localPos;
-            Ground ground = GetGround(tilePos);
-            if (ground == null || ground.building != null)
-            {
-                Debug.Log($"{tilePos} {ground.building} {ground}");
+            if(CanBuild(tilePos))
                 return false;
-            }
+        }
+        return true;
+    }
+    public bool CanBuild(Vector2Int worldPos)
+    {
+        Ground ground = GetGround(worldPos);
+        if (ground == null || ground.building != null)
+        {
+            return false;
         }
         return true;
     }
 
-    public void ConstructBuilding(Building building)
+    public void CreateBuilding(Building building)
     {
         CreateBuildingEvent @event = new CreateBuildingEvent(this, building, building.pos);
         worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
     }
-    public void ConstructBuilding(Building building, Vector2Int pos)
+    public void CreateBuilding(Building building, Vector2Int pos)
     {
         building.pos = pos;
-        ConstructBuilding(building);
+        CreateBuilding(building);
     }
 
+    public void CreateBuilding(Vector2Int pos, BuildingSO buildingSO)
+    {
+        Building building = new Building(buildingSO);
+        CreateBuilding(pos, building);
+    }
+    public void CreateBuilding(Vector2Int pos, Building building)
+    {
+        WorldEvent @event = new CreateBuildingEvent(this, building, Vector2Int.RoundToInt(pos));
+        this.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
+    }
     public void RemoveBuilding(Vector2Int pos)
     {
         Building building = GetBuilding(pos);
@@ -231,10 +245,6 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         return buildingPosList;
     }
 
-    public void SetBuilding(Vector2Int pos, Building building)
-    {
-        throw new NotImplementedException();
-    }
     #endregion
     #region Serialize
     [SerializeField] NDSData ndsData = new();

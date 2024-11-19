@@ -23,6 +23,12 @@ EntityListView {
     padding-left: 10px;
 }
 
+EntityListView > #reloadBtn {
+    width: 50px;
+    height: 20px;
+    align-self: flex-end;
+}
+
 EntityListViewItem {
     border-left-color: rgb(37, 37, 37);
     border-right-color: rgb(37, 37, 37);

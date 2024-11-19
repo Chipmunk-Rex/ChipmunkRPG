@@ -17,46 +17,39 @@ public class CreateBuildingEvent : BuildingEvent
             for (int y = -building.buildingSO.down; y <= building.buildingSO.top; y++)
             {
                 Vector2Int tilePos = new Vector2Int(x, y);
-                if (building.buildingSO.tileDatas.ContainsKey(tilePos) == false)
+                if (tilePos != Vector2Int.zero && building.buildingSO.tileDatas.ContainsKey(tilePos) == false)
                     continue;
 
-                Vector2Int tileWorldPos = pos + tilePos;
-                Debug.Log($"설치 {tileWorldPos}");
-                TileBase tile = building.buildingSO.tileDatas[tilePos];
+                Vector2Int groundWorldPos = pos + tilePos;
 
-                Ground ground = world.GetGround(tileWorldPos);
+                Ground ground = world.GetGround(groundWorldPos);
                 if (ground == null)
                 {
                     Debug.LogError($"CreateBuildingEvent : ground value is null!!");
                     return EnumEventResult.Failed;
                 }
-                Debug.Log($"{tileWorldPos} {world.GetBuilding(tileWorldPos) == null}");
-                ground.building = building;
+                if (ground.building != null)
+                {
+                    Debug.LogError($"CreateBuildingEvent : building is already exist!!");
+                    return EnumEventResult.Failed;
+                }
 
-                world.buildingTilemap.SetTile((Vector3Int)tileWorldPos, tile);
+                ground.building = building;
+                Debug.Log($"설치 {groundWorldPos}");
+
+                building.pos = pos;
+
+                if (building.buildingSO.tileDatas.ContainsKey(tilePos))
+                {
+                    TileBase tile = building.buildingSO.tileDatas[tilePos];
+                    world.buildingTilemap.SetTile((Vector3Int)groundWorldPos, tile);
+                }
             }
         }
-        // foreach (KeyValuePair<Vector2Int, TileBase> keyValue in building.buildingSO.tileDatas)
-        // {
-        //     Vector2Int tilePos = pos + keyValue.Key;
-        //     Debug.Log($"설치 {tilePos}");
-        //     TileBase tile = keyValue.Value;
 
-        //     Ground ground = world.GetGround(tilePos);
-        //     if (ground == null)
-        //     {
-        //         Debug.LogError($"CreateBuildingEvent : ground value is null!!");
-        //         return EnumEventResult.Failed;
-        //     }
-        //     Debug.Log($"{tilePos} {world.GetBuilding(tilePos) == null}");
-        //     ground.building = building;
-
-        //     world.buildingTilemap.SetTile((Vector3Int)tilePos, tile);
-        // }
+        building.buildingEntity.SpawnEntity(pos: pos);
 
         building.pos = pos;
-        // building.currentWorld = world;
-
         return EnumEventResult.Successed;
     }
     public CreateBuildingEvent(World world, Building building, Vector2Int pos) : base(world, building)

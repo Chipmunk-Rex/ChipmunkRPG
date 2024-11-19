@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b455a53b56c365b498219f1ae02626fb, type: 3}
-  m_Name: PlantSO 1
+  m_Name: Carrot
   m_EditorClassIdentifier: 
-  entityName: 
-  defaultSprite: {fileID: 0}
+  entityName: Carrot
+  description: 
+  defaultSprite: {fileID: 1854077010, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
   shadowPrefab: {fileID: 0}
   animatorController: {fileID: 0}
   maxHealth: 1
@@ -25,8 +26,15 @@ MonoBehaviour:
   attackCooldown: 0.5
   attackDelay: 0.5
   attackKnockback: 1
+  test: 5
   meterDatas:
     serializableItems: []
-  growthSprites: []
-  growthTime: 0
+  growthSprites:
+  - {fileID: 1470985453, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1503981045, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 885473608, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: -1981487602, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1854077010, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  deadSprite: {fileID: 183905673, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  growthTime: 1
   dropItem: {fileID: 0}

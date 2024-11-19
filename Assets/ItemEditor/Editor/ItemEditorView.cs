@@ -73,7 +73,7 @@ namespace Chipmunk.Library.ItemEditor
         public void ReFreshData()
         {
             itemSOList.Clear();
-            AssetDatabase.FindAssets("", new[] { "Assets/ItemEditor/ScriptableObject" }).ToList().ForEach(guid =>
+            AssetDatabase.FindAssets("", new[] { "Assets/ItemEditor/ScriptableObject" }).ToList().ForEach((Action<string>)(guid =>
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 BaseItemSO itemSo = AssetDatabase.LoadAssetAtPath<BaseItemSO>(path);
@@ -81,7 +81,7 @@ namespace Chipmunk.Library.ItemEditor
                 {
                     itemSOList.Add(itemSo);
                 }
-            });
+            }));
         }
     }
 }

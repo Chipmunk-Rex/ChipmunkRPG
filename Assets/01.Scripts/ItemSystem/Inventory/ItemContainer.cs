@@ -129,7 +129,7 @@ public class ItemContainer : INDSerializeAble
         foreach (NDSData itemNDSData in itemNDSDatas)
         {
             int slotNum = itemNDSData.GetData<int>("slotNum");
-            ItemSO itemSO = SOAddressSO.Instance.GetSOByID<ItemSO>(uint.Parse(itemNDSData.GetDataString("ItemSO")));
+            BaseItemSO itemSO = SOAddressSO.Instance.GetSOByID<BaseItemSO>(uint.Parse(itemNDSData.GetDataString("ItemSO")));
             Item item = itemSO.CreateItem();
             item.Deserialize(itemNDSData);
             SetItem(slotNum, item);

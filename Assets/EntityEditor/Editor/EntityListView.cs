@@ -18,6 +18,16 @@ namespace Chipmunk.Library.EntityEditor
         public void DrawView()
         {
             Clear();
+
+            
+            Button reloadBtn = new Button(() =>
+            {
+                DrawView();
+            });
+            reloadBtn.name = "reloadBtn";
+            reloadBtn.text = "Reload";
+            Add(reloadBtn);
+
             List<EntitySO> entitySOs = FindEntitySOs();
             foreach (EntitySO entitySO in entitySOs)
             {
@@ -30,6 +40,7 @@ namespace Chipmunk.Library.EntityEditor
                     }
                     selectedItem = viewItem;
                     selectedItem.SetSelected(true);
+                    Selection.activeObject = viewItem.entitySO;
                     inspectorView.UpdateInspactor(viewItem.entitySO);
                 });
                 Add(entityListItem);

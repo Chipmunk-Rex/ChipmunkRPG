@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
   m_Name: FoodSO 1
   m_EditorClassIdentifier: 
-  itemName: item
-  itemSprite: {fileID: 0}
-  enumItemRarity: 0
+  itemName: Carrot
+  itemSprite: {fileID: -254314381, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  enumItemRarity: 1
   Durability: 0
   maxStackCount: 64
   hunger: 1
