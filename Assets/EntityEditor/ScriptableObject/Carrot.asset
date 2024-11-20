@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   entityName: Carrot
-  description: 
+  description: "\uB4A4\uC9C8\uAC70\uAC01\u314C\uB2E4."
   defaultSprite: {fileID: 1854077010, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
   shadowPrefab: {fileID: 0}
   animatorController: {fileID: 0}
