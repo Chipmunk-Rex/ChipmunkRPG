@@ -12,6 +12,7 @@ WorldTimeView {
 WorldTimeView > * {
     transition-property: rotate;
     transition-duration: 500ms;
+    transition-timing-function: ease-in-out-elastic;
 }
 
 WorldTimeView > #timeArrow {
