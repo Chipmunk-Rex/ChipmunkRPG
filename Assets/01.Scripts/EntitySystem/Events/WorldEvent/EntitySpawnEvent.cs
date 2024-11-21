@@ -16,7 +16,6 @@ public class EntitySpawnEvent : WorldEntityEvent
 
     public override EnumEventResult ExcuteEvent()
     {
-        Debug.Log("Spawn Entity");
         try
         {
             if (world.entities.Contains(entity))
@@ -31,15 +30,12 @@ public class EntitySpawnEvent : WorldEntityEvent
                 entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
                 entity.entityCompo = entityCompo;
             }
-
-            Debug.Log(entityCompo.Entity);
             entityCompo.Entity = entity;
             Debug.Log(entityCompo.Entity);
             world.entities.Add(entity);
             entity.transform.SetParent(world.entityContainerTrm);
             entity.transform.position = spawnPos;
             entity.OnSpawn();
-            Debug.Log(entityCompo.Entity);
         }
         catch
         {

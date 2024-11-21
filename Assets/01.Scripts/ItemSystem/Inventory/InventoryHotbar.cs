@@ -78,8 +78,10 @@ public class InventoryHotbar
             {
                 EndInteract(beforeFrameItem, true);
             }
-        }   
-        SelectedIndex = inventory.GetItemIndex(item as Item);
+        }
+        int index = inventory.GetItemIndex(item as Item);
+        if(index != -1)
+            SelectedIndex = index;
         if (targetUseItem == null || item == null) return;
         Debug.Log(item);
 

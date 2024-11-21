@@ -47,7 +47,8 @@ public class CreateBuildingEvent : BuildingEvent
             }
         }
 
-        building.buildingEntity.SpawnEntity(pos: pos);
+        if (building.buildingEntity != null)
+            building.buildingEntity.SpawnEntity(pos: pos);
 
         building.pos = pos;
         return EnumEventResult.Successed;

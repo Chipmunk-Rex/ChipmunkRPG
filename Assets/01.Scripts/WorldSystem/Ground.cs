@@ -36,10 +36,13 @@ public class Ground : INDSerializeAble
         worldPos = data.GetData<JsonVector2>("worldPos");
         groundSO = SOAddressSO.Instance.GetSOByID<GroundSO>(uint.Parse(data.GetDataString("groundSO")));
         biomeSO = SOAddressSO.Instance.GetSOByID<BiomeSO>(uint.Parse(data.GetDataString("biomeSO")));
+
         if (data.Data.ContainsKey("building"))
         {
-            // building = new Building();
-            // building.Deserialize(data.GetData<NDSData>("building"));
+            NDSData buldingNDSData = data.GetData<NDSData>("building");
+            BuildingSO buildingSO = SOAddressSO.Instance.GetSOByID<BuildingSO>(uint.Parse(buldingNDSData.GetDataString("buildingSO")));
+            building = buildingSO.CreateBuilding();
+            building.Deserialize(buldingNDSData);
         }
     }
 }

@@ -78,6 +78,7 @@ public abstract class Entity : INDSerializeAble
         try
         {
 
+            onSpawn?.Invoke();
             entityCompo.OnSpawnEvent?.Invoke();
         }
         catch (Exception e)
@@ -112,11 +113,26 @@ public abstract class Entity : INDSerializeAble
     {
         entityCompo.StopCoroutine(enumerator);
     }
+    Vector2 savedPos;
+    public bool hasOwner; // World에서 역직렬화 시 owner가 있는지 확인. owner가 있으면 월드에서 관리하지 않음.
+
     public virtual void Deserialize(NDSData data)
     {
-        transform.position = data.GetData<JsonVector2>("Position");
+        savedPos = data.GetData<JsonVector2>("Position");
+        if (entityCompo == null)
+            onSpawn += SetPosition;
+        else
+            transform.position = savedPos;
+        Debug.Log(savedPos + "EntitiyPos====");
+
         EntitySO = SOAddressSO.Instance.GetSOByID<EntitySO>(uint.Parse(data.GetDataString("EntitySO")));
         lookDir.Value = data.GetData<JsonVector2>("LookDir");
+    }
+    private void SetPosition()
+    {
+        Debug.Log(savedPos + "EntitiyPos====");
+        transform.position = savedPos;
+        onSpawn -= SetPosition;
     }
 
     public virtual void OnPushed() { }

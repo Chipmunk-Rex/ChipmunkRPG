@@ -11,11 +11,15 @@ public class BuildingSO : ScriptableObject
     /// top right left buttom
     /// </summary>
     [HideInInspector] public (int, int, int, int) tileDataSize => (top, right, down, left);
-    public EntitySO buildingEntity;
+    public EntitySO buildingEntitySO;
     [Header("Size")]
     [SerializeField] public int top;
     [SerializeField] public int right;
     [SerializeField] public int down;
     [SerializeField] public int left;
+    public virtual Building CreateBuilding()
+    {
+        return new Building(this);
+    }
     
 }

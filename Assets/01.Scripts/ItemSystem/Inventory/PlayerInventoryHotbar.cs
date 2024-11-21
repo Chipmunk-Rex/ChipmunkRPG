@@ -12,7 +12,6 @@ public class PlayerInventoryHotbar : InventoryHotbar
 
     private void UseItem(bool value)
     {
-        Debug.Log(this.GetSelectedItem());
         if (value)
             UseItem(this.GetSelectedItem() as IInteractableItem);
         else

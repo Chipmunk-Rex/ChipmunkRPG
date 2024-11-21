@@ -26,8 +26,7 @@ public class SeedItem : StackableItem, IInteractableItem
 
         Vector2Int plantPos = Vector2Int.RoundToInt(target.lookDir.Value + (Vector2)target.transform.position);
 
-        BuildingSO buildingSO = ScriptableObject.CreateInstance<BuildingSO>();
-        buildingSO.buildingEntity = seedSO.plantSO;
+        BuildingSO buildingSO =  seedSO.plantSO;
 
         if (target.World.CanBuild(plantPos))
         {

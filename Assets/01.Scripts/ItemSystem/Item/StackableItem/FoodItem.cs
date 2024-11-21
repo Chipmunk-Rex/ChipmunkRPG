@@ -12,7 +12,7 @@ public class FoodItem : StackableItem, IInteractableItem
     private FoodSO foodSO;
     public IInteractableItemSO interactableItemSO => foodSO;
 
-    [field: SerializeField] public bool VisualOnInteract { get; private set; }
+    public bool VisualOnInteract => true;
 
     public void OnBeforeInteract(Entity target)
     {

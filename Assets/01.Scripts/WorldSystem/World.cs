@@ -214,7 +214,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     public void CreateBuilding(Vector2Int pos, BuildingSO buildingSO)
     {
-        Building building = new Building(buildingSO);
+        Building building = buildingSO.CreateBuilding();
         CreateBuilding(pos, building);
     }
     public void CreateBuilding(Vector2Int pos, Building building)
@@ -271,7 +271,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         foreach (Entity entity in entities)
         {
             if (entity is Player) continue;
-            entitiesNDSData.Add(entity.Serialize());
+            NDSData entityNDSData = entity.Serialize();
+            entitiesNDSData.Add(entityNDSData);
         }
         worldNdsData.AddData("Player", player.Serialize());
         worldNdsData.AddData("seed", seed);
@@ -314,9 +315,12 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         {
             EntitySO entitySO = SOAddressSO.Instance.GetSOByID<EntitySO>(uint.Parse(entityNDSData.GetDataString("EntitySO")));
             Entity entity = entitySO.CreateEntity();
-            entity.SpawnEntity(this);
             entity.Deserialize(entityNDSData);
-            entities.Add(entity);
+            if (!entity.hasOwner)
+            {
+                entity.SpawnEntity(this);
+                entities.Add(entity);
+            }
         }
 
         player.Deserialize(data.GetData<NDSData>("Player"));

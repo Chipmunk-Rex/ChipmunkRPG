@@ -35,9 +35,9 @@ public class ItemEntity : Entity
         base.OnPushed();
         item = null;
         Visual.sprite = null;
-
+        Debug.Log(Visual.transform.position + " 밍밍ㅁ임이");
         Visual.transform.DOKill();
-        Visual.transform.position = Vector2.zero;
+        Visual.transform.localPosition = Vector2.zero;
     }
 
     internal void Collect(Inventory target, float magneticPower)

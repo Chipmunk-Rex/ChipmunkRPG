@@ -16,8 +16,6 @@ public class ItemCollector : MonoBehaviour
     void Awake()
     {
         targetCompo = transform.parent.GetComponent<EntityCompo>();
-        Debug.LogWarning("ItemCollector: " + targetCompo);
-        Debug.Log(targetCompo.Entity is IInventoryOwner);
 
         if (targetCompo.Entity is IInventoryOwner)
             Initialize();

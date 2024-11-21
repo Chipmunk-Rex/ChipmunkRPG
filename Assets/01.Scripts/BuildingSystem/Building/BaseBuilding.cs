@@ -8,20 +8,40 @@ public class Building : INDSerializeAble
     public BuildingSO buildingSO { get; private set; }
     // public World currentWorld;
     public Vector2Int pos;
+    /// <summary>
+    /// 건물의 Entity 스폰은 CreateBuildingEvent에서 처리
+    /// </summary>
     public Entity buildingEntity;
     public Building(BuildingSO buildingSO)
     {
         this.buildingSO = buildingSO;
-        buildingEntity = buildingSO.buildingEntity.CreateEntity();
+        if (buildingSO.buildingEntitySO != null)
+        {
+            buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
+            buildingEntity.hasOwner = true;
+        }
     }
 
     public NDSData Serialize()
     {
-        throw new NotImplementedException();
+        NDSData data = new NDSData();
+        data.AddData("buildingSO", SOAddressSO.Instance.GetIDBySO(buildingSO));
+        data.AddData("pos", new JsonVector2(pos));
+        data.AddData("buildingEntity", buildingEntity.Serialize());
+        return data;
+        // throw new NotImplementedException();
     }
 
     public void Deserialize(NDSData data)
     {
-        throw new NotImplementedException();
+        pos = data.GetData<JsonVector2>("pos");
+        buildingSO = SOAddressSO.Instance.GetSOByID<BuildingSO>(uint.Parse(data.GetDataString("buildingSO")));
+        buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
+        buildingEntity.Deserialize(data.GetData<NDSData>("buildingEntity"));
+        buildingEntity.hasOwner = true;
+        buildingEntity.SpawnEntity(pos: pos);
+        Debug.Log("Building Deserialize");
+        Debug.Log(buildingEntity);
+        // throw new NotImplementedException();
     }
 }
