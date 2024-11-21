@@ -6,7 +6,8 @@ using UnityEngine;
 public class GroundBuilder
 {
     Vector2Int worldPos;
-    private VoronoiNoise voronoiNoise;
+    private VoronoiNoise biomeTableNoise;
+    private VoronoiNoise biomeNoise;
     private PerlinNoise perlinNoise;
     private WorldConfigSO worldSO;
     public GroundBuilder Position(Vector2Int worldPos)
@@ -14,9 +15,10 @@ public class GroundBuilder
         this.worldPos = worldPos;
         return this;
     }
-    public GroundBuilder VoronoiNoise(VoronoiNoise voronoiNoise)
+    public GroundBuilder VoronoiNoise(VoronoiNoise biomeTableNoise, VoronoiNoise biomeNoise)
     {
-        this.voronoiNoise = voronoiNoise;
+        this.biomeTableNoise = biomeTableNoise;
+        this.biomeNoise = biomeNoise;
         return this;
     }
     public GroundBuilder PerlinNoise(PerlinNoise perlinNoise)
@@ -36,11 +38,29 @@ public class GroundBuilder
         Ground ground = new Ground(worldPos, groundSO, biome);
         return ground;
     }
+    private BiomeTable SelectBiomeTable()
+    {
+        BiomeTable selectedBiomeTable = null;
+        double noiseValue = biomeTableNoise.CalculateNoise(worldPos);
+        foreach (PieChartData<BiomeTable> biome in worldSO.biomeTables)
+        {
+            BiomeTable biomeSO = biome.Value;
+            float biomeRate = biome.percentage / 100f;
+
+            if (biomeRate > noiseValue / int.MaxValue)
+            {
+                selectedBiomeTable = biomeSO;
+                break;
+            }
+        }
+        return selectedBiomeTable;
+    }
     private BiomeSO SelectBiome()
     {
+        BiomeTable selectedBiomeTable = SelectBiomeTable();
         BiomeSO selectedBiome = null;
-        double noiseValue = voronoiNoise.CalculateNoise(worldPos);
-        foreach (PieChartData<BiomeSO> biome in worldSO.biomeDatas)
+        double noiseValue = biomeNoise.CalculateNoise(worldPos);
+        foreach (PieChartData<BiomeSO> biome in selectedBiomeTable.biomeDatas)
         {
             BiomeSO biomeSO = biome.Value;
             float biomeRate = biome.percentage / 100f;

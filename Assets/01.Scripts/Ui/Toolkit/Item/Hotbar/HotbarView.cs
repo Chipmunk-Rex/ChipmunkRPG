@@ -64,7 +64,6 @@ public class HotbarView : VisualElement
 
     private void OnSlotDataChanged(int value)
     {
-        Debug.Log("OnSlotDataChanged");
         if (value < hotbar.HotbarSize)
         {
             Item item = itemContainer.GetItem(value);

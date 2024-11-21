@@ -32,7 +32,6 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     }
     protected virtual void OnEnable()
     {
-        OnSpawnEvent.AddListener(() => { Debug.Log("Spawned"); });
         if (EntitySO != null)
         {
             Entity = EntitySO.CreateEntity();

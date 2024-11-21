@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileDatas:
     serializableItems: []
-  buildingEntity: {fileID: 11400000, guid: 37c0d932749410d4c9910031d2e07c0f, type: 2}
+  buildingEntitySO: {fileID: 11400000, guid: 37c0d932749410d4c9910031d2e07c0f, type: 2}
   top: 0
   right: 0
   down: 0

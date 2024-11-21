@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 
 public class WorldPreview : VisualElement
 {
-    VoronoiNoise voronoiNoise;
+    VoronoiNoise biomeNoise;
+    VoronoiNoise biomeTableNoise;
     PerlinNoise perlinNoise;
     WorldConfigSO worldSO;
     #region elements 
@@ -38,7 +39,8 @@ public class WorldPreview : VisualElement
 
         this.worldSO = worldSO;
 
-        voronoiNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
+        biomeTableNoise = new VoronoiNoise(worldSO.biomTableSize, seed, worldSO.biomDetail);
+        biomeNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
         perlinNoise = new PerlinNoise(worldSO.depthScale, seed);
 
         int width = previewSize.x;
@@ -54,7 +56,7 @@ public class WorldPreview : VisualElement
                 Vector2Int worldPos = new Vector2Int(x, y);
                 Ground ground = new GroundBuilder()
                     .Position(worldPos)
-                    .VoronoiNoise(voronoiNoise)
+                    .VoronoiNoise(biomeTableNoise, biomeNoise)
                     .PerlinNoise(perlinNoise)
                     .World(worldSO)
                     .Build();

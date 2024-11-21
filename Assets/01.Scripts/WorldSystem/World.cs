@@ -24,7 +24,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     [field: SerializeField] public EntityCompo playerCompo { get; private set; }
     [field: SerializeField] public Player player => playerCompo.Entity as Player;
-    private VoronoiNoise voronoiNoise;
+    private VoronoiNoise biomeTableNoise;
+    private VoronoiNoise biomeNoise;
     private PerlinNoise perlinNoise;
     [field: SerializeField] public int Day { get; private set; }
     [field: SerializeField] public SerializeableNotifyValue<int> Time { get; private set; } = new SerializeableNotifyValue<int>();
@@ -39,7 +40,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     {
         this.transform.position = Vector2.zero;
 
-        voronoiNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
+        biomeTableNoise = new VoronoiNoise(worldSO.biomTableSize, seed, worldSO.biomDetail);
+        biomeNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
         perlinNoise = new PerlinNoise(worldSO.depthScale, seed);
 
         SetRenderer();
@@ -158,7 +160,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     {
         Ground ground = new GroundBuilder()
             .Position(worldPos)
-            .VoronoiNoise(voronoiNoise)
+            .VoronoiNoise(biomeTableNoise, biomeNoise)
             .PerlinNoise(perlinNoise)
             .World(worldSO)
             .Build();

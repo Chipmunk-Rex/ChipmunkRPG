@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d662e1653979fa346ae51235c55be353, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  biomeDatas:
+  - percentage: 28.624226
+    color: {r: 0, g: 1, b: 0.07041359, a: 1}
+    Value: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
+  - percentage: 62.682926
+    color: {r: 1, g: 1, b: 1, a: 1}
+    Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
+  - percentage: 100
+    color: {r: 1, g: 0.76686984, b: 0, a: 1}
+    Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}

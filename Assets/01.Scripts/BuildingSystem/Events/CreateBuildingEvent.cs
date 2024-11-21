@@ -35,7 +35,6 @@ public class CreateBuildingEvent : BuildingEvent
                 }
 
                 ground.building = building;
-                Debug.Log($"설치 {groundWorldPos}");
 
                 building.pos = pos;
 

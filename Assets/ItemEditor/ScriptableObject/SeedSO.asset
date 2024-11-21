@@ -19,4 +19,4 @@ MonoBehaviour:
   maxStackCount: 64
   <InteractDuration>k__BackingField: 0.4
   <InteractCool>k__BackingField: 1
-  plantSO: {fileID: 11400000, guid: 37c0d932749410d4c9910031d2e07c0f, type: 2}
+  plantSO: {fileID: 11400000, guid: bd07f8070e7f7b042a7e21a4ac603fd3, type: 2}

@@ -31,7 +31,6 @@ public class ItemSlotItemView : VisualElement
 
     private void OnMouseUp(MouseUpEvent evt)
     {
-        Debug.Log("OnMouseUp");
         if (evt.button == 0)
         {
             VisualElement root = GetRootElement(this);
@@ -43,7 +42,6 @@ public class ItemSlotItemView : VisualElement
                 if (itemContainer.worldBound.Overlaps(this.worldBound))
                     wrappedContainer = itemContainer;
             }
-            Debug.Log(wrappedContainer);
             if (wrappedContainer != null)
             {
                 UQueryBuilder<VisualElement> allSlots =
@@ -71,7 +69,6 @@ public class ItemSlotItemView : VisualElement
             }
             else // containerView와 wrapped되지 않은 경우
             {
-                Debug.Log("It's not wrapped");
                 int itemIndex = slot.ItemContainer.GetItemIndex(item);
                 slot.ItemContainer.DropItem(itemIndex, Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }

@@ -27,7 +27,7 @@ public class WorldConfigSOEditor : Editor
         refreshBtn.style.width = 100;
         root.Add(refreshBtn);
 
-        pieChartView = new PieChartView(worldConfigSO.biomeDatas.ToArray(), 50);
+        pieChartView = new PieChartView(worldConfigSO.biomeTables.ToArray(), 50);
         pieChartView.onDataChanged += OnChartDataChanged;
         pieChartView.onSelect += OnSelectPoint;
         root.Add(pieChartView);
@@ -49,10 +49,10 @@ public class WorldConfigSOEditor : Editor
 
     private void Refresh()
     {
-        worldConfigSO.biomeDatas.Sort((a, b) => a.percentage.CompareTo(b.percentage));
-        worldConfigSO.biomeDatas[worldConfigSO.biomeDatas.Count - 1].percentage = 100;
+        worldConfigSO.biomeTables.Sort((a, b) => a.percentage.CompareTo(b.percentage));
+        worldConfigSO.biomeTables[worldConfigSO.biomeTables.Count - 1].percentage = 100;
 
-        pieChartView.DrawView(worldConfigSO.biomeDatas.ToArray());
+        pieChartView.DrawView(worldConfigSO.biomeTables.ToArray());
         worldPreview.DrawView(worldConfigSO);
     }
 

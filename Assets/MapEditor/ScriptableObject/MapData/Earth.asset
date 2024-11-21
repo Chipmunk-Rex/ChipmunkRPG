@@ -13,18 +13,13 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   worldName: Earth
-  biomeDatas:
-  - percentage: 63.823635
-    color: {r: 0.1595366, g: 1, b: 0, a: 1}
-    Value: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-  - percentage: 74.890816
-    color: {r: 1, g: 0.71942556, b: 0, a: 1}
-    Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
+  biomeTables:
   - percentage: 100
-    color: {r: 1, g: 1, b: 1, a: 1}
-    Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
+    color: {r: 1, g: 0, b: 0, a: 1}
+    Value: {fileID: 11400000, guid: bd10c21574896cd45bfb7c98777240f4, type: 2}
   chunkSize: {x: 5, y: 5, z: 5}
   biomSize: 15
+  biomTableSize: 6
   biomDetail: 10
   renderSize: 10
   renderDuration: 1
@@ -44,8 +39,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.23631261
     - serializedVersion: 3
-      time: 0.1609525
-      value: 0.83880305
+      time: 0.19402592
+      value: 0.95482326
       inSlope: 0.19951467
       outSlope: 0.19951467
       tangentMode: 0
@@ -53,8 +48,8 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0.63883024
     - serializedVersion: 3
-      time: 0.7825819
-      value: 0.83465236
+      time: 0.7552992
+      value: 0.99709743
       inSlope: -0.032696348
       outSlope: -0.032696348
       tangentMode: 0

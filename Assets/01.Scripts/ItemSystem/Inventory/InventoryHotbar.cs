@@ -83,7 +83,6 @@ public class InventoryHotbar
         if(index != -1)
             SelectedIndex = index;
         if (targetUseItem == null || item == null) return;
-        Debug.Log(item);
 
         useItemCoroutine = UseItemCoroutine();
         Owner.StartCoroutine(useItemCoroutine);

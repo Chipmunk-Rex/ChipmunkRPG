@@ -52,7 +52,6 @@ public class DragAndDropManipulator : PointerManipulator
     VisualElement defaultParent;
     private void MouseDownHandler(MouseDownEvent evt)
     {
-        Debug.Log("Down");
         dragStartPos = evt.localMousePosition;
 
         defaultParent = target.parent;

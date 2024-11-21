@@ -10,8 +10,7 @@ public interface IItemVisualable
 
     void OnVisual(Item item)
     {
-        Debug.Log("OnVisual");
-        if(LookDir.y > 0)
+        if(LookDir.y > 0 && LookDir.y > Mathf.Abs(LookDir.x))
             ItemSpriteCompo.sortingOrder = Mathf.RoundToInt(-1);
         else
             ItemSpriteCompo.sortingOrder = Mathf.RoundToInt(1);

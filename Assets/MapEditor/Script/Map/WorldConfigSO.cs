@@ -7,9 +7,10 @@ using UnityEngine;
 public class WorldConfigSO : ScriptableObject
 {
     public string worldName = "New World";
-    public List<PieChartData<BiomeSO>> biomeDatas = new();
+    public List<PieChartData<BiomeTable>> biomeTables = new();
     public Vector3Int chunkSize = new Vector3Int(5, 5, 5);
-    public int biomSize = 3;
+    public int biomSize = 2;
+    public int biomTableSize = 6;
     public int biomDetail = 10;
     public int renderSize = 5;
     public float renderDuration = 1f;

@@ -123,7 +123,6 @@ public abstract class Entity : INDSerializeAble
             onSpawn += SetPosition;
         else
             transform.position = savedPos;
-        Debug.Log(savedPos + "EntitiyPos====");
 
         EntitySO = SOAddressSO.Instance.GetSOByID<EntitySO>(uint.Parse(data.GetDataString("EntitySO")));
         lookDir.Value = data.GetData<JsonVector2>("LookDir");

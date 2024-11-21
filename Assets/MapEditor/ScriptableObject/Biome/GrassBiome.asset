@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
   m_Name: GrassBiome
   m_EditorClassIdentifier: 
-  biomeName: 
+  biomeName: "\uD3C9\uC9C0"
   biomeBuildings:
   - spawnRate: 0
     buildingSO: {fileID: 11400000, guid: ae6af284fdb516442bad2f5b531c6a28, type: 2}
-  biomeEntitys: []
+  biomeEntitys:
+  - spawnRate: 0
+    entitySO: {fileID: 0}
   groundDatas:
   - percentage: 100
     color: {r: 0.161767, g: 1, b: 0, a: 0}

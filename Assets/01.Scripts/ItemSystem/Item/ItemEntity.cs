@@ -27,7 +27,7 @@ public class ItemEntity : Entity
         gameObject.name = $"Item ({item.ItemSO.itemName})";
         Visual.sprite = item.ItemSO.itemSprite;
 
-        Visual.transform.DOMoveY(Visual.transform.position.y + 0.5f, 2.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        Visual.transform.DOLocalMoveY(0.5f, 2.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
     }
 
     public override void OnPushed()

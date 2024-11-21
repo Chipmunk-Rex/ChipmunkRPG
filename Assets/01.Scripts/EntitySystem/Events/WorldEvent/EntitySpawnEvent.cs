@@ -31,7 +31,6 @@ public class EntitySpawnEvent : WorldEntityEvent
                 entity.entityCompo = entityCompo;
             }
             entityCompo.Entity = entity;
-            Debug.Log(entityCompo.Entity);
             world.entities.Add(entity);
             entity.transform.SetParent(world.entityContainerTrm);
             entity.transform.position = spawnPos;

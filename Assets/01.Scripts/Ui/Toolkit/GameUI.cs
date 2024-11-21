@@ -18,7 +18,6 @@ public class GameUI : BaseDocument
         meterView = document.rootVisualElement.Q<MeterView>();
         worldTimeView = document.rootVisualElement.Q<WorldTimeView>();
 
-        Debug.Log("startUI");
         TryInitialize();
     }
 

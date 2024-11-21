@@ -95,7 +95,6 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
 
     public void InitializeStateMachine()
     {
-        Debug.Log(AnimatorCompo);
         FSMStateMachine.AddState(EnumEntityState.Idle, new PlayerIdleState(this, "Idle"));
         FSMStateMachine.AddState(EnumEntityState.Move, new PlayerMoveState(this, "Move"));
         FSMStateMachine.AddState(EnumEntityState.Build, new PlayerBuildState(this, "Build"));

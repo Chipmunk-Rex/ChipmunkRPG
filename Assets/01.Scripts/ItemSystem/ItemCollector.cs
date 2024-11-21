@@ -33,7 +33,6 @@ public class ItemCollector : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(inventoryOwner);
         if (inventoryOwner == null)
             return;
         int count = Physics2D.OverlapCircle(transform.position, collectRange, contactFilter2D, collects);

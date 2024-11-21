@@ -19,7 +19,6 @@ public class ItemContainerView : VisualElement
             ItemContainer.onSlotDataChanged -= OnSlotDataChanged;
 
         this.ItemContainer = itemContainer;
-        Debug.Log(itemContainer);
         itemContainer.onSlotDataChanged += OnSlotDataChanged;
         InitializeItemSlot(itemContainer);
     }
@@ -55,16 +54,7 @@ public class ItemContainerView : VisualElement
     private ItemSlotView CreateSlotView(int i)
     {
         ItemSlotView itemSlot = new ItemSlotView();
-        try
-        {
-
-            itemSlots[i] = itemSlot;
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-            Debug.Log(i);
-        }
+        itemSlots[i] = itemSlot;
         return itemSlot;
     }
 
