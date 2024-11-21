@@ -29,9 +29,9 @@ public class SeedItem : StackableItem, IInteractableItem
         BuildingSO buildingSO = ScriptableObject.CreateInstance<BuildingSO>();
         buildingSO.buildingEntity = seedSO.plantSO;
 
-        if (target.currentWorld.CanBuild(plantPos))
+        if (target.World.CanBuild(plantPos))
         {
-            target.currentWorld.CreateBuilding(plantPos, buildingSO);
+            target.World.CreateBuilding(plantPos, buildingSO);
             RemoveStack(target);
         }
     }

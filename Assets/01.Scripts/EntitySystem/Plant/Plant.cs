@@ -16,7 +16,7 @@ public class Plant : Entity
     public override void OnSpawn()
     {
         base.OnSpawn();
-        currentWorld.Time.OnvalueChanged.AddListener(OnTimeChanged);
+        World.Time.OnvalueChanged.AddListener(OnTimeChanged);
     }
 
     private void OnTimeChanged(int arg0, int arg1)

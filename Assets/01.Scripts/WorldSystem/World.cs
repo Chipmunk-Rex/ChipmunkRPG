@@ -26,6 +26,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public Player player => playerCompo.Entity as Player;
     private VoronoiNoise voronoiNoise;
     private PerlinNoise perlinNoise;
+    [field: SerializeField] public int Day { get; private set; }
     [field: SerializeField] public SerializeableNotifyValue<int> Time { get; private set; } = new SerializeableNotifyValue<int>();
     [SerializeField] Light2D dayLight;
     // [SerializeField] uint tickRate = 1;
@@ -48,10 +49,16 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     }
     private void FixedUpdate()
     {
-        float time = UnityEngine.Time.time % (worldSO.dayDuration * 60);
-        Time.Value = Mathf.RoundToInt(time);
-        float lightIntensity = worldSO.lightByTime.Evaluate(time / (worldSO.dayDuration * 60));
+        float time = ((UnityEngine.Time.time * 40) / 60);
+        Time.Value = Mathf.RoundToInt(time % worldSO.dayDuration); // 1시간 = 1분
+
+        Day = Mathf.RoundToInt(time) / worldSO.dayDuration; // 1일 = 시간 나누기 하루 길이의 나머지
+
+        float calculateTime = time % worldSO.dayDuration / worldSO.dayDuration; // 0 ~ 1로 정규화된 시간
+        float lightIntensity = worldSO.lightByTime.Evaluate(calculateTime);
+        Color lightColor = worldSO.lightColor.Evaluate(calculateTime);
         // Debug.Log(lightIntensity);
+        dayLight.color = lightColor;
         dayLight.intensity = lightIntensity;
     }
     private void SetRenderer()
@@ -179,7 +186,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
             Vector2Int tilePos = worldPos + localPos;
-            if(CanBuild(tilePos))
+            if (CanBuild(tilePos))
                 return false;
         }
         return true;

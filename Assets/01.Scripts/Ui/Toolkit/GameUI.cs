@@ -9,12 +9,14 @@ public class GameUI : BaseDocument
 {
     HotbarView hotbarView;
     MeterView meterView;
+    WorldTimeView worldTimeView;
     [SerializeField] EntityCompo playerCompo;
     private Player player => playerCompo.Entity as Player;
     void OnEnable()
     {
         hotbarView = document.rootVisualElement.Q<HotbarView>();
         meterView = document.rootVisualElement.Q<MeterView>();
+        worldTimeView = document.rootVisualElement.Q<WorldTimeView>();
 
         Debug.Log("startUI");
         TryInitialize();
@@ -37,6 +39,7 @@ public class GameUI : BaseDocument
     {
         InitializeHotbar();
         meterView.Initailize(player.meters);
+        worldTimeView.DrawView(player.World);
     }
 
     private void InitializeHotbar()

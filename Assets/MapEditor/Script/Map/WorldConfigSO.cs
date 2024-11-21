@@ -16,6 +16,9 @@ public class WorldConfigSO : ScriptableObject
     public int depthScale = 3;
     [Tooltip("하루 시간(분)")]
     public int dayDuration = 10;
+    [Tooltip("주기 일수(일)")]
+    public int cycleDuration = 7;
     public AnimationCurve lightByTime = AnimationCurve.Linear(0, 0, 1, 1);
+    public Gradient lightColor = new Gradient();
     public List<(EnumWorldWeather, int)> weathers = new();
 }

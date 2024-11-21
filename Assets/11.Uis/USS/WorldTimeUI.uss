@@ -1,0 +1,60 @@
+WorldTimeView {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=1367102402&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_47");
+    width: 350px;
+    height: 350px;
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    align-self: flex-end;
+}
+
+WorldTimeView > * {
+    transition-property: rotate;
+    transition-duration: 500ms;
+}
+
+WorldTimeView > #timeArrow {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=-1834563109&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_53");
+    width: 18px;
+    height: 51px;
+    transform-origin: bottom;
+    left: 50%;
+    position: absolute;
+    top: 4%;
+    translate: -50% 50%;
+}
+
+WorldTimeView > #cycleArrow {
+    background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=1336168294&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_59");
+    width: 30px;
+    height: 32px;
+    transform-origin: bottom;
+    position: absolute;
+    left: 50%;
+    top: 11%;
+    translate: -50% 50%;
+}
+
+WorldTimeView > #worldTimeLabel {
+    position: absolute;
+    left: 62%;
+    top: 56%;
+    -unity-text-align: middle-left;
+    font-size: 32px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 30%;
+    height: 15%;
+    -unity-font-style: bold;
+    letter-spacing: 7px;
+    -unity-font: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans.ttf?fileID=12800000&guid=1c4e6979199fcff4f81a7838cf11910c&type=3#PixeloidSans");
+    -unity-font-definition: initial;
+    color: rgb(91, 49, 49);
+}

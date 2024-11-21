@@ -15,8 +15,8 @@ public abstract class Entity : INDSerializeAble
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
 
     public EntitySO EntitySO { get; private set; }
-    public bool IsSpawned => currentWorld != null;
-    public World currentWorld;
+    public bool IsSpawned => World != null;
+    public World World;
 
     public Action onSpawn;
     public string entityName;
@@ -49,7 +49,7 @@ public abstract class Entity : INDSerializeAble
     public void SpawnEntity(World world, EntityCompo entityCompo)
     {
         this.entityCompo = entityCompo;
-        currentWorld = world;
+        World = world;
         if (world != null)
         {
             EntitySpawnEvent @event = new EntitySpawnEvent(world, this);
@@ -60,7 +60,7 @@ public abstract class Entity : INDSerializeAble
     {
         if (world == null)
             world = World.Instance;
-        currentWorld = world;
+        World = world;
         if (world != null)
         {
             EntitySpawnEvent @event = new EntitySpawnEvent(world, this, pos);

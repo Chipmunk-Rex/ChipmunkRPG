@@ -27,7 +27,7 @@ public class WandItem : WeaponItem
         if (Time.time - lastShootTime > wandSO.shootDelay)
         {
             lastShootTime = Time.time;
-            Shoot(target.currentWorld, target.lookDir.Value, target.transform);
+            Shoot(target.World, target.lookDir.Value, target.transform);
         }
     }
     public void Shoot(World world, Vector2 dir, Transform transfrom)

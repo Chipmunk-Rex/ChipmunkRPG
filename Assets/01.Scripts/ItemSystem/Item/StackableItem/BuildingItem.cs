@@ -24,8 +24,8 @@ public class BuildingItem : StackableItem, IInteractableItem
             return;
         Vector2 position = (Vector2)target.transform.position + target.lookDir.Value;
         Building building = new Building(buildingItemSO.buildingSO);
-        WorldEvent @event = new CreateBuildingEvent(target.currentWorld, building, Vector2Int.RoundToInt(position));
-        target.currentWorld.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
+        WorldEvent @event = new CreateBuildingEvent(target.World, building, Vector2Int.RoundToInt(position));
+        target.World.worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);
 
     }
 

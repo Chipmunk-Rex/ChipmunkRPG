@@ -1,13 +1,12 @@
 MeterView {
-    margin-top: 4%;
     align-items: flex-start;
 }
 
 MeterView > * {
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin-top: -5px;
+    margin-right: -5px;
+    margin-bottom: -5px;
+    margin-left: -5px;
     scale: 0.8 0.8;
 }
 
@@ -28,8 +27,6 @@ MeterView > * > #Background {
     background-image: url("project://database/Assets/04.Sprites/GUI/PlayerStatusUI_241112.png?fileID=881702378&guid=6ad3d2def2e5aff4a9bc810264b14ade&type=3#PlayerStatusUI_241112_0");
     align-items: flex-start;
     justify-content: center;
-    padding-top: 4px;
-    padding-left: 4px;
     position: absolute;
 }
 
