@@ -5,7 +5,15 @@ using UnityEngine;
 
 public class Plant : Entity
 {
-    public bool isGrown => liveTime / plantSO.growthTime >= plantSO.growthSprites.Count;
+    public bool isGrown
+    {
+        get
+        {
+            if (plantSO.growthTime == 0 || plantSO.growthSprites.Count == 0)
+                return true;
+            return liveTime / plantSO.growthTime >= plantSO.growthSprites.Count;
+        }
+    }
     PlantSO plantSO;
     public int liveTime;
     public override Entity Initialize<T>(T entitySO)
@@ -28,10 +36,16 @@ public class Plant : Entity
     {
         if (isGrown)
         {
+            if (plantSO.growthSprites.Count == 0)
+                return;
             Visual.sprite = plantSO.growthSprites[plantSO.growthSprites.Count - 1];
         }
         else
         {
+            if (plantSO.growthTime == 0)
+            {
+                return;
+            }
             Visual.sprite = plantSO.growthSprites[time / plantSO.growthTime];
         }
     }

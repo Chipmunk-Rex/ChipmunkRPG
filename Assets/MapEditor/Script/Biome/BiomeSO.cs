@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class BiomeSO : ScriptableObject
 {
     public string biomeName;
-    public List<BiomeBuildingData> biomeBuildings = new();
+    public List<PieChartData<BuildingSO>> biomeBuildings = new();
     public List<BiomeEntityData> biomeEntitys = new();
     public List<PieChartData<GroundSO>> groundDatas = new();   
 }

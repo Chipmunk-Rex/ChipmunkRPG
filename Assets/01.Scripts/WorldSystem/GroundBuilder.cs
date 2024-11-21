@@ -35,7 +35,8 @@ public class GroundBuilder
     {
         BiomeSO biome = SelectBiome();
         GroundSO groundSO = SelectGround(biome);
-        Ground ground = new Ground(worldPos, groundSO, biome);
+        Building building = SelectBuilding(biome);
+        Ground ground = new Ground(worldPos, groundSO, biome, building);
         return ground;
     }
     private BiomeTable SelectBiomeTable()
@@ -87,5 +88,21 @@ public class GroundBuilder
             }
         }
         return selectedGround;
+    }
+    private Building SelectBuilding(BiomeSO seletedBiome)
+    {
+        Building selectedBuilding = null;
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+
+        foreach (PieChartData<BuildingSO> buildingData in seletedBiome.biomeBuildings)
+        {
+            if (buildingData.percentage >= randomValue)
+            {
+                selectedBuilding = buildingData.Value.CreateBuilding();
+                selectedBuilding.pos = worldPos;
+                break;
+            }
+        }
+        return selectedBuilding;
     }
 }

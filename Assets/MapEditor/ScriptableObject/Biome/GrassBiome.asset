@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: "\uD3C9\uC9C0"
   biomeBuildings:
-  - spawnRate: 0
-    buildingSO: {fileID: 11400000, guid: ae6af284fdb516442bad2f5b531c6a28, type: 2}
+  - percentage: 14
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 5e5e5f4338e13fe4cb0bb1a986b5aa29, type: 2}
   biomeEntitys:
   - spawnRate: 0
     entitySO: {fileID: 0}

@@ -6,6 +6,6 @@ using UnityEngine;
 [Serializable]
 public struct BiomeBuildingData
 {
-    [Range(0.01f, 1)] public float spawnRate;
+    [Range(0.01f, 1)] public float rate;
     public BuildingSO buildingSO;
 }

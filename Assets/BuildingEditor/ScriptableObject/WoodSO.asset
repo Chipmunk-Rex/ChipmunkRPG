@@ -10,17 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29f841c74824ddc408fe3d82596cd1a6, type: 3}
-  m_Name: New Building SO
+  m_Name: WoodSO
   m_EditorClassIdentifier: 
   tileDatas:
-    serializableItems:
-    - key: {x: 0, y: 0}
-      value: {fileID: 11400000, guid: 2652f0f8f091aab41ab2c377c53ca740, type: 2}
-    - key: {x: 1, y: 0}
-      value: {fileID: 11400000, guid: 2652f0f8f091aab41ab2c377c53ca740, type: 2}
-    - key: {x: -2, y: 4}
-      value: {fileID: 0}
-  top: 1
-  right: 2
-  down: 2
-  left: 2
+    serializableItems: []
+  buildingEntitySO: {fileID: 11400000, guid: c9ee5c66e3c3a904d9c7a0b6f2fe6d1d, type: 2}
+  top: 0
+  right: 0
+  down: 0
+  left: 0

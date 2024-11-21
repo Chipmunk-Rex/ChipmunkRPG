@@ -9,12 +9,24 @@ namespace Chipmunk.Library.PoolEditor
     {
         [SerializeField] List<PoolSO> poolSOList;
         private Dictionary<string, Pool> _poolContainer = new();
+        bool isInitialized = false;
+        private void OnEnable()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (isInitialized) return;
+            isInitialized = true;
+            foreach (PoolSO poolSO in poolSOList)
+                CreatePool(poolSO);
+        }
+
         protected override void Awake()
         {
             base.Awake();
 
-            foreach (PoolSO poolSO in poolSOList)
-                CreatePool(poolSO);
         }
 
         private void CreatePool(PoolSO poolSO)
@@ -46,6 +58,7 @@ namespace Chipmunk.Library.PoolEditor
         #region Pop
         public GameObject Pop(string itemName)
         {
+            Initialize();
             if (_poolContainer.ContainsKey(itemName))
             {
                 GameObject item = _poolContainer[itemName].Pop();
@@ -79,7 +92,7 @@ namespace Chipmunk.Library.PoolEditor
         public void Push(GameObject item)
         {
             IPoolAble poolAble = item.GetComponent<IPoolAble>();
-            if(poolAble == null)
+            if (poolAble == null)
             {
                 Debug.LogError($"There is no IPoolAble in {item.name}");
                 return;

@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &7493607851500583129
 Animator:
   serializedVersion: 5
@@ -161,6 +161,9 @@ MonoBehaviour:
   <AnimatorCompo>k__BackingField: {fileID: 7493607851500583129}
   <SpriteRendererCompo>k__BackingField: {fileID: 1378678016596762946}
   <RigidCompo>k__BackingField: {fileID: 5011779984776827811}
+  <OnSpawnEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &5011779984776827811
 Rigidbody2D:
   serializedVersion: 4
@@ -249,7 +252,7 @@ MonoBehaviour:
   - {x: 0.3499999, y: -0.099999905, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 42802
+  m_InstanceId: 60082
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.3499999, y: 0.099999905, z: 0}

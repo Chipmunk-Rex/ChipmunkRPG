@@ -30,7 +30,7 @@ public class CreateBuildingEvent : BuildingEvent
                 }
                 if (ground.building != null)
                 {
-                    Debug.LogError($"CreateBuildingEvent : building is already exist!!");
+                    Debug.LogError($"CreateBuildingEvent : building is already exist!! {pos}");
                     return EnumEventResult.Failed;
                 }
 

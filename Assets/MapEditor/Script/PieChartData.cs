@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PieChartData
 {
+    [Range(0, 100)]
     public float percentage = 100;
     public Color color = Color.green;
     public PieChartData()
