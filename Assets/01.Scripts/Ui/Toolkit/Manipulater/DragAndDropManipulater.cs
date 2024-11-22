@@ -84,7 +84,6 @@ public class DragAndDropManipulator : PointerManipulator
     }
     private void MouseUpHandler(MouseUpEvent evt)
     {
-        Debug.Log("Mani Up");
         if (enabled && target.HasMouseCapture())
         {
             defaultParent.Add(target);

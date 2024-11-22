@@ -19,9 +19,7 @@ public class ItemEntity : Entity
 
     public override void OnSpawn()
     {
-        Debug.Log("ItemEntity OnSpawn");
         base.OnSpawn();
-        Debug.Log("ItemEntity OnSpawn");
         spawnedTime = Time.time;
 
         gameObject.name = $"Item ({item.ItemSO.itemName})";
@@ -35,7 +33,6 @@ public class ItemEntity : Entity
         base.OnPushed();
         item = null;
         Visual.sprite = null;
-        Debug.Log(Visual.transform.position + " 밍밍ㅁ임이");
         Visual.transform.DOKill();
         Visual.transform.localPosition = Vector2.zero;
     }
