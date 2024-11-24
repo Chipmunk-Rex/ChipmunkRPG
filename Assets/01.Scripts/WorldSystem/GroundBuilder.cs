@@ -79,14 +79,15 @@ public class GroundBuilder
     {
         GroundSO selectedGround = null;
         float noiseValue = perlinNoise.CalculateNoise(worldPos);
-        foreach (GroundSO groundData in selectedBiome.groundDatas)
+        foreach (PieChartData<GroundSO> groundData in selectedBiome.groundDatas)
         {
-            if (groundData.groundRate >= noiseValue)
+            if (groundData.percentage >= noiseValue)
             {
                 selectedGround = groundData;
                 break;
             }
         }
+        Debug.Log("Selected Ground: " + selectedGround + "Biome" + selectedBiome);
         return selectedGround;
     }
     private Building SelectBuilding(BiomeSO seletedBiome)

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : Entity
+public class Plant : BuildingEntity
 {
     public bool isGrown
     {
@@ -25,6 +25,13 @@ public class Plant : Entity
     {
         base.OnSpawn();
         World.Time.OnvalueChanged.AddListener(OnTimeChanged);
+        ColliderCompo.enabled = false;
+    }
+    public override void OnPushed()
+    {
+        base.OnPushed();
+        World.Time.OnvalueChanged.RemoveListener(OnTimeChanged);
+        ColliderCompo.enabled = true;
     }
 
     private void OnTimeChanged(int arg0, int arg1)

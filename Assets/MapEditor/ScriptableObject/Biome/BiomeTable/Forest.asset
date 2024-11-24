@@ -16,9 +16,12 @@ MonoBehaviour:
   - percentage: 28.624226
     color: {r: 0, g: 1, b: 0.07041359, a: 1}
     Value: {fileID: 11400000, guid: a1032bce8e8b02441aa7c1c4dc28fa89, type: 2}
-  - percentage: 62.682926
-    color: {r: 1, g: 1, b: 1, a: 1}
-    Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
+  - percentage: 57.9
+    color: {r: 0.1286288, g: 0.6320754, b: 0.04472231, a: 1}
+    Value: {fileID: 11400000, guid: 869e754558eebea4bb32f5b5f7b6c4ab, type: 2}
+  - percentage: 85.5
+    color: {r: 0.51390576, g: 1, b: 0, a: 1}
+    Value: {fileID: 11400000, guid: 70ee530d4fbba804d9863145c2392311, type: 2}
   - percentage: 100
-    color: {r: 1, g: 0.76686984, b: 0, a: 1}
-    Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
+    color: {r: 0, g: 0.97842216, b: 1, a: 1}
+    Value: {fileID: 11400000, guid: e75870c4975c94f4e997da8a6dbe5d34, type: 2}

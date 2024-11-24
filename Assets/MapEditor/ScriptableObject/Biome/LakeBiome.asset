@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
-  m_Name: VeldBiome
+  m_Name: LakeBiome
   m_EditorClassIdentifier: 
-  biomeName: "Veld(\uCD08\uC6D0)"
+  biomeName: "Lake(\uD638\uC218)"
   biomeBuildings: []
   biomeEntitys: []
   groundDatas:
   - percentage: 100
-    color: {r: 0.30111146, g: 1, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: 5c412372dbd97304a8a917f8a99ed7ac, type: 2}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 36525c0359b37344bb5e56d424bcd26d, type: 2}

@@ -13,6 +13,7 @@ public abstract class Entity : INDSerializeAble
     public SpriteRenderer Visual => entityCompo.SpriteRendererCompo;
     public Animator AnimatorCompo => entityCompo.AnimatorCompo;
     public Rigidbody2D RigidCompo => entityCompo.RigidCompo;
+    public Collider2D ColliderCompo => entityCompo.ColliderCompo;
 
     public EntitySO EntitySO { get; private set; }
     public bool IsSpawned => World != null;

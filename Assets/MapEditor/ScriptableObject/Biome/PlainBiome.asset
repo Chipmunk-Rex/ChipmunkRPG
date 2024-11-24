@@ -16,6 +16,6 @@ MonoBehaviour:
   biomeBuildings: []
   biomeEntitys: []
   groundDatas:
-  - percentage: 0
+  - percentage: 100
     color: {r: 0, g: 1, b: 0.14067984, a: 0}
-    Value: {fileID: 0}
+    Value: {fileID: 11400000, guid: 5c412372dbd97304a8a917f8a99ed7ac, type: 2}

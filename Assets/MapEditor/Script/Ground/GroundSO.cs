@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 public class GroundSO : ScriptableObject
 {   
     public EnumGroundType groundType;
-    [Range(0.01f, 1)] public float groundRate;
     [JsonIgnore]
     public TileBase groundTile;
+    public bool isWater;
 }

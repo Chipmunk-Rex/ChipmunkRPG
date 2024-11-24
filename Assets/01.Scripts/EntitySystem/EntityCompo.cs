@@ -17,6 +17,7 @@ public class EntityCompo : MonoBehaviour, IPoolAble, IDamageable
     [field: SerializeField] public Animator AnimatorCompo { get; protected set; }
     [field: SerializeField] public SpriteRenderer SpriteRendererCompo { get; protected set; }
     [field: SerializeField] public Rigidbody2D RigidCompo { get; protected set; }
+    [field: SerializeField] public Collider2D ColliderCompo { get; protected set; }
     [field: SerializeField] public Inventory InventoryCompo { get; protected set; }
     #endregion
     public Entity Entity { get; set; }

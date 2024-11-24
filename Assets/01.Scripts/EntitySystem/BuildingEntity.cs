@@ -5,4 +5,8 @@ using UnityEngine;
 public abstract class BuildingEntity : Entity
 {
     // Building building;
+    override public void OnSpawn()
+    {
+        base.OnSpawn();
+    }
 }

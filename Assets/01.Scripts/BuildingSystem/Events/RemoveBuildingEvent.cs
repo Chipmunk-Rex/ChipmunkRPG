@@ -20,6 +20,8 @@ public class RemoveBuildingEvent : BuildingEvent
             Ground ground = world.GetGround(worldTilePos);
             ground.building = null;
             // ground.building.currentWorld = null;
+            
+            ground.building?.buildingEntity?.Die();
 
             world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
         }

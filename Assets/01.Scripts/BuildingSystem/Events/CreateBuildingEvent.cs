@@ -9,9 +9,10 @@ public class CreateBuildingEvent : BuildingEvent
     public Vector2Int pos;
     public override EnumEventResult ExcuteEvent()
     {
+        Debug.Log("CreateBuildingEvent :");
         if (!world.CanBuild(pos, building.buildingSO))
             return EnumEventResult.Failed;
-
+        Debug.Log("CreateBuildingEvent : Can Build");
         for (int x = -building.buildingSO.left; x <= building.buildingSO.right; x++)
         {
             for (int y = -building.buildingSO.down; y <= building.buildingSO.top; y++)
