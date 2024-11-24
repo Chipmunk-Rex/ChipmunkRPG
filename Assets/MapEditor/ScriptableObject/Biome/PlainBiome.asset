@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PlainBiome
   m_EditorClassIdentifier: 
   biomeName: "Plain(\uD3C9\uC57C)"
-  biomeBuildings: []
+  biomeBuildings:
+  - percentage: 7
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 5cc3a60a530817240ad96e8e5aa5bfcb, type: 2}
   biomeEntitys: []
   groundDatas:
   - percentage: 100
