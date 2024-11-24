@@ -17,11 +17,11 @@ MonoBehaviour:
   - percentage: 100
     color: {r: 0.20334375, g: 1, b: 0, a: 1}
     Value: {fileID: 11400000, guid: bd10c21574896cd45bfb7c98777240f4, type: 2}
-  chunkSize: {x: 5, y: 5, z: 5}
+  chunkSize: {x: 5, y: 5}
   biomSize: 15
   biomTableSize: 6
   biomDetail: 10
-  renderSize: 10
+  renderSize: 4
   renderDuration: 1
   depthScale: 3
   dayDuration: 24

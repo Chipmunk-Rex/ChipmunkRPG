@@ -6,6 +6,7 @@ using Chipmunk.Library.PoolEditor;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField]
     public SerializeableNotifyValue<int> Time { get; private set; } = new SerializeableNotifyValue<int>();
 
+    public UnityEvent OnWorldInitComplete;
+
     [SerializeField] Light2D dayLight;
 
     // [SerializeField] uint tickRate = 1;
@@ -53,7 +56,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
         SetRenderer();
 
-        Render();
+        OnWorldInitComplete?.Invoke();
         // StartCoroutine(RenderMap());
     }
 
@@ -74,16 +77,18 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     private void SetRenderer()
     {
+        Vector3Int chunkSize = new Vector3Int(worldSO.chunkSize.x * worldSO.renderSize, worldSO.chunkSize.y * worldSO.renderSize, 1);
+
         TilemapRenderer groundRenderer = groundTilemap.gameObject.GetComponent<TilemapRenderer>();
-        groundRenderer.chunkSize = worldSO.chunkSize;
+        groundRenderer.chunkSize = chunkSize;
         TilemapRenderer waterRenderer = waterTilemap.gameObject.GetComponent<TilemapRenderer>();
-        waterRenderer.chunkSize = worldSO.chunkSize;
+        waterRenderer.chunkSize = chunkSize;
 
         TilemapRenderer buildingRenderer = buildingTilemap.gameObject.GetComponent<TilemapRenderer>();
-        buildingRenderer.chunkSize = worldSO.chunkSize;
+        buildingRenderer.chunkSize = chunkSize;
 
         TilemapRenderer lowBuildingRenderer = lowerBuildingTilemap.gameObject.GetComponent<TilemapRenderer>();
-        lowBuildingRenderer.chunkSize = worldSO.chunkSize;
+        lowBuildingRenderer.chunkSize = chunkSize;
 
     }
 
