@@ -9,7 +9,7 @@ public class CreateBuildingEvent : BuildingEvent
     public Vector2Int pos;
     public override EnumEventResult ExcuteEvent()
     {
-        Debug.Log("CreateBuildingEvent :");
+        Debug.Log("CreateBuildingEvent :" + world.CanBuild(pos, building.buildingSO));
         if (!world.CanBuild(pos, building.buildingSO))
             return EnumEventResult.Failed;
         Debug.Log("CreateBuildingEvent : Can Build");
@@ -42,7 +42,10 @@ public class CreateBuildingEvent : BuildingEvent
                 if (building.buildingSO.tileDatas.ContainsKey(tilePos))
                 {
                     TileBase tile = building.buildingSO.tileDatas[tilePos];
-                    world.buildingTilemap.SetTile((Vector3Int)groundWorldPos, tile);
+                    if (!building.buildingSO.islower)
+                        world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundWorldPos), tile);
+                    else
+                        world.lowerBuildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)groundWorldPos), tile);
                 }
             }
         }

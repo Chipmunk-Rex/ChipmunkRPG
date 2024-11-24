@@ -20,6 +20,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     [field: SerializeField] public List<Entity> entities { get; private set; } = new();
     [field: SerializeField] public Transform entityContainerTrm { get; private set; }
     [field: SerializeField] public int seed { get; private set; } = int.MaxValue;
+    [field: SerializeField] public Tilemap lowerBuildingTilemap { get; private set; }
     [field: SerializeField] public Tilemap buildingTilemap { get; private set; }
     [field: SerializeField] public Tilemap groundTilemap { get; private set; }
     [field: SerializeField] public Tilemap waterTilemap { get; private set; }
@@ -75,12 +76,15 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     {
         TilemapRenderer groundRenderer = groundTilemap.gameObject.GetComponent<TilemapRenderer>();
         groundRenderer.chunkSize = worldSO.chunkSize;
+        TilemapRenderer waterRenderer = waterTilemap.gameObject.GetComponent<TilemapRenderer>();
+        waterRenderer.chunkSize = worldSO.chunkSize;
 
         TilemapRenderer buildingRenderer = buildingTilemap.gameObject.GetComponent<TilemapRenderer>();
         buildingRenderer.chunkSize = worldSO.chunkSize;
 
-        TilemapRenderer waterRenderer = waterTilemap.gameObject.GetComponent<TilemapRenderer>();
-        waterRenderer.chunkSize = worldSO.chunkSize;
+        TilemapRenderer lowBuildingRenderer = lowerBuildingTilemap.gameObject.GetComponent<TilemapRenderer>();
+        lowBuildingRenderer.chunkSize = worldSO.chunkSize;
+
     }
 
     #region Generate
@@ -196,8 +200,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         else
             waterTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), ground.groundSO.groundTile);
 
-            // 나도 이것이 해괴하고 난잡한 코드인것을 안다. 하지만 지금은 시간이 매우 부족하고 이미 만든 코드를 수정하는것보다 오류를 피하면서 새로운 코드를 작성하는게 더 나은 선택이라고 생각한다.
-            Building building = ground.building;
+        // 나도 이것이 해괴하고 난잡한 코드인것을 안다. 하지만 지금은 시간이 매우 부족하고 이미 만든 코드를 수정하는것보다 오류를 피하면서 새로운 코드를 작성하는게 더 나은 선택이라고 생각한다.
+        Building building = ground.building;
         ground.building = null;
         if (building != null)
             CreateBuilding(building);
@@ -223,14 +227,16 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
     {
+        if(CanBuild(worldPos) == false)
+            return false;
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
             Vector2Int tilePos = worldPos + localPos;
-            if (CanBuild(tilePos))
-                return true;
+            if (!CanBuild(tilePos))
+                return false;
         }
 
-        return false;
+        return true;
     }
 
     public bool CanBuild(Vector2Int worldPos)
@@ -238,6 +244,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         Ground ground = GetGround(worldPos);
         if (ground == null || ground.building != null)
         {
+            Debug.Log("CanBuild : ground is null or building is already exist");
             return false;
         }
 
@@ -384,6 +391,11 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         }
 
         player.Deserialize(data.GetData<NDSData>("Player"));
+    }
+
+    internal Vector2Int GetTilePos(Vector3 vector3)
+    {
+        return Vector2Int.RoundToInt(vector3);
     }
 
     #endregion

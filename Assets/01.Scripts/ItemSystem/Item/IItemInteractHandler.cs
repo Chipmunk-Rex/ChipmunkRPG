@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IItemInteractHandler
 {
-    public void OnBeforeInteract(Item target);
-    public void OnInteract(Item target);
-    public void OnEndInteract(Item target, bool isCanceled);
+    public void OnBeforeInteractItem(Item target);
+    public void OnInteractItem(Item target);
+    public void OnEndInteractItem(Item target, bool isCanceled);
 }

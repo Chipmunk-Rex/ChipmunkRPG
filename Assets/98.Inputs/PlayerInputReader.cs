@@ -13,6 +13,7 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
     public event Action<bool> onItemUse;
     public event Action onInventory;
     public event Action<float> onWheel;
+    public event Action onInteract;
     public Vector2 mousePos { get; private set; }
     public Vector2 MouseWorldPos { get => Camera.main.ScreenToWorldPoint(mousePos); }
 
@@ -33,7 +34,8 @@ public class PlayerInputReader : ScriptableSingleton<PlayerInputReader>, IPlayer
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+            onInteract?.Invoke();
     }
 
     public void OnInventory(InputAction.CallbackContext context)

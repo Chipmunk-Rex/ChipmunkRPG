@@ -47,7 +47,7 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         ItemSpriteCompo.sortingOrder = 1;
         ItemSpriteCompo.transform.SetParent(Visual.transform);
         ItemAnimatorCompo = ItemSpriteCompo.gameObject.AddComponent<Animator>();
-        
+
         base.OnSpawn();
     }
     public override void Awake()
@@ -62,10 +62,41 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     {
         playerInputReader.onInventory += OnOpenInventory;
         playerInputReader.onItemUse += OnItemUse;
+        playerInputReader.onInteract += OnInteract;
 
         lookDir.OnvalueChanged += OnLookDirChanged;
     }
 
+    private void OnInteract()
+    {
+
+        // 물 타일이면 수영
+        Debug.Log(lookDir.Value);
+        Vector2Int lookTilePos = Vector2Int.RoundToInt(transform.position + (Vector3)lookDir.Value.normalized);
+        if (World.GetGround(lookTilePos).groundSO.isWater)
+        {
+            if (FSMStateMachine.CurrentEnumState != EnumEntityState.SwimMove && FSMStateMachine.CurrentEnumState != EnumEntityState.SwimIdle)
+            {
+                FSMStateMachine.ChangeState(EnumEntityState.SwimIdle);
+
+                InventoryHotbar.canUseItem = false;
+                Vector2Int lookWorldPos = Vector2Int.RoundToInt(transform.position + (Vector3)lookDir.Value.normalized);
+                transform.position = new Vector3(lookWorldPos.x, lookWorldPos.y);
+            }
+        }
+        else
+        {
+
+            if (FSMStateMachine.CurrentEnumState == EnumEntityState.SwimMove || FSMStateMachine.CurrentEnumState == EnumEntityState.SwimIdle)
+            {
+                FSMStateMachine.ChangeState(EnumEntityState.Idle);
+                
+                InventoryHotbar.canUseItem = true;
+                Vector2Int lookWorldPos = Vector2Int.RoundToInt(transform.position + (Vector3)lookDir.Value.normalized);
+                transform.position = new Vector3(lookWorldPos.x, lookWorldPos.y);
+            }
+        }
+    }
     private void OnItemUse(bool obj)
     {
         SetLookDirByMousePos();
@@ -101,6 +132,8 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         FSMStateMachine.AddState(EnumEntityState.Use, new PlayerBuildState(this, "Use"));
         FSMStateMachine.AddState(EnumEntityState.Eat, new PlayerBuildState(this, "Eat"));
         FSMStateMachine.AddState(EnumEntityState.Die, new PlayerDeadState(this, "Die"));
+        FSMStateMachine.AddState(EnumEntityState.SwimIdle, new PlayerSwimIdleState(this, "SwimIdle"));
+        FSMStateMachine.AddState(EnumEntityState.SwimMove, new PlayerSwimState(this, "SwimMove"));
         FSMStateMachine.Initailize(EnumEntityState.Idle, this);
     }
     public override NDSData Serialize()
@@ -115,7 +148,7 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         Inventory.Deserialize(data.GetData<NDSData>("Inventory"));
     }
 
-    public void OnBeforeInteract(Item target)
+    public void OnBeforeInteractItem(Item target)
     {
         ChangeStateByItem(target);
     }
@@ -135,11 +168,11 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
             FSMStateMachine.ChangeState(EnumEntityState.Use);
         }
     }
-    public void OnInteract(Item target)
+    public void OnInteractItem(Item target)
     {
     }
 
-    public void OnEndInteract(Item target, bool isCanceled)
+    public void OnEndInteractItem(Item target, bool isCanceled)
     {
         ChangeStateByItem(null);
     }

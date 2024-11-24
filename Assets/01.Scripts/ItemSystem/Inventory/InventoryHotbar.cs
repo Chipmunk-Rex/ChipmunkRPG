@@ -46,6 +46,7 @@ public class InventoryHotbar
         }
     }
     private int hotbarSize = 5;
+    public bool canUseItem = true;
     public InventoryHotbar(Entity owner, Inventory inventory, int hotbarSize)
     {
         this.Owner = owner;
@@ -71,6 +72,9 @@ public class InventoryHotbar
     }
     public void UseItem(IInteractableItem item)
     {
+        if (!canUseItem)
+            return;
+
         if (useItemCoroutine != null)
         {
             Owner.StopCoroutine(useItemCoroutine);
@@ -80,7 +84,7 @@ public class InventoryHotbar
             }
         }
         int index = inventory.GetItemIndex(item as Item);
-        if(index != -1)
+        if (index != -1)
             SelectedIndex = index;
         if (targetUseItem == null || item == null) return;
 
@@ -91,6 +95,11 @@ public class InventoryHotbar
 
     private void ItemInteract(IInteractableItem targetItem)
     {
+        if(canUseItem == false)
+        {
+            EndInteract(beforeFrameItem, true);
+            return;
+        }
         if (targetItem != beforeFrameItem)
         {
             StartInteract(targetItem);
@@ -110,7 +119,7 @@ public class InventoryHotbar
         targetItem.OnBeforeInteract(Owner);
 
         if (Owner is IItemInteractHandler itemInteractHandler)
-            itemInteractHandler.OnBeforeInteract(targetItem as Item);
+            itemInteractHandler.OnBeforeInteractItem(targetItem as Item);
         if (Owner is IItemVisualable itemVisualable)
             itemVisualable.OnVisual(targetItem as Item);
         interactStartedTime = Time.time;
@@ -121,13 +130,13 @@ public class InventoryHotbar
     {
         targetItem.OnInteract(Owner);
         if (Owner is IItemInteractHandler itemInteractHandler)
-            itemInteractHandler.OnInteract(targetItem as Item);
+            itemInteractHandler.OnInteractItem(targetItem as Item);
     }
     private void EndInteract(IInteractableItem targetItem, bool isCanceled = false)
     {
         targetItem.OnEndInteract(Owner, isCanceled);
         if (Owner is IItemInteractHandler itemInteractHandler)
-            itemInteractHandler.OnEndInteract(targetItem as Item, isCanceled);
+            itemInteractHandler.OnEndInteractItem(targetItem as Item, isCanceled);
         if (Owner is IItemVisualable itemVisualable)
             itemVisualable.OnVisual(null);
         lastInteractedTime = Time.time;

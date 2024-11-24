@@ -16,6 +16,7 @@ MonoBehaviour:
     serializableItems:
     - key: {x: 0, y: 0}
       value: {fileID: 11400000, guid: 1ec421e189decb94593b3688e86edeac, type: 2}
+  islower: 1
   buildingEntitySO: {fileID: 11400000, guid: 37c0d932749410d4c9910031d2e07c0f, type: 2}
   top: 0
   right: 0

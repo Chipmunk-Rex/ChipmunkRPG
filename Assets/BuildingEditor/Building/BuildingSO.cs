@@ -11,6 +11,7 @@ public class BuildingSO : ScriptableObject
     /// top right left buttom
     /// </summary>
     [HideInInspector] public (int, int, int, int) tileDataSize => (top, right, down, left);
+    public bool islower;
     public EntitySO buildingEntitySO;
     [Header("Size")]
     [SerializeField] public int top;

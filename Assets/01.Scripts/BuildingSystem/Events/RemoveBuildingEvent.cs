@@ -20,11 +20,14 @@ public class RemoveBuildingEvent : BuildingEvent
             Ground ground = world.GetGround(worldTilePos);
             ground.building = null;
             // ground.building.currentWorld = null;
-            
-            ground.building?.buildingEntity?.Die();
 
-            world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
+
+            if (!building.buildingSO.islower)
+                world.buildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
+            else
+                world.lowerBuildingTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldTilePos), null);
         }
+        building?.buildingEntity?.Die();
 
         return EnumEventResult.Successed;
     }
