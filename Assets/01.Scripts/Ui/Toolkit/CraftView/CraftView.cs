@@ -8,7 +8,7 @@ public class CraftView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<CraftView, UxmlTraits> { }
     public ItemCrafter ItemCrafter { get; private set; }
-    ListView craftRecipeListView;
+    ScrollView craftRecipeScrollView;
     CraftResultView craftResultView;
     public CraftView()
     {
@@ -17,9 +17,12 @@ public class CraftView : VisualElement
             craftRecipeView.name = "CraftRecipeView";
             this.Add(craftRecipeView);
             {
-                craftRecipeListView = new ListView();
-                craftRecipeListView.name = "CraftRecipeListView";
-                craftRecipeView.Add(craftRecipeListView);
+                craftRecipeScrollView = new ScrollView(ScrollViewMode.Vertical);
+                craftRecipeScrollView.name = "CraftRecipeListView";
+                craftRecipeScrollView.verticalScrollerVisibility = ScrollerVisibility.Hidden;
+                craftRecipeScrollView.horizontalScrollerVisibility = ScrollerVisibility.Hidden;
+                craftRecipeScrollView.mouseWheelScrollSize = 40;
+                craftRecipeView.Add(craftRecipeScrollView);
             }
             {
                 VisualElement craftViewTitle = new VisualElement();
@@ -47,11 +50,11 @@ public class CraftView : VisualElement
 
     private void GenarateCraftRecipeView()
     {
-        craftRecipeListView.hierarchy.Clear();
+        craftRecipeScrollView.Clear();
         foreach (CraftRecipeSO craftRecipe in ItemCrafter.IItemCrafterSO.CraftRecipesTable.craftRecipes)
         {
             var craftRecipeViewItem = new CraftRecipeViewItem(craftRecipe);
-            craftRecipeListView.hierarchy.Add(craftRecipeViewItem);
+            craftRecipeScrollView.Add(craftRecipeViewItem);
             craftRecipeViewItem.OnClickAction += OnCraftRecipeClick;
         }
     }
