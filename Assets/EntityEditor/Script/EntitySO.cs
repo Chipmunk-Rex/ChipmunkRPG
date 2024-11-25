@@ -25,6 +25,7 @@ public abstract class EntitySO : ScriptableObject
     public float attackDelay = 0.5f;
     public float attackKnockback = 1;
     public int test = 5;
+    public bool canCollisions = true;
     public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new(){
         {EnumMeterType.Health, new MeterData()},
         {EnumMeterType.Hunger, new MeterData()},

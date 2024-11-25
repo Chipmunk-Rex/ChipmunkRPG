@@ -8,10 +8,10 @@ ItemContainerView {
     width: 90%;
     height: 70%;
     flex-direction: row;
-    margin-top: 110px;
-    margin-right: 140px;
-    margin-bottom: 100px;
-    margin-left: 140px;
+    margin-top: 10%;
+    margin-right: 20%;
+    margin-bottom: 20%;
+    margin-left: 20%;
 }
 
 ItemSlotItemView {
@@ -24,8 +24,8 @@ ItemSlotItemView {
 }
 
 ItemSlotView {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-image: url("project://database/Assets/04.Sprites/GUI/Inventory.png?fileID=-1219906068&guid=e510916baf3b52249b07817446073df3&type=3#Inventory_7");
     padding-top: 2px;
     padding-right: 2px;
@@ -59,8 +59,8 @@ ItemSlotView {
     padding-right: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
-    width: 70%;
-    height: 80%;
+    width: 50%;
+    height: 60%;
     margin-top: 5%;
     align-items: center;
 }

@@ -37,6 +37,8 @@ public class ItemEntity : Entity
         Visual.sprite = null;
         Visual.transform.DOKill();
         Visual.transform.localPosition = Vector2.zero;
+
+        ColliderCompo.forceSendLayers = int.MaxValue;
     }
 
     internal void Collect(Inventory target, float magneticPower)

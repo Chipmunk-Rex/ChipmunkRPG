@@ -4,7 +4,7 @@
     <Style src="project://database/Assets/11.Uis/USS/HotbarUI.uss?fileID=7433441132597879392&amp;guid=6921bb43ff73fe646a7f9a6b49be2979&amp;type=3#HotbarUI" />
     <Style src="project://database/Assets/11.Uis/USS/CraftUI.uss?fileID=7433441132597879392&amp;guid=361f93e47d89aa041985ae39b24e12f6&amp;type=3#CraftUI" />
     <ui:VisualElement name="ContextUI" style="flex-grow: 1; justify-content: center; align-items: center; width: 100%; height: 100%;">
-        <ui:VisualElement name="InventoryBackboard" style="display: none;">
+        <ui:VisualElement name="InventoryBackboard" style="display: flex;">
             <ItemContainerView />
             <HotbarView style="height: 30%; width: 100%; -unity-background-image-tint-color: rgba(255, 255, 255, 0);" />
         </ui:VisualElement>
