@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a264306c7ec276b4084125919b3a00a3, type: 3}
-  m_Name: BuildingItemSO 8
+  m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
+  m_Name: New CraftRecipe 2
   m_EditorClassIdentifier: 
-  itemName: TestDefaultItem
-  itemDesc: 'do nothing, just item  '
-  itemSprite: {fileID: -31961018, guid: 38a23c4174466434caa56badc09ca9f6, type: 3}
-  enumItemRarity: 3
-  Durability: 0
+  resultItem: {fileID: 11400000, guid: d016af7a687f1b044b137c70edad938f, type: 2}
+  resultCount: 0

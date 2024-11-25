@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler, IItemVisualable, IInventoryOwner
+public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteractHandler, IItemVisualable, IInventoryOwner, IItemCrafterEntity
 {
     public PlayerInputReader playerInputReader => PlayerInputReader.Instance;
     public UnityEvent inventoryOpenEvent;
@@ -20,6 +20,10 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     public SpriteRenderer ItemSpriteCompo { get; private set; }
 
     public Animator ItemAnimatorCompo { get; private set; }
+
+    public IItemCrafterSO ItemCrafterSO => EntitySO as IItemCrafterSO;
+
+    public ItemCrafter ItemCrafter { get; private set; }
 
     int animXHash = Animator.StringToHash("X");
     int animYHash = Animator.StringToHash("Y");
@@ -35,6 +39,8 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         Subscribe();
         Inventory.Initialize(new Item[20], new Vector2Int(7, 3), this, 5);
         InventoryHotbar = new PlayerInventoryHotbar(this, Inventory, 5);
+        ItemCrafter = new ItemCrafter(this);
+        // ItemCrafter
         return this;
     }
     public override void OnSpawn()

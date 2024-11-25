@@ -8,6 +8,7 @@ public abstract class Entity : INDSerializeAble
 {
     public EventMediatorContainer<EnumEntityEvent, EntityMoveEvent> EntityEvents { get; private set; } = new();
     public EntityCompo entityCompo { get; set; }
+    public Transform Transform => transform;
     public Transform transform => entityCompo.transform;
     public GameObject gameObject => entityCompo.gameObject;
     public SpriteRenderer Visual => entityCompo.SpriteRendererCompo;
@@ -135,7 +136,10 @@ public abstract class Entity : INDSerializeAble
         onSpawn -= SetPosition;
     }
 
-    public virtual void OnPushed() { }
+    public virtual void OnPushed()
+    {
+        transform.name = "Entity";
+    }
 
     public abstract void Die();
 }

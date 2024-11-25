@@ -101,7 +101,7 @@ public class ItemContainer : INDSerializeAble
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
     }
 
-    public NDSData Serialize()
+    public virtual NDSData Serialize()
     {
         NDSData data = new NDSData();
         List<NDSData> itemNDSDatas = new List<NDSData>();
@@ -120,7 +120,7 @@ public class ItemContainer : INDSerializeAble
         return data;
     }
 
-    public void Deserialize(NDSData data)
+    public virtual void Deserialize(NDSData data)
     {
         for (int i = 0; i < Items.Length; i++)
             SetItem(i, null);

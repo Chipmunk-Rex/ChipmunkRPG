@@ -26,6 +26,8 @@ public class ItemEntity : Entity
         Visual.sprite = item.ItemSO.itemSprite;
 
         Visual.transform.DOLocalMoveY(0.5f, 2.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        
+        ColliderCompo.forceSendLayers = ~LayerMask.GetMask("Entity");
     }
 
     public override void OnPushed()
@@ -48,12 +50,12 @@ public class ItemEntity : Entity
 
     private IEnumerator CollectRoutine(Inventory target, float magneticPower)
     {
-        float distance = Vector2.Distance(transform.position, target.Owner.transform.position);
+        float distance = Vector2.Distance(Transform.position, target.Owner.Transform.position);
         float duration = distance / magneticPower;
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.position = Vector2.Lerp(transform.position, target.Owner.transform.position, elapsedTime / duration);
+            Transform.position = Vector2.Lerp(Transform.position, target.Owner.Transform.position, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

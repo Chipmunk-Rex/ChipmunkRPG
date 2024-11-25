@@ -2,10 +2,12 @@
     <Style src="project://database/Assets/11.Uis/USS/PlayerUI.uss?fileID=7433441132597879392&amp;guid=41746eee9bdb7ad429a4f1adb60e164d&amp;type=3#PlayerUI" />
     <Style src="project://database/Assets/11.Uis/USS/InventoryUI.uss?fileID=7433441132597879392&amp;guid=61ee05f07a7da6a4f9469d6551e8234c&amp;type=3#InventoryUI" />
     <Style src="project://database/Assets/11.Uis/USS/HotbarUI.uss?fileID=7433441132597879392&amp;guid=6921bb43ff73fe646a7f9a6b49be2979&amp;type=3#HotbarUI" />
+    <Style src="project://database/Assets/11.Uis/USS/CraftUI.uss?fileID=7433441132597879392&amp;guid=361f93e47d89aa041985ae39b24e12f6&amp;type=3#CraftUI" />
     <ui:VisualElement name="ContextUI" style="flex-grow: 1; justify-content: center; align-items: center; width: 100%; height: 100%;">
         <ui:VisualElement name="InventoryBackboard" style="display: none;">
             <ItemContainerView />
             <HotbarView style="height: 30%; width: 100%; -unity-background-image-tint-color: rgba(255, 255, 255, 0);" />
         </ui:VisualElement>
+        <CraftView />
     </ui:VisualElement>
 </ui:UXML>
