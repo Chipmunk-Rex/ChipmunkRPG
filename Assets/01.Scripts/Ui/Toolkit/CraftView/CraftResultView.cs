@@ -9,7 +9,7 @@ public class CraftResultView : VisualElement
     Label craftResultLabel;
     Label craftResultDesc;
     VisualElement craftResultImage;
-    VisualElement craftButton;
+    Label craftButton;
     public Action<CraftRecipeSO> OnCraftAction;
     public CraftRecipeSO SelectedRecipe { get; private set; }
     public CraftResultView()
@@ -29,7 +29,7 @@ public class CraftResultView : VisualElement
             this.Add(craftResultDesc);
         }
 
-        craftButton = new VisualElement();
+        craftButton = new Label("Craft");
         craftButton.name = "CraftButton";
         this.Add(craftButton);
 
@@ -39,7 +39,6 @@ public class CraftResultView : VisualElement
     private void OnClickCraftButton(MouseUpEvent evt)
     {
         OnCraftAction?.Invoke(SelectedRecipe);
-        //털ㄴ업 해야해
     }
 
     public void DrawResultView(CraftRecipeSO craftRecipe)
@@ -49,11 +48,10 @@ public class CraftResultView : VisualElement
             this.style.display = DisplayStyle.None;
             return;
         }
-        craftResultLabel.text = craftRecipe.resultItem.itemName;
-        craftResultDesc.text = craftRecipe.resultItem.itemDesc;
-        SetBackgroundImage(craftResultImage, craftRecipe.resultItem.itemSprite);
-        // craftButton.image = craftRecipe.resultItem.;
-        craftButton.RegisterCallback<MouseUpEvent>(evt => OnCraftAction?.Invoke(craftRecipe));
+        this.SelectedRecipe = craftRecipe;
+        craftResultLabel.text = craftRecipe.resultItemSO.itemName;
+        craftResultDesc.text = craftRecipe.resultItemSO.itemDesc;
+        SetBackgroundImage(craftResultImage, craftRecipe.resultItemSO.itemSprite);
     }
     public static void SetBackgroundImage(VisualElement element, Sprite sprite)
     {

@@ -34,7 +34,7 @@ public class ContextUI : BaseDocument
         if (isShowingCraft == false)
             craftView.CloseView();
         else
-            craftView.OpenView(itemCrafter);
+            craftView.OpenView(itemCrafter, player.Inventory);
     }
     private void OpenCraft()
     {

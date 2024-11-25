@@ -24,31 +24,62 @@ public class ItemContainer : INDSerializeAble
         this.Items = items;
         this.containerSize = containerSize;
     }
+    public bool AddItem(BaseItemSO itemSO)
+    {
+        return AddItem(itemSO.CreateItem());
+    }
     public bool AddItem(Item item)
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            if (Items[i] == null)
+            if (IsSameItem(Items[i], item))
             {
-                SetItem(i, item);
-                return true;
-            }
-            else if (Items[i] is StackableItem)
-            {
-                if (item is StackableItem)
+                if (Items[i].CanStack(item.StackCount))
                 {
-                    StackableItem slotItem = (Items[i] as StackableItem);
-                    slotItem.ItemCount += (item as StackableItem).ItemCount;
+                    Items[i].StackCount += item.StackCount;
+                    onSlotDataChanged?.Invoke(i);
                     return true;
                 }
             }
         }
-        return false;
+
+        int emptySlotIndex = GetEmptySlotIndex();
+        if (emptySlotIndex == -1)
+            return false;
+
+        SetItem(emptySlotIndex, item);
+        return true;
     }
+    private bool IsSameItem(Item item1, Item item2)
+    {
+        if (item1 == null || item2 == null)
+            return false;
+        return item1.ItemSO == item2.ItemSO;
+    }
+    private int GetEmptySlotIndex()
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            if (Items[i] == null)
+                return i;
+        }
+        return -1;
+    }
+
     public void SetItem(int slotNum, Item item)
     {
-        Items[slotNum] = item;
-        onSlotDataChanged?.Invoke(slotNum);
+        try
+        {
+            Items[slotNum] = item;
+            if (item != null)
+                item.Owner = this;
+            onSlotDataChanged?.Invoke(slotNum);
+        }
+        catch(System.IndexOutOfRangeException e)
+        {
+            Debug.LogError("ItemContainer.SetItem() : IndexOutOfRangeException" + slotNum + " " + item);
+            throw e;
+        }
     }
     public Item GetItem(int slotNum)
     {
@@ -69,20 +100,37 @@ public class ItemContainer : INDSerializeAble
 
         for (int i = 0; i < Items.Length; i++)
         {
-            if (Items[i] == item)
+            if (IsSameItem(Items[i], item))
                 return i;
         }
         return -1;
     }
     internal void RemoveItem(Item item)
     {
-        int itemIndex = GetItemIndex(item);
-        if (itemIndex == -1)
+        RemoveItem(item, item.StackCount);
+    }
+    public void RemoveItem(Item item, int removeCount)
+    {
+        while (removeCount > 0)
         {
-            Debug.LogError("ItemContainer.RemoveItem() : Item not found");
-            return;
+            int itemIndex = GetItemIndex(item);
+            if (itemIndex == -1)
+            {
+                Debug.LogError("ItemContainer.RemoveItem() : Item not found");
+                return;
+            }
+            if (Items[itemIndex].StackCount > removeCount)
+            {
+                Items[itemIndex].StackCount -= removeCount;
+                onSlotDataChanged?.Invoke(itemIndex);
+                removeCount = 0;
+            }
+            else
+            {
+                removeCount -= Items[itemIndex].StackCount;
+                SetItem(itemIndex, null);
+            }
         }
-        SetItem(itemIndex, null);
     }
     public void DropItem(int slotNum, Vector2 position, World world = null)
     {

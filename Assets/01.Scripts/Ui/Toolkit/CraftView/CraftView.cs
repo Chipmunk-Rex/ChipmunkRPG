@@ -8,6 +8,7 @@ public class CraftView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<CraftView, UxmlTraits> { }
     public ItemCrafter ItemCrafter { get; private set; }
+    public ItemContainer ItemContainer { get; private set; }
     ScrollView craftRecipeScrollView;
     CraftResultView craftResultView;
     public CraftView()
@@ -36,14 +37,21 @@ public class CraftView : VisualElement
         }
         {
             craftResultView = new CraftResultView();
+            craftResultView.OnCraftAction += CraftItem;
             this.Add(craftResultView);
         }
     }
-    public void OpenView(ItemCrafter itemCrafter)
+
+    private void CraftItem(CraftRecipeSO sO)
     {
-        Debug.Log("CraftView OpenView");
+        ItemCrafter.Craft(ItemContainer, sO);
+    }
+
+    public void OpenView(ItemCrafter itemCrafter, ItemContainer itemContainer)
+    {
         this.style.display = DisplayStyle.Flex;
         this.ItemCrafter = itemCrafter;
+        this.ItemContainer = itemContainer;
 
         GenarateCraftRecipeView();
     }
@@ -68,8 +76,8 @@ public class CraftView : VisualElement
     {
         Debug.Log("CraftView CloseView");
         this.style.display = DisplayStyle.None;
-        if (this.ItemCrafter != null)
-            this.ItemCrafter.Close();
+        // if (this.ItemCrafter != null)
+        //     this.ItemCrafter.Close();
         this.ItemCrafter = null;
     }
 }

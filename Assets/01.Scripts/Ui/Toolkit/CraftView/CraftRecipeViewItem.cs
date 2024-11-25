@@ -13,12 +13,12 @@ public class CraftRecipeViewItem : VisualElement
         {
             var image = new VisualElement();
             image.name = "ItemImage";
-            SetBackgroundImage(image, craftRecipe.resultItem.itemSprite);
+            SetBackgroundImage(image, craftRecipe.resultItemSO.itemSprite);
             this.Add(image);
         }
 
         {
-            Label title = new Label(craftRecipe.resultItem.itemName);
+            Label title = new Label(craftRecipe.resultItemSO.itemName);
             title.name = "ItemName";
             this.Add(title);
 

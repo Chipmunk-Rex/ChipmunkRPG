@@ -96,6 +96,9 @@ CraftResultView > #CraftButton {
     width: 180px;
     height: 60px;
     margin-top: auto;
+    font-size: 24px;
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&guid=4b2fd524c2424a946aa2fb71f9c7d108&type=2#PixeloidSans-Bold");
+    -unity-text-align: middle-center;
 }
 
 CraftResultView > #CraftButton:hover {

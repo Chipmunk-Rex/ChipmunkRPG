@@ -12,10 +12,10 @@ public class CraftRecipeSO : ScriptableObject
         get
         {
             if (requireIngredients == null)
-        {
+            {
                 requireIngredients = new Dictionary<BaseItemSO, int>();
 
-                foreach (CraftRecipeIngrdient ingredient in Ingredients)
+                foreach (CraftRecipeIngrdient ingredient in IngredientItems)
                 {
                     if (requireIngredients.ContainsKey(ingredient.Ingredient))
                         requireIngredients[ingredient.Ingredient] = ingredient.count;
@@ -27,8 +27,8 @@ public class CraftRecipeSO : ScriptableObject
             return requireIngredients;
         }
     }
-    public List<CraftRecipeIngrdient> Ingredients = new();
-    public BaseItemSO resultItem;
+    public List<CraftRecipeIngrdient> IngredientItems = new();
+    public BaseItemSO resultItemSO;
     public int resultCount;
 
     public bool CanCraft(Dictionary<BaseItemSO, int> recipeItems)
@@ -52,15 +52,21 @@ public class CraftRecipeSO : ScriptableObject
     public bool CanCraft(List<Item> recipeItems)
     {
         Dictionary<BaseItemSO, int> recipeSOs = new Dictionary<BaseItemSO, int>();
+
+        if (recipeItems == null || recipeItems.Count == 0 && IngredientItems.Count != 0)
+            return false;
+
         foreach (Item item in recipeItems)
         {
-            if (item is StackableItem stackableItem)
-                recipeSOs.Add(item.ItemSO, stackableItem.itemCount);
-            else
+            if (item == null)
+            {
+                Debug.LogWarning("Item is null");
+                continue;
+            }
             if (recipeSOs.ContainsKey(item.ItemSO))
                 recipeSOs[item.ItemSO] += 1;
             else
-                recipeSOs.Add(item.ItemSO, 1);
+                recipeSOs.Add(item.ItemSO, item.StackCount);
         }
 
         return CanCraft(recipeSOs);

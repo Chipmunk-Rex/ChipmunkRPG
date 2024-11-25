@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Chipmunk.Library;
 using UnityEngine;
 
-public class FoodItem : StackableItem, IInteractableItem
+public class FoodItem : Item, IInteractableItem
 {
     public FoodItem(BaseItemSO itemSO) : base(itemSO)
     {

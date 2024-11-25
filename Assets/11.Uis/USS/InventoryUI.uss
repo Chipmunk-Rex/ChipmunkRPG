@@ -46,8 +46,11 @@ ItemSlotView {
 
 #ItemCount {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -20%;
+    right: -20%;
+    font-size: 24px;
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans.asset?fileID=11400000&guid=a53aa1860f6077b4c84cf402e4c0c518&type=2#PixeloidSans");
+    color: rgb(136, 75, 43);
 }
 
 #InventoryBackboard {

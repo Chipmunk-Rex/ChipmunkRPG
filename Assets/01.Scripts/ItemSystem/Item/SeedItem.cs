@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeedItem : StackableItem, IInteractableItem
+public class SeedItem : Item, IInteractableItem
 {
     SeedSO seedSO;
     public SeedItem(BaseItemSO itemSO) : base(itemSO)
@@ -31,7 +31,7 @@ public class SeedItem : StackableItem, IInteractableItem
         if (target.World.CanBuild(plantPos))
         {
             target.World.CreateBuilding(plantPos, buildingSO);
-            RemoveStack(target);
+            Owner.RemoveItem(this, 1);
         }
     }
 

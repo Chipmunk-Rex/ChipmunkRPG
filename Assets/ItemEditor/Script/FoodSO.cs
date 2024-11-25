@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSO : StackableItemSO, IInteractableItemSO
+public class FoodSO : ItemSO, IInteractableItemSO
 {
     public int hunger = 1;
 
