@@ -73,8 +73,6 @@ crashlytics-build.properties
  
 Assets/BehaviourTree/Editor/BehaviourTreeEditor.uxml 
 
-Assets/SaveData/
-
 Assets/StreamingAssets/build_info
 
 Assets/Resources/SaveData/
