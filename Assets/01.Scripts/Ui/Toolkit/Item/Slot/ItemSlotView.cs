@@ -46,10 +46,7 @@ public class ItemSlotView : VisualElement
         int count = 0;
         if (item != null)
         {
-            if (item is StackableItem)
-                count = (item as StackableItem).ItemCount;
-            else
-                count = 1;
+            count = item.StackCount;
         }
 
         slotItem.SetItemCount(count);

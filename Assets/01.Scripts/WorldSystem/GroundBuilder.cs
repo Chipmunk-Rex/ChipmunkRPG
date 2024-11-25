@@ -87,7 +87,6 @@ public class GroundBuilder
                 break;
             }
         }
-        Debug.Log("Selected Ground: " + selectedGround + "Biome" + selectedBiome);
         return selectedGround;
     }
     private Building SelectBuilding(BiomeSO seletedBiome)

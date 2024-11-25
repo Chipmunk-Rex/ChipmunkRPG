@@ -1,0 +1,106 @@
+CraftView {
+    width: 70%;
+    height: 70%;
+    flex-direction: row;
+    justify-content: center;
+    display: none;
+}
+
+CraftView > #CraftRecipeView {
+    width: 40%;
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=-1749895109&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_2");
+    padding-top: 8%;
+    padding-right: 6%;
+    padding-bottom: 3%;
+    padding-left: 6%;
+}
+
+CraftView > #CraftRecipeView > #CraftViewTitle {
+    position: absolute;
+    left: 50%;
+    width: 400px;
+    top: -5%;
+    translate: -50% 0;
+    height: 150px;
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=-487254688&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_1");
+    justify-content: center;
+    align-items: center;
+}
+
+CraftView > #CraftRecipeView > #CraftViewTitle > Label {
+    -unity-font-style: normal;
+    font-size: 48px;
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&guid=4b2fd524c2424a946aa2fb71f9c7d108&type=2#PixeloidSans-Bold");
+}
+
+CraftRecipeViewItem {
+    width: 100%;
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=950090864&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_0");
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    flex-direction: row;
+    align-items: center;
+}
+
+CraftRecipeViewItem:hover {
+    -unity-background-image-tint-color: rgb(229, 229, 229);
+}
+
+CraftRecipeViewItem > #ItemImage {
+    height: 80px;
+    align-self: flex-start;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+CraftRecipeViewItem > #ItemName {
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&guid=4b2fd524c2424a946aa2fb71f9c7d108&type=2#PixeloidSans-Bold");
+    font-size: 32px;
+}
+
+CraftResultView {
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=-1833485214&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_3");
+    width: 30%;
+    height: 65%;
+    align-self: center;
+    padding-top: 4%;
+    padding-right: 4%;
+    padding-bottom: 4%;
+    padding-left: 4%;
+    align-items: center;
+}
+
+CraftResultView > #ItemName {
+    font-size: 24px;
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&guid=4b2fd524c2424a946aa2fb71f9c7d108&type=2#PixeloidSans-Bold");
+    word-spacing: -10px;
+    -unity-text-align: upper-center;
+    width: 100%;
+}
+
+CraftResultView > #ItemDesc {
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans.asset?fileID=11400000&guid=a53aa1860f6077b4c84cf402e4c0c518&type=2#PixeloidSans");
+    font-size: 20px;
+    -unity-text-align: upper-center;
+}
+
+CraftResultView > #CraftResultImage {
+    width: 100px;
+    height: 100px;
+}
+
+CraftResultView > #CraftButton {
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=1945293510&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_4");
+    width: 180px;
+    height: 60px;
+    margin-top: auto;
+    font-size: 24px;
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&guid=4b2fd524c2424a946aa2fb71f9c7d108&type=2#PixeloidSans-Bold");
+    -unity-text-align: middle-center;
+}
+
+CraftResultView > #CraftButton:hover {
+    background-image: url("project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=1810369268&guid=49f490d29145f5043b86538a7f729464&type=3#CraftingTable_241125_6");
+}

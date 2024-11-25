@@ -55,7 +55,6 @@ WorldTimeView > #worldTimeLabel {
     height: 15%;
     -unity-font-style: bold;
     letter-spacing: 7px;
-    -unity-font: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans.ttf?fileID=12800000&guid=1c4e6979199fcff4f81a7838cf11910c&type=3#PixeloidSans");
-    -unity-font-definition: initial;
     color: rgb(91, 49, 49);
+    -unity-font-definition: url("project://database/Assets/09.Fonts/Pixeloid/PixeloidSans.asset?fileID=11400000&guid=a53aa1860f6077b4c84cf402e4c0c518&type=2#PixeloidSans");
 }

@@ -10,7 +10,7 @@ public class CraftRecipesTableSO : ScriptableObject
     {
         foreach (CraftRecipeSO recipe in craftRecipes)
         {
-            if (recipe.IsMatch(items))
+            if (recipe.CanCraft(items))
                 return recipe;
         }
         return null;

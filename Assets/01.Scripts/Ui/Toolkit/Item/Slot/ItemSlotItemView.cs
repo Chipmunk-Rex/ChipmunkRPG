@@ -127,10 +127,14 @@ public class ItemSlotItemView : VisualElement
     }
     public void SetItemCount(int count)
     {
-
+        Debug.Log("SetItemCount" + count);
         if (count == 0)
         {
             countLbl.visible = false;
+        }
+        else
+        {
+            countLbl.visible = true;
         }
         countLbl.text = count.ToString();
     }

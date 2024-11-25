@@ -197,9 +197,6 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
             .Build();
 
         grounds.Add(worldPos, ground);
-        Debug.Log(ground);
-        Debug.Log(ground.groundSO.name);
-        Debug.Log(ground.groundSO.isWater);
         if (!ground.groundSO.isWater)
             groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)worldPos), ground.groundSO.groundTile);
         else
@@ -317,9 +314,15 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     #region Serialize
 
-    [SerializeField] NDSData ndsData = new();
-
-    [ContextMenu("Serialize")]
+    [ContextMenu("Save")]
+    public void Save()
+    {
+        NDSData ndsData = Serialize();
+        string json = JsonConvert.SerializeObject(ndsData);
+        Debug.Log(Application.dataPath);
+        System.IO.Directory.CreateDirectory($"{Application.dataPath}/Resources/SaveData");
+        System.IO.File.WriteAllText($"{Application.dataPath}/Resources/SaveData/{worldSO.worldName}.json", json);
+    }
     public NDSData Serialize()
     {
         NDSData worldNdsData = new NDSData();
@@ -345,13 +348,14 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         worldNdsData.AddData("grounds", groundsNDSData);
         worldNdsData.AddData("entities", entitiesNDSData);
 
-        this.ndsData = worldNdsData;
         return worldNdsData;
     }
 
-    [ContextMenu("Deserialize")]
-    public void Deserialize()
+    [ContextMenu("Load")]
+    public void Load()
     {
+        string json = System.IO.File.ReadAllText($"{Application.dataPath}/Resources/SaveData/{worldSO.worldName}.json");
+        NDSData ndsData = JsonConvert.DeserializeObject<NDSData>(json);
         Deserialize(ndsData);
     }
 
@@ -359,7 +363,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     {
         seed = int.Parse(data.GetDataString("seed"));
 
-        worldSO = SOAddressSO.Instance.GetSOByID<WorldConfigSO>(uint.Parse(ndsData.GetDataString("worldSO")));
+        worldSO = SOAddressSO.Instance.GetSOByID<WorldConfigSO>(uint.Parse(data.GetDataString("worldSO")));
 
         grounds.Clear();
         groundTilemap.ClearAllTiles();
@@ -397,11 +401,5 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
         player.Deserialize(data.GetData<NDSData>("Player"));
     }
-
-    internal Vector2Int GetTilePos(Vector3 vector3)
-    {
-        return Vector2Int.RoundToInt(vector3);
-    }
-
     #endregion
 }

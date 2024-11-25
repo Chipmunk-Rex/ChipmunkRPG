@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455a53b56c365b498219f1ae02626fb, type: 3}
+  m_Name: Bush
+  m_EditorClassIdentifier: 
+  entityName: Bush
+  description: 
+  defaultSprite: {fileID: 1105868002, guid: 729053f37b46b5449887011fba6dd2a0, type: 3}
+  shadowPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  maxHealth: 1
+  damage: 1
+  speed: 5
+  attackRange: 1
+  attackRate: 1
+  attackDuration: 0.5
+  attackCooldown: 0.5
+  attackDelay: 0.5
+  attackKnockback: 1
+  test: 5
+  meterDatas:
+    serializableItems:
+    - key: 0
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 2
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 1
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 4
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 3
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+  growthSprites: []
+  deadSprite: {fileID: -45005448, guid: 729053f37b46b5449887011fba6dd2a0, type: 3}
+  growthTime: 0
+  dropItem: {fileID: 0}

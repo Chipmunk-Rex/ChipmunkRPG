@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df3d6fa5ce795844b677ba1da7c9bbb, type: 3}
+  m_Name: PlayerRecipeTable
+  m_EditorClassIdentifier: 
+  craftRecipes:
+  - {fileID: 11400000, guid: 5f45d203bbfc62a46b7f1c5082f3bec6, type: 2}
+  - {fileID: 11400000, guid: a20be253f6af04041a3e1896a65aa658, type: 2}
+  - {fileID: 11400000, guid: 8be44ed11fbf33148be35b34d7a84ade, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
+  - {fileID: 11400000, guid: 7a6428353bfe2b946a53b83657f2493f, type: 2}
