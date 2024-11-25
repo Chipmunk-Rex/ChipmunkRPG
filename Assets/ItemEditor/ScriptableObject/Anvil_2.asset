@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3c2375096c8c64093fe7899e90cef2, type: 3}
+  m_Name: Anvil_2
+  m_EditorClassIdentifier: 
+  itemName: "\uC601\uAD6C\uB3D9\uD1A0 \uBAA8\uB8E8"
+  itemDesc: "\uB2E8\uB2E8\uD788 \uC5BC\uC5B4\uBD99\uC5B4 \uAE68\uC9C0\uC9C0 \uC54A\uB294
+    \uBAA8\uB8E8. \uB354 \uB9CE\uC740 \uAC83\uC744 \uAC00\uACF5\uD560 \uC218 \uC788\uB2E4."
+  itemSprite: {fileID: 0}
+  enumItemRarity: 4
+  Durability: 0
+  maxStackCount: 64
+  buildingSO: {fileID: 0}
+  <InteractDuration>k__BackingField: 0
+  <InteractCool>k__BackingField: 0

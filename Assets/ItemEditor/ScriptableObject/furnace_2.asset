@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3c2375096c8c64093fe7899e90cef2, type: 3}
+  m_Name: furnace_2
+  m_EditorClassIdentifier: 
+  itemName: "\uB179\uC544\uB0B4\uB9B0 \uC6A9\uAD11\uB85C"
+  itemDesc: "\uC628\uAE30\uAC00 \uC0AC\uB77C\uC9C0\uC9C0 \uC54A\uB294 \uC6A9\uAD11\uB85C.
+    \uC5F0\uB8CC \uC5C6\uC774 \uAD11\uBB3C\uC744 \uAC00\uACF5\uD560 \uC218 \uC788\uB2E4."
+  itemSprite: {fileID: 0}
+  enumItemRarity: 4
+  Durability: 0
+  maxStackCount: 64
+  buildingSO: {fileID: 0}
+  <InteractDuration>k__BackingField: 0
+  <InteractCool>k__BackingField: 0
