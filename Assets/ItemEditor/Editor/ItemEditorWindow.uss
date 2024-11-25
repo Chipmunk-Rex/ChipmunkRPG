@@ -77,3 +77,11 @@ ItemEditorView {
     padding-bottom: 10px;
     padding-left: 10px;
 }
+
+ItemResourceFold {
+    border-left-color: rgb(95, 95, 95);
+    border-right-color: rgb(95, 95, 95);
+    border-top-color: rgb(95, 95, 95);
+    border-bottom-color: rgb(95, 95, 95);
+    border-top-width: 1px;
+}

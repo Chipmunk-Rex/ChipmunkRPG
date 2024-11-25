@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponSO : BaseItemSO, IInteractableItemSO
+public abstract class WeaponSO : ItemSO, IInteractableItemSO
 {
     public int damage = 1;
 
