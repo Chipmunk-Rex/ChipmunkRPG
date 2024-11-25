@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
-  m_Name: FoodSO 1
+  m_Script: {fileID: 11500000, guid: cb7b12b8b27229145aed7852ef2215ba, type: 3}
+  m_Name: Apple
   m_EditorClassIdentifier: 
-  itemName: Carrot
-  itemSprite: {fileID: -254314381, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  itemName: "\uB545\uC0AC\uACFC"
+  itemDesc: "\uBC29\uAE08 \uC218\uD655\uD55C \uB545\uC0AC\uACFC"
+  itemSprite: {fileID: 1310247962, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  maxStackCount: 64
   enumItemRarity: 1
   Durability: 0
   maxStackCount: 64
-  hunger: 1
   <InteractDuration>k__BackingField: 0
   <InteractCool>k__BackingField: 0
+  plantSO: {fileID: 11400000, guid: ccbb8d1e7bb09cd429189eae99c4fb71, type: 2}

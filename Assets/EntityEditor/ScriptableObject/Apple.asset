@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455a53b56c365b498219f1ae02626fb, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  entityName: Apple
+  description: "\uC0AC\uACFC"
+  defaultSprite: {fileID: 1310247962, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  shadowPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  maxHealth: 1
+  damage: 1
+  speed: 5
+  attackRange: 1
+  attackRate: 1
+  attackDuration: 0.5
+  attackCooldown: 0.5
+  attackDelay: 0.5
+  attackKnockback: 1
+  test: 5
+  canCollisions: 1
+  meterDatas:
+    serializableItems:
+    - key: 0
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 2
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 1
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 4
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 3
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+  growthSprites:
+  - {fileID: 1812637696, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 2059438269, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1892926834, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1104630831, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: -625777760, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1310247962, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  deadSprite: {fileID: -1707015544, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  growthTime: 180
+  dropItem: {fileID: 0}

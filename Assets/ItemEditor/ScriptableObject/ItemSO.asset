@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a264306c7ec276b4084125919b3a00a3, type: 3}
-  m_Name: Eternal_Ice
+  m_Name: ItemSO
   m_EditorClassIdentifier: 
-  itemName: "\uB9CC\uB144\uBE59"
-  itemDesc: "\uD55C\uAE30\uAC00 \uC11C\uB9B0 \uB2E8\uB2E8\uD55C \uC5BC\uC74C."
+  itemName: "\uC720\uB9AC\uBCD1"
+  itemDesc: "\uC561\uCCB4\uB97C \uB2F4\uC744 \uC218 \uC788\uB294 \uBCD1"
   itemSprite: {fileID: 0}
   maxStackCount: 64
-  enumItemRarity: 3
+  enumItemRarity: 0
   Durability: 0
   maxStackCount: 64
