@@ -25,19 +25,16 @@ public class Plant : BuildingEntity
     {
         base.OnSpawn();
         World.Time.OnvalueChanged.AddListener(OnTimeChanged);
-        if (plantSO.canCollisions)
-            RigidCompo.bodyType = RigidbodyType2D.Static;
-        else
-            ColliderCompo.enabled = false;
+
+
+        RigidCompo.bodyType = RigidbodyType2D.Static;
     }
     public override void OnPushed()
     {
         base.OnPushed();
         World.Time.OnvalueChanged.RemoveListener(OnTimeChanged);
-        if (plantSO.canCollisions)
-            RigidCompo.bodyType = RigidbodyType2D.Dynamic;
-        else
-            ColliderCompo.enabled = true;
+
+        RigidCompo.bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void OnTimeChanged(int arg0, int arg1)
