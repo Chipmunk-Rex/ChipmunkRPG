@@ -15,7 +15,7 @@ MonoBehaviour:
   tileDatas:
     serializableItems:
     - key: {x: 0, y: 0}
-      value: {fileID: 11400000, guid: 48a91644ad22df348a9b0b3738c64b21, type: 2}
+      value: {fileID: 11400000, guid: b0f6c8d0ea8728d4996af5297c292998, type: 2}
   islower: 0
   buildingEntitySO: {fileID: 0}
   top: 0

@@ -13,28 +13,23 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   entityName: Carrot
-  description: "\uB4A4\uC9C8\uAC70\uAC01\u314C\uB2E4."
-  defaultSprite: {fileID: 1854077010, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  description: 
+  defaultSprite: {fileID: -572303340, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
   shadowPrefab: {fileID: 0}
   animatorController: {fileID: 0}
   maxHealth: 1
   damage: 1
   speed: 5
+  detectRange: 2.5
   attackRange: 1
-  attackRate: 1
-  attackDuration: 0.5
-  attackCooldown: 0.5
-  attackDelay: 0.5
-  attackKnockback: 1
-  test: 5
+  canCollisions: 1
   meterDatas:
     serializableItems: []
   growthSprites:
-  - {fileID: 1470985453, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  - {fileID: 1503981045, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  - {fileID: 885473608, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  - {fileID: -1981487602, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  - {fileID: 1854077010, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  - {fileID: 1599531738, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: 1004672927, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: 1441655828, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: 254641013, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
   deadSprite: {fileID: 183905673, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  growthTime: 1
-  dropItem: {fileID: 0}
+  growthTime: 120
+  dropItem: {fileID: 11400000, guid: d016af7a687f1b044b137c70edad938f, type: 2}

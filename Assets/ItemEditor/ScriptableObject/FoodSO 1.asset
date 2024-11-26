@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
   m_Name: FoodSO 1
   m_EditorClassIdentifier: 
-  itemName: "\uC791\uC740 \uC0DD\uACE0\uAE30"
-  itemDesc: item description
-  itemSprite: {fileID: 21300000, guid: c258e254dbb82894288f8abec91a4d96, type: 3}
+  itemName: "\uBB3C\uBCD1"
+  itemDesc: "\uBB3C\uC774 \uB2F4\uAE34 \uBCD1."
+  itemSprite: {fileID: 152631000, guid: e0854aa2301c4334c8a22cd7827a396d, type: 3}
   maxStackCount: 64
   enumItemRarity: 1
   Durability: 0

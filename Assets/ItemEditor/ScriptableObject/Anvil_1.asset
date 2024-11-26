@@ -19,6 +19,6 @@ MonoBehaviour:
   enumItemRarity: 2
   Durability: 0
   maxStackCount: 64
-  buildingSO: {fileID: 0}
+  buildingSO: {fileID: 11400000, guid: cc15199151f242c43965b4133db6b071, type: 2}
   <InteractDuration>k__BackingField: 0
   <InteractCool>k__BackingField: 0
