@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class CraftRecipeSO : ScriptableObject
 {
-    public Dictionary<BaseItemSO, int> requireIngredients;
+    private Dictionary<BaseItemSO, int> requireIngredients;
     public Dictionary<BaseItemSO, int> RequireIngredients
     {
         get
@@ -72,8 +72,9 @@ public class CraftRecipeSO : ScriptableObject
         return CanCraft(recipeSOs);
     }
 }
-public struct CraftRecipeIngrdient
+[System.Serializable]
+public class CraftRecipeIngrdient
 {
-    public BaseItemSO Ingredient { get; private set; }
+    [field: SerializeField] public BaseItemSO Ingredient { get; private set; }
     public int count;
 }
