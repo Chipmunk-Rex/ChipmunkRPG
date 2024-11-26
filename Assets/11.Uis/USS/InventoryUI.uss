@@ -44,6 +44,22 @@ ItemSlotView {
     height: 100%;
 }
 
+.Rare > #ItemCount {
+    color: rgb(0, 153, 255);
+}
+
+.Unique > #ItemCount {
+    color: rgb(255, 0, 204);
+}
+
+.Legend > #ItemCount {
+    color: rgb(255, 210, 0);
+}
+
+.Common > #ItemCount {
+    color: rgb(48, 255, 0);
+}
+
 #ItemCount {
     position: absolute;
     bottom: -20%;

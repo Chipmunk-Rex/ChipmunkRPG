@@ -27,6 +27,12 @@ public class ItemSlotItemView : VisualElement
         countLbl.name = "ItemCount";
         this.Add(countLbl);
 
+        if (item != null)
+        {
+
+            this.AddToClassList(item.ItemSO.enumItemRarity.ToString());
+            Debug.Log(item.ItemSO.enumItemRarity.ToString());
+        }
     }
 
     private void OnMouseUp(MouseUpEvent evt)
