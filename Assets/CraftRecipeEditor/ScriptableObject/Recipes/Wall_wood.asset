@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: Recipe
+  m_Name: Wall_wood
   m_EditorClassIdentifier: 
-  resultItemSO: {fileID: 0}
-  resultCount: 0
+  resultItemSO: {fileID: 11400000, guid: a75a6fbbfb41f9a4d8925adb7c7cd490, type: 2}
+  resultCount: 1

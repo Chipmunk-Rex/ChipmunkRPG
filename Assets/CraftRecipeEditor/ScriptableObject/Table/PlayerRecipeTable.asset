@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df3d6fa5ce795844b677ba1da7c9bbb, type: 3}
   m_Name: PlayerRecipeTable
   m_EditorClassIdentifier: 
-  craftRecipes: []
+  craftRecipes:
+  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
+  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
+  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
+  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
+  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}

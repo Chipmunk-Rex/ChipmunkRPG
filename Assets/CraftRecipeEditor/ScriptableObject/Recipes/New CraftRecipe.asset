@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: CrafttableRecipe
+  m_Name: New CraftRecipe
   m_EditorClassIdentifier: 
-  resultItemSO: {fileID: 11400000, guid: f0803d82653bd714dbc7c73d2997f415, type: 2}
-  resultCount: 1
+  resultItemSO: {fileID: 0}
+  resultCount: 0
