@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d662e1653979fa346ae51235c55be353, type: 3}
+  m_Name: Snow
+  m_EditorClassIdentifier: 
+  biomeDatas:
+  - percentage: 31.528173
+    color: {r: 1, g: 1, b: 1, a: 0}
+    Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
+  - percentage: 54.397583
+    color: {r: 0.1273585, g: 0.8823476, b: 1, a: 0}
+    Value: {fileID: 11400000, guid: 869e754558eebea4bb32f5b5f7b6c4ab, type: 2}

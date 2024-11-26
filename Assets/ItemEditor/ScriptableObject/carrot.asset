@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: SnowCarrot
   itemDesc: item description
-  itemSprite: {fileID: -254314381, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
+  itemSprite: {fileID: -1052315573, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
   maxStackCount: 64
   enumItemRarity: 1
   Durability: 0
