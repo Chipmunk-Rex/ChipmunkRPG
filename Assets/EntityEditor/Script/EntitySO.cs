@@ -21,6 +21,7 @@ public abstract class EntitySO : ScriptableObject
     public float detectRange = 2.5f;
     public float attackRange = 1;
     public bool canCollisions = true;
+    public Type test;
     public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new(){
         {EnumMeterType.Health, new MeterData()},
         {EnumMeterType.Hunger, new MeterData()},

@@ -16,8 +16,8 @@ namespace Chipmunk.Library
         /// </summary>
         public virtual void EnterState()
         {
-            if (stateMachine.entity.Animator != null && animHash != 0)
-                stateMachine.entity.Animator.SetBool(animHash, true);
+            if (stateMachine.entity.AnimatorCompo != null && animHash != 0)
+                stateMachine.entity.AnimatorCompo.SetBool(animHash, true);
         }
         /// <summary>
         /// state를 Update함
@@ -28,8 +28,8 @@ namespace Chipmunk.Library
         /// </summary>
         public virtual void ExitState()
         {
-            if (stateMachine.entity.Animator != null && animHash != 0)
-                stateMachine.entity.Animator.SetBool(animHash, false);
+            if (stateMachine.entity.AnimatorCompo != null && animHash != 0)
+                stateMachine.entity.AnimatorCompo.SetBool(animHash, false);
         }
         /// <summary>
         /// targetState에서 이 상태로 바뀔 수 있는지 반환

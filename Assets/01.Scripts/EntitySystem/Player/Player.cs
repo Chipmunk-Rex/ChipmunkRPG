@@ -12,7 +12,6 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     public UnityEvent inventoryOpenEvent;
     public FSMStateMachine<EnumEntityState, Player> FSMStateMachine { get; private set; } = new();
     public bool CanChangeState => true;
-    public Animator Animator => AnimatorCompo;
 
     public Inventory Inventory { get; private set; } = new();
     public PlayerInventoryHotbar InventoryHotbar { get; private set; }
@@ -116,8 +115,8 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
     private void OnLookDirChanged(Vector2 prev, Vector2 next)
     {
         transform.localScale = new Vector3(-Mathf.Sign(next.x), transform.localScale.y, transform.localScale.z);
-        Animator.SetFloat(animXHash, next.x);
-        Animator.SetFloat(animYHash, next.y);
+        AnimatorCompo.SetFloat(animXHash, next.x);
+        AnimatorCompo.SetFloat(animYHash, next.y);
     }
 
     private void OnOpenInventory()
