@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49f490d29145f5043b86538a7f729464
+guid: 66fbd72cb01587c428e2124d04fcd1fe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,11 +44,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 8
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,274 +110,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CraftingTable_241125_0
+      name: NaturalObjects_Wall_241107_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8058fff3e0cc07842bbeb96481875bfa
+      internalID: -1063302668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32201f19bd95e2e41bc0d6f2bee24d98
+      internalID: 896818386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e83f6b08172e04d93385f8ad54ffeb
+      internalID: -2104191102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85e857b516b9e742a69c6b496890bf9
+      internalID: 2131624255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da6d437ff127b34598259df2b4ef6ea
+      internalID: -14664470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1eae891b187ac24e84044d1e3495741
+      internalID: 1404934399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c173cdbf036d3b468d91fd9e97f4ca8
+      internalID: 991806865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NaturalObjects_Wall_241107_7
       rect:
         serializedVersion: 2
         x: 0
-        y: 85
-        width: 79
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8dd89ce279d885478f903a063e2e2bd
-      internalID: 950090864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_1
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 116
-        width: 71
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 948bf5556b95ddb468be1d83dcc38f34
-      internalID: -487254688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_2
-      rect:
-        serializedVersion: 2
-        x: 83
         y: 0
-        width: 106
-        height: 151
+        width: 16
+        height: 39
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc8ef74ccd0b48a4ab5f06d42df50760
-      internalID: -1749895109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_3
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 34
-        width: 95
-        height: 117
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95187ca000a9a414293f4ef65dbd020b
-      internalID: -1833485214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_4
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 59
-        width: 56
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc04b0daa80b315439d4b3232c0f05ae
-      internalID: 1945293510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_5
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 33
-        width: 56
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 119a7b5626eacd544a6c71c7aea5ace8
-      internalID: 2071523649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_6
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 9
-        width: 56
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ed88993d2ae6e14bbfad7241b22ab32
-      internalID: 1810369268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_7
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 8
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eeed638ae43036142aa5b6711e642aeb
-      internalID: 359438067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_8
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 8
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22b73f1c9ac3e3a4ca87bf0cecbc1251
-      internalID: -1824980911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_9
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4baeb5a1cedc4364fb54c5b1204faa31
-      internalID: -561215191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_10
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e32be2f36a15184aa29df82be6a4586
-      internalID: 595446028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_11
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10a703c1eb3a89446ac0418588e24a59
-      internalID: -1069733899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_12
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37149894054247b4685355951ce1e7b9
-      internalID: -879238408
+      spriteID: def8454bf99ad204095cfc165fd09e1e
+      internalID: -220832317
       vertices: []
       indices: 
       edges: []
@@ -393,19 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CraftingTable_241125_0: 950090864
-      CraftingTable_241125_1: -487254688
-      CraftingTable_241125_10: 595446028
-      CraftingTable_241125_11: -1069733899
-      CraftingTable_241125_12: -879238408
-      CraftingTable_241125_2: -1749895109
-      CraftingTable_241125_3: -1833485214
-      CraftingTable_241125_4: 1945293510
-      CraftingTable_241125_5: 2071523649
-      CraftingTable_241125_6: 1810369268
-      CraftingTable_241125_7: 359438067
-      CraftingTable_241125_8: -1824980911
-      CraftingTable_241125_9: -561215191
+      NaturalObjects_Wall_241107_0: -1063302668
+      NaturalObjects_Wall_241107_1: 896818386
+      NaturalObjects_Wall_241107_2: -2104191102
+      NaturalObjects_Wall_241107_3: 2131624255
+      NaturalObjects_Wall_241107_4: -14664470
+      NaturalObjects_Wall_241107_5: 1404934399
+      NaturalObjects_Wall_241107_6: 991806865
+      NaturalObjects_Wall_241107_7: -220832317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

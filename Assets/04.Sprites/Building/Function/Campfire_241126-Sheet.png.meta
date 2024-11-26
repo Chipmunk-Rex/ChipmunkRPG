@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49f490d29145f5043b86538a7f729464
+guid: 7c7c74cc4e968454ea05d1e384ca8f72
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,274 +110,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CraftingTable_241125_0
+      name: Campfire_241126-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 85
-        width: 79
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 23
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8dd89ce279d885478f903a063e2e2bd
-      internalID: 950090864
+      spriteID: 8250f59476643ad4ea7c0a975fdf27ee
+      internalID: -1788295844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_1
+      name: Campfire_241126-Sheet_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 116
-        width: 71
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 16
+        y: 23
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 948bf5556b95ddb468be1d83dcc38f34
-      internalID: -487254688
+      spriteID: 26a41950d96055c4baa407cacaec9b8a
+      internalID: -364331396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_2
+      name: Campfire_241126-Sheet_2
       rect:
         serializedVersion: 2
-        x: 83
+        x: 32
+        y: 23
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40ab100c5e50824f91f51bf82a96856
+      internalID: 1639584254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Campfire_241126-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 23
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d254bb21688c4c4ea126a4c9f622780
+      internalID: -961287046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Campfire_241126-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 23
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a05a7d9b8a62c242832677b0d9d8c1a
+      internalID: -1209262236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Campfire_241126-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 106
-        height: 151
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc8ef74ccd0b48a4ab5f06d42df50760
-      internalID: -1749895109
+      spriteID: 42c3e4f09c16fa343a1bfb332dc090b3
+      internalID: -424445376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_3
+      name: Campfire_241126-Sheet_6
       rect:
         serializedVersion: 2
-        x: 191
-        y: 34
-        width: 95
-        height: 117
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 16
+        y: 0
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95187ca000a9a414293f4ef65dbd020b
-      internalID: -1833485214
+      spriteID: 298f9239885c6b64aba367a16a615fb8
+      internalID: -397914522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_4
+      name: Campfire_241126-Sheet_7
       rect:
         serializedVersion: 2
-        x: 11
-        y: 59
-        width: 56
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 32
+        y: 0
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc04b0daa80b315439d4b3232c0f05ae
-      internalID: 1945293510
+      spriteID: ecb14258f8d9ea5458b27cf38a7e2e4f
+      internalID: -498961016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_5
+      name: Campfire_241126-Sheet_8
       rect:
         serializedVersion: 2
-        x: 11
-        y: 33
-        width: 56
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 0
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 119a7b5626eacd544a6c71c7aea5ace8
-      internalID: 2071523649
+      spriteID: a45c6338b9a36e843b65883c75225ec8
+      internalID: -1386099351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CraftingTable_241125_6
+      name: Campfire_241126-Sheet_9
       rect:
         serializedVersion: 2
-        x: 11
-        y: 9
-        width: 56
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 64
+        y: 0
+        width: 16
+        height: 23
+      alignment: 9
+      pivot: {x: 0.4966268, y: 0.2489146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ed88993d2ae6e14bbfad7241b22ab32
-      internalID: 1810369268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_7
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 8
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eeed638ae43036142aa5b6711e642aeb
-      internalID: 359438067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_8
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 8
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22b73f1c9ac3e3a4ca87bf0cecbc1251
-      internalID: -1824980911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_9
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4baeb5a1cedc4364fb54c5b1204faa31
-      internalID: -561215191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_10
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e32be2f36a15184aa29df82be6a4586
-      internalID: 595446028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_11
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10a703c1eb3a89446ac0418588e24a59
-      internalID: -1069733899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CraftingTable_241125_12
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 8
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37149894054247b4685355951ce1e7b9
-      internalID: -879238408
+      spriteID: 17f707204184ade48aead281eda981b3
+      internalID: 1442691911
       vertices: []
       indices: 
       edges: []
@@ -393,19 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CraftingTable_241125_0: 950090864
-      CraftingTable_241125_1: -487254688
-      CraftingTable_241125_10: 595446028
-      CraftingTable_241125_11: -1069733899
-      CraftingTable_241125_12: -879238408
-      CraftingTable_241125_2: -1749895109
-      CraftingTable_241125_3: -1833485214
-      CraftingTable_241125_4: 1945293510
-      CraftingTable_241125_5: 2071523649
-      CraftingTable_241125_6: 1810369268
-      CraftingTable_241125_7: 359438067
-      CraftingTable_241125_8: -1824980911
-      CraftingTable_241125_9: -561215191
+      Campfire_241126-Sheet_0: -1788295844
+      Campfire_241126-Sheet_1: -364331396
+      Campfire_241126-Sheet_2: 1639584254
+      Campfire_241126-Sheet_3: -961287046
+      Campfire_241126-Sheet_4: -1209262236
+      Campfire_241126-Sheet_5: -424445376
+      Campfire_241126-Sheet_6: -397914522
+      Campfire_241126-Sheet_7: -498961016
+      Campfire_241126-Sheet_8: -1386099351
+      Campfire_241126-Sheet_9: 1442691911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
