@@ -87,6 +87,22 @@ public abstract class Entity : INDSerializeAble
         {
             Debug.LogError(e);
         }
+
+        if (!EntitySO.canCollisions)
+        {
+            ColliderCompo.forceSendLayers = 0;
+            ColliderCompo.forceReceiveLayers = 0;
+        }
+    }
+    public virtual void OnPushed()
+    {
+        transform.name = "Entity";
+        if (!EntitySO.canCollisions)
+        {
+            ColliderCompo.forceSendLayers = int.MaxValue;
+            ColliderCompo.forceReceiveLayers = int.MaxValue;
+        }
+
     }
     public virtual void Awake() { }
     public virtual void OnEnable() { }
@@ -136,10 +152,6 @@ public abstract class Entity : INDSerializeAble
         onSpawn -= SetPosition;
     }
 
-    public virtual void OnPushed()
-    {
-        transform.name = "Entity";
-    }
 
     public abstract void Die();
 }

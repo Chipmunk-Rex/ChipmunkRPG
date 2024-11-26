@@ -17,9 +17,7 @@ MonoBehaviour:
   - percentage: 14
     color: {r: 0, g: 0, b: 0, a: 0}
     Value: {fileID: 11400000, guid: 5e5e5f4338e13fe4cb0bb1a986b5aa29, type: 2}
-  biomeEntitys:
-  - spawnRate: 0
-    entitySO: {fileID: 0}
+  biomeEntitys: []
   groundDatas:
   - percentage: 100
     color: {r: 0.161767, g: 1, b: 0, a: 0}

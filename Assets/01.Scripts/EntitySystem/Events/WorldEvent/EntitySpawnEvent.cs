@@ -26,7 +26,7 @@ public class EntitySpawnEvent : WorldEntityEvent
             EntityCompo entityCompo = entity.entityCompo;
             if (entityCompo == null)
             {
-                Debug.LogWarning("EntityCompo is null, create new one");
+                // Debug.LogWarning("EntityCompo is null, create new one");
                 entityCompo = PoolManager.Instance.Pop("Entity").GetComponent<EntityCompo>();
                 entity.entityCompo = entityCompo;
             }

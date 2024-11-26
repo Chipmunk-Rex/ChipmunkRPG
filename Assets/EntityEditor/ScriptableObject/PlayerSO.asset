@@ -19,14 +19,10 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 6fd089bd30208d846bf2ec16a8584bd5, type: 2}
   maxHealth: 0
   damage: 0
-  speed: 4
+  speed: 15.11
+  detectRange: 2.5
   attackRange: 0
-  attackRate: 0
-  attackDuration: 0
-  attackCooldown: 0
-  attackDelay: 0
-  attackKnockback: 0
-  test: 5
+  canCollisions: 1
   meterDatas:
     serializableItems:
     - key: 0

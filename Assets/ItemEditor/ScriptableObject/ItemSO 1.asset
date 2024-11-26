@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a264306c7ec276b4084125919b3a00a3, type: 3}
-  m_Name: ItemSO
+  m_Name: ItemSO 1
   m_EditorClassIdentifier: 
-  itemName: gold
-  itemDesc: "\uB178\uBCD1\uBBFC \uC124\uBA85 \uC801\uC5B4"
-  itemSprite: {fileID: 851895153, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
-  maxStackCount: 32
-  enumItemRarity: 3
+  itemName: gold_ore
+  itemDesc: item description
+  itemSprite: {fileID: -552040242, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  maxStackCount: 64
+  enumItemRarity: 2
   Durability: 0
   maxStackCount: 64

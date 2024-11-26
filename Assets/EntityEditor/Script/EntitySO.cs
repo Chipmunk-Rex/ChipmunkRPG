@@ -18,13 +18,8 @@ public abstract class EntitySO : ScriptableObject
     public int maxHealth = 1;
     public int damage = 1;
     public float speed = 5;
+    public float detectRange = 2.5f;
     public float attackRange = 1;
-    public float attackRate = 1;
-    public float attackDuration = 0.5f;
-    public float attackCooldown = 0.5f;
-    public float attackDelay = 0.5f;
-    public float attackKnockback = 1;
-    public int test = 5;
     public bool canCollisions = true;
     public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new(){
         {EnumMeterType.Health, new MeterData()},
