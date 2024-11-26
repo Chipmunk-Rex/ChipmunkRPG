@@ -144,6 +144,7 @@ public class ItemContainer : INDSerializeAble
         ItemEntity itemEntity = new ItemEntity();
 
         itemEntity.Initialize(item);
+        Debug.Log("dropItem");
 
         EntitySpawnEvent @event = new EntitySpawnEvent(world, itemEntity, position);
         world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);

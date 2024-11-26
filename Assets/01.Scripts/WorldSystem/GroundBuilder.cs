@@ -73,6 +73,12 @@ public class GroundBuilder
             }
         }
 
+        if(selectedBiome == null)
+        {
+            Debug.LogWarning("GroundBuilder.SelectBiome() : selectedBiome is null");
+            selectedBiome = selectedBiomeTable.biomeDatas[0].Value;
+        }
+
         return selectedBiome;
     }
     private GroundSO SelectGround(BiomeSO selectedBiome)
