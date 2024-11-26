@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 500826f030cc66243a2742eea5f70b1f
+guid: 5c9c07e782c458248877742f55064838
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -110,106 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d2f9126ef57161468dc4fc82a59420a
-      internalID: 1117718709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lizard_241124-Sheet_1
+      name: BlastFurnace_241126_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 16
+        width: 16
+        height: 32
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.4999999, y: 0.2512613}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51811eefb8822384b80c36315de30e49
-      internalID: -442714544
+      spriteID: 2f7d6a2c2417b7e419358cd22cfe9d64
+      internalID: 1620147687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_2
+      name: BlastFurnace_241126_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.2512613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627368702cb55d440a323c1425f1293e
+      internalID: -502654530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlastFurnace_241126_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.2512613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765f4482177e3d7408818c85b861083e
+      internalID: 1157516881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlastFurnace_241126_3
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 48
-        height: 16
+        width: 16
+        height: 32
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.4999999, y: 0.2512613}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdf47c9117750fd49bca87524bf4793f
-      internalID: 1511978711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lizard_241124-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b42bc9b7b14032749b09b499294bfa0c
-      internalID: 924051659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lizard_241124-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feecf732cd5d67941b2502ea0642da5c
-      internalID: 1710918970
+      spriteID: d1cb3dca5c191a34b93cf1f6a365f364
+      internalID: -544820975
       vertices: []
       indices: 
       edges: []
@@ -225,11 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lizard_241124-Sheet_0: 1117718709
-      Lizard_241124-Sheet_1: -442714544
-      Lizard_241124-Sheet_2: 1511978711
-      Lizard_241124-Sheet_3: 924051659
-      Lizard_241124-Sheet_4: 1710918970
+      BlastFurnace_241126_0: 1620147687
+      BlastFurnace_241126_1: -502654530
+      BlastFurnace_241126_2: 1157516881
+      BlastFurnace_241126_3: -544820975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
