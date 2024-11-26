@@ -189,12 +189,13 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     private void CreateGround(Vector2Int worldPos)
     {
-        Ground ground = new GroundBuilder()
+        GroundBuilder groundBuilder = new GroundBuilder()
             .Position(worldPos)
             .VoronoiNoise(biomeTableNoise, biomeNoise)
             .PerlinNoise(perlinNoise)
-            .World(worldSO)
-            .Build();
+            .World(worldSO);
+
+        Ground ground = groundBuilder.Build();
 
         grounds.Add(worldPos, ground);
         if (!ground.groundSO.isWater)
@@ -207,6 +208,9 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         ground.building = null;
         if (building != null)
             CreateBuilding(building);
+
+        Entity entity = groundBuilder.SelectEntity(ground.biomeSO)?.CreateEntity();
+        entity?.SpawnEntity(this, worldPos);
     }
 
     public Ground GetGround(Vector2Int worldPos)

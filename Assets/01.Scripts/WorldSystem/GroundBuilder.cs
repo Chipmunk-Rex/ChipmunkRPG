@@ -89,6 +89,21 @@ public class GroundBuilder
         }
         return selectedGround;
     }
+    public EntitySO SelectEntity(BiomeSO selectedBiome)
+    {
+        EntitySO selectedEntity = null;
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+
+        foreach (PieChartData<EntitySO> entityData in selectedBiome.biomeEntitys)
+        {
+            if (entityData.percentage >= randomValue)
+            {
+                selectedEntity = entityData.Value;
+                break;
+            }
+        }
+        return selectedEntity;
+    }
     private Building SelectBuilding(BiomeSO seletedBiome)
     {
         Building selectedBuilding = null;
