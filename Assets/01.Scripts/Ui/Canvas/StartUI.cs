@@ -18,13 +18,10 @@ public class StartUI : MonoBehaviour
     }
     public void OnStartButtonClick()
     {
-        if (isPreparation)
-        {
-            StartGame();
-        }
-        else
-        {
-            animator.SetBool("preparation", true);
-        }
+        animator.SetBool("preparation", true);
+    }
+    public void OnBackButtonClick()
+    {
+        animator.SetBool("preparation", false);
     }
 }
