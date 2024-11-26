@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: "\uB208 \uBCBD"
   itemDesc: "\uB208\uC73C\uB85C \uBE5A\uC740 \uBCBD. \uC548\uCABD\uC740 \uC0DD\uAC01\uBCF4\uB2E4
     \uB530\uB73B\uD558\uB2E4."
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: -1818929985, guid: 189aa1e1a1e9c1b42ad8d99e9ff3d51d, type: 3}
+  maxStackCount: 64
   enumItemRarity: 1
   Durability: 0
   maxStackCount: 64

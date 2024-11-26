@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a264306c7ec276b4084125919b3a00a3, type: 3}
-  m_Name: Ore_Iron
+  m_Name: ItemSO 5
   m_EditorClassIdentifier: 
-  itemName: "\uCCA0\uAD11\uC11D"
-  itemDesc: "\uCCA0\uAD11\uC11D"
-  itemSprite: {fileID: 577844189, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  itemName: item
+  itemDesc: item description
+  itemSprite: {fileID: 0}
   maxStackCount: 64
-  enumItemRarity: 1
+  enumItemRarity: 0
   Durability: 0
   maxStackCount: 64

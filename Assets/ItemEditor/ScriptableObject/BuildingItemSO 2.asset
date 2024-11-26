@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3c2375096c8c64093fe7899e90cef2, type: 3}
-  m_Name: Wall_stone
+  m_Name: BuildingItemSO 2
   m_EditorClassIdentifier: 
-  itemName: "\uC11D\uC7AC \uBCBD"
-  itemDesc: "\uB3CC\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uBCBD. \uD22C\uBC15\uD558\uC9C0\uB9CC
-    \uD2BC\uD2BC\uD558\uB2E4."
-  itemSprite: {fileID: -1974070176, guid: 189aa1e1a1e9c1b42ad8d99e9ff3d51d, type: 3}
+  itemName: "\uB098\uBB34 \uBCBD"
+  itemDesc: "\uB098\uBB34\uB85C\uB41C \uBCBD. \uAC00\uC7A5 \uAE30\uBCF8\uC801\uC778
+    \uAC74\uCD95\uC7AC\uC785\uB2C8\uB2E4."
+  itemSprite: {fileID: -241692757, guid: 189aa1e1a1e9c1b42ad8d99e9ff3d51d, type: 3}
   maxStackCount: 64
   enumItemRarity: 1
   Durability: 0
