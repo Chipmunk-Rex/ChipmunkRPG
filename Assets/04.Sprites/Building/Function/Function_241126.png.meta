@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 500826f030cc66243a2742eea5f70b1f
+guid: 6c9e9542d15a21744a335366735390a5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -110,106 +110,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_0
+      name: Function_241126_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 48
-        height: 16
+        x: 16
+        y: 33
+        width: 31
+        height: 25
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.50484455, y: 0.32578903}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d2f9126ef57161468dc4fc82a59420a
-      internalID: 1117718709
+      spriteID: 5f1db66659bedc44aa424b3499852773
+      internalID: 832986175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_1
+      name: Function_241126_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 48
-        height: 16
+        y: 33
+        width: 16
+        height: 29
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.5187727, y: 0.29803124}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51811eefb8822384b80c36315de30e49
-      internalID: -442714544
+      spriteID: 13d2da916cdc66d40a97bb515c41009c
+      internalID: -546010602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_2
+      name: Function_241126_2
       rect:
         serializedVersion: 2
         x: 48
-        y: 0
-        width: 48
-        height: 16
+        y: 33
+        width: 16
+        height: 28
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.5140798, y: 0.28009075}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdf47c9117750fd49bca87524bf4793f
-      internalID: 1511978711
+      spriteID: ba012d6220763844185748f859952a71
+      internalID: 684534845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_3
+      name: Function_241126_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 16
+        x: 64
+        y: 33
+        width: 32
+        height: 19
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.5328522, y: 0.3814354}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b42bc9b7b14032749b09b499294bfa0c
-      internalID: 924051659
+      spriteID: d174d3a8b1fc66641950152ed0d46200
+      internalID: 1226776162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_4
+      name: Function_241126_4
       rect:
         serializedVersion: 2
-        x: 144
+        x: 32
         y: 0
-        width: 48
-        height: 16
+        width: 32
+        height: 18
       alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+      pivot: {x: 0.6173297, y: 0.36233294}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: feecf732cd5d67941b2502ea0642da5c
-      internalID: 1710918970
+      spriteID: 4eefc562238ebac4289bb6af732c7355
+      internalID: -323689269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Function_241126_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 18
+      alignment: 9
+      pivot: {x: 0.60559666, y: 0.37902018}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff0f156ba26a5f408030092f76e91d9
+      internalID: -218805469
       vertices: []
       indices: 
       edges: []
@@ -225,11 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lizard_241124-Sheet_0: 1117718709
-      Lizard_241124-Sheet_1: -442714544
-      Lizard_241124-Sheet_2: 1511978711
-      Lizard_241124-Sheet_3: 924051659
-      Lizard_241124-Sheet_4: 1710918970
+      Function_241126_0: 832986175
+      Function_241126_1: -546010602
+      Function_241126_2: 684534845
+      Function_241126_3: 1226776162
+      Function_241126_4: -323689269
+      Function_241126_5: -218805469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

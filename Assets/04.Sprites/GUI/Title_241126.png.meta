@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66fbd72cb01587c428e2124d04fcd1fe
+guid: ccbfe2d84c7e5d24d8686233a44bd0fc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,11 +44,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 8
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_0
+      name: Title_241126_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
-        width: 16
-        height: 39
+        x: 25
+        y: 43
+        width: 185
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,146 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8058fff3e0cc07842bbeb96481875bfa
-      internalID: -1063302668
+      spriteID: 432fbec3198b87749a18515183ce8bcc
+      internalID: 847870080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_1
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32201f19bd95e2e41bc0d6f2bee24d98
-      internalID: 896818386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 48
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9e83f6b08172e04d93385f8ad54ffeb
-      internalID: -2104191102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_3
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d85e857b516b9e742a69c6b496890bf9
-      internalID: 2131624255
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6da6d437ff127b34598259df2b4ef6ea
-      internalID: -14664470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c1eae891b187ac24e84044d1e3495741
-      internalID: 1404934399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c173cdbf036d3b468d91fd9e97f4ca8
-      internalID: 991806865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NaturalObjects_Wall_241107_7
+      name: Title_241126_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 39
+        width: 76
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,8 +145,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: def8454bf99ad204095cfc165fd09e1e
-      internalID: -220832317
+      spriteID: 80fc6e274396ea44f9d681308b7c8d63
+      internalID: -1471960145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_241126_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc90232fffad364fb8bb5c76d7aa7d2
+      internalID: 490217631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_241126_3
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 76
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184b55373cf5fa8449d56faaab455990
+      internalID: -1729709632
       vertices: []
       indices: 
       edges: []
@@ -288,14 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NaturalObjects_Wall_241107_0: -1063302668
-      NaturalObjects_Wall_241107_1: 896818386
-      NaturalObjects_Wall_241107_2: -2104191102
-      NaturalObjects_Wall_241107_3: 2131624255
-      NaturalObjects_Wall_241107_4: -14664470
-      NaturalObjects_Wall_241107_5: 1404934399
-      NaturalObjects_Wall_241107_6: 991806865
-      NaturalObjects_Wall_241107_7: -220832317
+      Title_241126_0: 847870080
+      Title_241126_1: -1471960145
+      Title_241126_2: 490217631
+      Title_241126_3: -1729709632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

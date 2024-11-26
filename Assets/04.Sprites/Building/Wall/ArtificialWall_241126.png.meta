@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 500826f030cc66243a2742eea5f70b1f
+guid: 189aa1e1a1e9c1b42ad8d99e9ff3d51d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -110,106 +110,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_0
+      name: ArtificialWall_241126_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d2f9126ef57161468dc4fc82a59420a
-      internalID: 1117718709
+      spriteID: 5c479418ff414b644a7242b6ab3a3e20
+      internalID: -1974070176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_1
+      name: ArtificialWall_241126_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6b1bb10086779439f3d3191474b89a
+      internalID: 227081456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtificialWall_241126_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9accbc866df37046bff3c021ca5b344
+      internalID: -241692757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtificialWall_241126_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51811eefb8822384b80c36315de30e49
-      internalID: -442714544
+      spriteID: 9db89cca3af7fea429eb63b4fb0956ee
+      internalID: 1278461171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lizard_241124-Sheet_2
+      name: ArtificialWall_241126_4
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdf47c9117750fd49bca87524bf4793f
-      internalID: 1511978711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lizard_241124-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b42bc9b7b14032749b09b499294bfa0c
-      internalID: 924051659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lizard_241124-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 16
-      alignment: 9
-      pivot: {x: 0.4472968, y: 0.2333333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: feecf732cd5d67941b2502ea0642da5c
-      internalID: 1710918970
+      spriteID: f5a3bf243f21142439d7ef7282f8e134
+      internalID: -1818929985
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lizard_241124-Sheet_0: 1117718709
-      Lizard_241124-Sheet_1: -442714544
-      Lizard_241124-Sheet_2: 1511978711
-      Lizard_241124-Sheet_3: 924051659
-      Lizard_241124-Sheet_4: 1710918970
+      ArtificialWall_241126_0: -1974070176
+      ArtificialWall_241126_1: 227081456
+      ArtificialWall_241126_2: -241692757
+      ArtificialWall_241126_3: 1278461171
+      ArtificialWall_241126_4: -1818929985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
