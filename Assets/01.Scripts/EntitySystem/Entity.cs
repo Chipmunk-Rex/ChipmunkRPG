@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Chipmunk.Library.PoolEditor;
 using UnityEngine;
 
@@ -68,6 +69,13 @@ public abstract class Entity : INDSerializeAble
             EntitySpawnEvent @event = new EntitySpawnEvent(world, this, pos);
             world.worldEvents.Execute(EnumWorldEvent.EntitySpawn, @event);
         }
+    }
+    public Entity[] DetectEntities()
+    {
+        Entity[] entities;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, EntitySO.detectRange);
+        entities = colliders.Select(x => x.GetComponent<EntityCompo>().Entity).ToArray();
+        return entities;
     }
     public virtual void OnSpawn()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract  class EntityEvent : BaseEvent
 {
-    public EntityCompo entity { get; }
-    public EntityEvent(EntityCompo entity)
+    public Entity entity { get; }
+    public EntityEvent(Entity entity)
     {
         this.entity = entity;
     }
