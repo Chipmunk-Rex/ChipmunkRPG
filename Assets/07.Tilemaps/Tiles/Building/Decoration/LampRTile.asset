@@ -22,7 +22,7 @@ MonoBehaviour:
     - {fileID: -1645323740, guid: 9b818ff3a0ca38b44b93dc2ec0828cc5, type: 3}
     - {fileID: -1216471581, guid: 9b818ff3a0ca38b44b93dc2ec0828cc5, type: 3}
     - {fileID: -62322520, guid: 9b818ff3a0ca38b44b93dc2ec0828cc5, type: 3}
-    m_GameObject: {fileID: 4260626294077033474, guid: 3dd83bf83e4058640ad3c7046719765e, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 0
     m_MaxAnimationSpeed: 20
     m_PerlinScale: 0.5

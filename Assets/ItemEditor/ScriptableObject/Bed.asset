@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uCE68\uB300"
   itemDesc: "\uD734\uC2DD\uC740 \uD544\uC218\uC785\uB2C8\uB2E4."
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 1226776162, guid: 6c9e9542d15a21744a335366735390a5, type: 3}
+  maxStackCount: 64
   enumItemRarity: 3
   Durability: 0
   maxStackCount: 64

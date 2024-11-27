@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: VeldBiome
   m_EditorClassIdentifier: 
   biomeName: "Veld(\uCD08\uC6D0)"
-  biomeBuildings: []
+  biomeBuildings:
+  - percentage: 5
+    color: {r: 1, g: 0.94701403, b: 0.0141509175, a: 0}
+    Value: {fileID: 11400000, guid: d76fc4d2a89604c41aad4b5b27ecc2b1, type: 2}
+  - percentage: 5
+    color: {r: 1, g: 0.55372715, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: bd07f8070e7f7b042a7e21a4ac603fd3, type: 2}
   biomeEntitys: []
   groundDatas:
   - percentage: 100

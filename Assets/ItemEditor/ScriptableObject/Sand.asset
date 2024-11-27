@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a264306c7ec276b4084125919b3a00a3, type: 3}
+  m_Name: Sand
+  m_EditorClassIdentifier: 
+  itemName: "\uBAA8\uB798"
+  itemDesc: "\uACE0\uC6B4 \uBAA8\uB798 \uAC00\uB8E8."
+  itemSprite: {fileID: -1719287047, guid: e0854aa2301c4334c8a22cd7827a396d, type: 3}
+  maxStackCount: 64
+  enumItemRarity: 1
+  Durability: 0
+  maxStackCount: 64

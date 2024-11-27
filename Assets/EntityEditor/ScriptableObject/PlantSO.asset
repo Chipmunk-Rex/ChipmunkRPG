@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455a53b56c365b498219f1ae02626fb, type: 3}
+  m_Name: PlantSO
+  m_EditorClassIdentifier: 
+  entityName: Wheat
+  description: 
+  defaultSprite: {fileID: 1398327883, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  shadowPrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  maxHealth: 1
+  damage: 1
+  speed: 5
+  detectRange: 2.5
+  attackRange: 1
+  canCollisions: 1
+  meterDatas:
+    serializableItems:
+    - key: 0
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 2
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 1
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 4
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+    - key: 3
+      value:
+        maxValue: 0
+        positiveEffectThreshold: 0
+        negativeEffectThreshold: 0
+        defaultValue: 0
+  growthSprites:
+  - {fileID: -727584493, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: -802874790, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: -1659088789, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  - {fileID: 1398327883, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
+  deadSprite: {fileID: 0}
+  growthTime: 120
+  dropItem: {fileID: 11400000, guid: f9de54224486b9848a09314d9c2e13ed, type: 2}

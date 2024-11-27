@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Bed
   m_EditorClassIdentifier: 
   tileDatas:
-    serializableItems: []
+    serializableItems:
+    - key: {x: 0, y: 0}
+      value: {fileID: 11400000, guid: bfb7d840ba8257f4894117b783d466c0, type: 2}
+    - key: {x: 1, y: 0}
+      value: {fileID: 11400000, guid: 9766efeac523b9f4d975a9abb4daa90c, type: 2}
   islower: 0
   buildingEntitySO: {fileID: 0}
   top: 0
-  right: 0
+  right: 1
   down: 0
   left: 0

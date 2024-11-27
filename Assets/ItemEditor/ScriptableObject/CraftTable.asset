@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uC791\uC5C5\uB300"
   itemDesc: "\uC544\uC774\uD15C\uC744 \uB9CC\uB4E4 \uC218 \uC788\uB294 \uC791\uC5C5\uB300."
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: -546010602, guid: 6c9e9542d15a21744a335366735390a5, type: 3}
+  maxStackCount: 64
   enumItemRarity: 2
   Durability: 0
   maxStackCount: 64
-  buildingSO: {fileID: 0}
+  buildingSO: {fileID: 11400000, guid: bd07f8070e7f7b042a7e21a4ac603fd3, type: 2}
   <InteractDuration>k__BackingField: 0
   <InteractCool>k__BackingField: 0

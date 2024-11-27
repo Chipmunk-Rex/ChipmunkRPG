@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Snow
   m_EditorClassIdentifier: 
   biomeDatas:
-  - percentage: 31.528173
+  - percentage: 32.070705
     color: {r: 1, g: 1, b: 1, a: 0}
     Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
-  - percentage: 54.397583
+  - percentage: 34.60072
     color: {r: 0.1273585, g: 0.8823476, b: 1, a: 0}
     Value: {fileID: 11400000, guid: 869e754558eebea4bb32f5b5f7b6c4ab, type: 2}

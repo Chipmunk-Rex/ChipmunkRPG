@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
   m_Name: CrafttableRecipe
   m_EditorClassIdentifier: 
+  IngredientItems:
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
+    count: 25
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
+    count: 25
   resultItemSO: {fileID: 11400000, guid: f0803d82653bd714dbc7c73d2997f415, type: 2}
-  resultCount: 0
+  resultCount: 1

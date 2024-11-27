@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
   m_Name: FoodSO
   m_EditorClassIdentifier: 
-  itemName: item
-  itemSprite: {fileID: 21300000, guid: 956a76e0f89802949889fada5a60b88e, type: 3}
-  enumItemRarity: 1
+  itemName: "\uC0DD\uBA85 \uC0B0\uD638 \uAC00\uB8E8"
+  itemDesc: "\uC0B0\uD638 \uAC8C\uB85C\uBD80\uD130 \uB5A8\uC5B4\uC9C4 \uAC00\uB8E8.
+    \uAC74\uAC15\uD574\uC9C0\uB294 \uB290\uB08C\uC774\uB2E4."
+  itemSprite: {fileID: 1275178268, guid: e0854aa2301c4334c8a22cd7827a396d, type: 3}
+  maxStackCount: 64
+  enumItemRarity: 3
   Durability: 0
   maxStackCount: 64
-  hunger: 10
-  <InteractDuration>k__BackingField: 4
+  hunger: 1
+  <InteractDuration>k__BackingField: 0
   <InteractCool>k__BackingField: 0
