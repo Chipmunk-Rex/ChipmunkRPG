@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: Anvil1Recipe 6
+  m_Name: IronBar_Ore
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 4bc0caabcbf80574299c03c4c36d53d8, type: 2}
-    count: 5
-  resultItemSO: {fileID: 11400000, guid: bc975eb96eecb1740a53f5c504839a69, type: 2}
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 6698a0d4719574b4292678aa9df369e0, type: 2}
+    count: 4
+  resultItemSO: {fileID: 11400000, guid: 4bc0caabcbf80574299c03c4c36d53d8, type: 2}
   resultCount: 1

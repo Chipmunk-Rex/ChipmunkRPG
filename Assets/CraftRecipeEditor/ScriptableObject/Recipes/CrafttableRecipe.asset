@@ -15,7 +15,5 @@ MonoBehaviour:
   IngredientItems:
   - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
     count: 25
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
-    count: 25
   resultItemSO: {fileID: 11400000, guid: f0803d82653bd714dbc7c73d2997f415, type: 2}
   resultCount: 1

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: bonfire1
+  m_Name: GoldBar_piece
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
-    count: 20
-  resultItemSO: {fileID: 11400000, guid: ad23d940b307072409a38bdf2a69fabe, type: 2}
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 404d4985cd1e8f845a5771d276ab3c93, type: 2}
+    count: 10
+  resultItemSO: {fileID: 11400000, guid: 1925787d979a6314a9ba41babe5c8735, type: 2}
   resultCount: 1

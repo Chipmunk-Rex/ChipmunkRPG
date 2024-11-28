@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ec075f4ddb82404889f84f09b26ba05, type: 3}
-  m_Name: FoodSO 1
+  m_Name: Bread
   m_EditorClassIdentifier: 
-  itemName: "\uBB3C\uBCD1"
-  itemDesc: "\uBB3C\uC774 \uB2F4\uAE34 \uBCD1."
-  itemSprite: {fileID: 152631000, guid: e0854aa2301c4334c8a22cd7827a396d, type: 3}
+  itemName: "\uBE75"
+  itemDesc: "\uBC00\uC744 \uAD6C\uC6CC \uB9CC\uB4E0 \uBE75"
+  itemSprite: {fileID: 1909907255, guid: 8159dcc745800fb4995f68fb100ad439, type: 3}
   maxStackCount: 64
   enumItemRarity: 1
   Durability: 0

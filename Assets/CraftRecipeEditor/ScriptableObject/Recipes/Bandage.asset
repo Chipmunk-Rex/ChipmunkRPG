@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: bonfire1
+  m_Name: Bandage
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
-    count: 20
-  resultItemSO: {fileID: 11400000, guid: ad23d940b307072409a38bdf2a69fabe, type: 2}
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 5decd21405971f04b926feb7d0fe304d, type: 2}
+    count: 5
+  resultItemSO: {fileID: 11400000, guid: d35a58c65869feb42ab6cd30bef12f7d, type: 2}
   resultCount: 1
