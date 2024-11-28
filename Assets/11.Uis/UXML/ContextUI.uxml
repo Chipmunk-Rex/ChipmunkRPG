@@ -3,11 +3,17 @@
     <Style src="project://database/Assets/11.Uis/USS/InventoryUI.uss?fileID=7433441132597879392&amp;guid=61ee05f07a7da6a4f9469d6551e8234c&amp;type=3#InventoryUI" />
     <Style src="project://database/Assets/11.Uis/USS/HotbarUI.uss?fileID=7433441132597879392&amp;guid=6921bb43ff73fe646a7f9a6b49be2979&amp;type=3#HotbarUI" />
     <Style src="project://database/Assets/11.Uis/USS/CraftUI.uss?fileID=7433441132597879392&amp;guid=361f93e47d89aa041985ae39b24e12f6&amp;type=3#CraftUI" />
+    <Style src="project://database/Assets/11.Uis/USS/SettingUI.uss?fileID=7433441132597879392&amp;guid=13c9c1df74fe40046bf1eab4a4ccd988&amp;type=3#SettingUI" />
     <ui:VisualElement name="ContextUI" style="flex-grow: 1; justify-content: center; align-items: center; width: 100%; height: 100%;">
-        <ui:VisualElement name="InventoryBackboard" style="display: flex;">
+        <ui:VisualElement name="InventoryBackboard" style="display: none;">
             <ItemContainerView />
             <HotbarView style="height: 30%; width: 100%; -unity-background-image-tint-color: rgba(255, 255, 255, 0);" />
         </ui:VisualElement>
         <CraftView />
+        <SettingUI style="width: 40%; height: 60%; background-image: url(&quot;project://database/Assets/04.Sprites/GUI/CraftingTableUI_NineSliced.png?fileID=-1833485214&amp;guid=7415d98b774b9954da6421a5d1f443b0&amp;type=3#CraftingTable_241125_3&quot;); display: none;">
+            <ui:VisualElement name="Title" style="position: absolute; left: 50%; background-image: url(&quot;project://database/Assets/04.Sprites/GUI/CraftingTableUI_241125.png?fileID=-487254688&amp;guid=49f490d29145f5043b86538a7f729464&amp;type=3#CraftingTable_241125_1&quot;); width: 359px; align-items: center; translate: -50% 0; height: 120px; top: -40px;">
+                <ui:Label tabindex="-1" text="Setting" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TitleText" style="-unity-font: url(&quot;project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.ttf?fileID=12800000&amp;guid=dc1cbd8cd7c2754409a77145942876c5&amp;type=3#PixeloidSans-Bold&quot;); -unity-font-definition: url(&quot;project://database/Assets/09.Fonts/Pixeloid/PixeloidSans-Bold.asset?fileID=11400000&amp;guid=4b2fd524c2424a946aa2fb71f9c7d108&amp;type=2#PixeloidSans-Bold&quot;); color: rgb(91, 31, 31); top: 25px; font-size: 36px;" />
+            </ui:VisualElement>
+        </SettingUI>
     </ui:VisualElement>
 </ui:UXML>

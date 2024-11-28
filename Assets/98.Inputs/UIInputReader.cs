@@ -9,6 +9,7 @@ using static Controls;
 public class UIInputReader : ScriptableSingleton<UIInputReader>, IUIActions
 {
     public Action onCraft;
+    public Action onSetting;
     Controls controls;
     protected override void OnEnable()
     {
@@ -25,6 +26,7 @@ public class UIInputReader : ScriptableSingleton<UIInputReader>, IUIActions
 
     public void OnSetting(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+            onSetting?.Invoke();
     }
 }

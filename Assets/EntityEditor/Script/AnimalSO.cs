@@ -6,6 +6,6 @@ public class AnimalSO : EntitySO
 {
     protected override Entity CreateEntityInstance()
     {
-        throw new System.NotImplementedException();
+        return new Animal().Initialize(this);
     }
 }
