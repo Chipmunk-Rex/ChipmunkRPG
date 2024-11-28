@@ -444,7 +444,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 230, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201395772
 MonoBehaviour:
@@ -2148,6 +2148,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1892926352}
+        m_TargetAssemblyTypeName: StartUI_SaveSlotView, Assembly-CSharp
+        m_MethodName: DrawView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &851132711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2839,7 +2851,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 230, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988420728
 MonoBehaviour:
@@ -3168,11 +3180,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Slot Desc
+  m_text: '
 
-'
+    No slots. Please create a slot'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 39ef536002b40264aa71ceb9b8d50846, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ead88d1a3bb447e47975148ff19d28f8, type: 2}
   m_sharedMaterial: {fileID: -446495715077120562, guid: 39ef536002b40264aa71ceb9b8d50846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3236,7 +3248,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1127645580
@@ -6448,7 +6460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slot Name
+  m_text: No slots created
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0c26939b7290c848a8dbdf6945590c8, type: 2}
   m_sharedMaterial: {fileID: -2692342785106744448, guid: c0c26939b7290c848a8dbdf6945590c8, type: 2}
@@ -6679,7 +6691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slot LastDate
+  m_text: Please create a slot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0c26939b7290c848a8dbdf6945590c8, type: 2}
   m_sharedMaterial: {fileID: -2692342785106744448, guid: c0c26939b7290c848a8dbdf6945590c8, type: 2}
@@ -6795,7 +6807,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 230, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018527364
 MonoBehaviour:

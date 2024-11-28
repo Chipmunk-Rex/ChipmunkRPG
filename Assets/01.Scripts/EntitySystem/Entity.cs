@@ -40,11 +40,16 @@ public abstract class Entity : INDSerializeAble
         }
         catch
         {
-            meters.Add(EnumMeterType.Health, null);
-            meters.Add(EnumMeterType.Hunger, null);
-            meters.Add(EnumMeterType.Thirsty, null);
-            meters.Add(EnumMeterType.Mentality, null);
-            meters.Add(EnumMeterType.Temperature, null);
+            if (!meters.ContainsKey(EnumMeterType.Health))
+                meters.Add(EnumMeterType.Health, null);
+            if (!meters.ContainsKey(EnumMeterType.Hunger))
+                meters.Add(EnumMeterType.Hunger, null);
+            if (!meters.ContainsKey(EnumMeterType.Thirsty))
+                meters.Add(EnumMeterType.Thirsty, null);
+            if (!meters.ContainsKey(EnumMeterType.Mentality))
+                meters.Add(EnumMeterType.Mentality, null);
+            if (!meters.ContainsKey(EnumMeterType.Temperature))
+                meters.Add(EnumMeterType.Temperature, null);
         }
 
         return this;

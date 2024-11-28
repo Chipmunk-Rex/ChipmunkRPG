@@ -27,7 +27,7 @@ public class Building : INDSerializeAble
         NDSData data = new NDSData();
         data.AddData("buildingSO", SOAddressSO.Instance.GetIDBySO(buildingSO));
         data.AddData("pos", new JsonVector2(pos));
-        data.AddData("buildingEntity", buildingEntity.Serialize());
+        data.AddData("buildingEntity", buildingEntity?.Serialize());
         return data;
         // throw new NotImplementedException();
     }
@@ -36,12 +36,18 @@ public class Building : INDSerializeAble
     {
         pos = data.GetData<JsonVector2>("pos");
         buildingSO = SOAddressSO.Instance.GetSOByID<BuildingSO>(uint.Parse(data.GetDataString("buildingSO")));
-        buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
-        buildingEntity.Deserialize(data.GetData<NDSData>("buildingEntity"));
-        buildingEntity.hasOwner = true;
-        buildingEntity.SpawnEntity(pos: pos);
-        Debug.Log("Building Deserialize");
-        Debug.Log(buildingEntity);
+        if (buildingSO.buildingEntitySO != null)
+        {
+            buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
+            buildingEntity.Deserialize(data.GetData<NDSData>("buildingEntity"));
+            if(buildingEntity == null)
+            {
+                Debug.Log("Building Entity is null");
+                return;
+            }
+            buildingEntity.hasOwner = true;
+            buildingEntity.SpawnEntity(pos: pos);
+        }
         // throw new NotImplementedException();
     }
 }

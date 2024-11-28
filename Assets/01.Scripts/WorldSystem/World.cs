@@ -48,7 +48,11 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     protected override void Awake()
     {
-        TryInitBySlot();
+        if (TryInitBySlot())
+        {
+            return;
+        }
+
 
         this.transform.position = Vector2.zero;
 
@@ -62,24 +66,28 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         // StartCoroutine(RenderMap());
     }
 
-    private void TryInitBySlot()
+    private bool TryInitBySlot()
     {
-        try
-        {
-            NDSData worldNDSData = SlotManager.Instance.GetWorldNDSData();
-            Deserialize(worldNDSData);
-            return;
-        }
-        catch
-        {
-            Debug.Log("World Init By Slot Failed");
-            Debug.Log("World Init By Default");
-            SlotData slotData = SlotManager.Instance.GetSlotData();
-            if (slotData != null)
-            {
-                seed = slotData.seed;
-            }
-        }
+        // try
+        // {
+        NDSData worldNDSData = SlotManager.Instance.GetWorldNDSData();
+        Deserialize(worldNDSData);
+        return true;
+        // }
+        // catch (Exception e)
+        // {
+        //     Debug.Log("World Init By Slot Failed");
+        //     Debug.LogError(e);
+        //     // throw e;
+        //     Debug.Log("World Init By Default");
+        //     SlotData slotData = SlotManager.Instance.GetSlotData();
+        //     if (slotData != null)
+        //     {
+        //         seed = slotData.seed;
+        //     }
+        //     throw e;
+        //     return false;
+        // }
     }
 
     private void FixedUpdate()
@@ -234,6 +242,28 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         Entity entity = groundBuilder.SelectEntity(ground.biomeSO)?.CreateEntity();
         entity?.SpawnEntity(this, worldPos);
     }
+    private void CreateGround(Ground ground)
+    {
+        grounds.Add(ground.WorldPos, ground);
+        if (!ground.groundSO.isWater)
+            groundTilemap.SetTile(Vector3Int.RoundToInt((Vector2)ground.WorldPos), ground.groundSO.groundTile);
+        else
+            waterTilemap.SetTile(Vector3Int.RoundToInt((Vector2)ground.WorldPos), ground.groundSO.groundTile);
+
+        Building building = ground.building;
+        ground.building = null;
+        if (building != null)
+            CreateBuilding(building);
+
+        GroundBuilder groundBuilder = new GroundBuilder()
+            .Position(ground.WorldPos)
+            .VoronoiNoise(biomeTableNoise, biomeNoise)
+            .PerlinNoise(perlinNoise)
+            .World(worldSO);
+
+        Entity entity = groundBuilder.SelectEntity(ground.biomeSO)?.CreateEntity();
+        entity?.SpawnEntity(this, ground.WorldPos);
+    }
 
     public Ground GetGround(Vector2Int worldPos)
     {
@@ -346,7 +376,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
         string json = JsonConvert.SerializeObject(ndsData);
         Debug.Log(Application.dataPath);
         System.IO.Directory.CreateDirectory($"{Application.dataPath}/Resources/SaveData");
-        System.IO.File.WriteAllText($"{SlotManager.Instance.currentSlotPath}/world.jon", json);
+        System.IO.File.WriteAllText($"{SlotManager.Instance.currentSlotPath}/world.json", json);
     }
     public NDSData Serialize()
     {
@@ -381,6 +411,11 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
         worldSO = SOAddressSO.Instance.GetSOByID<WorldConfigSO>(uint.Parse(data.GetDataString("worldSO")));
 
+        biomeTableNoise = new VoronoiNoise(worldSO.biomTableSize, seed, worldSO.biomDetail);
+        biomeNoise = new VoronoiNoise(worldSO.biomSize, seed, worldSO.biomDetail);
+        perlinNoise = new PerlinNoise(worldSO.depthScale, seed);
+        SetRenderer();
+
         grounds.Clear();
         groundTilemap.ClearAllTiles();
         waterTilemap.ClearAllTiles();
@@ -390,8 +425,13 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
             Ground ground = new Ground(Vector2Int.zero, null, null);
             ground.Deserialize(groundsNDS.GetData<NDSData>(keyValuePair.Key));
             Vector2Int pos = NDSData.ToObject<Vector2Int>(keyValuePair.Key);
-            CreateGround(pos);
-            grounds.Add(pos, ground);
+            // if (grounds.ContainsKey(keyValuePair.Key))
+            // {
+            //     Debug.Log("Already Exist Ground");
+            //     continue;
+            // }
+            CreateGround(ground);
+            // grounds.Add(pos, ground);
         }
 
         foreach (Entity entity in entities)
@@ -414,8 +454,19 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
                 entities.Add(entity);
             }
         }
+        if (player == null)
+        {
 
-        player.Deserialize(data.GetData<NDSData>("Player"));
+            Debug.Log("Player is null");
+            playerCompo.OnSpawnEvent.AddListener(() =>
+            {
+                playerCompo.Entity.Deserialize(data.GetData<NDSData>("Player"));
+            });
+        }
+        else
+            player.Deserialize(data.GetData<NDSData>("Player"));
+
+        OnWorldInitComplete?.Invoke();
     }
     #endregion
 }

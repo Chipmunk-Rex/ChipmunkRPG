@@ -9,7 +9,8 @@ public class SlotManager : MonoSingleton<SlotManager>
 
     public NDSData GetWorldNDSData()
     {
-        string json = System.IO.File.ReadAllText($"{currentSlotPath}/worldData.json");
+        Debug.Log($"{currentSlotPath}/world.json");
+        string json = System.IO.File.ReadAllText($"{currentSlotPath}/world.json");
         NDSData ndsData = Newtonsoft.Json.JsonConvert.DeserializeObject<NDSData>(json);
         return ndsData;
     }

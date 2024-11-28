@@ -81,9 +81,10 @@ public class StartUI_SaveSlotView : MonoBehaviour
         {
             string json = File.ReadAllText($"{slotPathList[SelectIndex]}/SlotData.json");
             SlotData slotData = JsonConvert.DeserializeObject<SlotData>(json);
-            slotNameStr = slotPathList[SelectIndex].Split('/')[slotPathList[SelectIndex].Split('/').Length - 1];
+            string[] splitStr = slotPathList[SelectIndex].Split('/');
+            slotNameStr = splitStr[splitStr.Length - 1].Split("\\")[splitStr[splitStr.Length - 1].Split("\\").Length - 1];
             slotLastDateStr = slotData.lastOpenDate;
-            slotDescStr = slotData.desc.ToString();
+            slotDescStr = $"Seed : {slotData.seed} \n Desc : {slotData.desc.ToString()}";
         }
         catch
         {
@@ -99,6 +100,18 @@ public class StartUI_SaveSlotView : MonoBehaviour
     public void Select()
     {
         SlotManager.Instance.currentSlotPath = slotPathList[SelectIndex];
+        try
+        {
+            string json = File.ReadAllText($"{slotPathList[SelectIndex]}/SlotData.json");
+            SlotData slotData = JsonConvert.DeserializeObject<SlotData>(json);
+            if (slotData == null)
+                return;
+        }
+        catch
+        {
+            Debug.Log("실행중 오류 발생");
+            return;
+        }
         onSelected?.Invoke();
     }
     public void ChangeScene()
