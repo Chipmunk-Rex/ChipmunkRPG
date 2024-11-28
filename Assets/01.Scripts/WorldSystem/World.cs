@@ -336,6 +336,9 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
     public void RemoveBuilding(Vector2Int pos)
     {
         Building building = GetBuilding(pos);
+        Debug.Log("Remove Building" + building);
+        Debug.Log(building);
+        Debug.Log(pos);
 
         RemoveBuildingEvent @event = new RemoveBuildingEvent(this, building);
         worldEvents.Execute(EnumWorldEvent.BuildingCreate, @event);

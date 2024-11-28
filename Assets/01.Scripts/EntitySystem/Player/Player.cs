@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Chipmunk.Library;
 using UnityEngine;
 using UnityEngine.Events;
@@ -53,6 +54,15 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
         ItemSpriteCompo.transform.SetParent(Visual.transform);
         ItemAnimatorCompo = ItemSpriteCompo.gameObject.AddComponent<Animator>();
 
+        if(World.Instance.GetGround(Vector2Int.RoundToInt(transform.position)).groundSO.isWater)
+        {
+            FSMStateMachine.ChangeState(EnumEntityState.SwimIdle);
+        }
+        else
+        {
+            FSMStateMachine.ChangeState(EnumEntityState.Idle);
+        }
+
         base.OnSpawn();
     }
     public override void Awake()
@@ -95,10 +105,22 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
             if (FSMStateMachine.CurrentEnumState == EnumEntityState.SwimMove || FSMStateMachine.CurrentEnumState == EnumEntityState.SwimIdle)
             {
                 FSMStateMachine.ChangeState(EnumEntityState.Idle);
-                
+
                 InventoryHotbar.canUseItem = true;
                 Vector2Int lookWorldPos = Vector2Int.RoundToInt(transform.position + (Vector3)lookDir.Value.normalized);
                 transform.position = new Vector3(lookWorldPos.x, lookWorldPos.y);
+            }
+        }
+
+        Debug.Log("Interact");
+        RaycastHit2D[] colliders = Physics2D.RaycastAll(transform.position, lookDir.Value, 1f);
+        Entity[] entities = colliders.Select(e => e.collider.GetComponent<EntityCompo>().Entity).ToArray();
+        foreach (Entity entity in entities)
+        {
+            if (entity != this)
+            {
+                entity.OnPlayerInteract(this);
+                break;
             }
         }
     }

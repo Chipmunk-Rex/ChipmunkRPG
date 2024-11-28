@@ -28,6 +28,8 @@ public abstract class Entity : INDSerializeAble
     public Dictionary<EnumMeterType, Meter> meters = new();
 
     public float spawnededTime;
+
+    public Building parentBuilding;
     public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
     {
         EntitySO = entitySO;
@@ -144,6 +146,7 @@ public abstract class Entity : INDSerializeAble
     {
         return gameObject.GetComponent<T>();
     }
+    public virtual void OnPlayerInteract(Player player) { }
     public virtual NDSData Serialize()
     {
         NDSData entityNDSData = new NDSData();

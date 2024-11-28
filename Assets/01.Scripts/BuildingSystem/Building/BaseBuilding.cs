@@ -18,6 +18,7 @@ public class Building : INDSerializeAble
         if (buildingSO.buildingEntitySO != null)
         {
             buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
+            buildingEntity.parentBuilding = this;
             buildingEntity.hasOwner = true;
         }
     }
@@ -40,6 +41,7 @@ public class Building : INDSerializeAble
         {
             buildingEntity = buildingSO.buildingEntitySO.CreateEntity();
             buildingEntity.Deserialize(data.GetData<NDSData>("buildingEntity"));
+            buildingEntity.parentBuilding = this;
             if(buildingEntity == null)
             {
                 Debug.Log("Building Entity is null");

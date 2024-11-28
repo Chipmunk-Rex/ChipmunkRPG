@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Chipmunk.Library.PoolEditor;
 using UnityEngine;
 
 public class Plant : BuildingEntity
@@ -59,8 +60,19 @@ public class Plant : BuildingEntity
             Visual.sprite = plantSO.growthSprites[time / plantSO.growthTime];
         }
     }
+    public override void OnPlayerInteract(Player player)
+    {
+        base.OnPlayerInteract(player);
+        if (isGrown)
+        {
+            player.Inventory.AddItem(plantSO.dropItem);
+            base.Die();
+            Die();
+        }
+    }
 
     public override void Die()
     {
+        PoolManager.Instance.Push(this.entityCompo);
     }
 }
