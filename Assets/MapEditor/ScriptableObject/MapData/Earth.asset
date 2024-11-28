@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldName: Earth
   biomeTables:
-  - percentage: 30
+  - percentage: 20
     color: {r: 1, g: 0.9635534, b: 0, a: 1}
     Value: {fileID: 11400000, guid: 4f45b181ad08be641ace8e2ed2302b26, type: 2}
+  - percentage: 30
+    color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+    Value: {fileID: 11400000, guid: 1ef676da428360f44b8fd94c386d7446, type: 2}
   - percentage: 100
     color: {r: 0, g: 1, b: 0.52395105, a: 1}
     Value: {fileID: 11400000, guid: bd10c21574896cd45bfb7c98777240f4, type: 2}
-  chunkSize: {x: 5, y: 5}
-  biomSize: 15
-  biomTableSize: 6
-  biomDetail: 10
+  chunkSize: {x: 10, y: 10}
+  biomSize: 8
+  biomTableSize: 40
+  biomDetail: 40
   renderSize: 4
   renderDuration: 1
   depthScale: 3
@@ -75,16 +78,16 @@ MonoBehaviour:
     serializedVersion: 2
     key0: {r: 0.6745098, g: 0.85490197, b: 1, a: 1}
     key1: {r: 0.9103774, g: 1, b: 1, a: 1}
-    key2: {r: 0.6745098, g: 0.85490197, b: 1, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 1, g: 0.7938354, b: 0, a: 0}
+    key3: {r: 0.6745098, g: 0.85490197, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 14842
-    ctime2: 65535
-    ctime3: 0
+    ctime2: 43562
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -99,5 +102,5 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2

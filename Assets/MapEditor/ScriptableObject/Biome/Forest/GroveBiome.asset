@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: "grove(\uC0B0\uB9BC)"
   biomeBuildings:
-  - percentage: 14
+  - percentage: 7
     color: {r: 0, g: 0, b: 0, a: 0}
     Value: {fileID: 11400000, guid: 5e5e5f4338e13fe4cb0bb1a986b5aa29, type: 2}
   biomeEntitys:

@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d662e1653979fa346ae51235c55be353, type: 3}
-  m_Name: Mountain
+  m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
+  m_Name: mountain
   m_EditorClassIdentifier: 
-  biomeDatas:
-  - percentage: 100
+  biomeName: 
+  biomeBuildings:
+  - percentage: 5
     color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: ac355b600cb06444dab6f043714463e6, type: 2}
-  - percentage: 10
+    Value: {fileID: 0}
+  biomeEntitys: []
+  groundDatas:
+  - percentage: 0
     color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: 52aadfee434bd6244ad230882d3b669a, type: 2}
+    Value: {fileID: 11400000, guid: 81f7117fdfe856749988b238486a8ffe, type: 2}

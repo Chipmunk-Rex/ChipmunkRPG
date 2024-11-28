@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
-  m_Name: SeaBiome
+  m_Name: mountain_Ore
   m_EditorClassIdentifier: 
-  biomeName: Sea
-  biomeBuildings: []
+  biomeName: 
+  biomeBuildings:
+  - percentage: 15
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 0}
+  - percentage: 15
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 0}
   biomeEntitys: []
   groundDatas:
-  - percentage: 100
+  - percentage: 0
     color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: 36525c0359b37344bb5e56d424bcd26d, type: 2}
+    Value: {fileID: 11400000, guid: 81f7117fdfe856749988b238486a8ffe, type: 2}
