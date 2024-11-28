@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: New CraftRecipe 1
+  m_Script: {fileID: 11500000, guid: 6df3d6fa5ce795844b677ba1da7c9bbb, type: 3}
+  m_Name: AnvilRecipeTable
   m_EditorClassIdentifier: 
-  IngredientItems: []
-  resultItemSO: {fileID: 0}
-  resultCount: 0
+  craftRecipes: []

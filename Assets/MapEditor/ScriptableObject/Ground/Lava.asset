@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5724de53a3c0eba419ddf1a38ca643a0, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  groundType: 0
+  groundType: 1
   groundTile: {fileID: 11400000, guid: 07c2aafaf76481547861d1a5f0a53ab9, type: 2}
-  isWater: 0
+  isWater: 1

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: PlayerRecipeTable
   m_EditorClassIdentifier: 
   craftRecipes:
-  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
-  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
-  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
-  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
-  - {fileID: 11400000, guid: cddaa9bfcfd335441946a8992ea4dd4f, type: 2}
+  - {fileID: 11400000, guid: 5f45d203bbfc62a46b7f1c5082f3bec6, type: 2}
+  - {fileID: 11400000, guid: da538dd7da9cebe4a80b4927313abc08, type: 2}
+  - {fileID: 11400000, guid: 2225ab08ff3dac74481d4abef14f7b67, type: 2}
+  - {fileID: 11400000, guid: 4f538e8e28f66134aacfffaf996d7645, type: 2}
+  - {fileID: 11400000, guid: 4e02cde791bad1342bceb7fe3d12ee38, type: 2}
+  - {fileID: 11400000, guid: 4dae828690b388c4aac5fc3574c54573, type: 2}

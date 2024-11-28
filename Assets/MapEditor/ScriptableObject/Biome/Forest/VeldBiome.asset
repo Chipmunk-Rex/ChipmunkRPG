@@ -20,6 +20,9 @@ MonoBehaviour:
   - percentage: 5
     color: {r: 1, g: 0.55372715, b: 0, a: 0}
     Value: {fileID: 11400000, guid: bd07f8070e7f7b042a7e21a4ac603fd3, type: 2}
+  - percentage: 5
+    color: {r: 0.79693556, g: 1, b: 0.4481132, a: 0}
+    Value: {fileID: 11400000, guid: 5cc3a60a530817240ad96e8e5aa5bfcb, type: 2}
   biomeEntitys: []
   groundDatas:
   - percentage: 100
