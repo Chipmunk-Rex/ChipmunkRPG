@@ -22,6 +22,12 @@ public abstract class EntitySO : ScriptableObject
     public float attackRange = 1;
     public bool canCollisions = true;
     public Type test;
+    /// <summary>
+    /// -1 is infinite
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    public float lifeTime = -1;
     public SerializableDictionary<EnumMeterType, MeterData> meterDatas = new(){
         {EnumMeterType.Health, new MeterData()},
         {EnumMeterType.Hunger, new MeterData()},

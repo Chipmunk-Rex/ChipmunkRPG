@@ -26,6 +26,8 @@ public abstract class Entity : INDSerializeAble
     public Vector2 LookDir => lookDir.Value;
     public NotifyValue<Vector2> lookDir = new(Vector2.down);
     public Dictionary<EnumMeterType, Meter> meters = new();
+
+    public float spawnededTime;
     public virtual Entity Initialize<T>(T entitySO) where T : EntitySO
     {
         EntitySO = entitySO;
@@ -77,9 +79,22 @@ public abstract class Entity : INDSerializeAble
     }
     public Entity[] DetectEntities()
     {
-        Entity[] entities;
+        Entity[] entities = null;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, EntitySO.detectRange);
-        entities = colliders.Select(x => x.GetComponent<EntityCompo>().Entity).ToArray();
+        if (colliders == null || colliders.Length == 0)
+        {
+            return null;
+        }
+        else
+        {
+            entities = colliders.Select(x =>
+            {
+                EntityCompo entityCompo = x.GetComponent<EntityCompo>();
+                if (entityCompo != null)
+                    return entityCompo.Entity;
+                return null;
+            }).ToArray();
+        }
         return entities;
     }
     public virtual void OnSpawn()
@@ -95,6 +110,7 @@ public abstract class Entity : INDSerializeAble
 
             onSpawn?.Invoke();
             entityCompo.OnSpawnEvent?.Invoke();
+            spawnededTime = Time.time;
         }
         catch (Exception e)
         {
@@ -123,7 +139,7 @@ public abstract class Entity : INDSerializeAble
     public virtual void OnDisable() { }
 
     public virtual void Update() { }
-    public virtual void FixedUpdate() { }
+    public virtual void FixedUpdate() { if (Time.time - spawnededTime > EntitySO.lifeTime && EntitySO.lifeTime != -1) Die(); }
     public T GetComponent<T>() where T : Component
     {
         return gameObject.GetComponent<T>();

@@ -68,26 +68,26 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     private bool TryInitBySlot()
     {
-        // try
-        // {
+        try
+        {
         NDSData worldNDSData = SlotManager.Instance.GetWorldNDSData();
         Deserialize(worldNDSData);
         return true;
-        // }
-        // catch (Exception e)
-        // {
-        //     Debug.Log("World Init By Slot Failed");
-        //     Debug.LogError(e);
-        //     // throw e;
-        //     Debug.Log("World Init By Default");
-        //     SlotData slotData = SlotManager.Instance.GetSlotData();
-        //     if (slotData != null)
-        //     {
-        //         seed = slotData.seed;
-        //     }
-        //     throw e;
-        //     return false;
-        // }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("World Init By Slot Failed");
+            Debug.LogError(e);
+            // throw e;
+            Debug.Log("World Init By Default");
+            SlotData slotData = SlotManager.Instance.GetSlotData();
+            if (slotData != null)
+            {
+                seed = slotData.seed;
+            }
+            // throw e;
+            return false;
+        }
     }
 
     private void FixedUpdate()
