@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
-  m_Name: DesertBiome
+  m_Name: Fireforest
   m_EditorClassIdentifier: 
   biomeName: 
   biomeBuildings: []
   biomeEntitys: []
-  groundDatas:
-  - percentage: 100
-    color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: 4dbb3035d0f65c3409316c73c91f3c3d, type: 2}
+  groundDatas: []

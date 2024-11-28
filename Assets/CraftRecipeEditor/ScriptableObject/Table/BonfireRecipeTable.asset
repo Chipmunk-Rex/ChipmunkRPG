@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df3d6fa5ce795844b677ba1da7c9bbb, type: 3}
+  m_Name: BonfireRecipeTable
+  m_EditorClassIdentifier: 
+  craftRecipes:
+  - {fileID: 11400000, guid: 5d607d3a301073e4f9b82fbaa1037d63, type: 2}
+  - {fileID: 11400000, guid: 7ecfc12c560e9da4ba0402cae5e3ba0d, type: 2}
+  - {fileID: 11400000, guid: 3fc2cb433f245144e8be77e114a9ee7b, type: 2}

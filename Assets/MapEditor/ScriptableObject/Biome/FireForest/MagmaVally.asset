@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
+  m_Name: MagmaVally
+  m_EditorClassIdentifier: 
+  biomeName: 
+  biomeBuildings: []
+  biomeEntitys: []
+  groundDatas:
+  - percentage: 70
+    color: {r: 1, g: 0.38855186, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: d3de8bc3712b11042863a2f8b8d489bd, type: 2}
+  - percentage: 0
+    color: {r: 1, g: 0.38855186, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 36525c0359b37344bb5e56d424bcd26d, type: 2}

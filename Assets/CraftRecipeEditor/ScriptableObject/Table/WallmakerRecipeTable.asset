@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df3d6fa5ce795844b677ba1da7c9bbb, type: 3}
+  m_Name: WallmakerRecipeTable
+  m_EditorClassIdentifier: 
+  craftRecipes:
+  - {fileID: 11400000, guid: 1f9b07b7754a6f3489bcdfae371bd996, type: 2}
+  - {fileID: 11400000, guid: 6671c04a95f04ad4ab73a3d5181c4b62, type: 2}
+  - {fileID: 11400000, guid: 76f69a9559a442f44b21237a960786d6, type: 2}
+  - {fileID: 11400000, guid: 6283e7be51724ec41a1806a40774791e, type: 2}
