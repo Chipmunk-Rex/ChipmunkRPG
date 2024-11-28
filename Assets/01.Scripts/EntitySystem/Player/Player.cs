@@ -112,6 +112,7 @@ public class Player : Entity, IFSMEntity<EnumEntityState, Player>, IItemInteract
             }
         }
 
+        Debug.Log("Interact");
         RaycastHit2D[] colliders = Physics2D.RaycastAll(transform.position, lookDir.Value, 1f);
         Entity[] entities = colliders.Select(e => e.collider.GetComponent<EntityCompo>().Entity).ToArray();
         foreach (Entity entity in entities)

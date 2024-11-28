@@ -20,5 +20,5 @@ MonoBehaviour:
   Durability: 0
   maxStackCount: 64
   hunger: 1
-  <InteractDuration>k__BackingField: 0
-  <InteractCool>k__BackingField: 0
+  <InteractDuration>k__BackingField: 1
+  <InteractCool>k__BackingField: 1

@@ -32,5 +32,5 @@ MonoBehaviour:
   - {fileID: 1441655828, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
   - {fileID: 254641013, guid: 087ed2a263e2b934c8bd38d903aeb8e8, type: 3}
   deadSprite: {fileID: 183905673, guid: 6f8cd2a9d1b7885479dfc0cb66c3f35e, type: 3}
-  growthTime: 30
+  growthTime: 3
   dropItem: {fileID: 11400000, guid: d016af7a687f1b044b137c70edad938f, type: 2}
