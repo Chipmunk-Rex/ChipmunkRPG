@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3c2375096c8c64093fe7899e90cef2, type: 3}
   m_Name: Wall_ash
   m_EditorClassIdentifier: 
-  itemName: "\uD654\uC0B0\uB098\uBB34 \uBCBD"
-  itemDesc: "\uC7BF\uBE5B\uC758 \uB098\uBB34\uB85C \uB9CC\uB4E0 \uBCBD. \uB0B4\uC5F4\uC131\uC774
-    \uC788\uB2E4."
+  itemName: "\uC7BF\uAC00\uB8E8 \uBCBD"
+  itemDesc: "\uC7AC\uB97C \uAE01\uC5B4\uBAA8\uC544 \uB9CC\uB4E4\uC5B4\uB0B8 \uBCBD."
   itemSprite: {fileID: 1278461171, guid: 189aa1e1a1e9c1b42ad8d99e9ff3d51d, type: 3}
   maxStackCount: 64
   enumItemRarity: 1

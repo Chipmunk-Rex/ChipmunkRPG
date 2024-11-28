@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: Wall_wood
+  m_Name: wall_snow
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 620cc6afe0c4a534f98dac3fafa86814, type: 2}
     count: 5
-  resultItemSO: {fileID: 11400000, guid: d6f3b5e10ce09884b9d0fc35553ff82c, type: 2}
+  resultItemSO: {fileID: 11400000, guid: d3ca0a029d29904469b73305e87be76b, type: 2}
   resultCount: 1
