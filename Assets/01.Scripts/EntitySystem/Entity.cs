@@ -144,6 +144,7 @@ public abstract class Entity : INDSerializeAble
     {
         return gameObject.GetComponent<T>();
     }
+    public virtual void OnPlayerInteract(Player player) { }
     public virtual NDSData Serialize()
     {
         NDSData entityNDSData = new NDSData();

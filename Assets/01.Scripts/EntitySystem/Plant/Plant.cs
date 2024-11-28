@@ -59,6 +59,15 @@ public class Plant : BuildingEntity
             Visual.sprite = plantSO.growthSprites[time / plantSO.growthTime];
         }
     }
+    public override void OnPlayerInteract(Player player)
+    {
+        base.OnPlayerInteract(player);
+        if (isGrown)
+        {
+        player.Inventory.AddItem(plantSO.dropItem);
+            Die();
+        }
+    }
 
     public override void Die()
     {
