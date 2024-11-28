@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: bonfire2
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 4bc0caabcbf80574299c03c4c36d53d8, type: 2}
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
+    count: 20
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 03c5e7bb8ec6248468b9685178bc58c9, type: 2}
     count: 5
-  resultItemSO: {fileID: 11400000, guid: bc975eb96eecb1740a53f5c504839a69, type: 2}
+  resultItemSO: {fileID: 11400000, guid: 613a820112a0b4e4b87f326c8c1c8bc1, type: 2}
   resultCount: 1

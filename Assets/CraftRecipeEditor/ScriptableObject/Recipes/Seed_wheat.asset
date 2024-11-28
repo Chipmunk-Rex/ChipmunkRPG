@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebfaa3ed4b82a74f80dbac293562c14, type: 3}
-  m_Name: bonfire1
+  m_Name: Seed_wheat
   m_EditorClassIdentifier: 
   IngredientItems:
-  - <Ingredient>k__BackingField: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
-    count: 20
-  resultItemSO: {fileID: 11400000, guid: ad23d940b307072409a38bdf2a69fabe, type: 2}
-  resultCount: 1
+  - <Ingredient>k__BackingField: {fileID: 11400000, guid: f9de54224486b9848a09314d9c2e13ed, type: 2}
+    count: 1
+  resultItemSO: {fileID: 11400000, guid: d0c4a415edc3fda4daebe8ff094ae2d1, type: 2}
+  resultCount: 4
