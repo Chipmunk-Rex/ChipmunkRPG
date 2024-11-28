@@ -48,6 +48,8 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     protected override void Awake()
     {
+        TryInitBySlot();
+
         this.transform.position = Vector2.zero;
 
         biomeTableNoise = new VoronoiNoise(worldSO.biomTableSize, seed, worldSO.biomDetail);
@@ -58,6 +60,26 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
         OnWorldInitComplete?.Invoke();
         // StartCoroutine(RenderMap());
+    }
+
+    private void TryInitBySlot()
+    {
+        try
+        {
+            NDSData worldNDSData = SlotManager.Instance.GetWorldNDSData();
+            Deserialize(worldNDSData);
+            return;
+        }
+        catch
+        {
+            Debug.Log("World Init By Slot Failed");
+            Debug.Log("World Init By Default");
+            SlotData slotData = SlotManager.Instance.GetSlotData();
+            if (slotData != null)
+            {
+                seed = slotData.seed;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -233,7 +255,7 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     public bool CanBuild(Vector2Int worldPos, BuildingSO buildingSO)
     {
-        if(CanBuild(worldPos) == false)
+        if (CanBuild(worldPos) == false)
             return false;
         foreach (Vector2Int localPos in buildingSO.tileDatas.Keys)
         {
@@ -318,14 +340,13 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
     #region Serialize
 
-    [ContextMenu("Save")]
     public void Save()
     {
         NDSData ndsData = Serialize();
         string json = JsonConvert.SerializeObject(ndsData);
         Debug.Log(Application.dataPath);
         System.IO.Directory.CreateDirectory($"{Application.dataPath}/Resources/SaveData");
-        System.IO.File.WriteAllText($"{Application.dataPath}/Resources/SaveData/{worldSO.worldName}.json", json);
+        System.IO.File.WriteAllText($"{SlotManager.Instance.currentSlotPath}/world.jon", json);
     }
     public NDSData Serialize()
     {
@@ -354,15 +375,6 @@ public class World : MonoSingleton<World>, IBuildingMap<Building>, INDSerializeA
 
         return worldNdsData;
     }
-
-    [ContextMenu("Load")]
-    public void Load()
-    {
-        string json = System.IO.File.ReadAllText($"{Application.dataPath}/Resources/SaveData/{worldSO.worldName}.json");
-        NDSData ndsData = JsonConvert.DeserializeObject<NDSData>(json);
-        Deserialize(ndsData);
-    }
-
     public void Deserialize(NDSData data)
     {
         seed = int.Parse(data.GetDataString("seed"));

@@ -4,6 +4,8 @@ using System.IO;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartUI_SaveSlotView : MonoBehaviour
@@ -19,12 +21,15 @@ public class StartUI_SaveSlotView : MonoBehaviour
     public TMP_Text slotDate;
     public TMP_Text slotDesc;
 
-    int selectIndex;
+    public Image fadeOutImage;
+
+    [SerializeField] int selectIndex;
     int SelectIndex
     {
         get => selectIndex;
         set
         {
+            int beforeIndex = selectIndex;
             if (isSlotChangeAnimPlaying)
                 return;
 
@@ -34,7 +39,7 @@ public class StartUI_SaveSlotView : MonoBehaviour
                 animator.SetTrigger("BeforeSlot");
 
             selectIndex = ClampIndex(value);
-            if (selectIndex != value)
+            if (selectIndex != beforeIndex)
                 DrawView();
         }
     }
@@ -64,28 +69,40 @@ public class StartUI_SaveSlotView : MonoBehaviour
     }
     public void CreateSlot()
     {
-        
+
     }
     public void DrawView()
     {
         string slotNameStr = "damaged Slot";
         string slotLastDateStr = "";
+        string slotDescStr = "slot path : " + slotPathList[SelectIndex];
+        Debug.Log(SelectIndex);
         try
         {
             string json = File.ReadAllText($"{slotPathList[SelectIndex]}/SlotData.json");
-            Debug.Log(json);
-            NDSData slotNDSData = JsonConvert.DeserializeObject<NDSData>(json);
+            SlotData slotData = JsonConvert.DeserializeObject<SlotData>(json);
             slotNameStr = slotPathList[SelectIndex].Split('/')[slotPathList[SelectIndex].Split('/').Length - 1];
-            slotLastDateStr = slotNDSData.GetDataString("LastSaveDate");
+            slotLastDateStr = slotData.lastOpenDate;
+            slotDescStr = slotData.desc.ToString();
         }
-        catch (System.Exception e)
+        catch
         {
-            Debug.LogError(e);
         }
 
         slotName.text = slotNameStr;
         slotDate.text = slotLastDateStr;
+        slotDesc.text = slotDescStr;
 
         // plantsImg[0].sprite = 
+    }
+    public UnityEvent onSelected;
+    public void Select()
+    {
+        SlotManager.Instance.currentSlotPath = slotPathList[SelectIndex];
+        onSelected?.Invoke();
+    }
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }
