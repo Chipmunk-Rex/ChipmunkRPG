@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d662e1653979fa346ae51235c55be353, type: 3}
   m_Name: FireWoods
   m_EditorClassIdentifier: 
-  biomeDatas: []
+  biomeDatas:
+  - percentage: 100
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 3ae65c33a796c1f428bc4b7cee447e11, type: 2}
+  - percentage: 30
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 3bfe88c3bd520524e8722f622c93b986, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coast
   m_EditorClassIdentifier: 
   biomeDatas:
-  - percentage: 20.8
+  - percentage: 20
     color: {r: 1, g: 0.65705234, b: 0, a: 1}
     Value: {fileID: 11400000, guid: f20362b4f6db6cb41b2f5c57c003959c, type: 2}
   - percentage: 100

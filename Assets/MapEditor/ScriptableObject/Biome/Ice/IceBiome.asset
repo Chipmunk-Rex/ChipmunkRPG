@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: IceBiome
   m_EditorClassIdentifier: 
   biomeName: 
-  biomeBuildings: []
+  biomeBuildings:
+  - percentage: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 0}
   biomeEntitys: []
-  groundDatas: []
+  groundDatas:
+  - percentage: 100
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 11400000, guid: 44022bbb64b0dd54c92508f1de8f6d99, type: 2}

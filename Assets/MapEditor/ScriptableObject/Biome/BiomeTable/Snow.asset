@@ -16,6 +16,6 @@ MonoBehaviour:
   - percentage: 32.070705
     color: {r: 1, g: 1, b: 1, a: 0}
     Value: {fileID: 11400000, guid: 0950f92e2de0c0c41b5097d38021252e, type: 2}
-  - percentage: 93.04974
+  - percentage: 100
     color: {r: 0.1273585, g: 0.8823476, b: 1, a: 0}
     Value: {fileID: 11400000, guid: fb7e41ebc00b5184d8fb44e572df40ac, type: 2}

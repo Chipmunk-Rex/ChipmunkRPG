@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 
   biomeBuildings: []
-  biomeEntitys: []
+  biomeEntitys:
+  - percentage: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    Value: {fileID: 0}
   groundDatas:
-  - percentage: 100
+  - percentage: 70
     color: {r: 1, g: 0.8302624, b: 0, a: 0}
     Value: {fileID: 11400000, guid: 4dbb3035d0f65c3409316c73c91f3c3d, type: 2}
+  - percentage: 100
+    color: {r: 0, g: 1, b: 0.9348867, a: 0}
+    Value: {fileID: 11400000, guid: 36525c0359b37344bb5e56d424bcd26d, type: 2}
