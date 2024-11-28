@@ -20,13 +20,10 @@ MonoBehaviour:
   maxHealth: 1
   damage: 1
   speed: 5
+  detectRange: 2.5
   attackRange: 1
-  attackRate: 1
-  attackDuration: 0.5
-  attackCooldown: 0.5
-  attackDelay: 0.5
-  attackKnockback: 1
-  test: 5
+  canCollisions: 1
+  lifeTime: -1
   meterDatas:
     serializableItems:
     - key: 0
@@ -62,4 +59,4 @@ MonoBehaviour:
   growthSprites: []
   deadSprite: {fileID: 0}
   growthTime: 0
-  dropItem: {fileID: 0}
+  dropItem: {fileID: 11400000, guid: 64cd790d2344d0a44ab8e5bc602a1a06, type: 2}
