@@ -17,17 +17,17 @@ MonoBehaviour:
   - percentage: 20
     color: {r: 1, g: 0.9635534, b: 0, a: 1}
     Value: {fileID: 11400000, guid: 4f45b181ad08be641ace8e2ed2302b26, type: 2}
-  - percentage: 30
-    color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  - percentage: 100
+    color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     Value: {fileID: 11400000, guid: 1ef676da428360f44b8fd94c386d7446, type: 2}
   - percentage: 100
     color: {r: 0, g: 1, b: 0.52395105, a: 1}
     Value: {fileID: 11400000, guid: bd10c21574896cd45bfb7c98777240f4, type: 2}
   chunkSize: {x: 10, y: 10}
   biomSize: 8
-  biomTableSize: 40
-  biomDetail: 40
-  renderSize: 4
+  biomTableSize: 25
+  biomDetail: 25
+  renderSize: 3
   renderDuration: 1
   depthScale: 3
   dayDuration: 24

@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: DesertBiome
   m_EditorClassIdentifier: 
   biomeName: 
-  biomeBuildings:
-  - percentage: 0
-    color: {r: 1, g: 0.7276479, b: 0, a: 0}
-    Value: {fileID: 0}
+  biomeBuildings: []
   biomeEntitys: []
   groundDatas:
   - percentage: 100

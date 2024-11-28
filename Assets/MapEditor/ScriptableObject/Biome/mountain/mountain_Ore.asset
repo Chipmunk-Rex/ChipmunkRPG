@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452c224ee438cae4b8d6971c188fc144, type: 3}
   m_Name: mountain_Ore
   m_EditorClassIdentifier: 
-  biomeName: 
-  biomeBuildings:
-  - percentage: 15
-    color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 0}
-  - percentage: 15
-    color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 0}
+  biomeName: fffffff
+  biomeBuildings: []
   biomeEntitys: []
   groundDatas:
   - percentage: 0

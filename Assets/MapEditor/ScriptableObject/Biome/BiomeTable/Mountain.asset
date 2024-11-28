@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Mountain
   m_EditorClassIdentifier: 
   biomeDatas:
-  - percentage: 100
-    color: {r: 0, g: 0, b: 0, a: 0}
-    Value: {fileID: 11400000, guid: ac355b600cb06444dab6f043714463e6, type: 2}
-  - percentage: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+  - percentage: 5.7792506
+    color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0}
     Value: {fileID: 11400000, guid: 52aadfee434bd6244ad230882d3b669a, type: 2}
+  - percentage: 100
+    color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
+    Value: {fileID: 11400000, guid: ac355b600cb06444dab6f043714463e6, type: 2}
